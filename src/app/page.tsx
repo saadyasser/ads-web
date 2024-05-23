@@ -11,6 +11,7 @@ export default function Home() {
           testing dark mode{" "}
         </code>
       </p>
+      <p className="font-georgia">ssssssssssssslakdfms;dmf</p>
       <br />
       <br />
       <DropDown />

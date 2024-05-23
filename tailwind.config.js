@@ -10,7 +10,9 @@ module.exports = {
     extend: {
       colors: {},
       backgroundImage: {},
-      fontFamily: {},
+      fontFamily: {
+        georgia: ["var(--font-georgia)"],
+      },
     },
   },
   plugins: [],

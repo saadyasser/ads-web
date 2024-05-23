@@ -1,9 +1,8 @@
 import { DarkModeProvider } from "@/components/Providers";
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-
-const inter = Inter({ subsets: ["latin"] });
+import { georgia } from "./fonts";
+import clsx from "clsx";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -15,9 +14,10 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const classes = clsx(georgia.variable, "scroll-smooth");
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html lang="en" className={classes}>
+      <body>
         <DarkModeProvider>{children}</DarkModeProvider>
       </body>
     </html>
