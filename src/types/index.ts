@@ -3,3 +3,9 @@
     example :
     export { customType } from "./customType";
 */
+
+export type childrenType =
+  | string
+  | React.JSX.Element
+  | React.JSX.Element[]
+  | React.ReactNode;

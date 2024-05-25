@@ -1,9 +1,10 @@
 "use client";
 
+import { childrenType } from "@/types";
 import DarkModeProvider from "./DarkModeProvider";
 
 type Props = {
-  children: string | React.JSX.Element | React.JSX.Element[] | React.ReactNode;
+  children: childrenType;
 };
 
 export const Providers = ({ children }: Props) => {
