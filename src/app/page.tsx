@@ -11,9 +11,13 @@ export default function Home() {
           testing dark mode{" "}
         </code>
       </p>
-      <p className="font-georgia">ssssssssssssslakdfms;dmf</p>
+      <p className="text-2xl font-georgia">font georgia !!!</p>
       <br />
+      <p className="text-2xl font-bold font-georgia">font georgia bold!!!</p>
       <br />
+      <p className="text-2xl font-inter">font inter !!!</p>
+      <br />
+      <p className="text-2xl font-bold font-inter">font inter bold!!!</p>
       <DropDown />
       <ThemeSwitcher />
     </main>

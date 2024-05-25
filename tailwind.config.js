@@ -12,6 +12,7 @@ module.exports = {
       backgroundImage: {},
       fontFamily: {
         georgia: ["var(--font-georgia)"],
+        inter: ["var(--font-inter)"],
       },
     },
   },

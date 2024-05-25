@@ -1,7 +1,7 @@
 import { DarkModeProvider } from "@/components/Providers";
 import "./globals.css";
 import type { Metadata } from "next";
-import { georgia } from "./fonts";
+import { georgia, inter } from "./fonts";
 import clsx from "clsx";
 
 export const metadata: Metadata = {
@@ -14,7 +14,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const classes = clsx(georgia.variable, "scroll-smooth");
+  const classes = clsx(georgia.variable, inter.variable, "scroll-smooth");
   return (
     <html lang="en" className={classes}>
       <body>
