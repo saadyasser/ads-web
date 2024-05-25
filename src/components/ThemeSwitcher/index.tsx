@@ -7,9 +7,9 @@ const ThemeSwitcher = () => {
   const [mounted, setMounted] = useState(false);
   const { systemTheme, theme, setTheme } = useTheme();
 
-  // useEffect only runs on the client, so now we can safely show the UI
   useEffect(() => {
     setMounted(true);
+
     const hour = new Date().getHours();
     const isNightTime = hour >= 18 || hour < 6;
 
@@ -25,18 +25,13 @@ const ThemeSwitcher = () => {
   }
 
   const renderThemeChanger = () => {
-    if (!mounted) return null;
-
     const currentTheme = theme === "system" ? systemTheme : theme;
 
-    const hour = new Date().getHours();
-    const isNightTime = hour >= 18 || hour < 6;
-
-    if (currentTheme === "dark" || !isNightTime) {
-      return <p onClick={() => setTheme("light")}>sun</p>;
-    } else {
-      return <p onClick={() => setTheme("dark")}>dark</p>;
-    }
+    return currentTheme === "dark" ? (
+      <p onClick={() => setTheme("light")}>sun</p>
+    ) : (
+      <p onClick={() => setTheme("dark")}>moon</p>
+    );
   };
 
   return <>{renderThemeChanger()}</>;
