@@ -1,1 +1,3 @@
-export * as default from "./Dropdown";
+export * from "./Dropdown";
+export * from "./Providers/Providers";
+export * from "./ThemeSwitcher";
