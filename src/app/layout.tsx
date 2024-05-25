@@ -1,8 +1,10 @@
-import { DarkModeProvider } from "@/components/Providers";
-import "./globals.css";
 import type { Metadata } from "next";
+
+import Providers from "@/components/Providers/Providers";
 import { georgia, inter } from "./fonts";
 import clsx from "clsx";
+
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -18,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={classes}>
       <body>
-        <DarkModeProvider>{children}</DarkModeProvider>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
