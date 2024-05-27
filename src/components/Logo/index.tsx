@@ -9,15 +9,15 @@ export const Logo = ({
   alt = "ADS Logo",
   className,
 }: LogoType) => {
-  const logoClasses = clsx("h-5 md:h-8 w-auto", className);
+  const logoClasses = clsx(" w-auto", className);
   return (
     <div className="flex">
       <a href="#" className="flex items-center">
         <span className="sr-only">Store Logo</span>
         <Image
           className={logoClasses}
-          width={196}
-          height={47}
+          width={164}
+          height={40}
           priority={true}
           src={src}
           alt={alt}

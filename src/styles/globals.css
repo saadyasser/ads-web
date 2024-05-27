@@ -3,14 +3,14 @@
 @tailwind utilities;
 
 .btn {
-  @apply flex items-center justify-center gap-2 px-4 py-3 text-sm leading-4 transition-all border rounded-lg md:text-base md:px-8 md:py-4 font-inter border-inherit disabled:opacity-50 disabled:bg-opacity-50 disabled:border-opacity-0 active:shadow-custom;
+  @apply flex items-center justify-center gap-2 px-4 py-3 text-sm font-medium leading-4 transition-all border rounded-lg md:text-base md:px-8 md:py-4 font-inter border-inherit disabled:opacity-50 disabled:bg-opacity-50 disabled:border-opacity-0 active:shadow-custom;
 }
 .btn-primary {
   @apply text-white bg-primary border-primary hover:bg-primary-hover hover:border-primary-hover active:bg-primary-active active:border-primary-active active:shadow-primary;
 }
 
 .btn-secondary {
-  @apply text-black bg-primary-light border-primary-light hover:bg-primary-light-hover hover:border-primary-light-hover active:bg-primary-light-active active:border-primary-light-active active:shadow-primary-light;
+  @apply text-primary-dark bg-primary-light border-primary-light hover:bg-primary-light-hover hover:border-primary-light-hover active:bg-primary-light-active active:border-primary-light-active active:shadow-primary-light;
 }
 
 .btn-danger {

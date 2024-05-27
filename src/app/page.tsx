@@ -5,7 +5,7 @@ import { SunIcon } from "@/lib/@react-icons";
 
 export default function Home() {
   return (
-    <main className="flex flex-col items-center min-h-screen p-24">
+    <main className="flex flex-col items-center min-h-screen p-12 md:p-24">
       <p className="text-2xl font-georgia">font georgia !!!</p>
       <br />
       <p className="text-2xl font-bold font-georgia">font georgia bold!!!</p>
@@ -13,6 +13,7 @@ export default function Home() {
       <p className="text-2xl font-inter">font inter !!!</p>
       <br />
       <p className="text-2xl font-bold font-inter">font inter bold!!!</p>
+      <br />
       primary buttons:
       <div className="flex gap-2">
         <Button className="font-medium">Primary</Button>

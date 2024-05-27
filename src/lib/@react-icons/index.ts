@@ -7,3 +7,5 @@ export {
   PiMoonThin as MoonIcon,
   PiSunDimThin as SunIcon,
 } from "react-icons/pi";
+
+export { CiMenuBurger as BurgerMenuIcon } from "react-icons/ci";
