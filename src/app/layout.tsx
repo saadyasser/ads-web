@@ -5,7 +5,7 @@ import { georgia, inter } from "./fonts";
 import clsx from "clsx";
 
 import "@/styles/globals.css";
-import { Footer, Navbar } from "@/components";
+import { Footer, Navbar, ThemeSwitcher } from "@/components";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -20,8 +20,9 @@ export default function RootLayout({
   const classes = clsx(georgia.variable, inter.variable, "scroll-smooth");
   return (
     <html lang="en" className={classes}>
-      <body className="pt-[57px]">
+      <body className="pt-[97px]">
         <Providers>
+          <ThemeSwitcher />
           <Navbar />
           {children}
           <Footer />
