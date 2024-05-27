@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 
-import Providers from "@/components/Providers/Providers";
+import Providers from "@/components/Providers";
 import { georgia, inter } from "./fonts";
 import clsx from "clsx";
 
 import "./globals.css";
+import { Footer, Navbar } from "@/components";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -19,8 +20,12 @@ export default function RootLayout({
   const classes = clsx(georgia.variable, inter.variable, "scroll-smooth");
   return (
     <html lang="en" className={classes}>
-      <body>
-        <Providers>{children}</Providers>
+      <body className="pt-[57px]">
+        <Providers>
+          <Navbar />
+          {children}
+          <Footer />
+        </Providers>
       </body>
     </html>
   );
