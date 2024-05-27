@@ -6,6 +6,7 @@ import { Footer } from "./Footer";
 import { Container } from "./Container";
 import { Logo } from "./Logo";
 import { NavLink } from "./NavLink";
+import { Button } from "./Button";
 
 export {
   Dropdown,
@@ -16,4 +17,5 @@ export {
   Container,
   Logo,
   NavLink,
+  Button,
 };

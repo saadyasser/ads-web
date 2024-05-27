@@ -3,17 +3,24 @@
 @tailwind utilities;
 
 .btn {
-  @apply text-base font-medium transition-all;
-  @apply p-2;
-  @apply border rounded;
+  @apply flex items-center justify-center gap-2 px-4 py-3 text-sm leading-4 transition-all border rounded-lg md:text-base md:px-8 md:py-4 font-inter border-inherit disabled:opacity-50 disabled:bg-opacity-50 disabled:border-opacity-0 active:shadow-custom;
 }
 .btn-primary {
-  /* @apply text-white bg-red-light hover:bg-transparent border-red-light hover:text-red-light; */
-}
-.btn-outline {
-  /* @apply bg-transparent border-red-light text-red-light hover:bg-red-light hover:text-white; */
+  @apply text-white bg-primary border-primary hover:bg-primary-hover hover:border-primary-hover active:bg-primary-active active:border-primary-active active:shadow-primary;
 }
 
 .btn-secondary {
-  /* @apply bg-white border-white hover:bg-transparent hover:text-white text-gray-dark; */
+  @apply text-black bg-primary-light border-primary-light hover:bg-primary-light-hover hover:border-primary-light-hover active:bg-primary-light-active active:border-primary-light-active active:shadow-primary-light;
+}
+
+.btn-danger {
+  @apply text-white bg-danger border-danger hover:bg-danger-hover hover:border-danger-hover active:bg-danger-active active:border-danger-active active:shadow-danger-shadow;
+}
+
+.btn-success {
+  @apply text-white bg-success border-success hover:bg-success-hover hover:border-success-hover active:bg-success-active active:border-success-active active:shadow-success-shadow;
+}
+
+.btn-alert {
+  @apply text-white bg-alert border-alert hover:bg-alert-hover hover:border-alert-hover active:bg-alert-active active:border-alert-active active:shadow-alert-shadow;
 }
