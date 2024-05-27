@@ -3,3 +3,7 @@
     example :
     export { IconName as IconNameIcon } from "react-icons/hi";
 */
+export {
+  PiMoonThin as MoonIcon,
+  PiSunDimThin as SunIcon,
+} from "react-icons/pi";

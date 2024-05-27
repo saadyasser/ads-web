@@ -14,11 +14,11 @@ export const DarkModeProvider = ({ children }: Props) => {
   }, []);
 
   if (!mounted) {
-    return <>{children}</>;
+    return null;
   }
 
   return (
-    <ThemeProvider enableSystem={true} attribute="class">
+    <ThemeProvider enableColorScheme attribute="class">
       {children}
     </ThemeProvider>
   );
