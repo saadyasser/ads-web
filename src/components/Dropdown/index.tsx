@@ -13,7 +13,7 @@ import {
 //   TrashIcon,
 // } from "@heroicons/react/16/solid";
 
-export default function Dropdown() {
+export const Dropdown = () => {
   return (
     <div className="fixed text-right top-24 w-52">
       <Menu __demoMode>
@@ -75,4 +75,6 @@ export default function Dropdown() {
       </Menu>
     </div>
   );
-}
+};
+
+export default Dropdown;

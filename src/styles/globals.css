@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.btn {
+  @apply text-base font-medium transition-all;
+  @apply p-2;
+  @apply border rounded;
+}
+.btn-primary {
+  /* @apply text-white bg-red-light hover:bg-transparent border-red-light hover:text-red-light; */
+}
+.btn-outline {
+  /* @apply bg-transparent border-red-light text-red-light hover:bg-red-light hover:text-white; */
+}
+
+.btn-secondary {
+  /* @apply bg-white border-white hover:bg-transparent hover:text-white text-gray-dark; */
+}

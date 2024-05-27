@@ -1,8 +1,19 @@
-export * from "./Dropdown";
-export * from "./Providers";
-export * from "./ThemeSwitcher";
-export * from "./Navbar";
-export * from "./Footer";
-export * from "./Container";
-export * from "./Logo";
-export * from "./NavLink";
+import { Dropdown } from "./Dropdown";
+import { Providers } from "./Providers";
+import { ThemeSwitcher } from "./ThemeSwitcher";
+import { Navbar } from "./Navbar";
+import { Footer } from "./Footer";
+import { Container } from "./Container";
+import { Logo } from "./Logo";
+import { NavLink } from "./NavLink";
+
+export {
+  Dropdown,
+  Providers,
+  ThemeSwitcher,
+  Navbar,
+  Footer,
+  Container,
+  Logo,
+  NavLink,
+};

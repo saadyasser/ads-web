@@ -4,7 +4,7 @@ import Providers from "@/components/Providers";
 import { georgia, inter } from "./fonts";
 import clsx from "clsx";
 
-import "./globals.css";
+import "@/styles/globals.css";
 import { Footer, Navbar } from "@/components";
 
 export const metadata: Metadata = {
