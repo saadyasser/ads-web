@@ -42,7 +42,7 @@ const NavLinks = () => {
       <NavLink href="/" exact>
         Home
       </NavLink>
-      <NavLink href="/components">Components</NavLink>
+      <NavLink href="/ui-components">Components</NavLink>
       <NavLink href="/templates">Web & Mobile Templates</NavLink>
       <NavLink href="/ready-flows">Ready Flows</NavLink>
       <NavLink href="/color-themes">Color-Themes</NavLink>
