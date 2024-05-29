@@ -6,6 +6,9 @@
 export {
   PiMoonThin as MoonIcon,
   PiSunDimThin as SunIcon,
+  PiArrowRight as ArrowRightIcon,
 } from "react-icons/pi";
+
+export { HiOutlineArrowNarrowRight as ArrowRightHiIcon } from "react-icons/hi";
 
 export { CiMenuBurger as BurgerMenuIcon } from "react-icons/ci";

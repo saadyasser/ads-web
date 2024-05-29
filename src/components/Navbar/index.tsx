@@ -20,7 +20,7 @@ export const Navbar = () => {
         <NavLinks />
         <div className="flex items-center gap-2 ">
           <Button variant="secondary" className="!hidden lg:!flex">
-            Login/ Register
+            Register / Login
           </Button>
           <Button
             variant="custom"

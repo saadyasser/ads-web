@@ -1,1 +1,4 @@
-export { HambergerMenu as HambergerMenu } from "iconsax-react";
+export {
+  HambergerMenu as HambergerMenu,
+  ArrowRight as ArrowRight,
+} from "iconsax-react";

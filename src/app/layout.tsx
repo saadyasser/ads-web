@@ -1,10 +1,10 @@
+import "./globals.css";
 import type { Metadata } from "next";
 
 import Providers from "@/components/Providers";
 import { georgia, inter } from "./fonts";
 import clsx from "clsx";
 
-import "@/styles/globals.css";
 import { Footer, Navbar, ThemeSwitcher } from "@/components";
 
 export const metadata: Metadata = {
