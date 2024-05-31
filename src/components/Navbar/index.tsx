@@ -26,7 +26,10 @@ export const Navbar = () => {
             variant="custom"
             className="!flex lg:!hidden items-center justify-center !rounded-full !p-2 border-none"
           >
-            <HambergerMenu size="24" color="#fff" className="leading-4" />
+            <HambergerMenu
+              size="24"
+              className="leading-4 text-primary fill-primary dark:text-white dark:fill-white"
+            />
           </Button>
         </div>
       </Container>

@@ -20,7 +20,7 @@ export default function RootLayout({
   const classes = clsx(georgia.variable, inter.variable, "scroll-smooth");
   return (
     <html lang="en" className={classes}>
-      <body className="pt-[97px]">
+      <body className="pt-[70px] lg:pt-[97px]">
         <Providers>
           <ThemeSwitcher />
           <Navbar />

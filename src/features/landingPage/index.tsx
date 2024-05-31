@@ -4,7 +4,7 @@ import { HeroSection } from "./components";
 
 export const LandingPage = () => {
   return (
-    <Container className="">
+    <Container>
       <HeroSection />
     </Container>
   );
