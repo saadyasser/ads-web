@@ -1,0 +1,100 @@
+"use client";
+import { Button } from "@/components/Button";
+import { H1 } from "@/components/theme";
+import clsx from "clsx";
+import { ArrowRight } from "iconsax-react";
+import Image from "next/image";
+import React from "react";
+
+export const HeroSection = () => {
+  return (
+    <section className="grid items-start w-full grid-cols-1 gap-8 py-6 lg:grid-cols-2">
+      <div className="order-1 pt-6 md:pt-10">
+        <H1 className="text-left max-lg:text-center">
+          The Ultimate Design <br className="max-lg:hidden" /> Toolkit for
+          Streamlining <br className="max-lg:hidden" /> Your Projects
+        </H1>
+        <p className="mt-6 text-lg max-lg:text-center">
+          With our extensive library of pre-built components and resources, you
+          <br className="max-lg:hidden" />
+          can kickstart any project and save thousands of hours of design work.
+        </p>
+        <ButtonGroup className="hidden lg:flex" />
+      </div>
+      <div className="order-2">
+        <Image
+          src="/images/hero_svg.svg"
+          alt="hero image"
+          width={616}
+          height={616}
+          className="w-full h-auto"
+          priority
+        />
+        <ButtonGroup className="flex lg:hidden" />
+      </div>
+    </section>
+  );
+};
+
+export default HeroSection;
+
+const ImageGroup = () => {
+  return (
+    <div className="flex items-center gap-4">
+      <div className="flex p-2 -space-x-4 overflow-hidden">
+        <Image
+          className="inline-block w-8 h-8 rounded-full md:w-10 md:h-10 ring-2 ring-white"
+          src="https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+          alt=""
+          width={50}
+          height={50}
+        />
+        <Image
+          className="inline-block w-8 h-8 rounded-full md:w-10 md:h-10 ring-2 ring-white"
+          src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+          alt=""
+          width={50}
+          height={50}
+        />
+        <Image
+          className="inline-block w-8 h-8 rounded-full md:w-10 md:h-10 ring-2 ring-white"
+          src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.25&w=256&h=256&q=80"
+          alt=""
+          width={50}
+          height={50}
+        />
+        <Image
+          className="inline-block w-8 h-8 rounded-full md:w-10 md:h-10 ring-2 ring-white"
+          src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+          alt=""
+          width={50}
+          height={50}
+        />
+        <div className="flex items-center justify-center w-8 h-8 font-bold rounded-full md:w-10 md:h-10 ring-2 ring-white bg-primary-light text-primary">
+          +2
+        </div>
+      </div>
+      <p className="font-bold">Designers !</p>
+    </div>
+  );
+};
+
+const ButtonGroup = ({ className }: { className?: string }) => {
+  const classes = clsx("flex flex-col justify-center my-6", className);
+  return (
+    <div className={classes}>
+      <div className="flex flex-col items-center w-full gap-4 my-6 md:flex-row md:my-10">
+        <Button
+          className=" w-full max-lg:!text-sm"
+          icon={<ArrowRight size="24" />}
+        >
+          Discover our UI Components
+        </Button>
+        <Button variant="secondary" className="w-full max-lg:!text-sm">
+          Full Access for Figma Library!
+        </Button>
+      </div>
+      <ImageGroup />
+    </div>
+  );
+};
