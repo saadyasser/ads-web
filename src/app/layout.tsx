@@ -28,7 +28,7 @@ export default function RootLayout({
         <Providers>
           <ThemeSwitcher />
           <Navbar />
-          <main className="py-6 lg:py-12 bg-background-light dark:bg-background-dark">
+          <main className="min-h-screen py-6 lg:py-12 bg-background-light dark:bg-background-dark">
             {children}
           </main>
           <Footer />
