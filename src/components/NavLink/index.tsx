@@ -18,7 +18,7 @@ export const NavLink = ({
     ? "border-b-2 border-primary !text-primary dark:!text-white dark:border-white font-bold"
     : "";
   const linkClasses = clsx(
-    "w-max hover:text-primary-hover pb-1 active:text-primary-active text-black dark:text-white",
+    "w-max hover:text-primary-hover pb-1 active:text-primary-active text-black dark:text-white p-2",
     className,
     activeClasses
   );

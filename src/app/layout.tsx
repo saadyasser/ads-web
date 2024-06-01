@@ -17,14 +17,20 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const classes = clsx(georgia.variable, inter.variable, "scroll-smooth");
+  const classes = clsx(
+    georgia.variable,
+    inter.variable,
+    "scroll-smooth h-auto"
+  );
   return (
     <html lang="en" className={classes}>
-      <body className="pt-[70px] lg:pt-[97px]">
+      <body className="pt-[70px] lg:pt-[83px] ">
         <Providers>
           <ThemeSwitcher />
           <Navbar />
-          {children}
+          <main className="py-6 lg:py-12 bg-background-light dark:bg-background-dark">
+            {children}
+          </main>
           <Footer />
         </Providers>
       </body>

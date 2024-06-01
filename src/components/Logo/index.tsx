@@ -12,7 +12,7 @@ export const Logo = ({
   const logoClasses = clsx(" w-auto", className);
   return (
     <div className="flex">
-      <a href="#" className="flex items-center">
+      <a href="/" className="flex items-center">
         <span className="sr-only">Store Logo</span>
         <Image
           className={logoClasses}

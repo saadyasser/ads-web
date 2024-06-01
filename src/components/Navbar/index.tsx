@@ -11,7 +11,7 @@ export const Navbar = () => {
     setLogoPath(theme === "dark" ? "/ads_logo_dark.svg" : "/ads_logo.svg");
   }, [theme]);
   return (
-    <nav className="fixed top-0 z-50 w-full py-4 border-b-[1px] border-black-light dark:border-black-dark bg-white text-black dark:bg-black dark:text-white ">
+    <nav className="fixed top-0 z-50 w-full py-4 border-b-[1px] border-black-light dark:border-black-darker bg-white text-black dark:bg-black-darker dark:text-white ">
       <Container className="flex items-center justify-between gap-6 max-lg:px-8 max-xl:px-4">
         <div className="flex">
           <Logo src={logoPath} />
@@ -19,9 +19,18 @@ export const Navbar = () => {
         </div>
         <NavLinks />
         <div className="flex items-center gap-2 ">
-          <Button variant="secondary" className="!hidden lg:!flex">
-            Register / Login
-          </Button>
+          {theme === "dark" ? (
+            <Button
+              variant="custom"
+              className="!hidden lg:!flex bg-black text-white !border-black"
+            >
+              Register / Login
+            </Button>
+          ) : (
+            <Button variant="secondary" className="!hidden lg:!flex">
+              Register / Login
+            </Button>
+          )}
           <Button
             variant="custom"
             className="!flex lg:!hidden items-center justify-center !rounded-full !p-2 border-none"
@@ -41,7 +50,7 @@ export default Navbar;
 
 const NavLinks = () => {
   return (
-    <div className="items-center justify-between hidden gap-2 lg:gap-4 max-lg:!text-sm lg:flex font-medium">
+    <div className="items-center justify-between hidden gap-2 xl:gap-6 max-lg:!text-sm lg:flex font-medium">
       <NavLink href="/" exact>
         Home
       </NavLink>

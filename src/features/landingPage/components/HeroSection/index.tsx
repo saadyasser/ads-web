@@ -11,12 +11,10 @@ export const HeroSection = () => {
     <section className="grid items-start w-full grid-cols-1 gap-8 py-6 lg:grid-cols-2">
       <div className="order-1 pt-6 md:pt-10">
         <H1 className="text-left max-lg:text-center">
-          The Ultimate Design <br className="max-lg:hidden" /> Toolkit for
-          Streamlining <br className="max-lg:hidden" /> Your Projects
+          The Ultimate Design Toolkit for Streamlining Your Projects
         </H1>
         <p className="mt-6 text-lg max-lg:text-center">
           With our extensive library of pre-built components and resources, you
-          <br className="max-lg:hidden" />
           can kickstart any project and save thousands of hours of design work.
         </p>
         <ButtonGroup className="hidden lg:flex" />
@@ -70,7 +68,7 @@ const ImageGroup = () => {
           width={50}
           height={50}
         />
-        <div className="flex items-center justify-center w-8 h-8 font-bold rounded-full md:w-10 md:h-10 ring-2 ring-white bg-primary-light text-primary">
+        <div className="flex items-center justify-center w-8 h-8 font-bold text-center rounded-full md:w-10 md:h-10 ring-2 ring-white bg-primary-light text-primary">
           +2
         </div>
       </div>
@@ -90,7 +88,10 @@ const ButtonGroup = ({ className }: { className?: string }) => {
         >
           Discover our UI Components
         </Button>
-        <Button variant="secondary" className="w-full max-lg:!text-sm">
+        <Button
+          variant="secondary"
+          className="w-full max-lg:!text-sm dark:!text-black"
+        >
           Full Access for Figma Library!
         </Button>
       </div>
