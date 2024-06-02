@@ -18,7 +18,7 @@ export const Navbar = () => {
           {theme === "dark" ? (
             <Button
               variant="custom"
-              className="!hidden xl:!flex bg-black text-white !border-black"
+              className="!hidden xl:!flex bg-black text-white !border-black active:!shadow-black-active"
             >
               Register / Login
             </Button>
@@ -29,7 +29,7 @@ export const Navbar = () => {
           )}
           <Button
             variant="custom"
-            className="!flex xl:!hidden items-center justify-center !rounded-full !p-2 border-none active:!shadow-black-active"
+            className="!flex xl:!hidden items-center justify-center !rounded-full !p-2 border-none "
           >
             <HambergerMenu
               size="24"
