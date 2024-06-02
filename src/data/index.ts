@@ -3,3 +3,4 @@
     example :
     export { dummyListData } from "dummy";
 */
+export { FOOTER_NAVIGATION } from "./footer_data";

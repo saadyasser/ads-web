@@ -3,3 +3,4 @@
     example :
     export { getHelper } from "helpers";
 */
+export { getVariant } from "./getVariant";
