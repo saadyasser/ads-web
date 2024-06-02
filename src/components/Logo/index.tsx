@@ -1,28 +1,39 @@
+"use client";
 import Image from "next/image";
 import clsx from "clsx";
 
-import LightLogoPath from "@/../public/next.svg";
 import { LogoType } from "./Logo.types";
+import { useEffect, useState } from "react";
+import { useTheme } from "next-themes";
+import Link from "next/link";
 
 export const Logo = ({
-  src = LightLogoPath,
+  src = "",
   alt = "ADS Logo",
   className,
+  width = 164,
+  height = 40,
 }: LogoType) => {
+  const [logoPath, setLogoPath] = useState(src ? src : "/ads_logo.svg");
+  const { theme } = useTheme();
+  useEffect(() => {
+    if (!src)
+      setLogoPath(theme === "dark" ? "/ads_logo_dark.svg" : "/ads_logo.svg");
+  }, [theme, src]);
   const logoClasses = clsx(" w-auto", className);
   return (
     <div className="flex">
-      <a href="#" className="flex items-center">
+      <Link href="/" className="flex items-center">
         <span className="sr-only">Store Logo</span>
         <Image
           className={logoClasses}
-          width={164}
-          height={40}
+          width={width}
+          height={height}
           priority={true}
-          src={src}
+          src={logoPath}
           alt={alt}
         />
-      </a>
+      </Link>
     </div>
   );
 };
