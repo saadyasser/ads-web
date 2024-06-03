@@ -7,6 +7,8 @@ import { Container } from "./Container";
 import { Logo } from "./Logo";
 import { NavLink } from "./NavLink";
 import { Button } from "./Button";
+import { H1 } from "./theme/headings/H1";
+import { Slider } from "./Slider";
 
 export {
   Dropdown,
@@ -18,4 +20,6 @@ export {
   Logo,
   NavLink,
   Button,
+  H1,
+  Slider,
 };
