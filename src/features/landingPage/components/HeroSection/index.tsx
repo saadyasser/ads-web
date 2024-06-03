@@ -12,8 +12,8 @@ export const HeroSection = () => {
       ? "/images/hero_image.svg"
       : "/images/hero_image_light.svg";
   return (
-    <section className="grid items-start w-full grid-cols-1 gap-8 py-6 xl:grid-cols-2">
-      <Container>
+    <Container>
+      <section className="grid items-start w-full grid-cols-1 gap-8 py-6 xl:grid-cols-2">
         <div className="order-1 pt-6 md:pt-10">
           <H1 className="text-left max-xl:text-center">
             The Ultimate Design Toolkit for Streamlining Your Projects
@@ -36,8 +36,8 @@ export const HeroSection = () => {
           />
           <ButtonGroup className="flex xl:hidden" />
         </div>
-      </Container>
-    </section>
+      </section>
+    </Container>
   );
 };
 
