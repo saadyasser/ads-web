@@ -4,10 +4,10 @@ import { Categories, HeroSection } from "./components";
 
 export const LandingPage = () => {
   return (
-    <Container>
+    <>
       <HeroSection />
       <Categories />
-    </Container>
+    </>
   );
 };
 

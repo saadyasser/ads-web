@@ -32,7 +32,7 @@ const categoriesData = [
 ] as CategoriesCardType[];
 export const Categories = () => {
   return (
-    <section>
+    <section className="bg-[#F8F9FA] dark:bg-background-dark">
       <Container className="py-6 md:py-16">
         <div className="flex items-center w-full gap-8">
           {categoriesData?.map((item) => (

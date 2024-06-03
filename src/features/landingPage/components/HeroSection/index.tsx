@@ -1,11 +1,9 @@
 "use client";
-import { Button } from "@/components/Button";
-import { H1 } from "@/components/theme";
-import clsx from "clsx";
-import { ArrowRight } from "iconsax-react";
-import { useTheme } from "next-themes";
 import Image from "next/image";
-import React from "react";
+import { Container, Button, H1 } from "@/components";
+import { ArrowRight } from "iconsax-react";
+import clsx from "clsx";
+import { useTheme } from "next-themes";
 
 export const HeroSection = () => {
   const { theme } = useTheme();
@@ -15,27 +13,30 @@ export const HeroSection = () => {
       : "/images/hero_image_light.svg";
   return (
     <section className="grid items-start w-full grid-cols-1 gap-8 py-6 xl:grid-cols-2">
-      <div className="order-1 pt-6 md:pt-10">
-        <H1 className="text-left max-xl:text-center">
-          The Ultimate Design Toolkit for Streamlining Your Projects
-        </H1>
-        <p className="mt-6 text-xl max-xl:text-center">
-          With our extensive library of pre-built components and resources, you
-          can kickstart any project and save thousands of hours of design work.
-        </p>
-        <ButtonGroup className="hidden xl:flex" />
-      </div>
-      <div className="order-2">
-        <Image
-          src={heroImagePath}
-          alt="hero image"
-          width={616}
-          height={616}
-          className="w-full h-auto"
-          priority
-        />
-        <ButtonGroup className="flex xl:hidden" />
-      </div>
+      <Container>
+        <div className="order-1 pt-6 md:pt-10">
+          <H1 className="text-left max-xl:text-center">
+            The Ultimate Design Toolkit for Streamlining Your Projects
+          </H1>
+          <p className="mt-6 text-xl max-xl:text-center">
+            With our extensive library of pre-built components and resources,
+            you can kickstart any project and save thousands of hours of design
+            work.
+          </p>
+          <ButtonGroup className="hidden xl:flex" />
+        </div>
+        <div className="order-2">
+          <Image
+            src={heroImagePath}
+            alt="hero image"
+            width={616}
+            height={616}
+            className="w-full h-auto"
+            priority
+          />
+          <ButtonGroup className="flex xl:hidden" />
+        </div>
+      </Container>
     </section>
   );
 };
