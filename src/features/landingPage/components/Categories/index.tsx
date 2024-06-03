@@ -3,6 +3,7 @@ import { Container } from "@/components";
 import { useTheme } from "next-themes";
 import Image from "next/image";
 import React from "react";
+import { CategoriesCardType } from "./categories.types";
 
 const categoriesData = [
   {
@@ -46,12 +47,6 @@ export const Categories = () => {
 
 export default Categories;
 
-type CategoriesCardType = {
-  heading: string;
-  description: string;
-  lightImagePath: string;
-  darkImagePath: string;
-};
 const CategoriesCard = ({
   heading,
   description,
