@@ -24,3 +24,8 @@
 .btn-alert {
   @apply text-white bg-alert border-alert hover:bg-alert-hover hover:border-alert-hover active:bg-alert-active active:border-alert-active active:shadow-alert-shadow;
 }
+
+#categories-slider .swiper-wrapper {
+  transform: translate3d(50.5px, 0px, 0px);
+  gap: 3rem;
+}

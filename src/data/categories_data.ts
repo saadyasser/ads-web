@@ -1,10 +1,6 @@
-import { Container } from "@/components";
-import React from "react";
-import { CategoriesCardType } from "./categories.types";
-import ResponsiveCategories from "./ResponsiveCategories";
-import CategoriesCard from "./CategoriesCard";
+import { CategoriesCardType } from "@/features/landingPage/components/Categories/categories.types";
 
-const categoriesData = [
+export const categoriesData = [
   {
     heading: "UI Components",
     description: "+2k components ready to use!",
@@ -30,19 +26,3 @@ const categoriesData = [
     darkImagePath: "/images/categories/dark/dark_design_systems_category.svg",
   },
 ] as CategoriesCardType[];
-export const Categories = () => {
-  return (
-    <section className="bg-[#F8F9FA] dark:bg-background-dark">
-      <Container className="py-6 md:py-16">
-        <div className="items-center hidden w-full gap-8 lg:flex">
-          {categoriesData?.map((item) => (
-            <CategoriesCard key={item.heading} {...item} />
-          ))}
-        </div>
-        <ResponsiveCategories />
-      </Container>
-    </section>
-  );
-};
-
-export default Categories;
