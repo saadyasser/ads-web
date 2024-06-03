@@ -14,7 +14,7 @@ export const Footer = () => {
         <div className="pt-16 pb-8">
           <div className="grid xl:grid-cols-2 xl:gap-8">
             <div className="space-y-8">
-              <Logo src="/ads_logo_white.svg" />
+              <Logo src="/images/logos/ads_logo_white.svg" />
               <p className="text-sm leading-6 ">
                 With our extensive library of pre-built components and
                 resources, you can kickstart any project and save thousands of
@@ -31,10 +31,7 @@ export const Footer = () => {
                   <ul role="list" className="mt-6 ml-4 space-y-4">
                     {FOOTER_NAVIGATION.quickLinks.map((item) => (
                       <li key={item.name}>
-                        <a
-                          href={item.href}
-                          className="text-sm leading-6 hover:"
-                        >
+                        <a href={item.href} className="text-sm leading-6">
                           {item.name}
                         </a>
                       </li>

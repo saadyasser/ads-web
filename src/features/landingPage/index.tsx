@@ -1,12 +1,13 @@
 import { Container } from "@/components";
 import React from "react";
-import { HeroSection } from "./components";
+import { Categories, HeroSection } from "./components";
 
 export const LandingPage = () => {
   return (
-    <Container>
+    <>
       <HeroSection />
-    </Container>
+      <Categories />
+    </>
   );
 };
 
