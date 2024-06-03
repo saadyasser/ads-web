@@ -8,6 +8,8 @@ import { Logo } from "./Logo";
 import { NavLink } from "./NavLink";
 import { Button } from "./Button";
 import { H1 } from "./theme/headings/H1";
+import { Slider } from "./Slider";
+
 export {
   Dropdown,
   Providers,
@@ -19,4 +21,5 @@ export {
   NavLink,
   Button,
   H1,
+  Slider,
 };

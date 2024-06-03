@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { SliderProps } from "./Slider.types";
 // import {
@@ -17,10 +18,12 @@ export const Slider = ({
   slides,
   className = "text-black",
   slideShape,
+  id,
   ...rest
 }: SliderProps) => {
   return (
     <Swiper
+      id={id}
       speed={400}
       breakpoints={{
         320: {

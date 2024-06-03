@@ -20,4 +20,5 @@ export interface SliderProps extends SwiperOptions {
   slides: slideType[] | any[];
   slideShape: (slide: any, index: number) => childrenType;
   className?: string;
+  id?: string;
 }
