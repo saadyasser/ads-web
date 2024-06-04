@@ -1,6 +1,6 @@
 "use client";
 import { Slider } from "@/components";
-import { categoriesData } from "@/data";
+import { categoriesData } from "@/features/data";
 import React from "react";
 import CategoriesCard from "../CategoriesCard";
 
@@ -10,8 +10,6 @@ export const ResponsiveCategories = () => {
       <Slider
         slides={categoriesData}
         slideShape={(slide) => <CategoriesCard {...slide} />}
-        spaceBetween={60}
-        slidesPerView={2}
         loop
         id="categories-slider"
       />

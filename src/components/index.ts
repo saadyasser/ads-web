@@ -9,6 +9,8 @@ import { NavLink } from "./NavLink";
 import { Button } from "./Button";
 import { H1 } from "./theme/headings/H1";
 import { Slider } from "./Slider";
+import { Card } from "./Card";
+import { GridWithSlider } from "./GridWithSlider";
 
 export {
   Dropdown,
@@ -22,4 +24,6 @@ export {
   Button,
   H1,
   Slider,
+  Card,
+  GridWithSlider,
 };

@@ -1,3 +1,4 @@
 import { HeroSection } from "./HeroSection";
 import { Categories } from "./Categories";
-export { HeroSection, Categories };
+import { DetailedCategoriesSection } from "./DetailedCategoriesSection";
+export { HeroSection, Categories, DetailedCategoriesSection };
