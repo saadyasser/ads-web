@@ -31,7 +31,15 @@ export const Slider = ({
           spaceBetween: 20,
         },
         640: {
+          slidesPerView: 2,
+          spaceBetween: 40,
+        },
+        1024: {
           slidesPerView: 3,
+          spaceBetween: 40,
+        },
+        1280: {
+          slidesPerView: 4,
           spaceBetween: 40,
         },
       }}

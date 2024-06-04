@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  @apply overflow-x-hidden;
+}
 .btn {
   @apply flex items-center justify-center gap-2 px-4 py-3 text-sm font-medium leading-4 transition-all border rounded-lg md:text-base md:px-8 md:py-4 font-inter border-inherit disabled:opacity-50 disabled:bg-opacity-50 disabled:border-opacity-0 active:shadow-custom h-[50px];
 }
@@ -25,7 +28,7 @@
   @apply text-white bg-alert border-alert hover:bg-alert-hover hover:border-alert-hover active:bg-alert-active active:border-alert-active active:shadow-alert-shadow;
 }
 
-#categories-slider .swiper-wrapper {
+/* #categories-slider .swiper-wrapper {
   transform: translate3d(50.5px, 0px, 0px);
   gap: 3rem;
-}
+} */

@@ -1,4 +1,4 @@
-export type CategoriesCardType = {
+export type CardShapeType = {
   heading: string;
   description: string;
   lightImagePath: string;

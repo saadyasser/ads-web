@@ -18,7 +18,7 @@ export const HeroSection = () => {
           <H1 className="text-left max-xl:text-center">
             The Ultimate Design Toolkit for Streamlining Your Projects
           </H1>
-          <p className="mt-6 text-xl max-xl:text-center">
+          <p className="mt-6 max-xl:text-center">
             With our extensive library of pre-built components and resources,
             you can kickstart any project and save thousands of hours of design
             work.
@@ -45,7 +45,7 @@ export default HeroSection;
 
 const ImageGroup = () => {
   return (
-    <div className="flex items-center gap-4">
+    <div className="flex items-center gap-2">
       <div className="flex p-2 -space-x-4 overflow-hidden">
         <Image
           className="inline-block w-8 h-8 rounded-full md:w-10 md:h-10 ring-2 ring-white"
