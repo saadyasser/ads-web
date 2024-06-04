@@ -14,11 +14,10 @@ export const Logo = ({
   width = 164,
   height = 40,
 }: LogoType) => {
-  const [logoPath, setLogoPath] = useState(src);
+  const [logoPath, setLogoPath] = useState(src || "/images/logos/ads_logo.svg");
   const { theme } = useTheme();
   useEffect(() => {
     if (!src) {
-      console.log("hi");
       setLogoPath(() =>
         theme === "dark"
           ? "/images/logos/ads_logo_dark.svg"
@@ -35,7 +34,7 @@ export const Logo = ({
           className={logoClasses}
           width={width}
           height={height}
-          priority={true}
+          priority
           src={logoPath}
           alt={alt}
         />
