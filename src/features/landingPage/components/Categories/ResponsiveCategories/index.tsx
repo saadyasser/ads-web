@@ -10,8 +10,6 @@ export const ResponsiveCategories = () => {
       <Slider
         slides={categoriesData}
         slideShape={(slide) => <CategoriesCard {...slide} />}
-        spaceBetween={60}
-        slidesPerView={2}
         loop
         id="categories-slider"
       />
