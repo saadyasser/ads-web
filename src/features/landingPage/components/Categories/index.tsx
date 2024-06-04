@@ -34,7 +34,7 @@ export const Categories = () => {
   return (
     <section className="bg-[#F8F9FA] dark:bg-background-dark">
       <Container className="py-6 md:py-16">
-        <div className="items-center hidden w-full gap-8 lg:flex">
+        <div className="items-center hidden w-full md:gap-4 sm:gap-8 xl:gap-8 lg:flex">
           {categoriesData?.map((item) => (
             <CategoriesCard key={item.heading} {...item} />
           ))}
