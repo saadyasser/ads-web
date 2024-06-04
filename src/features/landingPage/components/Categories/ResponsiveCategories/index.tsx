@@ -1,6 +1,6 @@
 "use client";
 import { Slider } from "@/components";
-import { categoriesData } from "@/data";
+import { categoriesData } from "@/features/data";
 import React from "react";
 import CategoriesCard from "../CategoriesCard";
 

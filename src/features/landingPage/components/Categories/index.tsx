@@ -2,7 +2,7 @@ import { Container } from "@/components";
 import React from "react";
 import ResponsiveCategories from "./ResponsiveCategories";
 import CategoriesCard from "./CategoriesCard";
-import { categoriesData } from "@/data";
+import { categoriesData } from "@/features/data";
 
 export const Categories = () => {
   return (
