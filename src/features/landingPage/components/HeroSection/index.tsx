@@ -18,7 +18,7 @@ export const HeroSection = () => {
           <H1 className="text-left max-xl:text-center">
             The Ultimate Design Toolkit for Streamlining Your Projects
           </H1>
-          <p className="mt-6 text-xl max-xl:text-center">
+          <p className="mt-6 max-xl:text-center">
             With our extensive library of pre-built components and resources,
             you can kickstart any project and save thousands of hours of design
             work.
