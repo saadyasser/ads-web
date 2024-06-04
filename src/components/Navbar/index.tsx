@@ -2,10 +2,14 @@
 import { Button, Container, Logo, NavLink } from "../";
 import { useTheme } from "next-themes";
 import { HambergerMenu } from "@/lib/@iconsax";
+import { Moon, Sun, Sun1 } from "iconsax-react";
 
 export const Navbar = () => {
-  const { theme } = useTheme();
-
+  const { theme, setTheme } = useTheme();
+  const handleThemeChange = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
+    localStorage.setItem("theme", theme === "dark" ? "light" : "dark");
+  };
   return (
     <nav className="fixed top-0 z-50 w-full py-4 border-b-[1px] border-black-light dark:border-black-darker bg-white text-black dark:bg-black-darker dark:text-white ">
       <Container className="flex items-center justify-between gap-6 max-xl:px-8 max-lg:px-4">
@@ -29,12 +33,30 @@ export const Navbar = () => {
           )}
           <Button
             variant="custom"
-            className="!flex xl:!hidden items-center justify-center !rounded-full !p-2 border-none "
+            className="!flex xl:!hidden items-center justify-center !rounded-full !py-2 !px-4 !shadow-none border-none "
           >
             <HambergerMenu
               size="24"
               className="leading-4 text-primary fill-primary dark:text-white dark:fill-white"
             />
+          </Button>
+
+          <Button
+            variant="custom"
+            onClick={handleThemeChange}
+            className="!flex items-center justify-center !rounded-full !py-2 !px-4 !shadow-none border-none "
+          >
+            {theme === "dark" ? (
+              <Moon
+                size="24"
+                className="leading-4 text-primary fill-primary dark:text-white dark:fill-white"
+              />
+            ) : (
+              <Sun1
+                size="24"
+                className="leading-4 text-primary fill-primary dark:text-white dark:fill-white"
+              />
+            )}
           </Button>
         </div>
       </Container>
