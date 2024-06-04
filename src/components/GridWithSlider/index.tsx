@@ -8,7 +8,7 @@ export const GridWithSlider = ({
   gridData,
   heading,
 }: {
-  gridData: [];
+  gridData: any;
   heading: string;
 }) => {
   return (
