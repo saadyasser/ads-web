@@ -3,4 +3,5 @@ export type CategoriesCardType = {
   description: string;
   lightImagePath: string;
   darkImagePath: string;
+  navigationPath?: string;
 };

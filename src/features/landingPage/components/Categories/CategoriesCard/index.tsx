@@ -9,17 +9,22 @@ export const CategoriesCard = ({
   description,
   lightImagePath,
   darkImagePath,
+  navigationPath,
 }: CategoriesCardType) => {
   const { theme } = useTheme();
   const imagePath = theme === "dark" ? darkImagePath : lightImagePath;
   return (
-    <Card hoverEffect className="max-lg:mr-4 gap-8 min-w-[233px] ">
+    <Card
+      hoverEffect
+      className="max-lg:mr-4 gap-8 min-w-[233px]"
+      navigateTo={navigationPath}
+    >
       <div className="text-center text-black dark:text-white">
         <h3 className="mb-2 text-xl font-bold">{heading}</h3>
         <p className="text-sm">{description}</p>
       </div>
       <div className="flex items-center justify-center lg:h-[200px] 2xl:w-[325px] 2xl:h-[258px]">
-        <Image src={imagePath} width={345} height={350} alt={heading} />
+        <Image src={imagePath} width={345} height={239} alt={heading} />
       </div>
     </Card>
   );
