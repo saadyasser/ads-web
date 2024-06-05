@@ -1,5 +1,7 @@
 import { childrenType } from "@/types";
-import { SwiperOptions } from "swiper/types";
+import { LegacyRef } from "react";
+import { SwiperRef } from "swiper/react";
+import { Swiper, SwiperOptions } from "swiper/types";
 
 export type slideType = {
   image: string;
@@ -21,4 +23,5 @@ export interface SliderProps extends SwiperOptions {
   slideShape: (slide: any, index: number) => childrenType;
   className?: string;
   id?: string;
+  onSwiper?: (swiper: Swiper) => void;
 }
