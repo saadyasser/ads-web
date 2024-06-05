@@ -24,7 +24,7 @@ export const CardShape = ({
       </div>
       <div className="text-black dark:text-white">
         <h3 className="mb-1 text-lg font-bold capitalize">{heading}</h3>
-        <p className="">{description}</p>
+        <p className="text-sm">{description}</p>
       </div>
     </Card>
   );
