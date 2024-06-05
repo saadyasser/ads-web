@@ -1,3 +1,4 @@
-import { RecentComponents } from "./RecentComponents";
+import { RecentComponentsSection } from "./RecentComponentsSection";
+import { MobileTemplatesSection } from "./MobileTemplatesSection";
 
-export { RecentComponents };
+export { RecentComponentsSection, MobileTemplatesSection };

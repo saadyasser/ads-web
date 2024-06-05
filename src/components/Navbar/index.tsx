@@ -1,8 +1,7 @@
 "use client";
 import { Button, Container, Logo, NavLink } from "../";
 import { useTheme } from "next-themes";
-import { HambergerMenu } from "@/lib/@iconsax";
-import { Moon, Sun, Sun1 } from "iconsax-react";
+import { BurgerMenu, Moon, Sun } from "@/lib/@iconsax";
 
 export const Navbar = () => {
   const { theme, setTheme } = useTheme();
@@ -22,12 +21,15 @@ export const Navbar = () => {
           {theme === "dark" ? (
             <Button
               variant="custom"
-              className="!hidden xl:!flex bg-black text-white !border-black active:!shadow-black-active"
+              className="!hidden xl:!flex bg-black text-white !border-white active:!shadow-black-active"
             >
               Register / Login
             </Button>
           ) : (
-            <Button variant="secondary" className="!hidden xl:!flex">
+            <Button
+              variant="custom"
+              className="bg-background-light active:shadow-background-light hover:bg-black-light border-black-light !hidden xl:!flex"
+            >
               Register / Login
             </Button>
           )}
@@ -35,7 +37,7 @@ export const Navbar = () => {
             variant="custom"
             className="!flex xl:!hidden items-center justify-center !rounded-full !py-2 !px-4 !shadow-none border-none "
           >
-            <HambergerMenu
+            <BurgerMenu
               size="24"
               className="leading-4 text-primary fill-primary dark:text-white dark:fill-white"
             />
@@ -52,7 +54,7 @@ export const Navbar = () => {
                 className="leading-4 text-primary fill-primary dark:text-white dark:fill-white"
               />
             ) : (
-              <Sun1
+              <Sun
                 size="24"
                 className="leading-4 text-primary fill-primary dark:text-white dark:fill-white"
               />

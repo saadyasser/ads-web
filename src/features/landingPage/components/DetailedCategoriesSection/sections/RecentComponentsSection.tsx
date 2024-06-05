@@ -1,14 +1,19 @@
+"use client";
 import { GridWithSlider } from "@/components";
 import { recentComponentsData } from "@/features/data";
-import React from "react";
+import { Navigation, Mousewheel } from "swiper/modules";
 
-export const RecentComponents = () => {
+export const RecentComponentsSection = () => {
   {
     /* Here will fetch data from API */
   }
   return (
     <>
       <GridWithSlider
+        modules={[Navigation, Mousewheel]}
+        rewind
+        navigation
+        mousewheel
         gridData={recentComponentsData}
         heading="Recent Components"
       />
@@ -16,4 +21,4 @@ export const RecentComponents = () => {
   );
 };
 
-export default RecentComponents;
+export default RecentComponentsSection;
