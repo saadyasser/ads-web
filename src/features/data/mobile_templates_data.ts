@@ -1,4 +1,4 @@
-export const recentComponentsData = [
+export const mobileTemplatesData = [
   {
     id: 1,
     category: "UI Components",

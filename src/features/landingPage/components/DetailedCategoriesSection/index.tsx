@@ -1,10 +1,11 @@
 import React from "react";
-import { RecentComponents } from "./sections";
+import { RecentComponentsSection, MobileTemplatesSection } from "./sections";
 
 export const DetailedCategoriesSection = () => {
   return (
-    <section className="py-6 md:py-16">
-      <RecentComponents />
+    <section className="flex flex-col gap-16 py-6 md:py-16">
+      <RecentComponentsSection />
+      <MobileTemplatesSection />
     </section>
   );
 };

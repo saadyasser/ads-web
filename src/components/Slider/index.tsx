@@ -1,15 +1,6 @@
 "use client";
-import React from "react";
+import React, { useRef } from "react";
 import { SliderProps } from "./Slider.types";
-// import {
-//   Navigation,
-//   Pagination,
-//   Mousewheel,
-//   Keyboard,
-//   FreeMode,
-//   Autoplay,
-//   EffectFade,
-// } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/effect-fade";
 import "swiper/css";
@@ -18,6 +9,7 @@ export const Slider = ({
   slides,
   className = "text-black",
   slideShape,
+  onSwiper,
   id,
   ...rest
 }: SliderProps) => {
@@ -25,6 +17,7 @@ export const Slider = ({
     <Swiper
       id={id}
       speed={400}
+      onSwiper={onSwiper}
       breakpoints={{
         320: {
           slidesPerView: 2,
@@ -47,7 +40,10 @@ export const Slider = ({
     >
       <div className="relative">
         {slides?.map((slide, index) => (
-          <SwiperSlide key={index} className={`${className ?? ""}`}>
+          <SwiperSlide
+            key={slide?.id || index}
+            className={`${className ?? ""}`}
+          >
             {slideShape(slide, index)}
           </SwiperSlide>
         ))}
