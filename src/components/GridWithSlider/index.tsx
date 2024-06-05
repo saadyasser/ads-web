@@ -7,25 +7,24 @@ import CardShape from "./CardShape";
 export const GridWithSlider = ({
   gridData,
   heading,
+  loop = false,
 }: {
   gridData: any;
   heading: string;
+  loop?: boolean;
 }) => {
   return (
-    <section className="">
-      <Container>
+    <div className="">
+      <div className="custom-container">
         <h3 className="my-4 capitalize">{heading}</h3>
-        <div className="-mr-24">
-          <Slider
-            slides={gridData}
-            slideShape={(slide) => <CardShape {...slide} />}
-            spaceBetween={60}
-            slidesPerView={2}
-            loop
-          />
-        </div>
-      </Container>
-    </section>
+        <Slider
+          className=""
+          slides={gridData}
+          slideShape={(slide) => <CardShape {...slide} />}
+          loop={loop}
+        />
+      </div>
+    </div>
   );
 };
 
