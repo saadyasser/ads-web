@@ -1,9 +1,9 @@
 "use client";
 import { GridWithSlider } from "@/components";
-import { mobileTemplatesData } from "@/features/data";
+import { designSystemsData } from "@/features/data";
 import { Navigation } from "swiper/modules";
 
-export const MobileTemplatesSection = () => {
+export const DesignSystemsSection = () => {
   {
     /* Here will fetch data from API */
   }
@@ -13,11 +13,11 @@ export const MobileTemplatesSection = () => {
         modules={[Navigation]}
         rewind
         navigation
-        gridData={mobileTemplatesData}
-        heading="Mobile Templates"
+        gridData={designSystemsData}
+        heading="Design Systems"
       />
     </>
   );
 };
 
-export default MobileTemplatesSection;
+export default DesignSystemsSection;

@@ -3,6 +3,7 @@ import {
   RecentComponentsSection,
   MobileTemplatesSection,
   WebTemplatesSection,
+  DesignSystemsSection,
 } from "./sections";
 import { Divider } from "@/components";
 
@@ -14,6 +15,8 @@ export const DetailedCategoriesSection = () => {
       <MobileTemplatesSection />
       <Divider />
       <WebTemplatesSection />
+      <Divider />
+      <DesignSystemsSection />
     </section>
   );
 };
