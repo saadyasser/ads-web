@@ -4,6 +4,7 @@ import {
   MobileTemplatesSection,
   WebTemplatesSection,
   DesignSystemsSection,
+  ColorThemesSection,
 } from "./sections";
 import { Divider } from "@/components";
 
@@ -17,6 +18,8 @@ export const DetailedCategoriesSection = () => {
       <WebTemplatesSection />
       <Divider />
       <DesignSystemsSection />
+      <Divider />
+      <ColorThemesSection />
     </section>
   );
 };
