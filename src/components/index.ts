@@ -12,6 +12,7 @@ import { Slider } from "./Slider";
 import { Card } from "./Card";
 import { GridWithSlider } from "./GridWithSlider";
 import { Link } from "./Link";
+import { Divider } from "./Divider";
 
 export {
   Dropdown,
@@ -28,4 +29,5 @@ export {
   Card,
   GridWithSlider,
   Link,
+  Divider,
 };
