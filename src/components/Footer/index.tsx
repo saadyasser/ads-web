@@ -1,5 +1,6 @@
 import { FOOTER_NAVIGATION } from "@/data";
-import { Logo, Container } from "../";
+import { Logo, Container, Link } from "../";
+import { createElement } from "react";
 
 export const Footer = () => {
   return (
@@ -12,8 +13,8 @@ export const Footer = () => {
           Footer
         </h2>
         <div className="pt-16 pb-8">
-          <div className="grid xl:grid-cols-2 xl:gap-8">
-            <div className="space-y-8">
+          <div className="grid xl:grid-cols-5 xl:gap-8">
+            <div className="col-span-2 space-y-8">
               <Logo src="/images/logos/ads_logo_white.svg" />
               <p className="text-sm leading-6 ">
                 With our extensive library of pre-built components and
@@ -21,59 +22,52 @@ export const Footer = () => {
                 hours of design work.
               </p>
             </div>
-            <div className="">
-              <div className="grid items-start justify-between grid-cols-2 col-span-2 gap-8 mt-16 xl:grid-cols-3 xl:col-span-3 xl:mt-0">
-                <div>
-                  <h3 className="text-base font-bold leading-6 xl:text-xl">
-                    <span className="mr-2 text-primary font-bolder">-</span>
-                    Quick Links
-                  </h3>
-                  <ul role="list" className="mt-6 ml-4 space-y-4">
-                    {FOOTER_NAVIGATION.quickLinks.map((item) => (
-                      <li key={item.name}>
-                        <a href={item.href} className="text-sm leading-6">
-                          {item.name}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div>
-                  <h3 className="text-base font-bold leading-6 xl:text-xl">
-                    <span className="mr-2 text-primary font-bolder">-</span>
-                    Help{" "}
-                  </h3>
-                  <ul role="list" className="mt-6 ml-4 space-y-4">
-                    {FOOTER_NAVIGATION.help.map((item) => (
-                      <li key={item.name}>
-                        <a
-                          href={item.href}
-                          className="text-sm leading-6 hover:"
-                        >
-                          {item.name}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="mt-10 xl:mt-0">
-                  <h3 className="text-base font-bold leading-6 xl:text-xl">
-                    <span className="mr-2 text-primary font-bolder">-</span>
-                    Social Media{" "}
-                  </h3>
-                  <ul role="list" className="mt-6 ml-4 space-y-4">
-                    {FOOTER_NAVIGATION.socialMedia.map((item) => (
-                      <li key={item.name}>
-                        <a
-                          href={item.href}
-                          className="text-sm leading-6 hover:"
-                        >
-                          {item.name}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+            <div className="grid items-start justify-between grid-cols-2 col-span-2 gap-8 mt-16 xl:grid-cols-3 xl:col-span-3 xl:mt-0">
+              <div>
+                <h3 className="text-base font-bold leading-6 xl:text-xl">
+                  <span className="mr-2 text-primary font-bolder">-</span>
+                  Quick Links
+                </h3>
+                <ul role="list" className="mt-6 ml-4 space-y-4">
+                  {FOOTER_NAVIGATION.quickLinks.map((item) => (
+                    <li key={item.name}>
+                      <Link href={item.href} className="text-sm">
+                        {item.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <h3 className="text-base font-bold leading-6 xl:text-xl">
+                  <span className="mr-2 text-primary font-bolder">-</span>
+                  Help{" "}
+                </h3>
+                <ul role="list" className="mt-6 ml-4 space-y-4">
+                  {FOOTER_NAVIGATION.help.map((item) => (
+                    <li key={item.name}>
+                      <Link href={item.href} className="text-sm">
+                        {item.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="mt-10 xl:mt-0">
+                <h3 className="text-base font-bold leading-6 xl:text-xl">
+                  <span className="mr-2 text-primary font-bolder">-</span>
+                  Social Media{" "}
+                </h3>
+                <ul role="list" className="mt-6 ml-4 space-y-5">
+                  {FOOTER_NAVIGATION.socialMedia.map((item) => (
+                    <li key={item.name}>
+                      <Link href={item.href} className="text-sm">
+                        {createElement(item.icon, { className: "w-6 h-6" })}
+                        {item.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
           </div>

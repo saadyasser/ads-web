@@ -10,10 +10,9 @@ export const RecentComponentsSection = () => {
   return (
     <>
       <GridWithSlider
-        modules={[Navigation, Mousewheel]}
+        modules={[Navigation]}
         rewind
         navigation
-        mousewheel
         gridData={recentComponentsData}
         heading="Recent Components"
       />
