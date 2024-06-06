@@ -45,7 +45,7 @@ export const FeaturesCard = () => {
         <Card
           key={feature.id}
           hoverEffect
-          className="flex flex-col col-span-1 p-6 text-center text-white rounded-lg bg-[#011943] dark:bg-primary-hover hover:border-b-white"
+          className="flex flex-col col-span-1 p-6 text-center text-white rounded-lg !bg-[#011943] dark:!bg-primary-hover hover:border-b-white"
         >
           <div className="flex flex-col items-start justify-start flex-1 gap-2 text-left">
             <div className="flex items-center justify-center p-3 rounded-full bg-[#01112D] dark:bg-primary w-fit">

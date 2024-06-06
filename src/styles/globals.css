@@ -72,3 +72,7 @@ body {
     max-width: calc(100% - 12rem) !important;
   }
 }
+
+.hover-zoom-effect:hover img {
+  scale: 0.9;
+}

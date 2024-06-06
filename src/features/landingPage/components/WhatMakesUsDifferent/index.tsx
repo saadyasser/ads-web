@@ -18,7 +18,7 @@ export const WhatMakesUsDifferent = () => {
           </div>
           <Button>Get Started Today!</Button>
         </div>
-        <div className="text-white">
+        <div className="">
           <FeaturesCard />
         </div>
       </Container>
