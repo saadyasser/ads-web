@@ -8,6 +8,12 @@ export {
   PiSunDimThin as SunIcon,
   PiArrowRight as ArrowRightIcon,
 } from "react-icons/pi";
+export {
+  AiFillInstagram as InstagramIcon,
+  AiFillLinkedin as LinkedinIcon,
+} from "react-icons/ai";
+export { RiTwitterXFill as TwitterXIcon } from "react-icons/ri";
+export { MdFacebook as FacebookIcon } from "react-icons/md";
 
 export { HiOutlineArrowNarrowRight as ArrowRightHiIcon } from "react-icons/hi";
 
