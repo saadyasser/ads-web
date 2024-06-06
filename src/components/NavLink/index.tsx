@@ -16,7 +16,7 @@ export const NavLink = ({
   const isActive = exact ? pathname === href : pathname.startsWith(href);
   const activeClasses =
     isActive &&
-    "border-b-2 border-primary !text-primary dark:!text-white dark:border-white !font-bold";
+    "!border-primary !text-primary dark:!text-white dark:!border-white !font-bold";
 
   const linkClasses = clsx(
     "border-b-2 border-transparent w-max font-light hover:text-primary-hover pb-1 active:text-primary-active text-black dark:text-black-light hover:dark:text-white transition-all p-2",

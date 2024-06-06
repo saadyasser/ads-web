@@ -10,10 +10,9 @@ export const MobileTemplatesSection = () => {
   return (
     <>
       <GridWithSlider
-        modules={[Navigation, Mousewheel]}
+        modules={[Navigation]}
         rewind
         navigation
-        mousewheel
         gridData={mobileTemplatesData}
         heading="Mobile Templates"
       />
