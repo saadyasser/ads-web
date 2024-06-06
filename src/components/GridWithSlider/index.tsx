@@ -25,16 +25,16 @@ export const GridWithSlider = ({
           <h3 className="my-4 text-xl font-bold capitalize">{heading}</h3>
           <div className="flex items-center gap-2">
             <button
-              className="font-semibold active:text-primary-active hover:text-primary-hover dark:active:text-white-active dark:hover:text-white-hover text-primary dark:text-white"
+              className="p-2 font-semibold text-black rounded-lg bg-white-hover active:text-primary-active hover:text-primary-hover dark:active:text-white-active dark:hover:text-white-hover dark:text-white"
               onClick={() => swiperRef?.current?.slidePrev()}
             >
-              <ChevronLeft size="24" />
+              <ChevronLeft size="18" />
             </button>
             <button
-              className="font-semibold active:text-primary-active hover:text-primary-hover dark:active:text-white-active dark:hover:text-white-hover text-primary dark:text-white"
+              className="p-2 font-semibold text-black rounded-lg bg-white-hover active:text-primary-active hover:text-primary-hover dark:active:text-white-active dark:hover:text-white-hover dark:text-white"
               onClick={() => swiperRef?.current?.slideNext()}
             >
-              <ChevronRight size="24" />
+              <ChevronRight size="18" />
             </button>
           </div>
         </div>

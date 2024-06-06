@@ -16,7 +16,7 @@ export const Card = ({
     handleClick && handleClick();
   };
   const cardClasses = clsx(
-    "flex flex-col items-center justify-center px-4 py-6 bg-white border-white rounded-lg dark:bg-black dark:border-black border-b-[6px] transition-all",
+    "flex flex-col items-center justify-center p-3 bg-white border-white rounded-lg dark:bg-black dark:border-black border-b-[6px] transition-all",
     className,
     hoverEffect &&
       "hover:shadow-xl hover:border-b-primary hover:dark:border-b-white",
