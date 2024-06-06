@@ -1,4 +1,4 @@
 import { RecentComponentsSection } from "./RecentComponentsSection";
 import { MobileTemplatesSection } from "./MobileTemplatesSection";
-
-export { RecentComponentsSection, MobileTemplatesSection };
+import { WebTemplatesSection } from "./WebTemplatesSection";
+export { RecentComponentsSection, MobileTemplatesSection, WebTemplatesSection };
