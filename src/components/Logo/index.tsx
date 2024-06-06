@@ -5,7 +5,7 @@ import clsx from "clsx";
 import { LogoType } from "./Logo.types";
 import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
-import Link from "next/link";
+import { Link } from "../";
 
 export const Logo = ({
   src = "",
@@ -28,7 +28,7 @@ export const Logo = ({
   const logoClasses = clsx("w-auto", className);
   return (
     <div className="flex">
-      <Link href="/" className="flex items-center">
+      <Link href="/">
         <span className="sr-only">ADS Logo</span>
         <Image
           className={logoClasses}

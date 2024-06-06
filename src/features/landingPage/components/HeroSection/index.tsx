@@ -88,7 +88,7 @@ const ButtonGroup = ({ className }: { className?: string }) => {
   const classes = clsx("flex flex-col justify-center my-6", className);
   return (
     <div className={classes}>
-      <div className="flex flex-col items-center w-full gap-4 my-6 xl:flex-row md:my-10">
+      <div className="flex flex-col items-center w-full gap-4 my-6 lg:flex-row md:my-10">
         <Button
           className=" w-full max-xl:!text-sm truncate"
           icon={<ArrowRight size="24" />}

@@ -1,9 +1,9 @@
-import { Container } from "@/components";
 import React from "react";
 import {
   Categories,
   HeroSection,
   DetailedCategoriesSection,
+  WhatMakesUsDifferent,
 } from "./components";
 
 export const LandingPage = () => {
@@ -12,6 +12,7 @@ export const LandingPage = () => {
       <HeroSection />
       <Categories />
       <DetailedCategoriesSection />
+      <WhatMakesUsDifferent />
     </>
   );
 };

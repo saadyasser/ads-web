@@ -71,14 +71,22 @@ export default Navbar;
 const NavLinks = () => {
   return (
     <div className="items-center justify-between hidden gap-2 xl:gap-6 max-xl:!text-sm xl:flex font-medium">
-      <NavLink href="/" exact>
+      <NavLink href="/" exact className="w-max">
         Home
       </NavLink>
-      <NavLink href="/ui-components">Components</NavLink>
-      <NavLink href="/templates">Web & Mobile Templates</NavLink>
-      <NavLink href="/ready-flows">Ready Flows</NavLink>
+      <NavLink href="/ui-components" className="w-max">
+        Components
+      </NavLink>
+      <NavLink href="/templates" className="w-max">
+        Web & Mobile Templates
+      </NavLink>
+      <NavLink href="/ready-flows" className="w-max">
+        Ready Flows
+      </NavLink>
       {/* <NavLink href="/color-themes">Color-Themes</NavLink> */}
-      <NavLink href="/design-system">Design-system</NavLink>
+      <NavLink href="/design-system" className="w-max">
+        Design-system
+      </NavLink>
     </div>
   );
 };
