@@ -11,6 +11,7 @@ import { H1 } from "./theme/headings/H1";
 import { Slider } from "./Slider";
 import { Card } from "./Card";
 import { GridWithSlider } from "./GridWithSlider";
+import { Link } from "./Link";
 
 export {
   Dropdown,
@@ -26,4 +27,5 @@ export {
   Slider,
   Card,
   GridWithSlider,
+  Link,
 };

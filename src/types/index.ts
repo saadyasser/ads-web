@@ -10,6 +10,9 @@ export type childrenType =
   | React.JSX.Element[]
   | React.ReactNode;
 
+export type ChildrenProp = {
+  children: childrenType;
+};
 export interface StaticImageData {
   src: string;
   height: number;

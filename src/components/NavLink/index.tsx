@@ -1,6 +1,6 @@
 "use client";
 import { usePathname } from "next/navigation";
-import Link from "next/link";
+import { Link } from "../";
 import { NavLinkProps } from "./NavLink.types";
 import clsx from "clsx";
 
