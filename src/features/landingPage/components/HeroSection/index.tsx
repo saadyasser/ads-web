@@ -34,7 +34,7 @@ export const HeroSection = () => {
             className="w-full h-auto"
             priority
           />
-          <ButtonGroup className="flex xl:hidden" />
+          <ButtonGroup className="flex items-center justify-center xl:hidden" />
         </div>
       </section>
     </Container>
