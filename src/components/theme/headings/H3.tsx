@@ -10,10 +10,10 @@ export const H3 = ({
   className?: string;
 }) => {
   const classes = clsx(
-    "text-xl font-bold font-georgia leading-tight lg:leading-[24px]",
+    "text-sm lg:text-xl font-bold font-georgia leading-tight lg:leading-[24px]",
     className
   );
-  return <h3 className={classes || "text-xl"}>{children}</h3>;
+  return <h3 className={classes}>{children}</h3>;
 };
 
 export default H3;

@@ -1,5 +1,5 @@
 "use client";
-import { Slider } from "@/components";
+import { Container, Slider } from "@/components";
 import { CardShape } from "./CardShape";
 import { Swiper, SwiperOptions } from "swiper/types";
 import { useRef } from "react";
@@ -7,7 +7,7 @@ import { ChevronLeft, ChevronRight } from "@/lib/@iconsax";
 
 type GridWithSliderProps = SwiperOptions & {
   gridData: any;
-  heading: string;
+  heading?: string;
   className?: string;
   withIndicators?: boolean;
 };
@@ -21,19 +21,19 @@ export const GridWithSlider = ({
   const swiperRef = useRef<Swiper>();
 
   return (
-    <div className="custom-container">
-      <div className="flex items-center justify-between pr-8 mb-4 md:mb-6 md:pr-10 lg:pr-12 xl:pr-24">
-        <h3 className="text-xl font-bold capitalize">{heading}</h3>
+    <Container>
+      <div className="flex items-center justify-between mb-4 md:mb-6">
+        {heading && <h3 className="text-xl font-bold capitalize">{heading}</h3>}
         {withIndicators && (
           <div className="flex items-center gap-2">
             <button
-              className="p-2 font-semibold text-black rounded-lg bg-white-hover active:text-primary-active hover:text-primary-hover dark:active:text-white-active dark:hover:text-white-hover"
+              className="p-2 font-semibold text-black transition-all rounded-lg bg-white-hover active:text-primary-active hover:bg-white hover:text-primary dark:active:text-white-active dark:bg-black dark:text-white dark:hover:bg-black-darker"
               onClick={() => swiperRef?.current?.slidePrev()}
             >
               <ChevronLeft size="18" />
             </button>
             <button
-              className="p-2 font-semibold text-black rounded-lg bg-white-hover active:text-primary-active hover:text-primary-hover dark:active:text-white-active dark:hover:text-white-hover"
+              className="p-2 font-semibold text-black transition-all rounded-lg bg-white-hover active:text-primary-active hover:bg-white hover:text-primary dark:active:text-white-active dark:bg-black dark:text-white dark:hover:bg-black-darker"
               onClick={() => swiperRef?.current?.slideNext()}
             >
               <ChevronRight size="18" />
@@ -50,7 +50,7 @@ export const GridWithSlider = ({
         slideShape={(slide) => <CardShape {...slide} />}
         {...rest}
       />
-    </div>
+    </Container>
   );
 };
 

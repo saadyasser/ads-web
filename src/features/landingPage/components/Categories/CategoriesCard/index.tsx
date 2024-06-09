@@ -3,6 +3,7 @@ import { useTheme } from "next-themes";
 import { CategoriesCardType } from "../categories.types";
 import Image from "next/image";
 import { Card } from "@/components";
+import { H2, H3 } from "@/components/theme";
 
 export const CategoriesCard = ({
   heading,
@@ -16,15 +17,21 @@ export const CategoriesCard = ({
   return (
     <Card
       hoverEffect
-      className="max-lg:mr-4 gap-8 min-w-[233px]"
+      className="gap-2 lg:gap-8 max-lg:min-h-[254px] min-w-[175px] lg:min-w-[233px]"
       navigateTo={navigationPath}
     >
-      <div className="text-center text-black dark:text-white">
-        <h3 className="mb-2 text-xl font-bold">{heading}</h3>
-        <p className="text-sm">{description}</p>
+      <div className="py-4 text-center text-black dark:text-white">
+        <H3 className="mb-2 font-inter">{heading}</H3>
+        <p className="text-xs md:text-sm">{description}</p>
       </div>
-      <div className="flex items-center justify-center lg:h-[200px] 2xl:w-[325px] 2xl:h-[258px]">
-        <Image src={imagePath} width={345} height={239} alt={heading} />
+      <div className="flex items-center justify-center h-[175px] max-lg:w-[190px] p-2 lg:h-[200px] 2xl:h-[258px]">
+        <Image
+          src={imagePath}
+          width={345}
+          height={239}
+          alt={heading}
+          className="!w-full !h-full rounded-lg"
+        />
       </div>
     </Card>
   );
