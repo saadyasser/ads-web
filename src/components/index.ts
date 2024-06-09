@@ -13,6 +13,8 @@ import { Card } from "./Card";
 import { GridWithSlider } from "./GridWithSlider";
 import { Link } from "./Link";
 import { Divider } from "./Divider";
+import { Input } from "./Input";
+import { TextArea } from "./TextArea";
 
 export {
   Dropdown,
@@ -30,4 +32,6 @@ export {
   GridWithSlider,
   Link,
   Divider,
+  Input,
+  TextArea,
 };

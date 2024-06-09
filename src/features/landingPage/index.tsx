@@ -4,6 +4,7 @@ import {
   HeroSection,
   DetailedCategoriesSection,
   WhatMakesUsDifferent,
+  ContactUs,
 } from "./components";
 
 export const LandingPage = () => {
@@ -13,6 +14,7 @@ export const LandingPage = () => {
       <Categories />
       <DetailedCategoriesSection />
       <WhatMakesUsDifferent />
+      <ContactUs />
     </>
   );
 };
