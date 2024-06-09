@@ -6,12 +6,18 @@ import CategoriesCard from "../CategoriesCard";
 
 export const ResponsiveCategories = () => {
   return (
-    <div className="flex items-center gap-8 cursor-grab lg:hidden">
+    <div className="block cursor-grab lg:hidden">
       <Slider
         slides={categoriesData}
         slideShape={(slide) => <CategoriesCard {...slide} />}
         loop
         id="categories-slider"
+        // breakpoints={{
+        //   320: {
+        //     slidesPerView: "auto",
+        //     spaceBetween: 20,
+        //   },
+        // }}
       />
     </div>
   );

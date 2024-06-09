@@ -1,7 +1,7 @@
 import { Button, Container, Logo } from "@/components";
 import { H2 } from "@/components/theme";
 import React from "react";
-import FeaturesCard from "./FeaturesCard";
+import FeaturesCards from "./FeaturesCards";
 
 export const WhatMakesUsDifferent = () => {
   return (
@@ -19,12 +19,11 @@ export const WhatMakesUsDifferent = () => {
           <Button>Get Started Today!</Button>
         </div>
         <div className="">
-          <FeaturesCard />
+          <FeaturesCards />
         </div>
       </Container>
     </section>
   );
 };
-// background: linear-gradient(97.03deg, #01112D 0%, #001C4C 100%);
 
 export default WhatMakesUsDifferent;
