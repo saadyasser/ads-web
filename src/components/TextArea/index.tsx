@@ -20,7 +20,7 @@ export const TextArea = forwardRef<HTMLInputElement, TextAreaProps>(
   ) => {
     const containerClasses = clsx("w-full mt-6", containerClassName);
     const inputClasses = clsx(
-      "mt-2 block w-full rounded-lg border-[1px] border-[#303030] dark:border-black p-4 px-3 dark:text-white placeholder:text-[#595959] font-medium",
+      "mt-2 block w-full rounded-lg border-[1px] border-[#303030] dark:border-black p-4 px-3 dark:text-white  placeholder:text-[#9F9CB4] placeholder:dark:text-[#595959]  font-medium",
       "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-primary",
       inputClassName
     );

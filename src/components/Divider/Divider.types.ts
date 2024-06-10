@@ -1,1 +1,3 @@
-export type DividerPropsType = { color?: string; className?: string };
+export type DividerPropsType = {
+  className?: string;
+};

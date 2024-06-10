@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/effect-fade";
 import "swiper/css";
 const defaultBreakpoints = {
-  320: {
+  420: {
     slidesPerView: 2,
     spaceBetween: 20,
   },
@@ -31,6 +31,8 @@ export const Slider = ({
   breakpoints,
   ...rest
 }: SliderProps) => {
+  console.log(breakpoints);
+  console.log({ ...defaultBreakpoints, ...breakpoints });
   return (
     <Swiper
       id={id}
@@ -39,7 +41,7 @@ export const Slider = ({
       breakpoints={{ ...defaultBreakpoints, ...breakpoints }}
       {...rest}
     >
-      <div className="relative">
+      <div className="relative flex">
         {slides?.map((slide, index) => (
           <SwiperSlide
             key={slide?.id || index}
