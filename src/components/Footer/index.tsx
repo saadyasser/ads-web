@@ -12,7 +12,7 @@ export const Footer = () => {
         <h2 id="footer-heading" className="sr-only">
           Footer
         </h2>
-        <div className="pt-8 pb-8 xl:pt-16">
+        <div className="pt-8 pb-8 md:pt-16">
           <div className="grid xl:grid-cols-5 xl:gap-8">
             <div className="col-span-2 space-y-4 max-xl:text-center">
               <Logo

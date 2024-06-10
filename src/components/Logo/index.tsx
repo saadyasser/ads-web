@@ -24,7 +24,7 @@ export const Logo = ({
           ? "/images/logos/ads_logo_dark.svg"
           : "/images/logos/ads_logo.svg"
       );
-    }
+    } else setLogoPath(src);
   }, [theme, src]);
   const logoClasses = clsx("w-auto", className);
   const wrapperClasses = clsx("flex", wrapperClassName);
