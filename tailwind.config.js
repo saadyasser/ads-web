@@ -8,7 +8,9 @@ module.exports = {
   darkMode: "class",
   theme: {
     extend: {
-      backgroundImage: {},
+      backgroundImage: {
+        "what-makes-us-different": "url('/images/what-makes-us-different.png')",
+      },
       fontFamily: {
         georgia: ["var(--font-georgia)"],
         inter: ["var(--font-inter)"],
