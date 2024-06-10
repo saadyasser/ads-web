@@ -12,12 +12,6 @@ export const ResponsiveCategories = () => {
         slideShape={(slide) => <CategoriesCard {...slide} />}
         loop
         id="categories-slider"
-        // breakpoints={{
-        //   320: {
-        //     slidesPerView: "auto",
-        //     spaceBetween: 20,
-        //   },
-        // }}
       />
     </div>
   );

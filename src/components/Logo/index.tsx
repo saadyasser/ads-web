@@ -13,6 +13,7 @@ export const Logo = ({
   className,
   width = 164,
   height = 40,
+  wrapperClassName = "",
 }: LogoType) => {
   const [logoPath, setLogoPath] = useState(src || "/images/logos/ads_logo.svg");
   const { theme } = useTheme();
@@ -26,8 +27,9 @@ export const Logo = ({
     }
   }, [theme, src]);
   const logoClasses = clsx("w-auto", className);
+  const wrapperClasses = clsx("flex", wrapperClassName);
   return (
-    <div className="flex">
+    <div className={wrapperClasses}>
       <Link href="/">
         <span className="sr-only">ADS Logo</span>
         <Image

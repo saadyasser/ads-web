@@ -11,7 +11,7 @@ export const WhatMakesUsDifferent = () => {
           <div className="flex flex-col items-start gap-5 max-lg:items-center">
             <Logo src="/images/logos/ads_logo_without_text.svg" />
             <H2>what makes us different?</H2>
-            <p>
+            <p className="max-lg:text-center">
               Access a wide variety of pre-designed UI components including
               buttons, forms, icons, and more, streamlining the design process.
             </p>

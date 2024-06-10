@@ -1,38 +1,8 @@
 "use client";
-import { Card, Slider } from "@/components";
-import { StackedLayersIcon } from "@/components/svg";
-import { H3 } from "@/components/theme";
-
-const features = [
-  {
-    id: 1,
-    heading: "Extensive Component Selection",
-    description:
-      "Access a wide variety of pre-designed UI components including buttons, forms, icons, and more, streamlining the design process.",
-    icon: <StackedLayersIcon />,
-  },
-  {
-    id: 2,
-    heading: "Extensive Component Selection",
-    description:
-      "Access a wide variety of pre-designed UI components including buttons, forms, icons, and more, streamlining the design process.",
-    icon: <StackedLayersIcon />,
-  },
-  {
-    id: 3,
-    heading: "Extensive Component Selection",
-    description:
-      "Access a wide variety of pre-designed UI components including buttons, forms, icons, and more, streamlining the design process.",
-    icon: <StackedLayersIcon />,
-  },
-  {
-    id: 4,
-    heading: "Extensive Component Selection",
-    description:
-      "Access a wide variety of pre-designed UI components including buttons, forms, icons, and more, streamlining the design process.",
-    icon: <StackedLayersIcon />,
-  },
-];
+import { Card, Container, Slider } from "@/components";
+import { H2, H3 } from "@/components/theme";
+import { FEATURES_DATA } from "@/features/data/features_data";
+import { createElement } from "react";
 
 export const FeaturesCards = () => {
   return (
@@ -41,15 +11,15 @@ export const FeaturesCards = () => {
         role="list"
         className="hidden grid-cols-1 gap-4 lg:grid md:grid-cols-2 md:grid-rows-2"
       >
-        {features.map((feature) => (
+        {FEATURES_DATA.map((feature) => (
           <Card
             key={feature.id}
             hoverEffect
-            className="flex flex-col col-span-1 p-6 text-center text-white rounded-lg !bg-[#011943] dark:!bg-primary-hover hover:border-b-white"
+            className="flex flex-col col-span-1 p-6 text-center text-white rounded-lg !bg-[#011943] dark:!bg-primary-hover h-full hover:border-b-white"
           >
             <div className="flex flex-col items-start justify-start flex-1 gap-2 text-left">
               <div className="flex items-center justify-center p-3 rounded-full bg-[#01112D] dark:bg-primary w-fit">
-                {feature?.icon}
+                {createElement(feature?.icon)}
               </div>
               <H3 className="font-inter">{feature.heading}</H3>
               <p>{feature.description}</p>
@@ -57,31 +27,36 @@ export const FeaturesCards = () => {
           </Card>
         ))}
       </ul>
-      <ul role="list" className="block custom-container lg:hidden">
-        <Slider
-          slides={features}
-          breakpoints={{
-            320: {
-              slidesPerView: "auto",
-              spaceBetween: "20",
-            },
-          }}
-          slideShape={(feature) => (
-            <Card
-              hoverEffect
-              className="flex flex-col col-span-1 p-6 text-center text-white rounded-lg !bg-[#011943] dark:!bg-primary-hover hover:border-b-white"
-            >
-              <div className="flex flex-col items-start justify-start flex-1 gap-2 text-left">
-                <div className="flex items-center justify-center p-3 rounded-full bg-[#01112D] dark:bg-primary w-fit">
-                  {feature?.icon}
+      <div className="flex lg:hidden">
+        <Container>
+          <Slider
+            slides={FEATURES_DATA}
+            breakpoints={{
+              320: {
+                slidesPerView: 1,
+              },
+              400: {
+                slidesPerView: 1,
+              },
+            }}
+            className=""
+            slideShape={(feature) => (
+              <Card
+                hoverEffect
+                className="flex flex-col justify-center col-span-1 p-6 text-center text-white rounded-lg !bg-[#011943] dark:!bg-primary-hover h-full hover:border-b-white min-h-[330px] "
+              >
+                <div className="flex flex-col items-start flex-1 gap-4 text-left">
+                  <div className="flex items-center justify-center p-3 rounded-full bg-[#01112D] dark:bg-primary w-fit">
+                    {createElement(feature?.icon)}
+                  </div>
+                  <H3 className="font-inter">{feature.heading}</H3>
+                  <p>{feature.description}</p>
                 </div>
-                <H3 className="font-inter">{feature.heading}</H3>
-                <p>{feature.description}</p>
-              </div>
-            </Card>
-          )}
-        />
-      </ul>
+              </Card>
+            )}
+          />
+        </Container>
+      </div>
     </>
   );
 };

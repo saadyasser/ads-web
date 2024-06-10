@@ -17,14 +17,14 @@ export const CategoriesCard = ({
   return (
     <Card
       hoverEffect
-      className="gap-2 lg:gap-8 max-lg:min-h-[254px] min-w-[175px] lg:min-w-[233px]"
+      className="gap-2 lg:gap-8 max-lg:h-[254px] min-w-[175px] lg:min-w-[233px]"
       navigateTo={navigationPath}
     >
       <div className="py-4 text-center text-black dark:text-white">
         <H3 className="mb-2 font-inter">{heading}</H3>
         <p className="text-xs md:text-sm">{description}</p>
       </div>
-      <div className="flex items-center justify-center h-[175px] max-lg:w-[190px] p-2 lg:h-[200px] 2xl:h-[258px]">
+      <div className="flex items-center justify-center h-[115px]  max-lg:w-[170px] p-2 lg:h-[200px] 2xl:h-[258px]">
         <Image
           src={imagePath}
           width={345}

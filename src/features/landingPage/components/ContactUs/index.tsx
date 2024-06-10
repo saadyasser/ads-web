@@ -57,7 +57,6 @@ export const ContactUs = () => {
                 name="message"
                 label="Your Message"
                 value={formFields?.message}
-                // rows={10}
                 inputClassName="h-[159px] min-h-[159px]"
                 onChange={handleChange}
                 placeholder="Write your message clearly here.."
