@@ -15,11 +15,11 @@ export const CardShape = ({
   const imagePath = theme === "dark" ? darkImagePath : lightImagePath;
   return (
     <Card
-      className="!items-start gap-4 hover-zoom-effect"
+      className="!items-start !justify-start gap-4 hover-zoom-effect h-[285px] lg:h-[326px] 2xl:h-auto"
       navigateTo={navigationPath}
       hoverEffect
     >
-      <div className="flex items-center justify-center lg:h-[200px] 2xl:!w-full 2xl:h-[241px] relative overflow-hidden">
+      <div className="flex items-center justify-center h-[150px] lg:h-[200px] rounded-lg !w-full 2xl:h-[241px] relative overflow-hidden">
         <Image
           src={imagePath}
           width={334}
