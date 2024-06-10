@@ -19,7 +19,8 @@ export const CardShape = ({
       navigateTo={navigationPath}
       hoverEffect
     >
-      <div className="flex items-center justify-center h-[150px] lg:h-[200px] rounded-lg !w-full 2xl:h-[241px] relative overflow-hidden">
+      {/* <div className="flex items-center justify-center max-lg:h-[150px] max-lg:[157px] lg:h-[200px] rounded-lg !w-full 2xl:h-[241px] relative overflow-hidden"> */}
+      <div className="flex items-center justify-center rounded-lg !w-full relative overflow-hidden">
         <Image
           src={imagePath}
           width={334}
@@ -28,8 +29,10 @@ export const CardShape = ({
           className="!w-full !h-full rounded-lg transition-all peer"
         />
       </div>
-      <div className="text-black dark:text-white">
-        <h3 className="mb-1 text-lg font-bold capitalize">{heading}</h3>
+      <div className="w-full text-black dark:text-white">
+        <h3 className="mb-1 text-lg font-bold capitalize truncate ">
+          {heading}
+        </h3>
         <p className="text-sm">{description}</p>
       </div>
     </Card>
