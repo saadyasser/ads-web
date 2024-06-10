@@ -45,7 +45,7 @@ export const GridWithSlider = ({
         onSwiper={(swiper) => {
           swiperRef.current = swiper;
         }}
-        className={className}
+        className={`${className} !mr-4`}
         slides={gridData}
         slideShape={(slide) => <CardShape {...slide} />}
         {...rest}
