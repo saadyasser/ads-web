@@ -18,7 +18,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     },
     ref
   ) => {
-    const containerClasses = clsx("w-full mt-6", containerClassName);
+    const containerClasses = clsx("w-full mt-3", containerClassName);
     const inputClasses = clsx(
       "mt-2 block w-full rounded-lg border-[1px] border-[#303030] dark:border-black p-4 px-3 dark:text-white placeholder:text-[#9F9CB4] placeholder:dark:text-[#595959] font-medium",
       "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-primary",
@@ -33,7 +33,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
               {label}
               {"  "}
               {props?.required && (
-                <span className="text-primary dark:text-red-500">*</span>
+                <span className="text-primary dark:text-danger">*</span>
               )}
             </Label>
           )}
@@ -43,7 +43,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             </Description>
           )}
           <HeadlessInput ref={ref} {...props} className={inputClasses} />
-          {error && <p className="mt-2 text-red-500">{errorMessage}</p>}
+          <p className="mt-2 text-danger text-sm h-[18px]">
+            {error && errorMessage ? errorMessage : ""}
+          </p>
         </Field>
       </div>
     );

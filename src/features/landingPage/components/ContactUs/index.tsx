@@ -2,21 +2,34 @@
 import { Button, Container, Input, TextArea } from "@/components";
 import { ArrowRightHiIcon } from "@/lib/@react-icons";
 import { ChangeEvent, useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
 
+export type FormValues = {
+  fullName: string;
+  email: string;
+  messageTitle: string;
+  message: string;
+};
 export const ContactUs = () => {
-  const [formFields, setFormFields] = useState({
-    fullName: "",
-    email: "",
-    messageTitle: "",
-    message: "",
+  const {
+    handleSubmit,
+    register,
+    formState: { errors, isLoading },
+  } = useForm({
+    defaultValues: {
+      fullName: "",
+      email: "",
+      messageTitle: "",
+      message: "",
+    },
+    mode: "all",
+    shouldFocusError: true,
   });
-  const handleChange = (
-    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setFormFields((prev) => {
-      return { ...prev, [event.target.name]: event.target.value };
-    });
+  const onSubmit: SubmitHandler<FormValues> = (data: any) => {
+    alert(JSON.stringify(data));
+    console.log(errors);
   };
+
   return (
     <section className="bg-[#F8F9FA] dark:bg-black-active py-8 md:py-16">
       <Container className="flex items-center justify-center">
@@ -25,38 +38,51 @@ export const ContactUs = () => {
             <h2 className="text-2xl font-bold text-center text-black dark:text-white font-georgia lg:text-4xl">
               Get in touch <br /> how can we help?
             </h2>
-            <form action="" className="w-full">
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              className="w-full mt-4"
+              noValidate
+            >
               <Input
-                name="fullName"
+                {...register("fullName", { required: "Full Name is required" })}
                 label="Full Name"
-                value={formFields?.fullName}
-                onChange={handleChange}
                 placeholder="John Doe"
+                errorMessage={errors.fullName?.message}
+                error={!!errors.fullName}
                 required
               />
               <Input
-                name="email"
+                {...register("email", {
+                  required: "Email Address is required",
+                  pattern: {
+                    value: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/,
+                    message: "Invalid email address",
+                  },
+                })}
                 label="Email Address"
-                value={formFields?.email}
-                type="email"
-                onChange={handleChange}
+                errorMessage={errors.email?.message}
+                error={!!errors.email}
                 placeholder="example@example.com"
                 required
               />
               <Input
-                name="messageTitle"
+                {...register("messageTitle", {
+                  required: "Message Title is required",
+                })}
                 label="Message Title"
-                value={formFields?.messageTitle}
-                onChange={handleChange}
-                placeholder="Enter your full name"
+                errorMessage={errors.messageTitle?.message}
+                error={!!errors.messageTitle}
+                placeholder="Message title"
                 required
               />
               <TextArea
-                name="message"
+                {...register("message", {
+                  required: "Your Message is required",
+                })}
                 label="Your Message"
-                value={formFields?.message}
+                errorMessage={errors.message?.message}
+                error={!!errors.message}
                 inputClassName="h-[159px] min-h-[159px]"
-                onChange={handleChange}
                 placeholder="Write your message clearly here.."
                 required
               />
@@ -66,7 +92,7 @@ export const ContactUs = () => {
                 iconPosition="after"
                 type="submit"
               >
-                Submit
+                {isLoading ? "Submitting..." : "Submit"}
               </Button>
             </form>
           </div>

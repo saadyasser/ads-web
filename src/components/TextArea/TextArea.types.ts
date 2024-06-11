@@ -1,17 +1,11 @@
-import { ChangeEvent, TextareaHTMLAttributes } from "react";
+import { InputHTMLAttributes } from "react";
 
 export interface TextAreaProps
-  extends TextareaHTMLAttributes<HTMLTextAreaElement> {
+  extends InputHTMLAttributes<HTMLTextAreaElement> {
+  label?: string;
   description?: string;
   containerClassName?: string;
   inputClassName?: string;
-  label?: string;
-  value: string | number;
-  name: string;
-  placeholder?: string;
   error?: boolean;
   errorMessage?: string;
-  disabled?: boolean;
-  resize?: "none" | "both" | "horizontal" | "vertical";
-  onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void;
 }
