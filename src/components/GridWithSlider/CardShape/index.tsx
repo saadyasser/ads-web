@@ -15,7 +15,7 @@ export const CardShape = ({
   const imagePath = theme === "dark" ? darkImagePath : lightImagePath;
   return (
     <Card
-      className="!items-start !justify-start gap-4 hover-zoom-effect h-[285px] lg:h-[326px] 2xl:h-auto"
+      className="!items-start !justify-start gap-4 hover-zoom-effect"
       navigateTo={navigationPath}
       hoverEffect
     >
@@ -33,7 +33,7 @@ export const CardShape = ({
         <h3 className="mb-1 text-lg font-bold capitalize truncate ">
           {heading}
         </h3>
-        <p className="text-sm">{description}</p>
+        <p className="text-sm truncate">{description}</p>
       </div>
     </Card>
   );

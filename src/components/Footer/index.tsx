@@ -24,7 +24,7 @@ export const Footer = () => {
                 resources, you can kickstart any project and save thousands of
                 hours of design work.
               </p>
-              <Divider className="border-b-[2px] xl:!hidden !my-4 border-[#0F2448] dark:border-black-darker" />
+              <Divider className="border-b xl:!hidden !my-4 border-[#0F2448] dark:border-black-darker" />
             </div>
             <div className="grid items-start justify-between grid-cols-2 col-span-2 gap-4 mt-4 xl:gap-8 xl:grid-cols-3 xl:col-span-3 xl:mt-0">
               <div>
@@ -59,7 +59,7 @@ export const Footer = () => {
               </div>
 
               <div className="mt-4 xl:mt-0 max-xl:col-span-2">
-                <Divider className="border-b-[2px] xl:!hidden !my-4 border-[#0F2448] dark:border-black-darker" />
+                <Divider className="border-b xl:!hidden !my-4 border-[#0F2448] dark:border-black-darker" />
                 <h3 className="text-base font-bold leading-6 xl:text-xl">
                   <span className="mr-2 text-primary font-bolder">-</span>
                   Social Media{" "}
@@ -78,8 +78,8 @@ export const Footer = () => {
             </div>
           </div>
           <div className="pt-4 mt-4">
-            <Divider className="border-b-[2px] border-[#0F2448] dark:border-black-darker" />
-            <p className="my-2 leading-5 text-center">
+            <Divider className="border-b border-secondary-active dark:border-black-darker" />
+            <p className="my-4 leading-5 text-center">
               &copy; All rights reserved for | Azaiza Design Studio{" "}
               {new Date().getFullYear()}
             </p>

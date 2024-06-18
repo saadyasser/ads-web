@@ -8,7 +8,7 @@ export const Categories = () => {
   return (
     <section className="bg-[#F8F9FA] dark:bg-background-dark">
       <Container className="py-2 md:py-16">
-        <div className="items-center justify-between hidden w-full gap-4 lg:flex">
+        <div className="items-center hidden w-full grid-cols-4 gap-4 lg:grid">
           {categoriesData?.map((item) => (
             <CategoriesCard key={item.heading} {...item} />
           ))}
