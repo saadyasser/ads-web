@@ -7,7 +7,7 @@ export const Link = ({ children, href, className, noStyle }: LinkPropsType) => {
   const linkClasses = clsx(
     noStyle
       ? "truncate transition-all"
-      : "flex items-center gap-2 leading-6 truncate transition-all hover:text-primary-hover dark:hover:text-black-light-hover active:text-primary-active dark:active:text-black-light-active",
+      : "flex items-center gap-2 leading-6 truncate transition-all hover:!text-primary-hover active:text-primary-active",
     className
   );
   return (

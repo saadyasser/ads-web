@@ -28,14 +28,14 @@ export const FeaturesCards = () => {
         ))}
       </ul>
       <div className="flex lg:hidden">
-        <Container>
+        <Container className="!px-0">
           <Slider
             slides={FEATURES_DATA}
             breakpoints={{
               320: {
                 slidesPerView: 1,
               },
-              400: {
+              390: {
                 slidesPerView: 1,
               },
             }}
@@ -45,7 +45,7 @@ export const FeaturesCards = () => {
                 hoverEffect
                 className="flex flex-col justify-center col-span-1 p-6 text-center text-white rounded-lg !bg-[#011943] dark:!bg-primary-hover h-full hover:border-b-white min-h-[330px] "
               >
-                <div className="flex flex-col items-start flex-1 gap-4 text-left">
+                <div className="flex flex-col items-start gap-4 text-left">
                   <div className="flex items-center justify-center p-3 rounded-full bg-[#01112D] dark:bg-primary w-fit">
                     {createElement(feature?.icon)}
                   </div>

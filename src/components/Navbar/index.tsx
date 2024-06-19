@@ -12,9 +12,11 @@ export const Navbar = () => {
   return (
     <nav className="fixed top-0 z-50 w-full py-4 border-b-[1px] border-black-light dark:border-black-darker bg-white text-black dark:bg-black-darker dark:text-white ">
       <Container className="flex items-center justify-between gap-6 max-xl:px-8 max-lg:px-4">
-        <div className="flex">
-          <Logo />
-          {/* <Button variant="secondary">1.0 v</Button> */}
+        <div className="flex items-center">
+          <Logo width={196} height={47} />
+          <span className="flex items-center justify-center px-3 py-1 mx-2 text-xs font-medium rounded-full lg:px-4 bg-primary-light-hover text-primary h-max dark:bg-[#0F0F0E] dark:text-white">
+            1.0 v
+          </span>
         </div>
         <NavLinks />
         <div className="flex items-center gap-2 ">
