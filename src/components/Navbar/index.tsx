@@ -19,7 +19,7 @@ export const Navbar = () => {
           </span>
         </div>
         <NavLinks />
-        <div className="flex items-center gap-2 ">
+        <div className="flex items-center gap-3 lg:gap-4">
           {theme === "dark" ? (
             <Button
               variant="custom"
@@ -36,29 +36,29 @@ export const Navbar = () => {
             </Button>
           )}
           <Button
-            variant="custom"
-            className="!flex xl:!hidden items-center justify-center !rounded-full !py-2 !px-4 !shadow-none border-none "
+            variant="secondary"
+            className="!flex xl:!hidden items-center justify-center !rounded-full !p-2 !shadow-none border-none !h-fit dark:bg-black-active "
           >
             <BurgerMenu
-              size="24"
-              className="leading-4 text-primary fill-primary dark:text-white dark:fill-white"
+              size="20"
+              className="h-fit text-primary fill-primary dark:text-white dark:fill-white"
             />
           </Button>
 
           <Button
-            variant="custom"
+            variant="secondary"
             onClick={handleThemeChange}
-            className="!flex items-center justify-center !rounded-full !py-2 !px-4 !shadow-none border-none "
+            className="!flex items-center justify-center !rounded-full !p-2 !h-fit !shadow-none border-none dark:bg-black-active"
           >
             {theme === "dark" ? (
               <Moon
-                size="24"
-                className="leading-4 text-primary fill-primary dark:text-white dark:fill-white"
+                size="20"
+                className="h-fit text-primary fill-primary dark:text-white dark:fill-white"
               />
             ) : (
               <Sun
-                size="24"
-                className="leading-4 text-primary fill-primary dark:text-white dark:fill-white"
+                size="20"
+                className="h-fit text-primary fill-primary dark:text-white dark:fill-white"
               />
             )}
           </Button>

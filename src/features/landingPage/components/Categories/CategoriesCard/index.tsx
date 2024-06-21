@@ -24,7 +24,7 @@ export const CategoriesCard = ({
         <H3 className="mb-2 font-inter">{heading}</H3>
         <p className="text-xs md:text-sm">{description}</p>
       </div>
-      <div className="flex items-center justify-center w-full p-2">
+      <div className="flex items-center justify-center h-[135px] max-lg:w-[190px] p-2 lg:h-[200px] 2xl:h-[258px]">
         <Image
           src={imagePath}
           width={345}

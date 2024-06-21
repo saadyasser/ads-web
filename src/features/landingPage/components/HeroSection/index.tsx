@@ -14,7 +14,7 @@ export const HeroSection = () => {
   return (
     <Container>
       <section className="grid items-start w-full grid-cols-1 gap-8 lg:py-6 xl:grid-cols-2">
-        <div className="order-1 pt-6 md:pt-10">
+        <div className="order-1 pt-3 lg:pt-10">
           <H1 className="text-left max-xl:text-center">
             The Ultimate Design Toolkit for Streamlining Your Projects
           </H1>
