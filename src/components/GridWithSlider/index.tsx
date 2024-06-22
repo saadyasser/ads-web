@@ -27,13 +27,13 @@ export const GridWithSlider = ({
         {withIndicators && (
           <div className="flex items-center gap-2">
             <button
-              className="p-2 font-semibold text-black transition-all rounded-lg bg-white-hover active:text-primary-active hover:bg-white hover:text-primary dark:active:text-white-active dark:bg-black dark:text-white dark:hover:bg-black-darker"
+              className="p-2 font-semibold text-black transition-all rounded-lg bg-white-hover active:text-primary-active hover:bg-white hover:text-primary dark:active:text-white-active dark:bg-black dark:text-white dark:hover:bg-black-darker focus-visible:outline-primary-hover"
               onClick={() => swiperRef?.current?.slidePrev()}
             >
               <ChevronLeft size="18" />
             </button>
             <button
-              className="p-2 font-semibold text-black transition-all rounded-lg bg-white-hover active:text-primary-active hover:bg-white hover:text-primary dark:active:text-white-active dark:bg-black dark:text-white dark:hover:bg-black-darker"
+              className="p-2 font-semibold text-black transition-all rounded-lg bg-white-hover active:text-primary-active hover:bg-white hover:text-primary dark:active:text-white-active dark:bg-black dark:text-white dark:hover:bg-black-darker focus-visible:outline-primary-hover"
               onClick={() => swiperRef?.current?.slideNext()}
             >
               <ChevronRight size="18" />

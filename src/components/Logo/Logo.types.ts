@@ -7,4 +7,5 @@ export type LogoType = {
   wrapperClassName?: string;
   width?: number;
   height?: number;
+  withBadge?: boolean;
 };
