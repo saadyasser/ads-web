@@ -15,6 +15,7 @@ import { Link } from "./Link";
 import { Divider } from "./Divider";
 import { Input } from "./Input";
 import { TextArea } from "./TextArea";
+import { SlideOver } from "./SlideOver";
 
 export {
   Dropdown,
@@ -34,4 +35,6 @@ export {
   Divider,
   Input,
   TextArea,
+  SlideOver,
 };
+export * from "./theme";
