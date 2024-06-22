@@ -9,6 +9,7 @@ export const NavLink = ({
   exact = false,
   children,
   className,
+  onClick,
   ...props
 }: NavLinkProps) => {
   const pathname = usePathname();
@@ -19,13 +20,18 @@ export const NavLink = ({
     "!border-primary !text-primary dark:!text-white dark:!border-white hover:!text-primary-hover !font-bold";
 
   const linkClasses = clsx(
-    "border-b-2 border-transparent w-max font-light hover:!text-primary-hover pb-1 active:text-primary-active text-black dark:text-black-light hover:dark:text-white transition-all p-2",
+    "border-b-2 border-transparent w-max font-light hover:!text-primary-hover pb-1 active:text-primary-active text-black dark:text-black-light hover:dark:text-white transition-all p-2 ",
     className,
     activeClasses
   );
 
   return (
-    <Link href={href} {...props} className={linkClasses}>
+    <Link
+      href={href}
+      {...props}
+      className={linkClasses}
+      onClick={onClick && onClick}
+    >
       {children}
     </Link>
   );
