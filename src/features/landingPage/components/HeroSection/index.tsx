@@ -9,8 +9,8 @@ export const HeroSection = () => {
   const { theme } = useTheme();
   const heroImagePath =
     theme === "dark"
-      ? "/images/hero_image.svg"
-      : "/images/hero_image_light.svg";
+      ? "/images/hero_image.png"
+      : "/images/hero_image_light.png";
   return (
     <Container>
       <section className="grid items-start w-full grid-cols-1 gap-8 lg:py-6 xl:grid-cols-2">
