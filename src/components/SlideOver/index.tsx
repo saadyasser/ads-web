@@ -66,7 +66,7 @@ export const SlideOver = ({
                   )}
                 >
                   {/* body content */}
-                  <div className="flex flex-col h-full pt-12 shadow-xl bg-background-light dark:bg-background-dark">
+                  <div className="flex flex-col h-full pt-12 bg-white shadow-xl dark:bg-black-active">
                     <div className="px-4 sm:px-6">
                       <div className="flex items-start justify-between">
                         <DialogTitle className="text-lg font-medium text-gray-900">
