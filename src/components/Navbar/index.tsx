@@ -1,25 +1,24 @@
 "use client";
-import { Button, Container, Logo, NavLink } from "../";
+import { Button, Container, Logo, NavLink, SlideOver } from "../";
 import { useTheme } from "next-themes";
 import { BurgerMenu, Moon, Sun } from "@/lib/@iconsax";
+import { useState } from "react";
+import clsx from "clsx";
+import { useRouter } from "next/router";
 
 export const Navbar = () => {
   const { theme, setTheme } = useTheme();
+  const [burgerMenuOpen, setBurgerMenuOpen] = useState(false);
   const handleThemeChange = () => {
     setTheme(theme === "dark" ? "light" : "dark");
     localStorage.setItem("theme", theme === "dark" ? "light" : "dark");
   };
   return (
-    <nav className="fixed top-0 z-50 w-full py-4 border-b-[1px] border-black-light dark:border-black-darker bg-white text-black dark:bg-black-darker dark:text-white ">
+    <nav className="fixed top-0 z-30 w-full py-4 border-b-[1px] border-black-light dark:border-black-darker bg-white text-black dark:bg-black-darker dark:text-white ">
       <Container className="flex items-center justify-between gap-6 max-xl:px-8 max-lg:px-4">
-        <div className="flex items-center">
-          <Logo width={196} height={47} />
-          <span className="flex items-center justify-center px-3 py-1 mx-2 text-xs font-medium rounded-full lg:px-4 bg-primary-light-hover text-primary h-max dark:bg-[#0F0F0E] dark:text-white">
-            1.0 v
-          </span>
-        </div>
-        <NavLinks />
-        <div className="flex items-center gap-2 ">
+        <Logo width={196} height={47} withBadge />
+        <NavLinks className="items-center justify-between hidden gap-2 xl:gap-6 xl:flex" />
+        <div className="flex items-center gap-3 lg:gap-4">
           {theme === "dark" ? (
             <Button
               variant="custom"
@@ -36,33 +35,51 @@ export const Navbar = () => {
             </Button>
           )}
           <Button
-            variant="custom"
-            className="!flex xl:!hidden items-center justify-center !rounded-full !py-2 !px-4 !shadow-none border-none "
+            variant="secondary"
+            onClick={() => setBurgerMenuOpen((prev) => !prev)}
+            className="!flex xl:!hidden items-center justify-center !rounded-full !p-2 active:!shadow-none border-none !h-fit dark:bg-black-active "
           >
             <BurgerMenu
-              size="24"
-              className="leading-4 text-primary fill-primary dark:text-white dark:fill-white"
+              size="20"
+              className="h-fit text-primary fill-primary dark:text-white dark:fill-white"
             />
           </Button>
 
           <Button
-            variant="custom"
+            variant="secondary"
             onClick={handleThemeChange}
-            className="!flex items-center justify-center !rounded-full !py-2 !px-4 !shadow-none border-none "
+            className="!flex items-center justify-center !rounded-full !p-2 !h-fit !shadow-none border-none dark:bg-black-active"
           >
             {theme === "dark" ? (
               <Moon
-                size="24"
-                className="leading-4 text-primary fill-primary dark:text-white dark:fill-white"
+                size="20"
+                className="h-fit text-primary fill-primary dark:text-white dark:fill-white"
               />
             ) : (
               <Sun
-                size="24"
-                className="leading-4 text-primary fill-primary dark:text-white dark:fill-white"
+                size="20"
+                className="h-fit text-primary fill-primary dark:text-white dark:fill-white"
               />
             )}
           </Button>
         </div>
+        <SlideOver
+          footer={
+            <Button variant="secondary" className="w-full">
+              Register / Login
+            </Button>
+          }
+          open={burgerMenuOpen}
+          setOpen={setBurgerMenuOpen}
+        >
+          <div className="p-3 rounded-lg bg-background-light dark:bg-black">
+            <NavLinks
+              className="flex flex-col w-full gap-3"
+              linkClassName="!w-full items-center justify-center !text-base !font-medium"
+              onLinkClick={() => setBurgerMenuOpen(false)}
+            />
+          </div>
+        </SlideOver>
       </Container>
     </nav>
   );
@@ -70,25 +87,46 @@ export const Navbar = () => {
 
 export default Navbar;
 
-const NavLinks = () => {
+export const navLinks = [
+  { title: "Home", path: "/", exact: true },
+  { title: "Components", path: "/ui-components" },
+  { title: "Web & Mobile Templates", path: "/templates" },
+  { title: "Ready Flows", path: "/ready-flows" },
+  { title: "Design system", path: "/design-system" },
+  // { title: "Color-Themes", path: "/color-themes" },
+];
+const NavLinks = ({
+  className,
+  linkClassName,
+  onLinkClick,
+}: {
+  className?: string;
+  linkClassName?: string;
+  onLinkClick?: () => void;
+}) => {
+  // const router = useRouter();
+
+  // const handleClick = (path: string) => {
+  //   router.push(path);
+  //   if (onLinkClick) {
+  //     onLinkClick();
+  //   }
+  // };
+  const classes = clsx("max-xl:!text-sm  font-medium", className);
+  const linkClasses = clsx("w-max", linkClassName);
   return (
-    <div className="items-center justify-between hidden gap-2 xl:gap-6 max-xl:!text-sm xl:flex font-medium">
-      <NavLink href="/" exact className="w-max">
-        Home
-      </NavLink>
-      <NavLink href="/ui-components" className="w-max">
-        Components
-      </NavLink>
-      <NavLink href="/templates" className="w-max">
-        Web & Mobile Templates
-      </NavLink>
-      <NavLink href="/ready-flows" className="w-max">
-        Ready Flows
-      </NavLink>
-      {/* <NavLink href="/color-themes">Color-Themes</NavLink> */}
-      <NavLink href="/design-system" className="w-max">
-        Design-system
-      </NavLink>
+    <div className={classes}>
+      {navLinks.map((item) => (
+        <NavLink
+          href={item.path}
+          exact={item?.exact}
+          key={item.path}
+          className={linkClasses}
+          onClick={onLinkClick}
+        >
+          {item.title}
+        </NavLink>
+      ))}
     </div>
   );
 };
