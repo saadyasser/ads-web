@@ -15,7 +15,7 @@ export const WhatMakesUsDifferent = () => {
   );
   return (
     <section className={sectionClasses}>
-      <Container className="grid items-center grid-cols-1 gap-10 xl:grid-cols-2 xl:gap-15">
+      <Container className="grid items-center grid-cols-1 gap-10 xl:grid-cols-2 xl:gap-15 max-xl:px-4">
         <div className="flex flex-col gap-8 text-white">
           <div className="flex flex-col items-start gap-5 max-lg:items-center">
             {theme === "dark" ? (
