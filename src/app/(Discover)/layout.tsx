@@ -1,3 +1,5 @@
+import { Breadcrumb } from "@/components";
+
 export const DiscoverLayout = ({
   children,
   params,
@@ -13,7 +15,9 @@ export const DiscoverLayout = ({
   console.log(params);
   return (
     <section>
-      <p>testtt</p>
+      <div className="flex items-center justify-between">
+        <Breadcrumb homeElement="Home" capitalizeLinks={true} />
+      </div>
       {children}
     </section>
   );
