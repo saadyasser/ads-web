@@ -90,10 +90,10 @@ export default Navbar;
 export const navLinks = [
   { title: "Home", path: "/", exact: true },
   { title: "Components", path: "/ui-components" },
-  { title: "Web & Mobile Templates", path: "/templates" },
+  { title: "Web & Mobile Templates", path: "/web-mobile" },
   { title: "Ready Flows", path: "/ready-flows" },
   { title: "Design system", path: "/design-system" },
-  // { title: "Color-Themes", path: "/color-themes" },
+  { title: "Color-Themes", path: "/color-themes" },
 ];
 const NavLinks = ({
   className,
@@ -104,14 +104,6 @@ const NavLinks = ({
   linkClassName?: string;
   onLinkClick?: () => void;
 }) => {
-  // const router = useRouter();
-
-  // const handleClick = (path: string) => {
-  //   router.push(path);
-  //   if (onLinkClick) {
-  //     onLinkClick();
-  //   }
-  // };
   const classes = clsx("max-xl:!text-sm  font-medium", className);
   const linkClasses = clsx("w-max", linkClassName);
   return (
