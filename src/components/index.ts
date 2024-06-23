@@ -17,6 +17,7 @@ import { Input } from "./Input";
 import { TextArea } from "./TextArea";
 import { SlideOver } from "./SlideOver";
 import { Breadcrumb } from "./Breadcrumb";
+import { CopyCurrentPathButton } from "./CopyCurrentPathButton";
 
 export {
   Dropdown,
@@ -38,5 +39,6 @@ export {
   TextArea,
   SlideOver,
   Breadcrumb,
+  CopyCurrentPathButton,
 };
 export * from "./theme";
