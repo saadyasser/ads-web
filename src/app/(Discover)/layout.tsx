@@ -5,7 +5,6 @@ export default function DiscoverLayout({
   params,
 }: {
   children: React.ReactNode;
-  actions: React.ReactNode[];
   params: {
     category: string;
     item: string;
