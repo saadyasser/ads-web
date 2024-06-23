@@ -28,7 +28,7 @@ export const FeaturesCards = () => {
         ))}
       </ul>
       <div className="flex lg:hidden">
-        <Container className="!px-0">
+        <Container>
           <Slider
             slides={FEATURES_DATA}
             breakpoints={{

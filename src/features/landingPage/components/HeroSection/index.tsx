@@ -12,7 +12,7 @@ export const HeroSection = () => {
       ? "/images/hero_image.png"
       : "/images/hero_image_light.png";
   return (
-    <Container>
+    <Container className="max-xl:px-4">
       <section className="grid items-start w-full grid-cols-1 gap-8 lg:py-6 xl:grid-cols-2">
         <div className="order-1 pt-3 lg:pt-10">
           <H1 className="text-left max-xl:text-center">

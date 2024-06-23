@@ -5,4 +5,5 @@ export {
   Sun1 as Sun,
   ArrowLeft2 as ChevronLeft,
   ArrowRight2 as ChevronRight,
+  Copy as CopyIcon,
 } from "iconsax-react";
