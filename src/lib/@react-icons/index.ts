@@ -15,7 +15,10 @@ export {
 export { RiTwitterXFill as TwitterXIcon } from "react-icons/ri";
 export { MdFacebook as FacebookIcon } from "react-icons/md";
 
-export { HiOutlineArrowNarrowRight as ArrowRightHiIcon } from "react-icons/hi";
+export {
+  HiOutlineArrowNarrowRight as ArrowRightHiIcon,
+  HiCheck as CheckIcon,
+} from "react-icons/hi";
 
 export { CiMenuBurger as BurgerMenuIcon } from "react-icons/ci";
 export { IoCloseSharp as CloseIcon } from "react-icons/io5";

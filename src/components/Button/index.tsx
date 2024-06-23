@@ -22,7 +22,7 @@ export const Button = forwardRef<RefType, ButtonProps>((props, ref) => {
       {icon && iconPosition === "before" && (
         <span className="flex items-center">{icon}</span>
       )}
-      <span className="w-fit">{children}</span>
+      {children}
       {icon && iconPosition === "after" && (
         <span className="flex items-center">{icon}</span>
       )}

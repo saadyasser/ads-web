@@ -10,7 +10,7 @@ import { Divider } from "@/components";
 
 export const DetailedCategoriesSection = () => {
   return (
-    <section className="flex flex-col gap-8 py-6 md:py-16">
+    <section className="flex flex-col gap-8 py-6 md:py-16 max-xl:px-4">
       <RecentComponentsSection />
       <Divider />
       <MobileTemplatesSection />

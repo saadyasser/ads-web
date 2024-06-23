@@ -13,7 +13,7 @@ export const getVariant = (variant: ButtonVariant) => {
     case "alert":
       return "btn-alert";
     case "custom":
-      return "";
+      return "active:!shadow-none";
     default:
       return undefined;
   }
