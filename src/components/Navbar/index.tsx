@@ -22,14 +22,14 @@ export const Navbar = () => {
           {theme === "dark" ? (
             <Button
               variant="custom"
-              className="!hidden xl:!flex bg-black text-white !border-white active:!shadow-black-active"
+              className="!hidden xl:!flex bg-black !text-sm 2xl:!text-base text-white !border-white active:!shadow-black-active"
             >
               Register / Login
             </Button>
           ) : (
             <Button
               variant="custom"
-              className="bg-background-light active:shadow-background-light hover:bg-black-light border-black-light !hidden xl:!flex"
+              className="bg-background-light !text-sm 2xl:!text-base active:shadow-background-light hover:bg-black-light border-black-light !hidden xl:!flex"
             >
               Register / Login
             </Button>
