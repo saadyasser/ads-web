@@ -17,7 +17,7 @@ export const CategoriesCard = ({
   return (
     <Card
       hoverEffect
-      className="gap-2 xl:gap-8 max-lg:h-[254px] min-w-[175px] lg:min-w-[233px] justify-around"
+      className="gap-0 max-lg:h-[254px] min-w-[175px] lg:min-w-[233px] justify-around"
       navigateTo={navigationPath}
     >
       <div className="py-1 text-center text-black lg:py-4 dark:text-white">
@@ -30,6 +30,7 @@ export const CategoriesCard = ({
           width={345}
           height={239}
           alt={heading}
+          priority
           className="!w-full !h-full rounded-lg"
         />
       </div>
