@@ -4,3 +4,4 @@
     export { getHelper } from "helpers";
 */
 export { getVariant } from "./getVariant";
+export { cleanPath } from "./cleanPaths";

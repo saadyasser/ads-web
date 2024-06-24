@@ -22,14 +22,14 @@ export const Navbar = () => {
           {theme === "dark" ? (
             <Button
               variant="custom"
-              className="!hidden xl:!flex bg-black text-white !border-white active:!shadow-black-active"
+              className="!hidden xl:!flex bg-black !text-sm 2xl:!text-base text-white !border-white active:!shadow-black-active"
             >
               Register / Login
             </Button>
           ) : (
             <Button
               variant="custom"
-              className="bg-background-light active:shadow-background-light hover:bg-black-light border-black-light !hidden xl:!flex"
+              className="bg-background-light !text-sm 2xl:!text-base active:shadow-background-light hover:bg-black-light border-black-light !hidden xl:!flex"
             >
               Register / Login
             </Button>
@@ -90,10 +90,10 @@ export default Navbar;
 export const navLinks = [
   { title: "Home", path: "/", exact: true },
   { title: "Components", path: "/ui-components" },
-  { title: "Web & Mobile Templates", path: "/templates" },
+  { title: "Web & Mobile Templates", path: "/web-mobile" },
   { title: "Ready Flows", path: "/ready-flows" },
   { title: "Design system", path: "/design-system" },
-  // { title: "Color-Themes", path: "/color-themes" },
+  { title: "Color-Themes", path: "/color-themes" },
 ];
 const NavLinks = ({
   className,
@@ -104,14 +104,6 @@ const NavLinks = ({
   linkClassName?: string;
   onLinkClick?: () => void;
 }) => {
-  // const router = useRouter();
-
-  // const handleClick = (path: string) => {
-  //   router.push(path);
-  //   if (onLinkClick) {
-  //     onLinkClick();
-  //   }
-  // };
   const classes = clsx("max-xl:!text-sm  font-medium", className);
   const linkClasses = clsx("w-max", linkClassName);
   return (

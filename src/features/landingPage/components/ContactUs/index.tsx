@@ -32,7 +32,7 @@ export const ContactUs = () => {
 
   return (
     <section className="bg-[#F8F9FA] dark:bg-black-active py-8 md:py-16">
-      <Container className="flex items-center justify-center">
+      <Container className="flex items-center justify-center max-xl:px-4">
         <div className="flex justify-center p-6 border-[24px] border-white dark:border-black rounded-lg w-full xl:w-9/12">
           <div className="flex flex-col items-center justify-center w-full lg:w-1/2">
             <h2 className="text-2xl font-bold text-center text-black dark:text-white font-georgia lg:text-4xl">

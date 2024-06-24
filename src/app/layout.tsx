@@ -25,7 +25,7 @@ export default function RootLayout({
   );
   return (
     <html lang="en" className={classes}>
-      <body className="pt-[70px] lg:pt-[83px] ">
+      <body className="pt-[70px] xl:pt-[83px] ">
         <Providers>
           <ThemeSwitcher />
           <Navbar />

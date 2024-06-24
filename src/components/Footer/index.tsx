@@ -8,7 +8,7 @@ export const Footer = () => {
       className="text-white bg-secondary dark:bg-black-darker"
       aria-labelledby="footer-heading"
     >
-      <Container>
+      <Container className="max-xl:px-4">
         <h2 id="footer-heading" className="sr-only">
           Footer
         </h2>
