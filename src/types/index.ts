@@ -26,3 +26,30 @@ export interface StaticImageData {
 export interface SvgProps extends React.SVGProps<SVGSVGElement> {}
 
 export type SvgType = FC<SvgProps>;
+
+export type Categories =
+  | "ui-components"
+  | "web_mobile-templates"
+  | "ready-flows"
+  | "design-systems"
+  | "color-themes";
+
+export type ProductImageType = {
+  imagePath: string;
+  isThumbnail?: boolean;
+};
+export type ProductType = {
+  id: number;
+  name: string;
+  category: Categories;
+  description: string;
+  price?: number;
+  imagesUrl: ProductImageType[];
+  specifications?: string;
+};
+
+export interface CategoryType {
+  id: Categories;
+  name: string;
+  products: ProductType[];
+}
