@@ -26,30 +26,34 @@ export const Breadcrumb = ({
     activeClassName
   );
   return (
-    <Container>
-      <ul className={containerClasses}>
-        <li className={listClasses}>
-          <Link href={"/"}>{homeElement}</Link>
-        </li>
-        {filteredPaths.length > 0 && separator}
-        {filteredPaths.map((link, index) => {
-          const href = `/${pathNames.slice(0, index + 1).join("/")}`;
-          const isActive = paths === href;
-          const itemClasses = clsx(listClasses, { [activeClasses]: isActive });
+    // <Container>
+    <ul className={containerClasses}>
+      <li className={listClasses}>
+        <Link href={"/"}>{homeElement}</Link>
+      </li>
+      {filteredPaths.length > 0 && separator}
+      {filteredPaths.map((link, index) => {
+        const href = `/${pathNames.slice(0, index + 1).join("/")}`;
+        const isActive = paths === href;
+        const itemClasses = clsx(listClasses, { [activeClasses]: isActive });
 
-          return (
-            <React.Fragment key={index}>
-              <li className={itemClasses}>
-                <Link href={href} aria-current={isActive ? "page" : undefined}>
-                  {capitalizeLinks ? link : link.toLowerCase()}
-                </Link>
-              </li>
-              {filteredPaths.length !== index + 1 && separator}
-            </React.Fragment>
-          );
-        })}
-      </ul>
-    </Container>
+        return (
+          <React.Fragment key={index}>
+            <li className={itemClasses}>
+              <Link
+                href={href}
+                aria-current={isActive ? "page" : undefined}
+                className="!leading-normal"
+              >
+                {capitalizeLinks ? link : link.toLowerCase()}
+              </Link>
+            </li>
+            {filteredPaths.length !== index + 1 && separator}
+          </React.Fragment>
+        );
+      })}
+    </ul>
+    // </Container>
   );
 };
 
