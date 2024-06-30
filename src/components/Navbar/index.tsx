@@ -15,7 +15,7 @@ export const Navbar = () => {
   };
   return (
     <nav className="fixed top-0 z-30 w-full py-4 border-b-[1px] border-black-light dark:border-black-darker bg-white text-black dark:bg-black-darker dark:text-white ">
-      <Container className="flex items-center justify-between gap-6 max-xl:px-8 max-lg:px-4">
+      <Container className="flex items-center justify-between gap-6 max-md:px-4">
         <Logo width={196} height={47} withBadge />
         <NavLinks className="items-center justify-between hidden gap-2 xl:gap-6 xl:flex" />
         <div className="flex items-center gap-3 lg:gap-4">

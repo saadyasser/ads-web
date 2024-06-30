@@ -27,7 +27,7 @@ export const ContactUs = () => {
   });
   const onSubmit: SubmitHandler<FormValues> = (data: any) => {
     alert(JSON.stringify(data));
-    console.log(errors);
+    console.error(errors);
   };
 
   return (
