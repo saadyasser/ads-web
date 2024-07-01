@@ -90,9 +90,9 @@ export default Navbar;
 export const navLinks = [
   { title: "Home", path: "/", exact: true },
   { title: "Components", path: "/ui-components" },
-  { title: "Web & Mobile Templates", path: "/web-mobile" },
+  { title: "Web & Mobile Templates", path: "/web_mobile-templates" },
   { title: "Ready Flows", path: "/ready-flows" },
-  { title: "Design system", path: "/design-system" },
+  { title: "Design system", path: "/design-systems" },
   { title: "Color-Themes", path: "/color-themes" },
 ];
 const NavLinks = ({

@@ -18,6 +18,9 @@ import { TextArea } from "./TextArea";
 import { SlideOver } from "./SlideOver";
 import { Breadcrumb } from "./Breadcrumb";
 import { CopyCurrentPathButton } from "./CopyCurrentPathButton";
+import { Product } from "./Product";
+import { Filter } from "./Filter";
+import { RadioGroup } from "./RadioGroup";
 
 export {
   Dropdown,
@@ -40,5 +43,8 @@ export {
   SlideOver,
   Breadcrumb,
   CopyCurrentPathButton,
+  Product,
+  Filter,
+  RadioGroup,
 };
 export * from "./theme";
