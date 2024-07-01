@@ -14,6 +14,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       inputClassName,
       error,
       errorMessage,
+      cta,
+      withErrorPlace = true,
       ...props
     },
     ref
@@ -42,10 +44,15 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
               {description}
             </Description>
           )}
-          <HeadlessInput ref={ref} {...props} className={inputClasses} />
-          <p className="mt-2 text-danger text-sm h-[18px]">
-            {error && errorMessage ? errorMessage : ""}
-          </p>
+          <div className="relative">
+            <HeadlessInput ref={ref} {...props} className={inputClasses} />
+            <span className="absolute inset-y-2 right-2">{cta}</span>
+          </div>
+          {withErrorPlace && (
+            <p className="mt-2 text-danger text-sm h-[18px]">
+              {error && errorMessage ? errorMessage : ""}
+            </p>
+          )}
         </Field>
       </div>
     );

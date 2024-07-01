@@ -1,8 +1,9 @@
 "use client";
 
-import { Product } from "@/components";
+import { Filter, Product } from "@/components";
 import React, { useEffect, useState } from "react";
 import { CategoryType, ProductType } from "@/types"; // Ensure to import the type
+import ProductSkeletonLoader from "@/components/Product/ProductSkeleton";
 
 const fetchCategory = async (
   categoryId: string
@@ -10,7 +11,6 @@ const fetchCategory = async (
   try {
     const response = await fetch(`/api/categories/${categoryId}`);
     const data = await response.json();
-    console.log("🚀 ~ data:", data);
     return data;
   } catch (err) {
     console.error(err);
@@ -34,73 +34,32 @@ export default function Page({ params }: { params: { category: string } }) {
     fetchData();
   }, [categoryId]);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (!category) {
-    return <div>No category data available.</div>;
-  }
-
   return (
-    <div className="">
-      <h1>Category: {category.name}</h1>
+    <section>
       <div className="grid w-full grid-cols-4 gap-4 mt-6">
-        <div className="col-span-1 bg-red-400 divide-y divide-gray-200 rounded-lg shadow max-md:hidden">
-          Filter
+        <div className="col-span-1 max-xl:hidden">
+          <Filter />
         </div>
         <ul
           role="list"
-          className="grid grid-cols-2 col-span-3 gap-4 lg:grid-cols-3 max-md:col-span-4"
+          className="grid grid-cols-2 col-span-3 gap-4 lg:grid-cols-3 max-xl:col-span-4"
         >
-          {category?.products?.map((product: ProductType) => (
-            <li className="col-span-1" key={product.id}>
-              <Product product={product} />
-            </li>
-          ))}
+          {!category?.products &&
+            loading &&
+            [1, 2, 3].map((index) => (
+              <li className="col-span-1" key={index}>
+                <ProductSkeletonLoader />
+              </li>
+            ))}
+          {category?.products &&
+            !loading &&
+            category?.products.map((product: ProductType) => (
+              <li className="col-span-1" key={product.id}>
+                <Product product={product} />
+              </li>
+            ))}
         </ul>
       </div>
-    </div>
+    </section>
   );
 }
-
-// ----------------------------------------------------------------
-// grid with filter structure
-
-/**
- * 
- *  <div className="grid w-full grid-cols-4 gap-4 mt-6">
-        <div className="col-span-1 bg-red-400 divide-y divide-gray-200 rounded-lg shadow max-md:hidden">
-          filter
-        </div>
-        <ul
-          role="list"
-          className="grid grid-cols-2 col-span-3 gap-4 lg:grid-cols-3 max-md:col-span-4"
-        >
-          <li className="col-span-1 bg-white divide-y divide-gray-200 rounded-lg shadow">
-            <Link href="/design-system/1"> component</Link>
-          </li>
-          <li className="col-span-1 bg-white divide-y divide-gray-200 rounded-lg shadow">
-            <Link href="/design-system/1"> component</Link>
-          </li>
-          <li className="col-span-1 bg-white divide-y divide-gray-200 rounded-lg shadow">
-            <Link href="/design-system/1"> component</Link>
-          </li>
-          <li className="col-span-1 bg-white divide-y divide-gray-200 rounded-lg shadow">
-            <Link href="/design-system/1"> component</Link>
-          </li>
-          <li className="col-span-1 bg-white divide-y divide-gray-200 rounded-lg shadow">
-            <Link href="/design-system/1"> component</Link>
-          </li>
-          <li className="col-span-1 bg-white divide-y divide-gray-200 rounded-lg shadow">
-            <Link href="/design-system/1"> component</Link>
-          </li>
-          <li className="col-span-1 bg-white divide-y divide-gray-200 rounded-lg shadow">
-            <Link href="/design-system/1"> component</Link>
-          </li>
-          <li className="col-span-1 bg-white divide-y divide-gray-200 rounded-lg shadow">
-            <Link href="/design-system/1"> component</Link>
-          </li>
-        </ul>
-      </div>
- */
