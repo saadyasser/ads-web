@@ -221,6 +221,28 @@ const products = [
       },
     ],
   },
+  {
+    id: 11,
+    name: "Coinpay Fintech Finance Mobile A..",
+    category: "ui-components",
+    description: "+90 Screens | Full Auto-Layout",
+    price: 1200000,
+    imagesUrl: [
+      {
+        imagePath: "/images/dummyComponentImages/designSystems_example.png",
+        isThumbnail: true,
+      },
+      {
+        imagePath: "/images/dummyComponentImages/designSystems_example2.png",
+      },
+      {
+        imagePath: "/images/dummyComponentImages/designSystems_example3.png",
+      },
+      {
+        imagePath: "/images/dummyComponentImages/designSystems_example.png",
+      },
+    ],
+  },
 ] as ProductType[];
 
 export default products;

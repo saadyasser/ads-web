@@ -2,7 +2,7 @@ const categories = [
   {
     id: "ui-components",
     name: "UI Components",
-    products: [1, 2],
+    products: [1, 2, 11],
   },
   {
     id: "web_mobile-templates",

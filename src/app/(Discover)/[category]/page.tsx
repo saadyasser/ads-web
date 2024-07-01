@@ -1,9 +1,8 @@
 "use client";
 
-import { Link } from "@/components";
+import { Product } from "@/components";
 import React, { useEffect, useState } from "react";
 import { CategoryType, ProductType } from "@/types"; // Ensure to import the type
-import Image from "next/image";
 
 const fetchCategory = async (
   categoryId: string
@@ -55,19 +54,8 @@ export default function Page({ params }: { params: { category: string } }) {
           className="grid grid-cols-2 col-span-3 gap-4 lg:grid-cols-3 max-md:col-span-4"
         >
           {category?.products?.map((product: ProductType) => (
-            <li
-              key={product.id}
-              className="col-span-1 bg-white divide-y divide-gray-200 rounded-lg shadow"
-            >
-              <Image
-                src={product.imagesUrl[0].imagePath}
-                alt={product.name}
-                width={200}
-                height={200}
-              />
-              <Link href={`/design-system/${product.id}`}>{product.name}</Link>
-              <p>{product?.description}</p>
-              <p>{product?.price ? product?.price : "Free"}</p>
+            <li className="col-span-1" key={product.id}>
+              <Product product={product} />
             </li>
           ))}
         </ul>
