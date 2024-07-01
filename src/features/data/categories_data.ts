@@ -16,7 +16,7 @@ export const categoriesData = [
     navigationPath: "/components",
   },
   {
-    heading: "Web Components",
+    heading: "Web Templates",
     description: "+2k components ready to use!",
     lightImagePath: "/images/categories/light/web_components_category.png",
     darkImagePath: "/images/categories/dark/dark_web_components_category.png",
