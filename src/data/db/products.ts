@@ -229,7 +229,7 @@ const products = [
     price: 1200000,
     imagesUrl: [
       {
-        imagePath: "/images/dummyComponentImages/designSystems_example.png",
+        imagePath: "/images/dummyComponentImages/1920.jpg",
         isThumbnail: true,
       },
       {

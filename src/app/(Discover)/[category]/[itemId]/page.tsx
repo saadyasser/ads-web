@@ -1,4 +1,6 @@
 "use client";
+import ThumbnailSlider from "@/components/ThumbnailSwiper";
+import EmblaCarousel from "@/components/ThumbnailSwiper/EmblaSlider";
 import { ProductType } from "@/types";
 import React, { useEffect, useState } from "react";
 
@@ -42,7 +44,17 @@ export default function Page({ params }: { params: { itemId: string } }) {
   return (
     <div>
       item : {params.itemId}
-      {JSON.stringify(product)}
+      {/* {product && (
+        <ThumbnailSlider
+          images={product?.imagesUrl?.map((img) => img.imagePath)}
+          defaultImageIndex={0}
+        />
+      )} */}
+      {product && (
+        <EmblaCarousel
+          slides={product?.imagesUrl?.map((img) => img.imagePath)}
+        />
+      )}
     </div>
   );
 }

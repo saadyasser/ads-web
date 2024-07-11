@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --slide-height: 19rem;
+  --slide-spacing: 1rem;
+  --slide-size: 100%;
+}
 body {
   @apply overflow-x-hidden;
 }
@@ -75,4 +80,37 @@ body {
 
 .hover-zoom-effect:hover img {
   @apply transition-transform duration-500 ease-in-out transform scale-110;
+}
+
+.main-slider .swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.thumb-slider .swiper-slide {
+  width: auto;
+  cursor: pointer;
+}
+
+.thumbnail {
+  position: relative;
+  width: 100%;
+}
+
+.thumbnail-active {
+  border: 2px solid #0070f3;
+}
+
+.backface-visible {
+  backface-visibility: visible;
+}
+
+.backface-invisible {
+  backface-visibility: hidden;
+}
+
+.embla__slide {
+  flex: 0 0 var(--slide-size);
+  height: 100%;
 }
