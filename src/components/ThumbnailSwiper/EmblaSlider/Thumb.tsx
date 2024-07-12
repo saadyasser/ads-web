@@ -12,7 +12,7 @@ type PropType = {
 export const Thumb: React.FC<PropType> = (props) => {
   const { selected, index, image, onClick } = props;
   const classes = clsx(
-    "w-fit p-2 cursor-pointer",
+    "w-fit md:p-2 cursor-pointer",
     selected && "border-2 border-primary rounded-lg"
   );
   return (
@@ -22,7 +22,7 @@ export const Thumb: React.FC<PropType> = (props) => {
           src={image}
           alt={`image-${index}`}
           width={360}
-          height={228}
+          height={240}
           className="rounded-lg h-fit w-fit "
         />
       </div>
