@@ -1,8 +1,10 @@
 "use client";
+import { CustomMarkdown, H1 } from "@/components";
 import EmblaCarousel from "@/components/ThumbnailSwiper/EmblaSlider";
 import { ProductType } from "@/types";
 import { fetchProductData } from "@/utils/getProductDetails";
 import React, { useEffect, useState } from "react";
+import PageSkeleton from "./PageSkeleton";
 
 export const ProductDetails = ({
   productId,
@@ -24,19 +26,31 @@ export const ProductDetails = ({
   }, [productId]);
 
   if (!product && !loading) {
-    return <div>No product data available.</div>;
+    return (
+      <div className="m-auto text-center">
+        <H1>No product data available.</H1>
+      </div>
+    );
   }
 
   return (
     <>
-      <section className="py-2">{product?.description}</section>
-      <section className="py-2">
-        <EmblaCarousel
-          slides={product?.imagesUrl?.map((img) => img.imagePath)}
-          loading={loading}
-        />
-      </section>
-      <section className="py-2">{product?.specifications}</section>
+      {!product && loading ? (
+        <PageSkeleton />
+      ) : (
+        <>
+          <section className="py-2">{product?.description}</section>
+          <section className="py-2">
+            <EmblaCarousel
+              slides={product?.imagesUrl?.map((img) => img.imagePath)}
+              loading={loading}
+            />
+          </section>
+          <section className="py-2">
+            <CustomMarkdown content={product?.specifications} />
+          </section>
+        </>
+      )}
     </>
   );
 };

@@ -42,7 +42,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
   }, [emblaMainApi, onSelect]);
 
   return (
-    <div className="grid w-full grid-cols-1 gap-y-4 gap-x-0 md:gap-4 md:grid-cols-4">
+    <div className="grid w-full grid-cols-1 gap-y-4 gap-x-0 md:gap-4 md:grid-cols-4 cursor-grab">
       <div
         className="w-full grid-cols-3 col-span-3 overflow-hidden"
         ref={emblaMainRef}

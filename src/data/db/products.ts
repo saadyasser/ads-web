@@ -228,7 +228,7 @@ const products = [
     description: "+90 Screens | Full Auto-Layout",
     price: 1200000,
     specifications:
-      "test test test test test test test test test test test test test test test test test test",
+      "# Product Specifications\n\n**Bold Text**\n\n- List Item 1\n- List Item 2\n\n> Blockquote\n\n---\n\nInline `code`",
     imagesUrl: [
       {
         imagePath: "/images/dummyComponentImages/1920.jpg",
