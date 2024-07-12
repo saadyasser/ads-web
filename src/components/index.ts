@@ -21,7 +21,7 @@ import { CopyCurrentPathButton } from "./CopyCurrentPathButton";
 import { Product } from "./Product";
 import { Filter } from "./Filter";
 import { RadioGroup } from "./RadioGroup";
-
+import { Skeleton } from "./Skeleton";
 export {
   Dropdown,
   Providers,
@@ -46,5 +46,6 @@ export {
   Product,
   Filter,
   RadioGroup,
+  Skeleton,
 };
 export * from "./theme";

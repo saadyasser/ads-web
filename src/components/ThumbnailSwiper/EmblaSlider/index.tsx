@@ -1,3 +1,4 @@
+"use client";
 import React, { useState, useEffect, useCallback } from "react";
 import { EmblaOptionsType } from "embla-carousel";
 import useEmblaCarousel from "embla-carousel-react";
@@ -5,12 +6,13 @@ import { Thumb } from "./Thumb";
 import Image from "next/image";
 
 type PropType = {
-  slides: string[];
+  slides?: string[];
   options?: EmblaOptionsType;
+  loading?: boolean;
 };
 
 const EmblaCarousel: React.FC<PropType> = (props) => {
-  const { slides, options } = props;
+  const { slides, options, loading } = props;
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [emblaMainRef, emblaMainApi] = useEmblaCarousel(options);
   const [emblaThumbsRef, emblaThumbsApi] = useEmblaCarousel({
@@ -46,7 +48,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
         ref={emblaMainRef}
       >
         <div className="flex h-full rounded-lg backface-invisible touch-pan-y touch-pinch-zoom">
-          {slides.map((slide, index) => (
+          {slides?.map((slide, index) => (
             <div className="rounded-lg embla__slide" key={index}>
               <Image
                 src={slide}
@@ -63,7 +65,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
       <div className="md:col-span-1">
         <div ref={emblaThumbsRef}>
           <div className="flex flex-row items-center justify-center w-full gap-4 md:flex-col md:w-fit">
-            {slides.map((slide, index) => (
+            {slides?.map((slide, index) => (
               <Thumb
                 key={index}
                 onClick={() => onThumbClick(index)}

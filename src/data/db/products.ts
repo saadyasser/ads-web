@@ -227,6 +227,8 @@ const products = [
     category: "ui-components",
     description: "+90 Screens | Full Auto-Layout",
     price: 1200000,
+    specifications:
+      "test test test test test test test test test test test test test test test test test test",
     imagesUrl: [
       {
         imagePath: "/images/dummyComponentImages/1920.jpg",
