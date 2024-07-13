@@ -4,10 +4,12 @@ import { useTheme } from "next-themes";
 import { BurgerMenu, Moon, Sun } from "@/lib/@iconsax";
 import { useState } from "react";
 import clsx from "clsx";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export const Navbar = () => {
   const { theme, setTheme } = useTheme();
+  const { push } = useRouter();
   const [burgerMenuOpen, setBurgerMenuOpen] = useState(false);
   const handleThemeChange = () => {
     setTheme(theme === "dark" ? "light" : "dark");
@@ -22,16 +24,18 @@ export const Navbar = () => {
           {theme === "dark" ? (
             <Button
               variant="custom"
+              onClick={() => push("/#contact_us")}
               className="!hidden xl:!flex bg-black !text-sm 2xl:!text-base text-white !border-white active:!shadow-black-active"
             >
-              Register / Login
+              Contact Us
             </Button>
           ) : (
             <Button
               variant="custom"
+              onClick={() => push("/#contact_us")}
               className="bg-background-light !text-sm 2xl:!text-base active:shadow-background-light hover:bg-black-light border-black-light !hidden xl:!flex"
             >
-              Register / Login
+              Contact Us
             </Button>
           )}
           <Button
@@ -65,8 +69,12 @@ export const Navbar = () => {
         </div>
         <SlideOver
           footer={
-            <Button variant="secondary" className="w-full">
-              Register / Login
+            <Button
+              variant="secondary"
+              className="w-full"
+              onClick={() => push("/#contact_us")}
+            >
+              Contact Us
             </Button>
           }
           open={burgerMenuOpen}

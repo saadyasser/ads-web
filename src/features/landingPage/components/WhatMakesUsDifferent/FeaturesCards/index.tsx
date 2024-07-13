@@ -9,7 +9,7 @@ export const FeaturesCards = () => {
     <>
       <ul
         role="list"
-        className="hidden grid-cols-1 gap-4 lg:grid md:grid-cols-2 md:grid-rows-2"
+        className="hidden grid-cols-1 gap-4 md:grid md:grid-cols-2 md:grid-rows-2"
       >
         {FEATURES_DATA.map((feature) => (
           <Card
@@ -27,7 +27,7 @@ export const FeaturesCards = () => {
           </Card>
         ))}
       </ul>
-      <div className="flex lg:hidden">
+      <div className="flex md:hidden">
         <Container>
           <Slider
             slides={FEATURES_DATA}
