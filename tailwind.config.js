@@ -15,6 +15,9 @@ module.exports = {
         georgia: ["var(--font-georgia)"],
         inter: ["var(--font-inter)"],
       },
+      screens: {
+        lg: "1025px",
+      },
       colors: {
         primary: {
           DEFAULT: "#655CFE",
