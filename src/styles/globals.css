@@ -114,6 +114,11 @@ body {
   flex: 0 0 var(--slide-size);
   height: 100%;
 }
+.embla__slide-prev {
+  flex: 0 0 30%;
+  margin-left: 18%;
+  height: 100%;
+}
 #linkIcon {
   display: none;
 }
