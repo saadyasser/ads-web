@@ -14,7 +14,7 @@ export const WebTemplatesSection = () => {
         rewind
         navigation
         gridData={webTemplatesData}
-        heading="Web Templates"
+        heading={{ label: "Web Templates", value: "web_mobile-templates" }}
       />
     </>
   );

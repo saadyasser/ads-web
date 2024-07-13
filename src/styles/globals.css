@@ -114,3 +114,10 @@ body {
   flex: 0 0 var(--slide-size);
   height: 100%;
 }
+#linkIcon {
+  display: none;
+}
+.link-with-icon:hover #linkIcon {
+  display: block;
+  transition: all 0.3ms ease;
+}

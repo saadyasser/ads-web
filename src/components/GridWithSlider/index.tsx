@@ -1,13 +1,14 @@
 "use client";
-import { Container, Slider } from "@/components";
+import { Container, Slider, Link } from "@/components";
 import { CardShape } from "./CardShape";
 import { Swiper, SwiperOptions } from "swiper/types";
 import { useRef } from "react";
 import { ChevronLeft, ChevronRight } from "@/lib/@iconsax";
+import { GoLink } from "@/lib/@react-icons";
 
 type GridWithSliderProps = SwiperOptions & {
   gridData: any;
-  heading?: string;
+  heading?: { label: string; value: string };
   className?: string;
   withIndicators?: boolean;
 };
@@ -23,7 +24,19 @@ export const GridWithSlider = ({
   return (
     <Container>
       <div className="flex items-center justify-between mb-4 md:mb-6">
-        {heading && <h3 className="text-xl font-bold capitalize">{heading}</h3>}
+        {heading && (
+          <h3 className="text-xl font-bold capitalize">
+            <Link
+              href={heading.value}
+              className="flex items-center link-with-icon"
+            >
+              {heading.label}{" "}
+              <span id="linkIcon">
+                <GoLink />
+              </span>
+            </Link>
+          </h3>
+        )}
         {withIndicators && (
           <div className="flex items-center gap-2">
             <button

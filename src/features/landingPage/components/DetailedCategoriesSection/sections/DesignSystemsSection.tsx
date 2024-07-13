@@ -14,7 +14,7 @@ export const DesignSystemsSection = () => {
         rewind
         navigation
         gridData={designSystemsData}
-        heading="Design Systems"
+        heading={{ label: "Design Systems", value: "design-systems" }}
       />
     </>
   );
