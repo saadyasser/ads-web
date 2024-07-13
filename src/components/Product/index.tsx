@@ -11,7 +11,7 @@ export const Product = ({ product }: { product: ProductType }) => {
   const { description, imagesUrl, name, price } = product;
   const thumbnail = findThumbnailImage(imagesUrl);
   const priceClasses = clsx(
-    "absolute top-8 right-4 z-20 rounded-full py-2 px-3 font-semibold text-xs text-center text-white",
+    "absolute top-4 md:top-6 right-4 z-20 rounded-full py-1 px-2 font-medium md:py-2 md:px-3 md:font-semibold text-xs text-center text-white",
     price ? "bg-primary" : "bg-success"
   );
   return (

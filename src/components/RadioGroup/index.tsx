@@ -30,7 +30,7 @@ export const RadioGroup = ({
           </Label>
         )}
         <Label className="sr-only"> Choose an option </Label>
-        <div className="grid gap-3 mt-3 sm:grid-cols-3">
+        <div className="grid grid-cols-3 gap-3 mt-3">
           {options.map((option: OptionType, index) => (
             <Radio
               key={option.value}

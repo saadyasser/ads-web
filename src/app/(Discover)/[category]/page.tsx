@@ -1,9 +1,10 @@
 "use client";
 
-import { Filter, Product } from "@/components";
+import { Button, Filter, Product, SlideOver } from "@/components";
 import React, { useEffect, useState } from "react";
 import { CategoryType, ProductType } from "@/types"; // Ensure to import the type
 import ProductSkeletonLoader from "@/components/Product/ProductSkeleton";
+import { FilterIcon } from "@/lib/@iconsax";
 
 const fetchCategory = async (
   categoryId: string
@@ -20,6 +21,8 @@ const fetchCategory = async (
 
 export default function Page({ params }: { params: { category: string } }) {
   const categoryId = params.category;
+  const [responsiveFilterToggle, setResponsiveFilterToggle] =
+    useState<boolean>(false);
   const [category, setCategory] = useState<CategoryType | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -40,6 +43,20 @@ export default function Page({ params }: { params: { category: string } }) {
         <div className="col-span-1 max-xl:hidden">
           <Filter />
         </div>
+        <SlideOver
+          open={responsiveFilterToggle}
+          setOpen={setResponsiveFilterToggle}
+          footer={<Button className="w-full">Apply Filters</Button>}
+        >
+          <Filter />
+        </SlideOver>
+        <Button
+          className="fixed hidden bottom-10 right-4 max-xl:block"
+          variant="secondary"
+          onClick={() => setResponsiveFilterToggle((prev) => !prev)}
+        >
+          <FilterIcon size="24" />
+        </Button>
         <ul
           role="list"
           className="grid grid-cols-2 col-span-3 gap-4 lg:grid-cols-3 max-xl:col-span-4"

@@ -4,6 +4,7 @@ import { Container, Button, H1 } from "@/components";
 import { ArrowRight } from "iconsax-react";
 import clsx from "clsx";
 import { useTheme } from "next-themes";
+import { useRouter } from "next/navigation";
 
 export const HeroSection = () => {
   const { theme } = useTheme();
@@ -85,11 +86,14 @@ const ImageGroup = () => {
 };
 
 const ButtonGroup = ({ className }: { className?: string }) => {
+  const { push } = useRouter();
+
   const classes = clsx("flex flex-col justify-center my-6", className);
   return (
     <div className={classes}>
       <div className="flex flex-col items-center w-full gap-4 my-6 lg:flex-row md:my-10">
         <Button
+          onClick={() => push("/ui-components")}
           className=" w-full max-xl:!text-sm truncate"
           icon={<ArrowRight size="24" />}
         >

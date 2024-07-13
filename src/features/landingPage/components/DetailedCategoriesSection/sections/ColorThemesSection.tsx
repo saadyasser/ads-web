@@ -14,7 +14,7 @@ export const ColorThemesSection = () => {
         rewind
         navigation
         gridData={colorThemesData}
-        heading="Color Themes"
+        heading={{ label: "Color Themes", value: "color-themes" }}
       />
     </>
   );
