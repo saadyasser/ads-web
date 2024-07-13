@@ -6,7 +6,7 @@ export const recentComponentsData = [
     description: "+2k variants | Full Auto-Layout",
     lightImagePath: "/images/dummyComponentImages/component_example.png",
     darkImagePath: "/images/dummyComponentImages/component_example.png",
-    navigationPath: "/components/",
+    navigationPath: "/ui-components/1",
   },
   {
     id: 2,
@@ -15,7 +15,7 @@ export const recentComponentsData = [
     description: "+2k variants | Full Auto-Layout",
     lightImagePath: "/images/dummyComponentImages/component_example2.png",
     darkImagePath: "/images/dummyComponentImages/component_example2.png",
-    navigationPath: "/components/",
+    navigationPath: "/ui-components/1",
   },
   {
     id: 3,
@@ -24,7 +24,7 @@ export const recentComponentsData = [
     description: "+2k variants | Full Auto-Layout",
     lightImagePath: "/images/dummyComponentImages/component_example3.png",
     darkImagePath: "/images/dummyComponentImages/component_example3.png",
-    navigationPath: "/components/",
+    navigationPath: "/ui-components/1",
   },
   {
     id: 4,
@@ -33,7 +33,7 @@ export const recentComponentsData = [
     description: "+2k variants | Full Auto-Layout",
     lightImagePath: "/images/dummyComponentImages/component_example.png",
     darkImagePath: "/images/dummyComponentImages/component_example.png",
-    navigationPath: "/components/",
+    navigationPath: "/ui-components/1",
   },
   {
     id: 5,
@@ -42,7 +42,7 @@ export const recentComponentsData = [
     description: "+2k variants | Full Auto-Layout",
     lightImagePath: "/images/dummyComponentImages/component_example2.png",
     darkImagePath: "/images/dummyComponentImages/component_example2.png",
-    navigationPath: "/components/",
+    navigationPath: "/ui-components/1",
   },
   {
     id: 6,
@@ -51,6 +51,6 @@ export const recentComponentsData = [
     description: "+2k variants | Full Auto-Layout",
     lightImagePath: "/images/dummyComponentImages/component_example3.png",
     darkImagePath: "/images/dummyComponentImages/component_example3.png",
-    navigationPath: "/components/",
+    navigationPath: "/ui-components/1",
   },
 ];

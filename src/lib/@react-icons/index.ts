@@ -23,3 +23,4 @@ export {
 export { CiMenuBurger as BurgerMenuIcon } from "react-icons/ci";
 export { IoCloseSharp as CloseIcon } from "react-icons/io5";
 export { FiSearch as SearchIcon } from "react-icons/fi";
+export { GoLink as GoLink } from "react-icons/go";

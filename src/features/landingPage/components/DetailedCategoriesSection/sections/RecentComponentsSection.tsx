@@ -14,7 +14,7 @@ export const RecentComponentsSection = () => {
         rewind
         navigation
         gridData={recentComponentsData}
-        heading="Recent Components"
+        heading={{ label: "Recent Components", value: "ui-components" }}
       />
     </>
   );

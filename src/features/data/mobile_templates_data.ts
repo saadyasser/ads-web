@@ -6,7 +6,7 @@ export const mobileTemplatesData = [
     description: "+90 Screens | Full Auto-Layout",
     lightImagePath: "/images/dummyComponentImages/mobileTemplate_example.png",
     darkImagePath: "/images/dummyComponentImages/mobileTemplate_example.png",
-    navigationPath: "/components/",
+    navigationPath: "/web_mobile-templates/1",
   },
   {
     id: 2,
@@ -15,7 +15,7 @@ export const mobileTemplatesData = [
     description: "+90 Screens | Full Auto-Layout",
     lightImagePath: "/images/dummyComponentImages/mobileTemplate_example2.png",
     darkImagePath: "/images/dummyComponentImages/mobileTemplate_example2.png",
-    navigationPath: "/components/",
+    navigationPath: "/web_mobile-templates/1",
   },
   {
     id: 3,
@@ -24,7 +24,7 @@ export const mobileTemplatesData = [
     description: "+90 Screens | Full Auto-Layout",
     lightImagePath: "/images/dummyComponentImages/mobileTemplate_example.png",
     darkImagePath: "/images/dummyComponentImages/mobileTemplate_example.png",
-    navigationPath: "/components/",
+    navigationPath: "/web_mobile-templates/1",
   },
   {
     id: 4,
@@ -33,7 +33,7 @@ export const mobileTemplatesData = [
     description: "+90 Screens | Full Auto-Layout",
     lightImagePath: "/images/dummyComponentImages/mobileTemplate_example.png",
     darkImagePath: "/images/dummyComponentImages/mobileTemplate_example.png",
-    navigationPath: "/components/",
+    navigationPath: "/web_mobile-templates/1",
   },
   {
     id: 5,
@@ -42,7 +42,7 @@ export const mobileTemplatesData = [
     description: "+90 Screens | Full Auto-Layout",
     lightImagePath: "/images/dummyComponentImages/mobileTemplate_example2.png",
     darkImagePath: "/images/dummyComponentImages/mobileTemplate_example2.png",
-    navigationPath: "/components/",
+    navigationPath: "/web_mobile-templates/1",
   },
   {
     id: 6,
@@ -51,6 +51,6 @@ export const mobileTemplatesData = [
     description: "+90 Screens | Full Auto-Layout",
     lightImagePath: "/images/dummyComponentImages/mobileTemplate_example.png",
     darkImagePath: "/images/dummyComponentImages/mobileTemplate_example.png",
-    navigationPath: "/components/",
+    navigationPath: "/web_mobile-templates/1",
   },
 ];

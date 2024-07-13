@@ -12,20 +12,20 @@ type PropType = {
 export const Thumb: React.FC<PropType> = (props) => {
   const { selected, index, image, onClick } = props;
   const classes = clsx(
-    "w-fit md:p-2 cursor-pointer",
-    selected && "border-2 border-primary rounded-lg"
+    "md:w-fit md:p-2 cursor-pointer rounded-lg max-md:embla__slide-prev",
+    selected && "border-2 border-primary "
   );
   return (
-    <div className={classes}>
-      <div onClick={onClick} className="rounded-lg w-fit">
-        <Image
-          src={image}
-          alt={`image-${index}`}
-          width={360}
-          height={240}
-          className="rounded-lg h-fit w-fit "
-        />
-      </div>
+    <div className={classes} onClick={onClick}>
+      {/* <div className="rounded-lg md:w-fit"> */}
+      <Image
+        src={image}
+        alt={`image-${index}`}
+        width={360}
+        height={240}
+        className="w-full h-full rounded-lg md:h-fit md:w-fit fl"
+      />
+      {/* </div> */}
     </div>
   );
 };
