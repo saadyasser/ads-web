@@ -6,4 +6,5 @@ export {
   ArrowLeft2 as ChevronLeft,
   ArrowRight2 as ChevronRight,
   Copy as CopyIcon,
+  DocumentFilter as FilterIcon,
 } from "iconsax-react";

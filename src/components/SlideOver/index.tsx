@@ -66,7 +66,7 @@ export const SlideOver = ({
                   )}
                 >
                   {/* body content */}
-                  <div className="flex flex-col h-full pt-12 bg-white shadow-xl dark:bg-black-active">
+                  <div className="flex flex-col h-full pt-8 bg-white shadow-xl dark:bg-black-active">
                     <div className="px-4 sm:px-6">
                       <div className="flex items-start justify-between">
                         <DialogTitle className="text-lg font-medium text-gray-900">
@@ -89,12 +89,14 @@ export const SlideOver = ({
                     </div>
                     <div className="relative flex-1 py-6 mt-6 overflow-y-auto sm:px-6">
                       <div className="absolute inset-0 w-full max-w-full px-4 sm:px-6">
-                        <div className="pt-6 pb-24">{children}</div>
+                        <div className="pt-3 pb-24">{children}</div>
                       </div>
                       {/* footer */}
                       {footer && (
                         <div className="fixed bottom-0 right-0 w-full py-6 bg-background-light dark:bg-background-dark">
-                          <Container>{footer}</Container>
+                          <Container className="w-full px-4">
+                            {footer}
+                          </Container>
                         </div>
                       )}
                     </div>
