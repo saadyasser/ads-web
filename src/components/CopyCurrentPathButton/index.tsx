@@ -25,7 +25,7 @@ export const CopyCurrentPathButton = () => {
     <Button
       onClick={handleCopy}
       variant="custom"
-      className="bg-background-light dark:bg-background-dark fill-black dark:fill-white !p-4 !border-none hover:bg-black-light transition-all duration-300"
+      className="bg-white dark:bg-background-dark fill-black dark:fill-white !p-4 !border-none hover:bg-black-light transition-all duration-300"
     >
       {!copied ? (
         <CopyIcon

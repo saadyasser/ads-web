@@ -51,7 +51,7 @@ export default function Page({ params }: { params: { category: string } }) {
           <Filter />
         </SlideOver>
         <Button
-          className="fixed hidden bottom-10 right-4 max-xl:block"
+          className="fixed !hidden bottom-10 right-4 max-xl:!flex items-center justify-center z-20 !px-4"
           variant="secondary"
           onClick={() => setResponsiveFilterToggle((prev) => !prev)}
         >
