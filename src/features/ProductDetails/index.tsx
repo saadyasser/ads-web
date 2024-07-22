@@ -1,10 +1,11 @@
 "use client";
-import { CustomMarkdown, H1 } from "@/components";
+import { CustomMarkdown, H1, H2 } from "@/components";
 import EmblaCarousel from "@/components/ThumbnailSwiper/EmblaSlider";
 import { ProductType } from "@/types";
 import { fetchProductData } from "@/utils/getProductDetails";
 import React, { useEffect, useState } from "react";
 import PageSkeleton from "./PageSkeleton";
+import EmblaCarouselSlides from "@/components/Slider/EmblaSlider";
 
 export const ProductDetails = ({
   productId,
@@ -48,6 +49,12 @@ export const ProductDetails = ({
           </section>
           <section className="py-2">
             <CustomMarkdown content={product?.specifications} />
+          </section>
+          <section className="py-2">
+            <H2>Recent Components</H2>
+            <EmblaCarouselSlides
+              slides={product?.imagesUrl?.map((img) => img.imagePath)}
+            />
           </section>
         </>
       )}
