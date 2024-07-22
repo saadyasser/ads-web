@@ -64,7 +64,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
 
       <div className="md:col-span-1">
         <div ref={emblaThumbsRef}>
-          <div className="flex flex-row items-center justify-center w-full gap-4 md:flex-col md:w-fit">
+          <div className="flex flex-row items-center justify-center w-full gap-4 md:flex-col ">
             {slides?.map((slide, index) => (
               <Thumb
                 key={index}

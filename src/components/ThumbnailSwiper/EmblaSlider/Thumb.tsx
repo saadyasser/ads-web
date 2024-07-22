@@ -23,7 +23,7 @@ export const Thumb: React.FC<PropType> = (props) => {
         alt={`image-${index}`}
         width={360}
         height={240}
-        className="w-full h-full rounded-lg md:h-fit md:w-fit fl"
+        className="w-full h-full rounded-lg "
       />
       {/* </div> */}
     </div>
