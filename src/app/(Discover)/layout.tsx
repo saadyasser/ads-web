@@ -1,5 +1,10 @@
 "use client";
-import { Breadcrumb, Container, CopyCurrentPathButton } from "@/components";
+import {
+  Breadcrumb,
+  BreadcrumbCta,
+  Container,
+  CopyCurrentPathButton,
+} from "@/components";
 import clsx from "clsx";
 import { useEffect, useState } from "react";
 
@@ -39,7 +44,8 @@ export default function DiscoverLayout({
       <div className={containerClasses}>
         <Container className="flex items-center justify-between">
           <Breadcrumb homeElement="Home" capitalizeLinks={true} />
-          <div className="flex gap-1">
+          <div className="flex items-center justify-between gap-1">
+            <BreadcrumbCta />
             <CopyCurrentPathButton />
           </div>
         </Container>
