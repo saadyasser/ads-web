@@ -17,6 +17,7 @@
     "@types/react": "18.3.2",
     "@types/react-dom": "18.3.0",
     "@yarnpkg/plugin-dlx": "^4.0.0",
+    "appwrite": "^15.0.0",
     "autoprefixer": "10.4.19",
     "clsx": "^2.1.1",
     "embla-carousel-react": "^8.1.6",
