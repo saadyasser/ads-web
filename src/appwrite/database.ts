@@ -2,7 +2,9 @@ import {
   CATEGORIES_COLLECTION_ID,
   DATABASE_ID,
   PRODUCTS_COLLECTION_ID,
+  PRODUCT_BUCKET_ID,
   databases,
+  storage,
 } from "./config";
 import { ID, Models } from "appwrite";
 
@@ -10,6 +12,11 @@ interface CollectionConfig {
   databaseId: string;
   id: string;
   name: keyof typeof db;
+}
+
+interface BucketConfig {
+  bucketId: string;
+  name: keyof typeof store;
 }
 
 interface DocumentData {
@@ -65,4 +72,25 @@ collections.forEach((col) => {
   };
 });
 
-export { db };
+//storage management
+const store = {} as any;
+
+const buckets: BucketConfig[] = [
+  // {
+  //   bucketId: PRODUCT_BUCKET_ID!,
+  //   name: "categoriesImages",
+  // },
+  {
+    bucketId: PRODUCT_BUCKET_ID!,
+    name: "productsImages",
+  },
+];
+
+buckets.forEach((bucket) => {
+  store[bucket.name] = {
+    upload: (imageFile: File, id = ID.unique()) =>
+      storage.createFile(bucket.bucketId, id, imageFile),
+  };
+});
+
+export { db, store };

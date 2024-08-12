@@ -1,5 +1,7 @@
-import { Client, Databases } from "appwrite";
-const client = new Client();
+// import { Client, Databases, Storage } from "appwrite";
+import * as sdk from "node-appwrite";
+
+const client = new sdk.Client();
 
 export const {
   APPWRITE_ENDPOINT: ENDPOINT,
@@ -7,10 +9,13 @@ export const {
   APPWRITE_DATABASE_ID: DATABASE_ID,
   APPWRITE_CATEGORIES_COLLECTION_ID: CATEGORIES_COLLECTION_ID,
   APPWRITE_PRODUCTS_COLLECTION_ID: PRODUCTS_COLLECTION_ID,
+  APPWRITE_PRODUCT_IMAGES_BUCKET_ID: PRODUCT_BUCKET_ID,
+  APPWRITE_API_KEY,
 } = process.env!;
 
-client.setEndpoint(ENDPOINT!).setProject(PROJECT_ID!);
+client.setEndpoint(ENDPOINT!).setProject(PROJECT_ID!).setKey(APPWRITE_API_KEY!);
 
-const databases = new Databases(client);
+const databases = new sdk.Databases(client);
+const storage = new sdk.Storage(client);
 
-export { client, databases };
+export { client, databases, storage };
