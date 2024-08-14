@@ -19,6 +19,7 @@ export {
   HiOutlineArrowNarrowRight as ArrowRightHiIcon,
   HiCheck as CheckIcon,
 } from "react-icons/hi";
+export { HiChevronUpDown as ChevronUpDown } from "react-icons/hi2";
 
 export { CiMenuBurger as BurgerMenuIcon } from "react-icons/ci";
 export { IoCloseSharp as CloseIcon } from "react-icons/io5";

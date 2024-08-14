@@ -24,6 +24,7 @@ import { RadioGroup } from "./RadioGroup";
 import { Skeleton } from "./Skeleton";
 import { CustomMarkdown } from "./CustomMarkdown";
 import { BreadcrumbCta } from "./BreadcrumbCta";
+import { Select } from "./Select";
 export {
   Dropdown,
   Providers,
@@ -51,5 +52,6 @@ export {
   Skeleton,
   CustomMarkdown,
   BreadcrumbCta,
+  Select,
 };
 export * from "./theme";
