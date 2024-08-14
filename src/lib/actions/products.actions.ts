@@ -1,31 +1,67 @@
 "use server";
 
+import { ENDPOINT, PRODUCT_BUCKET_ID, PROJECT_ID } from "@/appwrite/config";
 import { db, store } from "@/appwrite/database";
 import { parseStringify } from "@/utils";
-import { ID } from "node-appwrite";
 import { InputFile } from "node-appwrite";
-import { Readable } from "stream";
 
-export const uploadProductImages = async ({ images }: { images: FormData }) => {
+export const uploadProductImages = async (images: { file: FormData }[]) => {
   const imageIds: string[] = [];
-  try {
-    let file;
-    if (images) {
-      const inputFile =
-        images &&
-        InputFile.fromBlob(
-          images?.get("blobFile") as Blob,
-          images?.get("fileName") as string
-        );
-      console.log("🚀 ~ uploadProductImages ~ inputFile:", inputFile);
 
-      file = await store.productsImages.upload(inputFile);
+  for (const image of images) {
+    try {
+      if (image.file) {
+        const inputFile =
+          image &&
+          InputFile.fromBlob(
+            image.file?.get("blobFile") as Blob,
+            image.file?.get("fileName") as string
+          );
+        const uploadedFile = await store.productsImages.upload(inputFile);
+
+        if (uploadedFile) {
+          imageIds.push(uploadedFile.$id);
+          console.log("success", uploadedFile);
+        }
+      }
+    } catch (err) {
+      console.log(err);
     }
+  }
+  return parseStringify(imageIds);
+};
+export type ProductType = {
+  title: string;
+  description: string;
+  specifications?: string;
+  price: string;
+  images: { file: FormData }[];
+};
 
+export const createProduct = async ({ images, ...product }: ProductType) => {
+  try {
+    // upload images
+    const files = await uploadProductImages(images);
+
+    // create product
+    if (files) {
+      const productData = await db.products.create({
+        imagesId: files.map((fileId: string) => fileId),
+        imagesUrl: files.map(
+          (fileId: string) =>
+            `${ENDPOINT}/storage/buckets/${PRODUCT_BUCKET_ID}/files/${fileId}/view??project=${PROJECT_ID}`
+        ),
+        ...product,
+      });
+      return parseStringify({
+        status: 200,
+        message: "product created",
+        productData: productData,
+      });
+    }
     return parseStringify({
-      status: 200,
-      message: "Category created",
-      images: imageIds,
+      status: 500,
+      message: "problem uploading images",
     });
   } catch (err) {
     console.log(err);
