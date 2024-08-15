@@ -1,10 +1,14 @@
 import React from "react";
 import { CreateProductForm } from "@/components/admin";
+import { listCategories } from "@/lib/actions";
 
-const AdminPage = () => {
+const AdminPage = async () => {
+  const categoriesList = await listCategories();
+  // console.log("🚀 ~ AdminPage ~ categoriesList:", categoriesList);
+
   return (
     <div>
-      <CreateProductForm />
+      <CreateProductForm categoriesList={categoriesList.documents} />
     </div>
   );
 };

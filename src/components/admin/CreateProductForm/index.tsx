@@ -1,10 +1,11 @@
 "use client";
-import { Button, Container, Input, TextArea } from "@/components";
+import { Button, Container, Input, Select, TextArea } from "@/components";
 import FileUploader from "@/components/FileUploader";
 import { ArrowRightHiIcon } from "@/lib/@react-icons";
+import { listCategories } from "@/lib/actions";
 import { createProduct } from "@/lib/actions/products.actions";
-import { ProductType } from "@/types";
-import { fileToBase64 } from "@/utils";
+import { Category } from "@/types/app-write.types";
+
 import { useState } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 
@@ -13,10 +14,19 @@ export type FormValues = {
   price: string;
   description: string;
   specifications: string;
+  category: string;
 };
 
-export const CreateProductForm = () => {
+export const CreateProductForm = ({
+  categoriesList,
+}: {
+  categoriesList: Category[];
+}) => {
   const [droppedFiles, setDroppedFiles] = useState<File[]>([]);
+
+  const categorySelectOptions = categoriesList?.map((category) => {
+    return { name: category.name, value: category.$id };
+  });
 
   const methods = useForm<FormValues>({
     defaultValues: {
@@ -24,6 +34,7 @@ export const CreateProductForm = () => {
       price: "",
       description: "",
       specifications: "",
+      category: "",
     },
   });
   const handleDrop = (acceptedFiles: File[]) => {
@@ -31,6 +42,8 @@ export const CreateProductForm = () => {
     console.log(droppedFiles);
   };
   const onSubmit = methods.handleSubmit(async (data) => {
+    console.log("🚀 ~ onSubmit ~ data:", data, methods.watch());
+
     const imageFiles = await Promise.all(
       droppedFiles.map(async (file) => {
         const formData = new FormData();
@@ -47,8 +60,7 @@ export const CreateProductForm = () => {
       ...data,
       images: imageFiles,
     };
-    const response = await createProduct(productDate);
-    // alert(response);
+    // const response = await createProduct(productDate);
   });
 
   return (
@@ -82,6 +94,13 @@ export const CreateProductForm = () => {
                   errorMessage={methods.formState.errors.price?.message}
                   error={!!methods.formState.errors.price}
                   required
+                />
+                <Select
+                  options={categorySelectOptions}
+                  label="Select the product category"
+                  {...methods.register("category", {
+                    required: "Product Category is required",
+                  })}
                 />
                 <TextArea
                   {...methods.register("description", {

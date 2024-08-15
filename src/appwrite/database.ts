@@ -76,10 +76,10 @@ collections.forEach((col) => {
 const store = {} as any;
 
 const buckets: BucketConfig[] = [
-  // {
-  //   bucketId: PRODUCT_BUCKET_ID!,
-  //   name: "categoriesImages",
-  // },
+  {
+    bucketId: PRODUCT_BUCKET_ID!,
+    name: "categoriesImages",
+  },
   {
     bucketId: PRODUCT_BUCKET_ID!,
     name: "productsImages",
