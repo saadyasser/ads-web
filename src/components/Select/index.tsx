@@ -1,52 +1,62 @@
 "use client";
+
 import { forwardRef, Fragment, useState } from "react";
 import {
-  Label,
   Listbox,
   ListboxButton,
   ListboxOption,
   ListboxOptions,
   Transition,
 } from "@headlessui/react";
+import { useFormContext } from "react-hook-form";
 import { CheckIcon, ChevronUpDown } from "@/lib/@react-icons";
 import clsx from "clsx";
 
-type optionType = {
+type OptionType = {
   name: string;
   value: string;
 };
+
 interface SelectProps {
-  options: optionType[];
+  options: OptionType[];
+  name: string;
   label?: string;
   error?: boolean;
   errorMessage?: string;
-  withErrorPlace?: boolean;
 }
 
 export const Select = forwardRef<HTMLInputElement, SelectProps>(
-  (
-    { options, label, error, errorMessage, withErrorPlace = true, ...props },
-    ref
-  ) => {
-    const selectClasses = clsx(
-      "relative text-left mt-2 block w-full rounded-lg border-[1px] border-[#303030] dark:border-black p-4 px-3 dark:text-white placeholder:text-[#9F9CB4] placeholder:dark:text-[#595959] font-medium",
-      "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-primary"
-    );
+  ({ options, name, label, error, errorMessage }, ref) => {
+    const {
+      register,
+      setValue,
+      formState: { errors },
+    } = useFormContext();
 
-    const [selected, setSelected] = useState(options[0]);
+    const [selected, setSelected] = useState<OptionType>(options[0]);
+
+    const handleSelectChange = (value: OptionType) => {
+      setSelected(value);
+      setValue(name, value.value);
+    };
 
     return (
-      <Listbox value={selected} onChange={setSelected}>
-        {({ open }) => (
-          <>
-            {label && (
-              <Label className="text-black dark:text-white text-sm/6">
-                {label}
-                <span className="ml-2 text-primary dark:text-danger">*</span>
-              </Label>
-            )}
+      <div>
+        {label && (
+          <label className="text-black dark:text-white text-sm/6">
+            {label}
+            <span className="ml-2 text-primary dark:text-danger">*</span>
+          </label>
+        )}
+        <Listbox value={selected} onChange={handleSelectChange}>
+          {({ open }) => (
             <div className="relative mt-1">
-              <ListboxButton className={selectClasses}>
+              <ListboxButton
+                className={clsx(
+                  "relative text-left block w-full rounded-lg border p-4 px-3 dark:text-white font-medium",
+                  error || errors[name] ? "border-red-500" : "border-gray-300"
+                )}
+              >
                 <span className="block truncate">{selected.name}</span>
                 <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
                   <ChevronUpDown
@@ -67,13 +77,13 @@ export const Select = forwardRef<HTMLInputElement, SelectProps>(
                   {options.map((option) => (
                     <ListboxOption
                       key={option.value}
+                      value={option}
                       className={({ selected }) =>
                         clsx(
                           selected ? "text-white bg-primary" : "text-gray-900",
-                          "relative cursor-pointer select-none py-2 pl-8 pr-4 "
+                          "relative cursor-pointer select-none py-2 pl-8 pr-4"
                         )
                       }
-                      value={option}
                     >
                       {({ selected }) => (
                         <>
@@ -85,11 +95,9 @@ export const Select = forwardRef<HTMLInputElement, SelectProps>(
                           >
                             {option.name}
                           </span>
-
-                          {selected ? (
+                          {selected && (
                             <span
                               className={clsx(
-                                selected ? "text-white" : "text-indigo-600",
                                 "absolute inset-y-0 left-0 flex items-center pl-1.5"
                               )}
                             >
@@ -98,7 +106,7 @@ export const Select = forwardRef<HTMLInputElement, SelectProps>(
                                 aria-hidden="true"
                               />
                             </span>
-                          ) : null}
+                          )}
                         </>
                       )}
                     </ListboxOption>
@@ -106,12 +114,19 @@ export const Select = forwardRef<HTMLInputElement, SelectProps>(
                 </ListboxOptions>
               </Transition>
             </div>
-          </>
-        )}
-      </Listbox>
+          )}
+        </Listbox>
+        {error ||
+          (errors[name] && (
+            <p className="mt-2 text-sm text-red-600">
+              {errorMessage || errors[name]?.message?.toString()}
+            </p>
+          ))}
+      </div>
     );
   }
 );
+
 Select.displayName = "Select";
 
 export default Select;

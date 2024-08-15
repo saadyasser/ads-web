@@ -2,11 +2,10 @@
 import { Button, Container, Input, Select, TextArea } from "@/components";
 import FileUploader from "@/components/FileUploader";
 import { ArrowRightHiIcon } from "@/lib/@react-icons";
-import { listCategories } from "@/lib/actions";
 import { createProduct } from "@/lib/actions/products.actions";
 import { Category } from "@/types/app-write.types";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 
 export type FormValues = {
@@ -15,6 +14,7 @@ export type FormValues = {
   description: string;
   specifications: string;
   category: string;
+  images: File[];
 };
 
 export const CreateProductForm = ({
@@ -35,8 +35,12 @@ export const CreateProductForm = ({
       description: "",
       specifications: "",
       category: "",
+      images: [],
     },
   });
+  useEffect(() => {
+    console.log(methods.watch(), methods.formState.errors);
+  }, [methods.watch()]);
   const handleDrop = (acceptedFiles: File[]) => {
     setDroppedFiles(acceptedFiles);
     console.log(droppedFiles);
@@ -60,7 +64,8 @@ export const CreateProductForm = ({
       ...data,
       images: imageFiles,
     };
-    // const response = await createProduct(productDate);
+    console.log("🚀 ~ onSubmit ~ productDate:", productDate);
+    const response = await createProduct(productDate);
   });
 
   return (
@@ -95,13 +100,27 @@ export const CreateProductForm = ({
                   error={!!methods.formState.errors.price}
                   required
                 />
-                <Select
-                  options={categorySelectOptions}
-                  label="Select the product category"
-                  {...methods.register("category", {
-                    required: "Product Category is required",
-                  })}
-                />
+                <div className="">
+                  <label htmlFor="categoriesSelect">
+                    Select the product category{" "}
+                  </label>
+
+                  <select
+                    className="w-full px-4 py-4 my-4 rounded-lg cursor-pointer focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-double "
+                    id="categoriesSelect"
+                    {...methods.register("category", {
+                      required: "Product Category is required",
+                    })}
+                  >
+                    {categorySelectOptions &&
+                      categorySelectOptions.map((option) => (
+                        <option key={option.value} value={option.value}>
+                          {option.name}
+                        </option>
+                      ))}
+                  </select>
+                </div>
+
                 <TextArea
                   {...methods.register("description", {
                     required: "Product Description is required",
@@ -126,7 +145,12 @@ export const CreateProductForm = ({
                   placeholder="Has a powerful click!"
                   required
                 />
-                <FileUploader dropHandler={handleDrop} maxFiles={4} />
+                <FileUploader
+                  label="please choose product images (choose 4 images)"
+                  dropHandler={handleDrop}
+                  maxFiles={4}
+                  name="images"
+                />
                 <Button
                   icon={<ArrowRightHiIcon />}
                   className="w-full mt-6"
