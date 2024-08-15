@@ -3,6 +3,7 @@
 import { ENDPOINT, PRODUCT_BUCKET_ID, PROJECT_ID } from "@/appwrite/config";
 import { db, store } from "@/appwrite/database";
 import { parseStringify } from "@/utils";
+import { revalidatePath } from "next/cache";
 import { InputFile } from "node-appwrite";
 
 export const uploadProductImages = async (images: { file: FormData }[]) => {
@@ -53,15 +54,17 @@ export const createProduct = async ({ images, ...product }: ProductType) => {
         ),
         ...product,
       });
+      revalidatePath("/admin");
       return parseStringify({
         status: 200,
         message: "product created",
-        productData: productData,
+        data: productData,
       });
     }
     return parseStringify({
       status: 500,
       message: "problem uploading images",
+      data: null,
     });
   } catch (err) {
     console.log(err);

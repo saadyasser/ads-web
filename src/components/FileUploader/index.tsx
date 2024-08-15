@@ -29,7 +29,7 @@ const FileUploader = ({
     setValue,
     trigger,
   } = useFormContext();
-
+  console.log("rendered file uploader");
   const onDrop = (acceptedFiles: File[]) => {
     let hasError = false;
 
@@ -93,7 +93,7 @@ const FileUploader = ({
     accept: { "image/*": [] },
     multiple: true,
     maxFiles,
-    maxSize: maxFileSize * 1024 * 1024, // Convert MB to bytes
+    maxSize: maxFileSize * 1024 * 1024,
   });
 
   const thumbs = files.map((file: any, index) => (
@@ -144,9 +144,16 @@ const FileUploader = ({
             {...getRootProps()}
             className={`border-2 border-dashed rounded-md p-6 my-4 flex flex-col items-center justify-center cursor-pointer transition-colors duration-200 ${
               error || fieldState.error ? "border-danger" : "border-gray-300"
-            } ${isDragActive ? "border-blue-500 bg-blue-50" : "border-gray-300"}`}
+            } ${isDragActive ? "border-blue-500 bg-primary-light bg-opacity-70" : "border-gray-300"}`}
           >
-            <input {...getInputProps()} onChange={(e) => field.onChange(e)} />
+            <input
+              {...getInputProps()}
+              onChange={(e) => {
+                clearErrors(name);
+                setError(null);
+                return field.onChange(e);
+              }}
+            />
             <p
               className={
                 error || fieldState.error ? "text-danger" : "text-white"

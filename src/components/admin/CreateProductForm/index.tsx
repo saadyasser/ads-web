@@ -5,7 +5,7 @@ import { ArrowRightHiIcon } from "@/lib/@react-icons";
 import { createProduct } from "@/lib/actions/products.actions";
 import { Category } from "@/types/app-write.types";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 
 export type FormValues = {
@@ -38,16 +38,11 @@ export const CreateProductForm = ({
       images: [],
     },
   });
-  useEffect(() => {
-    console.log(methods.watch(), methods.formState.errors);
-  }, [methods.watch()]);
+
   const handleDrop = (acceptedFiles: File[]) => {
     setDroppedFiles(acceptedFiles);
-    console.log(droppedFiles);
   };
   const onSubmit = methods.handleSubmit(async (data) => {
-    console.log("🚀 ~ onSubmit ~ data:", data, methods.watch());
-
     const imageFiles = await Promise.all(
       droppedFiles.map(async (file) => {
         const formData = new FormData();
@@ -66,6 +61,10 @@ export const CreateProductForm = ({
     };
     console.log("🚀 ~ onSubmit ~ productDate:", productDate);
     const response = await createProduct(productDate);
+    if (response.status == 200 && response.data) {
+      alert("Successfully created the  product");
+      methods.reset();
+    }
   });
 
   return (
@@ -146,7 +145,7 @@ export const CreateProductForm = ({
                   required
                 />
                 <FileUploader
-                  label="please choose product images (choose 4 images)"
+                  label="please choose product images (choose 4 images with max size 5MB)"
                   dropHandler={handleDrop}
                   maxFiles={4}
                   name="images"
