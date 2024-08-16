@@ -69,9 +69,9 @@ export const CreateProductForm = ({
 
   return (
     <FormProvider {...methods}>
-      <section className="py-8 bg-[#F8F9FA] dark:bg-black-active md:py-16">
+      <section className=" bg-[#F8F9FA] dark:bg-black-active mb-8">
         <Container className="flex items-center justify-center max-xl:px-4">
-          <div className="flex justify-center w-full p-6 border-[24px] border-white dark:border-black rounded-lg">
+          <div className="flex justify-center w-full rounded-lg">
             <div className="flex flex-col items-center justify-center w-full lg:w-1/2">
               <h2 className="text-2xl font-bold text-center text-black dark:text-white font-georgia lg:text-4xl">
                 Add new Item of your library

@@ -4,9 +4,9 @@ import React from "react";
 
 const AdminLayout = ({ children }: ChildrenProp) => {
   return (
-    <>
-      {/* <AdminSidebar /> */} {children}
-    </>
+    <main className="min-h-screen ">
+      <AdminSidebar>{children}</AdminSidebar>
+    </main>
   );
 };
 
