@@ -1,5 +1,6 @@
 import { Dropdown } from "./Dropdown";
 import { Providers } from "./Providers";
+import { ThemeHandler } from "./ThemeHandler";
 import { ThemeSwitcher } from "./ThemeSwitcher";
 import { Navbar } from "./Navbar";
 import { Footer } from "./Footer";
@@ -28,6 +29,7 @@ import { Select } from "./Select";
 export {
   Dropdown,
   Providers,
+  ThemeHandler,
   ThemeSwitcher,
   Navbar,
   Footer,

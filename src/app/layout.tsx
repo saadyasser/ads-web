@@ -4,7 +4,7 @@ import Providers from "@/components/Providers";
 import { georgia, inter } from "./fonts";
 import clsx from "clsx";
 
-import { ThemeSwitcher } from "@/components";
+import { ThemeHandler } from "@/components";
 
 import "@/styles/globals.css";
 
@@ -27,7 +27,7 @@ export default function RootLayout({
     <html lang="en" className={classes}>
       <body className="pt-[70px] xl:pt-[83px] bg-background-light dark:bg-background-dark">
         <Providers>
-          <ThemeSwitcher />
+          <ThemeHandler />
           {children}
         </Providers>
       </body>

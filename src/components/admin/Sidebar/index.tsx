@@ -1,21 +1,20 @@
 "use client";
 import { Fragment, useState } from "react";
+import { usePathname } from "next/navigation";
+
 import {
   Dialog,
   DialogPanel,
   Transition,
   TransitionChild,
 } from "@headlessui/react";
-import Image from "next/image";
+
 import clsx from "clsx";
-import { childrenType } from "@/types";
 import { BarsIcon } from "@/lib/@react-icons";
-import Logo from "@/components/Logo";
-import NavLink from "@/components/NavLink";
+import { Container, Logo, NavLink, ThemeSwitcher } from "@/components";
+
+import { childrenType } from "@/types";
 import { adminNavigation } from "@/data/admin_navigation";
-import { usePathname } from "next/navigation";
-import Container from "@/components/Container";
-import { cleanPath } from "@/utils";
 
 type AdminSidebarProps = {
   children: childrenType;
@@ -74,11 +73,12 @@ export default function AdminSidebar({ children }: AdminSidebarProps) {
                   </div>
                 </TransitionChild>
                 <div className="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
-                  <div className="flex items-center justify-center flex-shrink-0 px-4">
+                  <div className="flex items-center justify-center flex-shrink-0 gap-4 px-4">
                     <Logo
                       src="/images/logos/ads_logo_white.svg"
                       className="!w-[300px] !h-[50px]"
                     />
+                    <ThemeSwitcher />
                   </div>
                   <nav className="px-2 mt-5 space-y-1">
                     {adminNavigation.map((item) => (
@@ -86,8 +86,9 @@ export default function AdminSidebar({ children }: AdminSidebarProps) {
                         key={item.name}
                         href={item.href}
                         className={clsx(
-                          path === item.href && "bg-primary-active font-medium",
-                          "group flex items-center px-2 py-2 text-base  rounded-md !w-full !border-none text-white hover:bg-primary-hover hover:!text-white"
+                          path === item.href &&
+                            "bg-primary-active font-medium !text-white",
+                          "group flex items-center px-2 py-2 text-base  rounded-md !w-full !border-none !text-white hover:bg-primary-hover hover:!text-white"
                         )}
                       >
                         {item.icon}
@@ -96,10 +97,10 @@ export default function AdminSidebar({ children }: AdminSidebarProps) {
                     ))}
                   </nav>
                 </div>
-                {/* <div className="flex flex-shrink-0 p-4 border-t border-primary">
+                <div className="flex flex-shrink-0 p-4 border-t border-primary">
                   <a href="#" className="flex-shrink-0 block group">
                     <div className="flex items-center">
-                      <div>
+                      {/* <div>
                         <Image
                           className="inline-block w-10 h-10 rounded-full"
                           src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
@@ -115,10 +116,10 @@ export default function AdminSidebar({ children }: AdminSidebarProps) {
                         <p className="text-sm font-medium text-indigo-200 group-hover:text-white">
                           View profile
                         </p>
-                      </div>
+                      </div> */}
                     </div>
                   </a>
-                </div> */}
+                </div>
               </DialogPanel>
             </TransitionChild>
             <div className="flex-shrink-0 w-14" aria-hidden="true"></div>
@@ -131,11 +132,12 @@ export default function AdminSidebar({ children }: AdminSidebarProps) {
         {/* Sidebar component, swap this element with another sidebar if you like */}
         <div className="flex flex-col flex-1 min-h-0 bg-primary">
           <div className="flex flex-col flex-1 pt-5 pb-4 overflow-y-auto">
-            <div className="flex items-center justify-center flex-shrink-0 px-4">
+            <div className="flex items-center justify-center flex-shrink-0 gap-4 px-4">
               <Logo
                 src="/images/logos/ads_logo_white.svg"
                 className="!w-[300px] !h-[50px]"
               />
+              <ThemeSwitcher />
             </div>
             <nav className="flex-1 px-4 mt-10 space-y-1">
               {adminNavigation.map((item) => (
@@ -154,10 +156,10 @@ export default function AdminSidebar({ children }: AdminSidebarProps) {
               ))}
             </nav>
           </div>
-          {/* <div className="flex flex-shrink-0 p-4 border-t border-primary">
-              <a href="#" className="flex-shrink-0 block w-full group">
-                <div className="flex items-center">
-                  <div>
+          <div className="flex flex-shrink-0 p-4 border-t border-primary">
+            <a href="#" className="flex-shrink-0 block w-full group">
+              <div className="flex items-center">
+                {/* <div>
                     <Image
                       height={100}
                       width={100}
@@ -171,10 +173,10 @@ export default function AdminSidebar({ children }: AdminSidebarProps) {
                     <p className="text-xs font-medium text-indigo-200 group-hover:text-white">
                       View profile
                     </p>
-                  </div>
-                </div>
-              </a>
-            </div> */}
+                  </div> */}
+              </div>
+            </a>
+          </div>
         </div>
       </div>
       <div className="flex flex-col flex-1 md:pl-64">
