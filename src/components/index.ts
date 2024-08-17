@@ -26,6 +26,7 @@ import { Skeleton } from "./Skeleton";
 import { CustomMarkdown } from "./CustomMarkdown";
 import { BreadcrumbCta } from "./BreadcrumbCta";
 import { Select } from "./Select";
+import { MarkdownEditor } from "./MarkdownEditor";
 export {
   Dropdown,
   Providers,
@@ -55,5 +56,6 @@ export {
   CustomMarkdown,
   BreadcrumbCta,
   Select,
+  MarkdownEditor,
 };
 export * from "./theme";

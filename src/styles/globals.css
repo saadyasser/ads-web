@@ -32,6 +32,10 @@ body {
 .btn-alert {
   @apply text-white bg-alert border-alert hover:bg-alert-hover hover:border-alert-hover active:bg-alert-active active:border-alert-active active:shadow-alert-shadow;
 }
+
+.wmde-markdown-var {
+  @apply mt-2 !bg-black-light-active dark:!bg-black rounded-lg border-[1px] border-[#303030] dark:border-black p-4 px-3 dark:text-white;
+}
 .custom-container {
   position: relative !important;
   margin-right: 0 !important;

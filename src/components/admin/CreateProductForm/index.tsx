@@ -1,11 +1,18 @@
 "use client";
-import { Button, Container, Input, Select, TextArea } from "@/components";
+import {
+  Button,
+  Container,
+  Input,
+  MarkdownEditor,
+  Select,
+  TextArea,
+} from "@/components";
 import FileUploader from "@/components/FileUploader";
 import { ArrowRightHiIcon } from "@/lib/@react-icons";
 import { createProduct } from "@/lib/actions/products.actions";
 import { Category } from "@/types/app-write.types";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 
 export type FormValues = {
@@ -119,7 +126,6 @@ export const CreateProductForm = ({
                       ))}
                   </select>
                 </div>
-
                 <TextArea
                   {...methods.register("description", {
                     required: "Product Description is required",
@@ -131,7 +137,7 @@ export const CreateProductForm = ({
                   placeholder="Awesome hand-made primary button .."
                   required
                 />
-                <TextArea
+                {/* <TextArea
                   {...methods.register("specifications", {
                     required: "Product Specifications are required",
                   })}
@@ -143,6 +149,10 @@ export const CreateProductForm = ({
                   inputClassName="min-h-[159px] h-[159px]"
                   placeholder="Has a powerful click!"
                   required
+                /> */}
+                <MarkdownEditor
+                  name="specifications"
+                  label="Product Specifications"
                 />
                 <FileUploader
                   label="please choose product images (choose 4 images with max size 5MB)"

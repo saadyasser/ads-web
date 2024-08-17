@@ -1,6 +1,13 @@
 import { Models } from "node-appwrite";
 
-export interface Product extends Models.Document {}
+export interface ProductDocument extends Models.Document {
+  title: string;
+  description: string;
+  specifications?: string;
+  price: string;
+  imagesId: string[];
+  imagesUrl: string[];
+}
 
 export interface Category extends Models.Document {
   name: string;
