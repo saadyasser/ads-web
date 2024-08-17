@@ -2,9 +2,11 @@
 
 import { ENDPOINT, PRODUCT_BUCKET_ID, PROJECT_ID } from "@/appwrite/config";
 import { db, store } from "@/appwrite/database";
+import { Product, ProductType } from "@/types/app-write.types";
 import { parseStringify } from "@/utils";
+import { Query } from "appwrite";
 import { revalidatePath } from "next/cache";
-import { InputFile } from "node-appwrite";
+import { InputFile, QueryTypesList } from "node-appwrite";
 
 export const uploadProductImages = async (images: { file: FormData }[]) => {
   const imageIds: string[] = [];
@@ -31,13 +33,6 @@ export const uploadProductImages = async (images: { file: FormData }[]) => {
   }
   return parseStringify(imageIds);
 };
-export type ProductType = {
-  title: string;
-  description: string;
-  specifications?: string;
-  price: string;
-  images: { file: FormData }[];
-};
 
 export const createProduct = async ({ images, ...product }: ProductType) => {
   try {
@@ -54,7 +49,7 @@ export const createProduct = async ({ images, ...product }: ProductType) => {
         ),
         ...product,
       });
-      revalidatePath("/admin");
+      revalidatePath("/admin/create/product");
       return parseStringify({
         status: 200,
         message: "product created",
@@ -68,5 +63,44 @@ export const createProduct = async ({ images, ...product }: ProductType) => {
     });
   } catch (err) {
     console.log(err);
+  }
+};
+
+export const updateProduct = async (id: string, product: any) => {
+  try {
+    if (!product) throw Error;
+
+    const updatedProduct = await db.products.update(product, id);
+    console.log("🚀 ~ updateProduct ~ updatedProduct:", updatedProduct);
+    return parseStringify(updateProduct);
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const listProducts = async () => {
+  try {
+    const products = await db.products.list([Query.orderDesc("$createdAt")]);
+    return parseStringify(products);
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const getProduct = async (id: string) => {
+  try {
+    const product = await db.products.get(id);
+    return parseStringify(product);
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const deleteProduct = async (id: string) => {
+  try {
+    const product = await db.products.delete(id);
+    return parseStringify(product);
+  } catch (err) {
+    console.error(err);
   }
 };

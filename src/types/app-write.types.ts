@@ -7,3 +7,11 @@ export interface Category extends Models.Document {
   imageUrl: string;
   description?: string;
 }
+
+export type ProductType = {
+  title: string;
+  description: string;
+  specifications?: string;
+  price: string;
+  images: { file: FormData }[];
+};

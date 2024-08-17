@@ -1,6 +1,12 @@
 import React from "react";
 import Link from "next/link";
 import { H1, Button } from "@/components";
+import {
+  deleteProduct,
+  getProduct,
+  listProducts,
+  updateProduct,
+} from "@/lib/actions/products.actions";
 
 const AdminPage = async () => {
   return (
