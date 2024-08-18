@@ -27,6 +27,8 @@ import { CustomMarkdown } from "./CustomMarkdown";
 import { BreadcrumbCta } from "./BreadcrumbCta";
 import { Select } from "./Select";
 import { MarkdownEditor } from "./MarkdownEditor";
+import { SubmitButton } from "./SubmitButton";
+import { FileUploader } from "./FileUploader";
 export {
   Dropdown,
   Providers,
@@ -57,5 +59,7 @@ export {
   BreadcrumbCta,
   Select,
   MarkdownEditor,
+  SubmitButton,
+  FileUploader,
 };
 export * from "./theme";

@@ -13,7 +13,7 @@ type FileUploaderProps = {
   maxFileSize?: number;
 };
 
-const FileUploader = ({
+export const FileUploader = ({
   dropHandler,
   name,
   label,

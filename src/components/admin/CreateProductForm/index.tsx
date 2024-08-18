@@ -4,13 +4,12 @@ import {
   Container,
   Input,
   MarkdownEditor,
-  Select,
   TextArea,
 } from "@/components";
 import FileUploader from "@/components/FileUploader";
 import { ArrowRightHiIcon } from "@/lib/@react-icons";
 import { createProduct } from "@/lib/actions/products.actions";
-import { Category } from "@/types/app-write.types";
+import { CategoryDocument } from "@/types/app-write.types";
 
 import { useEffect, useState } from "react";
 import { useForm, FormProvider } from "react-hook-form";
@@ -27,7 +26,7 @@ export type FormValues = {
 export const CreateProductForm = ({
   categoriesList,
 }: {
-  categoriesList: Category[];
+  categoriesList: CategoryDocument[];
 }) => {
   const [droppedFiles, setDroppedFiles] = useState<File[]>([]);
 

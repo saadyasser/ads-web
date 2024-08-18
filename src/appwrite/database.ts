@@ -3,6 +3,7 @@ import {
   DATABASE_ID,
   PRODUCTS_COLLECTION_ID,
   PRODUCT_BUCKET_ID,
+  CATEGORIES_IMAGES_BUCKET,
   databases,
   storage,
 } from "./config";
@@ -77,7 +78,7 @@ const store = {} as any;
 
 const buckets: BucketConfig[] = [
   {
-    bucketId: PRODUCT_BUCKET_ID!,
+    bucketId: CATEGORIES_IMAGES_BUCKET!,
     name: "categoriesImages",
   },
   {

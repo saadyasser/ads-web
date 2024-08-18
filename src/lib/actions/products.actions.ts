@@ -2,11 +2,11 @@
 
 import { ENDPOINT, PRODUCT_BUCKET_ID, PROJECT_ID } from "@/appwrite/config";
 import { db, store } from "@/appwrite/database";
-import { Product, ProductType } from "@/types/app-write.types";
+import { ProductType } from "@/types/app-write.types";
 import { parseStringify } from "@/utils";
 import { Query } from "appwrite";
 import { revalidatePath } from "next/cache";
-import { InputFile, QueryTypesList } from "node-appwrite";
+import { InputFile } from "node-appwrite";
 
 export const uploadProductImages = async (images: { file: FormData }[]) => {
   const imageIds: string[] = [];
