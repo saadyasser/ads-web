@@ -34,7 +34,13 @@ body {
 }
 
 .wmde-markdown-var {
-  @apply mt-2 !bg-black-light-active dark:!bg-black rounded-lg border-[1px] border-[#303030] dark:border-black p-4 px-3 dark:text-white;
+  @apply mt-2 !bg-black rounded-lg border-[1px] border-[#303030] dark:border-black p-4 px-3 dark:text-white;
+}
+/* .wmde-markdown {
+  @apply !!text-white;
+} */
+.wmde-markdown pre {
+  @apply !text-white;
 }
 .custom-container {
   position: relative !important;

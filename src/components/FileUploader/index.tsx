@@ -29,7 +29,6 @@ const FileUploader = ({
     setValue,
     trigger,
   } = useFormContext();
-  console.log("rendered file uploader");
   const onDrop = (acceptedFiles: File[]) => {
     let hasError = false;
 
@@ -156,7 +155,9 @@ const FileUploader = ({
             />
             <p
               className={
-                error || fieldState.error ? "text-danger" : "text-white"
+                error || fieldState.error
+                  ? "text-danger"
+                  : "text-black dark:text-white"
               }
             >
               {isDragActive

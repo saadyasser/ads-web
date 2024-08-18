@@ -1,52 +1,69 @@
 "use client";
-
 import React from "react";
-import { useFormContext, Controller } from "react-hook-form";
 import MarkdownEditorComponent from "@uiw/react-markdown-editor";
-import "@uiw/react-markdown-editor/markdown-editor.css";
-import "@uiw/react-markdown-preview/markdown.css";
+import { useFormContext, Controller } from "react-hook-form";
+import { insertTable, newLine } from "./CustomTools";
 
-type MarkdownEditorProps = {
+interface MarkdownEditorProps {
   name: string;
   label?: string;
-};
+}
 
 export const MarkdownEditor: React.FC<MarkdownEditorProps> = ({
   name,
   label,
 }) => {
-  const {
-    control,
-    formState: { errors },
-  } = useFormContext();
+  const { control } = useFormContext();
+
+  const insertNewLine = (editor: any) => {
+    const doc = editor.getDoc();
+    const cursor = doc.getCursor(); // gets the line and ch (character) object
+    doc.replaceRange("\n", cursor); // adds a new line
+  };
 
   return (
-    <div className="my-4">
-      {label && (
-        <label className="block text-sm font-medium text-gray-700">
-          {label} <span className="text-danger">*</span>
-        </label>
+    <Controller
+      name={name}
+      control={control}
+      rules={{ required: "This field is required." }}
+      render={({ field, fieldState }) => (
+        <div>
+          {label && (
+            <label className="text-black dark:text-white">{label}</label>
+          )}
+          <MarkdownEditorComponent
+            value={field.value || ""}
+            onChange={(value) => field.onChange(value)}
+            style={{ height: "300px" }}
+            visible
+            toolbars={[
+              "undo",
+              "redo",
+              "bold",
+              "italic",
+              "header",
+              "strike",
+              "underline",
+              "quote",
+              "olist",
+              "ulist",
+              "todo",
+              "link",
+              "image",
+              "code",
+              "codeBlock",
+              newLine,
+              insertTable,
+            ]}
+          />
+          {fieldState.error && (
+            <p className="mt-2 text-sm text-danger">
+              {fieldState.error.message}
+            </p>
+          )}
+        </div>
       )}
-      <Controller
-        name={name}
-        control={control}
-        rules={{ required: "This field is required." }}
-        render={({ field }) => (
-          <>
-            <MarkdownEditorComponent
-              value={field.value || ""}
-              onChange={(value) => field.onChange(value)}
-              style={{ height: "300px" }}
-            />
-            {errors[name] && (
-              <p className="mt-2 text-sm text-danger">
-                {errors[name]?.message as any}
-              </p>
-            )}
-          </>
-        )}
-      />
-    </div>
+    />
   );
 };
 
