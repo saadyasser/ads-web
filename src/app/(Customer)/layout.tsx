@@ -1,4 +1,4 @@
-import { Footer, Navbar } from "@/components";
+import { ErrorBoundary, Footer, Navbar } from "@/components";
 
 export default function RootLayout({
   children,
@@ -9,7 +9,7 @@ export default function RootLayout({
     <>
       <Navbar />
       <main className="min-h-screen py-6 lg:py-12 bg-background-light dark:bg-background-dark">
-        {children}
+        <ErrorBoundary>{children}</ErrorBoundary>
       </main>
       <Footer />
     </>

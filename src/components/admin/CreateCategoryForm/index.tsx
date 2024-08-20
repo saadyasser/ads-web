@@ -48,7 +48,7 @@ export const CreateCategoryForm = () => {
     console.log("🚀 ~ onSubmit ~ categoryDate:", categoryDate);
     const response = await createCategory(categoryDate);
     if (response.status == 200 && response.data) {
-      toast("Successfully created the  product", "success");
+      toast("Successfully created the  Category", "success");
       methods.reset();
       setDroppedFiles([]);
     }

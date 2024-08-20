@@ -1,18 +1,17 @@
 "use client";
 import {
-  Button,
   Container,
   Input,
   MarkdownEditor,
+  SubmitButton,
   TextArea,
 } from "@/components";
 import FileUploader from "@/components/FileUploader";
 import { useShowToast } from "@/components/Toast";
-import { ArrowRightHiIcon } from "@/lib/@react-icons";
 import { createProduct } from "@/lib/actions/products.actions";
 import { CategoryDocument } from "@/types/app-write.types";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 
 export type FormValues = {
@@ -70,7 +69,7 @@ export const CreateProductForm = ({
     console.log("🚀 ~ onSubmit ~ productDate:", productDate);
     const response = await createProduct(productDate);
     if (response.status == 200 && response.data) {
-      toast("Successfully created the  category", "success");
+      toast("Successfully created the  Product", "success");
       methods.reset();
       setDroppedFiles([]);
     } else toast("Error creating the product", "error");
@@ -118,7 +117,7 @@ export const CreateProductForm = ({
                   </label>
 
                   <select
-                    className="w-full px-4 py-4 my-4 rounded-lg cursor-pointer focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-double "
+                    className="w-full px-4 py-4 my-4 rounded-lg border-[1px] border-[#303030] dark:border-black cursor-pointer focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-double "
                     id="categoriesSelect"
                     {...methods.register("category", {
                       required: "Product Category is required",
@@ -153,14 +152,7 @@ export const CreateProductForm = ({
                   maxFiles={4}
                   name="images"
                 />
-                <Button
-                  icon={<ArrowRightHiIcon />}
-                  className="w-full mt-6"
-                  iconPosition="after"
-                  type="submit"
-                >
-                  {methods.formState.isSubmitting ? "Submitting..." : "Submit"}
-                </Button>
+                <SubmitButton isSubmitting={methods.formState.isSubmitting} />
               </form>
             </div>
           </div>

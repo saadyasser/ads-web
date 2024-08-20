@@ -36,7 +36,7 @@ export default function DiscoverLayout({
   }, []);
 
   const containerClasses = clsx(
-    "sticky z-20 max-md:px-4 py-4 top-[4.3rem] lg:top-[5.1rem]",
+    "sticky z-30 max-md:px-4 py-4 top-[4.3rem] lg:top-[5.1rem]",
     isScrolled ? "bg-white dark:bg-background-dark" : "bg-transparent"
   );
   return (

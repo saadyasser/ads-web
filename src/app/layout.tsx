@@ -4,7 +4,7 @@ import Providers from "@/components/Providers";
 import { georgia, inter } from "./fonts";
 import clsx from "clsx";
 
-import { ThemeHandler } from "@/components";
+import { ErrorBoundary, ThemeHandler } from "@/components";
 
 import "@/styles/globals.css";
 
@@ -26,10 +26,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={classes}>
       <body className="pt-[70px] xl:pt-[83px] bg-background-light dark:bg-background-dark">
-        <Providers>
-          <ThemeHandler />
-          {children}
-        </Providers>
+        <ErrorBoundary>
+          <Providers>
+            <ThemeHandler />
+            {children}
+          </Providers>
+        </ErrorBoundary>
       </body>
     </html>
   );
