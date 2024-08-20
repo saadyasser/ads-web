@@ -102,7 +102,7 @@ export const FileUploader = ({
         src={file.preview}
         width={200}
         height={200}
-        className="border rounded"
+        className="border rounded w-[150px] h-[150px]"
         onLoad={() => {
           URL.revokeObjectURL(file.preview);
         }}
