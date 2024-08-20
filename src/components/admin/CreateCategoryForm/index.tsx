@@ -6,6 +6,7 @@ import {
   FileUploader,
   SubmitButton,
 } from "@/components";
+import { useShowToast } from "@/components/Toast";
 
 import { createCategory } from "@/lib/actions";
 
@@ -20,6 +21,7 @@ export type FormValues = {
 
 export const CreateCategoryForm = () => {
   const [droppedFiles, setDroppedFiles] = useState<File[]>();
+  const toast = useShowToast();
 
   const methods = useForm<FormValues>({
     defaultValues: {
@@ -46,8 +48,9 @@ export const CreateCategoryForm = () => {
     console.log("🚀 ~ onSubmit ~ categoryDate:", categoryDate);
     const response = await createCategory(categoryDate);
     if (response.status == 200 && response.data) {
-      alert("Successfully created the  product");
+      toast("Successfully created the  product", "success");
       methods.reset();
+      setDroppedFiles([]);
     }
   });
 

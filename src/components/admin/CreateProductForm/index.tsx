@@ -7,6 +7,7 @@ import {
   TextArea,
 } from "@/components";
 import FileUploader from "@/components/FileUploader";
+import { useShowToast } from "@/components/Toast";
 import { ArrowRightHiIcon } from "@/lib/@react-icons";
 import { createProduct } from "@/lib/actions/products.actions";
 import { CategoryDocument } from "@/types/app-write.types";
@@ -29,6 +30,7 @@ export const CreateProductForm = ({
   categoriesList: CategoryDocument[];
 }) => {
   const [droppedFiles, setDroppedFiles] = useState<File[]>([]);
+  const toast = useShowToast();
 
   const categorySelectOptions = categoriesList?.map((category) => {
     return { name: category.name, value: category.$id };
@@ -68,9 +70,10 @@ export const CreateProductForm = ({
     console.log("🚀 ~ onSubmit ~ productDate:", productDate);
     const response = await createProduct(productDate);
     if (response.status == 200 && response.data) {
-      alert("Successfully created the  product");
+      toast("Successfully created the  category", "success");
       methods.reset();
-    }
+      setDroppedFiles([]);
+    } else toast("Error creating the product", "error");
   });
 
   return (
@@ -106,8 +109,12 @@ export const CreateProductForm = ({
                   required
                 />
                 <div className="">
-                  <label htmlFor="categoriesSelect">
+                  <label
+                    htmlFor="categoriesSelect"
+                    className="text-black dark:text-white text-sm/6"
+                  >
                     Select the product category{" "}
+                    <span className="text-primary dark:text-danger">*</span>
                   </label>
 
                   <select
@@ -136,19 +143,6 @@ export const CreateProductForm = ({
                   placeholder="Awesome hand-made primary button .."
                   required
                 />
-                {/* <TextArea
-                  {...methods.register("specifications", {
-                    required: "Product Specifications are required",
-                  })}
-                  label="Product Specifications"
-                  errorMessage={
-                    methods.formState.errors.specifications?.message
-                  }
-                  error={!!methods.formState.errors.specifications}
-                  inputClassName="min-h-[159px] h-[159px]"
-                  placeholder="Has a powerful click!"
-                  required
-                /> */}
                 <MarkdownEditor
                   name="specifications"
                   label="Product Specifications"

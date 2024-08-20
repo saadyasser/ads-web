@@ -14,13 +14,6 @@ export const MarkdownEditor: React.FC<MarkdownEditorProps> = ({
   label,
 }) => {
   const { control } = useFormContext();
-
-  const insertNewLine = (editor: any) => {
-    const doc = editor.getDoc();
-    const cursor = doc.getCursor(); // gets the line and ch (character) object
-    doc.replaceRange("\n", cursor); // adds a new line
-  };
-
   return (
     <Controller
       name={name}
@@ -29,7 +22,10 @@ export const MarkdownEditor: React.FC<MarkdownEditorProps> = ({
       render={({ field, fieldState }) => (
         <div>
           {label && (
-            <label className="text-black dark:text-white">{label}</label>
+            <label className="text-black dark:text-white text-sm/6">
+              {label}
+              <span className="text-primary dark:text-danger">*</span>
+            </label>
           )}
           <MarkdownEditorComponent
             value={field.value || ""}
