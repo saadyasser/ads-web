@@ -14,6 +14,7 @@ type GridWithSliderProps = SwiperOptions & {
   withIndicators?: boolean;
   modules?: SwiperModule[];
 };
+
 export const GridWithSlider = ({
   gridData,
   heading,
@@ -40,7 +41,7 @@ export const GridWithSlider = ({
             </Link>
           </h3>
         )}
-        {withIndicators && (
+        {withIndicators && gridData && gridData.length > 0 && (
           <div className="flex items-center gap-2">
             <button
               className="p-2 font-semibold text-black transition-all rounded-lg bg-white-hover active:text-primary-active hover:bg-white hover:text-primary dark:active:text-white-active dark:bg-black dark:text-white dark:hover:bg-black-darker focus-visible:outline-primary-hover"
@@ -57,7 +58,7 @@ export const GridWithSlider = ({
           </div>
         )}
       </div>
-      {gridData && (
+      {gridData && gridData.length > 0 ? (
         <Slider
           onSwiper={(swiper) => {
             swiperRef.current = swiper;
@@ -68,6 +69,29 @@ export const GridWithSlider = ({
           modules={[Navigation]}
           {...rest}
         />
+      ) : (
+        <div className="flex flex-col items-center justify-center py-10 text-center">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-20 h-20 text-primary"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M12 8v4m0 4h.01"
+            />
+          </svg>
+          <p className="mt-4 text-gray-500">
+            No products available in this category.
+          </p>
+          <p className="text-gray-400">
+            Please check back later or explore other categories.
+          </p>
+        </div>
       )}
     </Container>
   );

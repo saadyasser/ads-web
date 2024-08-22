@@ -59,7 +59,6 @@ export const createProduct = async ({ images, ...product }: ProductType) => {
       ),
       ...product,
     });
-    console.log("🚀 ~ createProduct ~ productData:", productData);
 
     revalidatePath("/admin/create/product");
     return parseStringify({
@@ -117,13 +116,9 @@ export const listProducts = async () => {
 
 export const listProductsByCategory = async (categoryId: string) => {
   try {
-    const products = await db.products.list([]);
+    const products = await db.products.list();
     const categoryProducts = products.documents.filter(
-      (product) => product.category.$id === categoryId
-    );
-    console.log(
-      "🚀 ~ listProductsByCategory ~ categoryProducts:",
-      categoryProducts
+      (product) => product?.category?.$id === categoryId
     );
 
     return parseStringify({
