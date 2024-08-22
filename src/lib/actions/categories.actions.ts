@@ -8,6 +8,7 @@ import {
 import { db, store } from "@/appwrite/database";
 import { CategoryType } from "@/types/app-write.types";
 import { parseStringify } from "@/utils";
+import { Query } from "appwrite";
 import { revalidatePath } from "next/cache";
 import { InputFile } from "node-appwrite";
 
@@ -57,13 +58,76 @@ export const createCategory = async (category: CategoryType) => {
     }
   } catch (err) {
     console.error(err);
+    return parseStringify({
+      status: 500,
+      message: `Error creating category ${err}`,
+    });
   }
 };
 
-// export const updateCategory = async (id, payload) => {}
-// export const deleteCategory = async (id) =>{}
 export const listCategories = async (queries?: string[]) => {
   const categories = await db.categories.list(queries && queries);
 
-  return parseStringify(categories);
+  return parseStringify({
+    status: 200,
+    message: "Category list",
+    data: categories.documents,
+  });
+};
+export const getCategoryIdByName = async (categoryName: string) => {
+  try {
+    const response = await db.categories.list([
+      Query.equal("name", categoryName),
+    ]);
+
+    if (response.documents.length === 0) {
+      return parseStringify({
+        status: 404,
+        message: "Category Not found",
+      });
+    }
+
+    const category = response.documents[0];
+    return category.$id;
+  } catch (error) {
+    console.error("Failed to get category ID:", error);
+    return parseStringify({
+      status: 404,
+      message: "Failed to get category ID",
+    });
+  }
+};
+export const updateCategory = async (id: string, payload: any) => {
+  try {
+    if (!id || !payload) throw Error;
+
+    const updatedCategory = await db.categories.update(payload, id);
+    return parseStringify({
+      status: 200,
+      message: "Category updated successfully",
+      data: updatedCategory.documents,
+    });
+  } catch (err) {
+    console.error(err);
+    return parseStringify({
+      status: 500,
+      message: `problem updating the category : ${err}`,
+      data: null,
+    });
+  }
+};
+export const deleteCategory = async (id: string) => {
+  try {
+    const category = await db.categories.delete(id);
+    return parseStringify({
+      status: 200,
+      message: "category deleted successfully",
+    });
+  } catch (err) {
+    console.error(err);
+    return parseStringify({
+      status: 500,
+      message: `Error deleting the category : ${err}`,
+    });
+  }
 };

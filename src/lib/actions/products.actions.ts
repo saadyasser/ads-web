@@ -77,7 +77,7 @@ export const createProduct = async ({ images, ...product }: ProductType) => {
 
 export const updateProduct = async (id: string, product: any) => {
   try {
-    if (!product) throw Error;
+    if (!id || !product) throw Error;
 
     const updatedProduct = await db.products.update(product, id);
     return parseStringify({
