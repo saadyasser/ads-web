@@ -66,8 +66,8 @@ export const CreateProductForm = ({
       ...data,
       images: imageFiles,
     };
-    console.log("🚀 ~ onSubmit ~ productDate:", productDate);
     const response = await createProduct(productDate);
+    console.log("🚀 ~ onSubmit ~ response:", response);
     if (response.status == 200 && response.data) {
       toast("Successfully created the  Product", "success");
       methods.reset();

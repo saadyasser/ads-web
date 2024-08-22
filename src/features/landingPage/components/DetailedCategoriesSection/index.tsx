@@ -6,20 +6,22 @@ import {
   DesignSystemsSection,
   ColorThemesSection,
 } from "./sections";
-import { Divider } from "@/components";
+import { Divider, ErrorBoundary } from "@/components";
 
 export const DetailedCategoriesSection = () => {
   return (
     <section className="flex flex-col gap-8 py-6 md:py-16 max-xl:px-4">
-      <RecentComponentsSection />
+      <ErrorBoundary>
+        <RecentComponentsSection />
+      </ErrorBoundary>
       <Divider />
-      <MobileTemplatesSection />
+      {/* <MobileTemplatesSection />
       <Divider />
       <WebTemplatesSection />
       <Divider />
       <DesignSystemsSection />
       <Divider />
-      <ColorThemesSection />
+      <ColorThemesSection /> */}
     </section>
   );
 };

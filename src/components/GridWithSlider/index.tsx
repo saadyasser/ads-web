@@ -1,22 +1,25 @@
 "use client";
 import { Container, Slider, Link } from "@/components";
 import { CardShape } from "./CardShape";
-import { Swiper, SwiperOptions } from "swiper/types";
+import { Swiper, SwiperModule, SwiperOptions } from "swiper/types";
 import { useRef } from "react";
 import { ChevronLeft, ChevronRight } from "@/lib/@iconsax";
 import { GoLink } from "@/lib/@react-icons";
+import { Navigation } from "swiper/modules";
 
 type GridWithSliderProps = SwiperOptions & {
   gridData: any;
   heading?: { label: string; value: string };
   className?: string;
   withIndicators?: boolean;
+  modules?: SwiperModule[];
 };
 export const GridWithSlider = ({
   gridData,
   heading,
   className,
   withIndicators = true,
+  modules,
   ...rest
 }: GridWithSliderProps) => {
   const swiperRef = useRef<Swiper>();
@@ -54,15 +57,18 @@ export const GridWithSlider = ({
           </div>
         )}
       </div>
-      <Slider
-        onSwiper={(swiper) => {
-          swiperRef.current = swiper;
-        }}
-        className={`${className || ""} lg:!mr-4`}
-        slides={gridData}
-        slideShape={(slide) => <CardShape {...slide} />}
-        {...rest}
-      />
+      {gridData && (
+        <Slider
+          onSwiper={(swiper) => {
+            swiperRef.current = swiper;
+          }}
+          className={`${className || ""} lg:!mr-4`}
+          slides={gridData}
+          slideShape={(slide) => <CardShape {...slide} />}
+          modules={[Navigation]}
+          {...rest}
+        />
+      )}
     </Container>
   );
 };

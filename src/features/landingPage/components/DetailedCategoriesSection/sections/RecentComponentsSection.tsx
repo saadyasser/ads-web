@@ -1,20 +1,18 @@
-"use client";
 import { GridWithSlider } from "@/components";
 import { recentComponentsData } from "@/features/data";
-import { Navigation, Mousewheel } from "swiper/modules";
+import { getCategoryIdByName } from "@/lib/actions";
+import { listProductsByCategory } from "@/lib/actions/products.actions";
 
-export const RecentComponentsSection = () => {
-  {
-    /* Here will fetch data from API */
-  }
+export const RecentComponentsSection = async () => {
+  const categoryId = await getCategoryIdByName("recent_components");
+  const recentProductsList = await listProductsByCategory(categoryId);
   return (
     <>
       <GridWithSlider
-        modules={[Navigation]}
         rewind
         navigation
-        gridData={recentComponentsData}
-        heading={{ label: "Recent Components", value: "ui-components" }}
+        gridData={recentProductsList.data && recentProductsList.data}
+        heading={{ label: "Recent Components", value: "recent_components" }}
       />
     </>
   );

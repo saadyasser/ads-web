@@ -3,11 +3,11 @@ import { CreateProductForm } from "@/components/admin";
 import { listCategories } from "@/lib/actions";
 
 const CreateProductPage = async () => {
-  const { documents } = await listCategories();
+  const { data: categoriesList } = await listCategories();
 
   return (
     <div>
-      <CreateProductForm categoriesList={documents} />
+      <CreateProductForm categoriesList={categoriesList} />
     </div>
   );
 };
