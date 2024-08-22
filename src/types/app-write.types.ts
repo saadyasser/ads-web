@@ -7,6 +7,7 @@ export interface ProductDocument extends Models.Document {
   price: string;
   imagesId: string[];
   imagesUrl: string[];
+  category: CategoryDocument;
 }
 export type ProductType = {
   title: string;

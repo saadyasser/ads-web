@@ -59,11 +59,13 @@ export const createProduct = async ({ images, ...product }: ProductType) => {
       ),
       ...product,
     });
+    console.log("🚀 ~ createProduct ~ productData:", productData);
+
     revalidatePath("/admin/create/product");
     return parseStringify({
       status: 200,
       message: "product created",
-      data: productData.documents,
+      data: productData,
     });
   } catch (err) {
     console.log(err);
@@ -115,15 +117,19 @@ export const listProducts = async () => {
 
 export const listProductsByCategory = async (categoryId: string) => {
   try {
-    const products = await db.products.list([
-      Query.equal("category_id", categoryId),
-      Query.orderDesc("$createdAt"),
-    ]);
+    const products = await db.products.list([]);
+    const categoryProducts = products.documents.filter(
+      (product) => product.category.$id === categoryId
+    );
+    console.log(
+      "🚀 ~ listProductsByCategory ~ categoryProducts:",
+      categoryProducts
+    );
 
     return parseStringify({
       status: 200,
       message: "products list",
-      data: products.documents,
+      data: categoryProducts,
     });
   } catch (err) {
     console.error("Failed to list products:", err);

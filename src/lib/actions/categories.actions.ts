@@ -74,6 +74,23 @@ export const listCategories = async (queries?: string[]) => {
     data: categories.documents,
   });
 };
+export const getCategory = async (id: string) => {
+  try {
+    const category = await db.categories.get(id);
+    return parseStringify({
+      status: 200,
+      message: "got the category",
+      data: category,
+    });
+  } catch (err) {
+    console.error(err);
+    return parseStringify({
+      status: 500,
+      message: `problem getting the category : ${err}`,
+      data: null,
+    });
+  }
+};
 export const getCategoryIdByName = async (categoryName: string) => {
   try {
     const response = await db.categories.list([
@@ -88,7 +105,7 @@ export const getCategoryIdByName = async (categoryName: string) => {
     }
 
     const category = response.documents[0];
-    return category.$id;
+    return parseStringify(category.$id);
   } catch (error) {
     console.error("Failed to get category ID:", error);
     return parseStringify({
