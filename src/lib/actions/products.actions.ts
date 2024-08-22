@@ -24,11 +24,15 @@ export const uploadProductImages = async (images: { file: FormData }[]) => {
 
         if (uploadedFile) {
           imageIds.push(uploadedFile.$id);
-          console.log("success", uploadedFile);
         }
       }
     } catch (err) {
       console.log(err);
+      return parseStringify({
+        status: 500,
+        message: `problem uploading images ${err}`,
+        data: null,
+      });
     }
   }
   return parseStringify(imageIds);
@@ -40,29 +44,34 @@ export const createProduct = async ({ images, ...product }: ProductType) => {
     const files = await uploadProductImages(images);
 
     // create product
-    if (files) {
-      const productData = await db.products.create({
-        imagesId: files.map((fileId: string) => fileId),
-        imagesUrl: files.map(
-          (fileId: string) =>
-            `${ENDPOINT}/storage/buckets/${PRODUCT_BUCKET_ID}/files/${fileId}/view??project=${PROJECT_ID}`
-        ),
-        ...product,
-      });
-      revalidatePath("/admin/create/product");
+    if (!files) {
       return parseStringify({
-        status: 200,
-        message: "product created",
-        data: productData,
+        status: 500,
+        message: "problem creating the product : image uploading problem",
+        data: null,
       });
     }
+    const productData = await db.products.create({
+      imagesId: files.map((fileId: string) => fileId),
+      imagesUrl: files.map(
+        (fileId: string) =>
+          `${ENDPOINT}/storage/buckets/${PRODUCT_BUCKET_ID}/files/${fileId}/view??project=${PROJECT_ID}`
+      ),
+      ...product,
+    });
+    revalidatePath("/admin/create/product");
     return parseStringify({
-      status: 500,
-      message: "problem uploading images",
-      data: null,
+      status: 200,
+      message: "product created",
+      data: productData.documents,
     });
   } catch (err) {
     console.log(err);
+    return parseStringify({
+      status: 500,
+      message: `problem creating the product : ${err}`,
+      data: null,
+    });
   }
 };
 
@@ -71,36 +80,91 @@ export const updateProduct = async (id: string, product: any) => {
     if (!product) throw Error;
 
     const updatedProduct = await db.products.update(product, id);
-    console.log("🚀 ~ updateProduct ~ updatedProduct:", updatedProduct);
-    return parseStringify(updateProduct);
+    return parseStringify({
+      status: 200,
+      message: "product updated successfully",
+      data: updatedProduct.documents,
+    });
   } catch (err) {
     console.error(err);
+    return parseStringify({
+      status: 500,
+      message: `problem updating the product : ${err}`,
+      data: null,
+    });
   }
 };
 
 export const listProducts = async () => {
   try {
     const products = await db.products.list([Query.orderDesc("$createdAt")]);
-    return parseStringify(products);
+    return parseStringify({
+      status: 200,
+      message: "products list",
+      data: products.documents,
+    });
   } catch (err) {
     console.error(err);
+    return parseStringify({
+      status: 500,
+      message: `problem listing products : ${err}`,
+      data: null,
+    });
+  }
+};
+
+export const listProductsByCategory = async (categoryId: string) => {
+  try {
+    const products = await db.products.list([
+      Query.equal("category_id", categoryId),
+      Query.orderDesc("$createdAt"),
+    ]);
+
+    return parseStringify({
+      status: 200,
+      message: "products list",
+      data: products.documents,
+    });
+  } catch (err) {
+    console.error("Failed to list products:", err);
+    return parseStringify({
+      status: 500,
+      message: `problem listing products : ${err}`,
+      data: null,
+    });
   }
 };
 
 export const getProduct = async (id: string) => {
   try {
     const product = await db.products.get(id);
-    return parseStringify(product);
+    return parseStringify({
+      status: 200,
+      message: "got the product",
+      data: product.documents,
+    });
   } catch (err) {
     console.error(err);
+    return parseStringify({
+      status: 500,
+      message: `problem getting the product : ${err}`,
+      data: null,
+    });
   }
 };
 
 export const deleteProduct = async (id: string) => {
   try {
     const product = await db.products.delete(id);
-    return parseStringify(product);
+    return parseStringify({
+      status: 200,
+      message: "products deleted successfully",
+    });
   } catch (err) {
     console.error(err);
+    return parseStringify({
+      status: 500,
+      message: `Error deleting the product : ${err}`,
+    });
   }
 };
