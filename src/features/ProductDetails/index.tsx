@@ -6,26 +6,15 @@ import { fetchProductData } from "@/utils/getProductDetails";
 import React, { useEffect, useState } from "react";
 import PageSkeleton from "./PageSkeleton";
 import EmblaCarouselSlides from "@/components/Slider/EmblaSlider";
+import { ProductDocument } from "@/types/app-write.types";
 
 export const ProductDetails = ({
-  productId,
+  product,
+  loading,
 }: {
-  productId: string | number;
+  product: ProductDocument;
+  loading: boolean;
 }) => {
-  const [product, setProduct] = useState<ProductType | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      const productData = await fetchProductData(productId);
-      setProduct(productData);
-      setLoading(false);
-    };
-
-    fetchData();
-  }, [productId]);
-
   if (!product && !loading) {
     return (
       <div className="m-auto text-center">
@@ -42,19 +31,15 @@ export const ProductDetails = ({
         <>
           <section className="py-2">{product?.description}</section>
           <section className="py-2">
-            <EmblaCarousel
-              slides={product?.imagesUrl?.map((img) => img.imagePath)}
-              loading={loading}
-            />
+            <EmblaCarousel slides={product?.imagesUrl} loading={loading} />
           </section>
-          <section className="py-2">
+          <section className="py-4">
+            <H2 className="py-2">Product Specifications :</H2>
             <CustomMarkdown content={product?.specifications} />
           </section>
           <section className="py-2">
             <H2>Recent Components</H2>
-            <EmblaCarouselSlides
-              slides={product?.imagesUrl?.map((img) => img.imagePath)}
-            />
+            <EmblaCarouselSlides slides={product?.imagesUrl} />
           </section>
         </>
       )}

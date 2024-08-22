@@ -142,7 +142,7 @@ export const getProduct = async (id: string) => {
     return parseStringify({
       status: 200,
       message: "got the product",
-      data: product.documents,
+      data: product,
     });
   } catch (err) {
     console.error(err);
