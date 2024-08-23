@@ -96,9 +96,12 @@ export const updateProduct = async (id: string, product: any) => {
   }
 };
 
-export const listProducts = async () => {
+export const listProducts = async (limit: number = 1000) => {
   try {
-    const products = await db.products.list([Query.orderDesc("$createdAt")]);
+    const products = await db.products.list([
+      Query.orderDesc("$createdAt"),
+      Query.limit(limit),
+    ]);
     return parseStringify({
       status: 200,
       message: "products list",
@@ -116,7 +119,10 @@ export const listProducts = async () => {
 
 export const listProductsByCategory = async (categoryId: string) => {
   try {
-    const products = await db.products.list();
+    const products = await db.products.list([
+      Query.limit(1000),
+      Query.orderDesc("$createdAt"),
+    ]);
     const categoryProducts = products.documents.filter(
       (product) => product?.category?.$id === categoryId
     );

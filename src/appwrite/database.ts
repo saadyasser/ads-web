@@ -57,7 +57,8 @@ const db: Record<
 
 collections.forEach((col) => {
   db[col.name] = {
-    list: (queries) => databases.listDocuments(col.databaseId, col.id, queries),
+    list: (queries = []) =>
+      databases.listDocuments(col.databaseId, col.id, queries),
     create: (payload, id = ID.unique(), permissions) =>
       databases.createDocument(
         col.databaseId,
