@@ -1,21 +1,11 @@
 "use client";
 import { CustomMarkdown, H1, H2 } from "@/components";
-import EmblaCarousel from "@/components/ThumbnailSwiper/EmblaSlider";
 import PageSkeleton from "./PageSkeleton";
-import EmblaCarouselSlides from "@/components/Slider/EmblaSlider";
 import { ProductDocument } from "@/types/app-write.types";
-import React, { useRef, useState } from "react";
-// Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
+import React, { useState } from "react";
 
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/free-mode";
-import "swiper/css/navigation";
-import "swiper/css/thumbs";
-
-// import required modules
-import { FreeMode, Navigation, Thumbs } from "swiper/modules";
+import Image from "next/image";
+import LightboxWrapper from "./ImagesLightbox/LightboxWrapper";
 
 export const ProductDetails = ({
   product,
@@ -24,7 +14,14 @@ export const ProductDetails = ({
   product: ProductDocument;
   loading: boolean;
 }) => {
-  const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  const [currentIndex, setCurrentIndex] = React.useState(-1);
+  const lightboxSlides = product?.imagesUrl.map((imageUrl) => {
+    return {
+      src: imageUrl,
+      width: 1920,
+      height: 1080,
+    };
+  });
 
   if (!product && !loading) {
     return (
@@ -40,9 +37,32 @@ export const ProductDetails = ({
         <PageSkeleton />
       ) : (
         <>
-          {/* <section className="py-2">{product?.description}</section> */}
           <section className="">
-            <EmblaCarousel slides={product?.imagesUrl} loading={loading} />
+            <ul className="flex-wrap gap-2 lg:flex lg:gap-4">
+              {product?.imagesUrl.map((image: string, index: number) => {
+                return (
+                  <li
+                    key={index}
+                    className="flex-[0_0_calc(50%-24px)] cursor-pointer"
+                    onClick={() => setCurrentIndex(index)}
+                  >
+                    <Image
+                      src={image}
+                      alt="product_image"
+                      width={1920}
+                      height={1080}
+                      className="rounded-lg aspect-[4/3]"
+                    />
+                  </li>
+                );
+              })}
+            </ul>
+
+            <LightboxWrapper
+              currentIndex={currentIndex}
+              images={product?.imagesUrl}
+              setCurrentIndex={setCurrentIndex}
+            />
           </section>
           <section className="py-6">
             <H2 className="py-2">Product Specifications :</H2>
@@ -52,7 +72,7 @@ export const ProductDetails = ({
             <H2>Recent Components</H2>
             <EmblaCarouselSlides slides={product?.imagesUrl} />
           </section> */}
-          <section className="relative w-full">
+          {/* <section className="relative w-full">
             <Swiper
               spaceBetween={10}
               navigation={true}
@@ -83,7 +103,7 @@ export const ProductDetails = ({
                 </SwiperSlide>
               ))}
             </Swiper>
-          </section>
+          </section> */}
         </>
       )}
     </>
