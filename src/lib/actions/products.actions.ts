@@ -27,7 +27,7 @@ export const uploadProductImages = async (images: { file: FormData }[]) => {
         }
       }
     } catch (err) {
-      console.log(err);
+      console.error(err);
       return parseStringify({
         status: 500,
         message: `problem uploading images ${err}`,
@@ -67,7 +67,7 @@ export const createProduct = async ({ images, ...product }: ProductType) => {
       data: productData,
     });
   } catch (err) {
-    console.log(err);
+    console.error(err);
     return parseStringify({
       status: 500,
       message: `problem creating the product : ${err}`,

@@ -27,12 +27,10 @@ export const uploadCategoryImages = async (image: FormData) => {
 
       if (uploadedFile) {
         imageIds.push(uploadedFile.$id);
-
-        console.log("success", uploadedFile);
       }
     }
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 
   return parseStringify(imageIds[0]);
