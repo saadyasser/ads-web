@@ -28,7 +28,7 @@ export const ProductDetails = ({
                 return (
                   <li
                     key={index}
-                    className="flex-[0_0_calc(50%-24px)] cursor-pointer"
+                    className="flex-[0_0_calc(50%-24px)] max-lg:my-3 cursor-pointer"
                     onClick={() => setCurrentIndex(index)}
                   >
                     <Image

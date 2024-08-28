@@ -3,7 +3,7 @@ import React from "react";
 import { usePathname } from "next/navigation";
 import { BreadCrumbProps } from "./Breadcrumb.types";
 import clsx from "clsx";
-import { Container, Link } from "../";
+import { Link } from "../";
 import { cleanPath } from "@/utils";
 
 export const Breadcrumb = ({
@@ -20,26 +20,33 @@ export const Breadcrumb = ({
   const filteredPaths = pathNames.map((path) => cleanPath(path));
 
   const containerClasses = clsx("flex items-center gap-2", containerClassName);
-  const listClasses = clsx("", listClassName);
   const activeClasses = clsx(
-    "font-bold font-georgia text-xl lg:text-3xl !cursor-auto",
+    "font-bold font-georgia text-base md:text-xl lg:text-3xl !cursor-auto",
     activeClassName
   );
+
   return (
-    // <Container>
     <ul className={containerClasses}>
-      <li className={listClasses}>
+      <li className={listClassName || ""}>
         <Link href={"/"}>{homeElement}</Link>
       </li>
       {filteredPaths.length > 0 && separator}
       {filteredPaths.map((link, index) => {
         const href = `/${pathNames.slice(0, index + 1).join("/")}`;
         const isActive = paths === href;
-        const itemClasses = clsx(listClasses, { [activeClasses]: isActive });
+
+        const isFirst = index === 0;
+        const isLast = index === filteredPaths.length - 1;
 
         return (
           <React.Fragment key={index}>
-            <li className={itemClasses}>
+            <li
+              className={clsx(
+                listClassName,
+                { [activeClasses]: isActive },
+                !isLast ? "hidden lg:inline-block" : ""
+              )}
+            >
               <Link
                 href={href}
                 aria-current={isActive ? "page" : undefined}
@@ -48,12 +55,13 @@ export const Breadcrumb = ({
                 {capitalizeLinks ? link : link.toLowerCase()}
               </Link>
             </li>
-            {filteredPaths.length !== index + 1 && separator}
+            <span className={!isLast ? "hidden lg:inline-block" : ""}>
+              {filteredPaths.length !== index + 1 && separator}
+            </span>
           </React.Fragment>
         );
       })}
     </ul>
-    // </Container>
   );
 };
 
