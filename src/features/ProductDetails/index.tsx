@@ -2,10 +2,11 @@
 import { CustomMarkdown, H1, H2 } from "@/components";
 import PageSkeleton from "./PageSkeleton";
 import { ProductDocument } from "@/types/app-write.types";
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Image from "next/image";
 import LightboxWrapper from "./ImagesLightbox/LightboxWrapper";
+import { useRouter } from "next/navigation";
 
 export const ProductDetails = ({
   product,
@@ -14,23 +15,7 @@ export const ProductDetails = ({
   product: ProductDocument;
   loading: boolean;
 }) => {
-  const [currentIndex, setCurrentIndex] = React.useState(-1);
-  const lightboxSlides = product?.imagesUrl.map((imageUrl) => {
-    return {
-      src: imageUrl,
-      width: 1920,
-      height: 1080,
-    };
-  });
-
-  if (!product && !loading) {
-    return (
-      <div className="m-auto text-center">
-        <H1>No product data available.</H1>
-      </div>
-    );
-  }
-
+  const [currentIndex, setCurrentIndex] = useState(-1);
   return (
     <>
       {!product && loading ? (
