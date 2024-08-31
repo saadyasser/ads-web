@@ -1,41 +1,20 @@
 "use client";
 
 import { Button, Filter, Product, SlideOver } from "@/components";
-import React, { useEffect, useState } from "react";
-import { CategoryType, ProductType } from "@/types"; // Ensure to import the type
+import React, { useState } from "react";
 import ProductSkeletonLoader from "@/components/Product/ProductSkeleton";
 import { FilterIcon } from "@/lib/@iconsax";
+import { ProductDocument } from "@/types/app-write.types";
 
-const fetchCategory = async (
-  categoryId: string
-): Promise<CategoryType | null> => {
-  try {
-    const response = await fetch(`/api/categories/${categoryId}`);
-    const data = await response.json();
-    return data;
-  } catch (err) {
-    console.error(err);
-    return null;
-  }
-};
-
-export default function Page({ params }: { params: { category: string } }) {
-  const categoryId = params.category;
+export const CategoryDetails = ({
+  categoryProducts,
+  loading,
+}: {
+  categoryProducts: ProductDocument[];
+  loading: boolean;
+}) => {
   const [responsiveFilterToggle, setResponsiveFilterToggle] =
     useState<boolean>(false);
-  const [category, setCategory] = useState<CategoryType | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      const categoryData = await fetchCategory(categoryId);
-      setCategory(categoryData);
-      setLoading(false);
-    };
-
-    fetchData();
-  }, [categoryId]);
 
   return (
     <section>
@@ -61,22 +40,32 @@ export default function Page({ params }: { params: { category: string } }) {
           role="list"
           className="grid grid-cols-2 col-span-3 gap-4 lg:grid-cols-3 max-xl:col-span-4"
         >
-          {!category?.products &&
-            loading &&
+          {loading &&
+            !categoryProducts &&
             [1, 2, 3].map((index) => (
               <li className="col-span-1" key={index}>
                 <ProductSkeletonLoader />
               </li>
             ))}
-          {category?.products &&
+          {categoryProducts &&
+            categoryProducts.length > 0 &&
             !loading &&
-            category?.products.map((product: ProductType) => (
-              <li className="col-span-1" key={product.id}>
+            categoryProducts.map((product: ProductDocument) => (
+              <li className="col-span-1" key={product.$id}>
                 <Product product={product} />
               </li>
             ))}
+          {!loading && (!categoryProducts || categoryProducts.length === 0) && (
+            <div className="col-span-3 py-10 text-center">
+              <p className="text-gray-500">
+                No products found in this category.
+              </p>
+            </div>
+          )}
         </ul>
       </div>
     </section>
   );
-}
+};
+
+export default CategoryDetails;

@@ -36,16 +36,18 @@ export default function DiscoverLayout({
   }, []);
 
   const containerClasses = clsx(
-    "sticky z-20 max-md:px-4 py-4 top-[4.3rem] lg:top-[5.1rem]",
-    isScrolled ? "bg-white" : "bg-transparent"
+    "sticky z-30 max-md:px-4 py-4 top-[4.3rem] lg:top-[5.1rem]",
+    isScrolled ? "bg-white dark:bg-background-dark" : "bg-transparent"
   );
   return (
     <>
       <div className={containerClasses}>
         <Container className="flex items-center justify-between">
-          <Breadcrumb homeElement="Home" capitalizeLinks={true} />
+          <Breadcrumb homeElement="Home" capitalizeLinks />
           <div className="flex items-center justify-between gap-1">
-            <BreadcrumbCta />
+            <div className="hidden xl:flex">
+              <BreadcrumbCta />
+            </div>
             <CopyCurrentPathButton />
           </div>
         </Container>
@@ -53,6 +55,9 @@ export default function DiscoverLayout({
       <Container className="relative py-4 md:py-8 max-md:px-4">
         {children}
       </Container>
+      <div className="fixed bottom-0 right-0 flex w-full p-5 text-black dark:text-white dark:bg-background-dark bg-background-light xl:hidden">
+        <BreadcrumbCta />
+      </div>
     </>
   );
 }

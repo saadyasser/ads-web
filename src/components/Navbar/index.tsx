@@ -1,43 +1,42 @@
 "use client";
-import { Button, Container, Logo, NavLink, SlideOver } from "../";
+import {
+  Button,
+  Container,
+  Logo,
+  NavLink,
+  SlideOver,
+  ThemeSwitcher,
+} from "../";
 import { useTheme } from "next-themes";
-import { BurgerMenu, Moon, Sun } from "@/lib/@iconsax";
+import { BurgerMenu } from "@/lib/@iconsax";
 import { useState } from "react";
 import clsx from "clsx";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 
 export const Navbar = () => {
-  const { theme, setTheme } = useTheme();
+  const { theme } = useTheme();
   const { push } = useRouter();
   const [burgerMenuOpen, setBurgerMenuOpen] = useState(false);
-  const handleThemeChange = () => {
-    setTheme(theme === "dark" ? "light" : "dark");
-    localStorage.setItem("theme", theme === "dark" ? "light" : "dark");
-  };
+
   return (
     <nav className="fixed top-0 z-30 w-full py-4 border-b-[1px] border-black-light dark:border-black-darker bg-white text-black dark:bg-black-darker dark:text-white ">
       <Container className="flex items-center justify-between gap-6 max-md:px-4">
         <Logo width={196} height={47} withBadge />
         <NavLinks className="items-center justify-between hidden gap-2 xl:gap-6 xl:flex" />
         <div className="flex items-center gap-3 lg:gap-4">
-          {theme === "dark" ? (
-            <Button
-              variant="custom"
-              onClick={() => push("/#contact_us")}
-              className="!hidden xl:!flex bg-black !text-sm 2xl:!text-base text-white !border-white active:!shadow-black-active"
-            >
-              Contact Us
-            </Button>
-          ) : (
-            <Button
-              variant="custom"
-              onClick={() => push("/#contact_us")}
-              className="bg-background-light !text-sm 2xl:!text-base active:shadow-background-light hover:bg-black-light border-black-light !hidden xl:!flex"
-            >
-              Contact Us
-            </Button>
-          )}
+          <Button
+            variant="custom"
+            onClick={() => push("/#contact_us")}
+            className={clsx(
+              "!hidden xl:!flex !text-sm 2xl:!text-base",
+              theme === "dark"
+                ? "bg-black text-white !border-white active:!shadow-black-active"
+                : "bg-background-light active:shadow-background-light hover:bg-black-light border-black-light"
+            )}
+          >
+            Contact Us
+          </Button>
+
           <Button
             variant="secondary"
             onClick={() => setBurgerMenuOpen((prev) => !prev)}
@@ -49,23 +48,7 @@ export const Navbar = () => {
             />
           </Button>
 
-          <Button
-            variant="secondary"
-            onClick={handleThemeChange}
-            className="!flex items-center justify-center !rounded-full !p-2 !h-fit !shadow-none border-none dark:bg-black-active"
-          >
-            {theme === "dark" ? (
-              <Moon
-                size="20"
-                className="h-fit text-primary fill-primary dark:text-white dark:fill-white"
-              />
-            ) : (
-              <Sun
-                size="20"
-                className="h-fit text-primary fill-primary dark:text-white dark:fill-white"
-              />
-            )}
-          </Button>
+          <ThemeSwitcher />
         </div>
         <SlideOver
           footer={
@@ -98,9 +81,9 @@ export default Navbar;
 export const navLinks = [
   { title: "Home", path: "/", exact: true },
   { title: "Components", path: "/ui-components" },
-  { title: "Web & Mobile Templates", path: "/web_mobile-templates" },
+  { title: "Mobile Templates", path: "/mobile-templates" },
   { title: "Ready Flows", path: "/ready-flows" },
-  { title: "Design system", path: "/design-systems" },
+  { title: "Design systems", path: "/design-systems" },
   { title: "Color-Themes", path: "/color-themes" },
 ];
 const NavLinks = ({

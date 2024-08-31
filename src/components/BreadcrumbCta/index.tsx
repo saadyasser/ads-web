@@ -8,16 +8,18 @@ export const BreadcrumbCta = ({ item }: { item?: string }) => {
   const isValidPath = urlPattern.test(path);
 
   return (
-    <div>
+    <>
       {isValidPath && (
-        <div className="flex items-center gap-2">
-          <Button disabled>download</Button>
-          <Button variant="secondary" disabled>
+        <div className="flex items-center w-full gap-2">
+          <Button className="w-full" disabled>
+            download
+          </Button>
+          <Button className="w-full" variant="secondary" disabled>
             Live Preview - Figma
           </Button>
         </div>
       )}
-    </div>
+    </>
   );
 };
 
