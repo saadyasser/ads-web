@@ -1,7 +1,9 @@
+"use client";
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
+import MarkdownEditor from "@uiw/react-markdown-editor";
 
 export const CustomMarkdown: React.FC<{ content?: string }> = ({ content }) => {
   return (
@@ -45,6 +47,7 @@ export const CustomMarkdown: React.FC<{ content?: string }> = ({ content }) => {
     >
       {content}
     </ReactMarkdown>
+    // <MarkdownEditor.Markdown  source={content} />
   );
 };
 

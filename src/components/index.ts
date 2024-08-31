@@ -1,5 +1,6 @@
 import { Dropdown } from "./Dropdown";
 import { Providers } from "./Providers";
+import { ThemeHandler } from "./ThemeHandler";
 import { ThemeSwitcher } from "./ThemeSwitcher";
 import { Navbar } from "./Navbar";
 import { Footer } from "./Footer";
@@ -24,9 +25,15 @@ import { RadioGroup } from "./RadioGroup";
 import { Skeleton } from "./Skeleton";
 import { CustomMarkdown } from "./CustomMarkdown";
 import { BreadcrumbCta } from "./BreadcrumbCta";
+import { Select } from "./Select";
+import { MarkdownEditor } from "./MarkdownEditor";
+import { SubmitButton } from "./SubmitButton";
+import { FileUploader } from "./FileUploader";
+import ErrorBoundary from "./ErrorBoundary";
 export {
   Dropdown,
   Providers,
+  ThemeHandler,
   ThemeSwitcher,
   Navbar,
   Footer,
@@ -51,5 +58,10 @@ export {
   Skeleton,
   CustomMarkdown,
   BreadcrumbCta,
+  Select,
+  MarkdownEditor,
+  SubmitButton,
+  FileUploader,
+  ErrorBoundary,
 };
 export * from "./theme";

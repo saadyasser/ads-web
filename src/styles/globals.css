@@ -32,6 +32,14 @@ body {
 .btn-alert {
   @apply text-white bg-alert border-alert hover:bg-alert-hover hover:border-alert-hover active:bg-alert-active active:border-alert-active active:shadow-alert-shadow;
 }
+
+.wmde-markdown-var {
+  @apply mt-2 !bg-black rounded-lg border-[1px] border-[#303030] dark:border-black p-4 px-3 dark:text-white;
+}
+
+.wmde-markdown pre {
+  @apply !text-white;
+}
 .custom-container {
   position: relative !important;
   margin-right: 0 !important;
@@ -125,4 +133,21 @@ body {
 .link-with-icon:hover #linkIcon {
   display: block;
   transition: all 0.3ms ease;
+}
+.product-details__swiper .swiper-slide {
+  cursor: pointer;
+  opacity: 0.4;
+}
+
+.product-details__swiper .swiper-slide-thumb-active {
+  opacity: 1;
+}
+.yarl__thumbnails_thumbnail {
+  border-color: transparent !important;
+}
+.yarl__thumbnails_thumbnail_active {
+  @apply !border-primary;
+}
+.yarl__button {
+  @apply !text-primary;
 }

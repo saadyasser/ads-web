@@ -40,14 +40,15 @@ export const Slider = ({
       {...rest}
     >
       <div className="relative flex">
-        {slides?.map((slide, index) => (
-          <SwiperSlide
-            key={slide?.id || index}
-            className={`${className ?? ""}`}
-          >
-            {slideShape(slide, index)}
-          </SwiperSlide>
-        ))}
+        {slides &&
+          slides?.map((slide, index) => (
+            <SwiperSlide
+              key={slide?.id || index}
+              className={`${className ?? ""}`}
+            >
+              {slideShape(slide, index)}
+            </SwiperSlide>
+          ))}
       </div>
     </Swiper>
   );
