@@ -26,7 +26,7 @@ export const DarkModeProvider = ({ children }: Props) => {
     }
 
     setMounted(true);
-  }, []);
+  }, [setTheme]);
 
   useEffect(() => {
     if (theme) {

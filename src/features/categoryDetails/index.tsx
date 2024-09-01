@@ -1,11 +1,23 @@
 "use client";
-
-import { Button, Filter, Product, SlideOver } from "@/components";
 import React, { useState } from "react";
+import dynamic from "next/dynamic";
+
+import { Button, Loading } from "@/components";
 import ProductSkeletonLoader from "@/components/Product/ProductSkeleton";
+
 import { FilterIcon } from "@/lib/@iconsax";
+
 import { ProductDocument } from "@/types/app-write.types";
 
+const Filter = dynamic(() => import("@/components/Filter"), {
+  loading: () => <Loading />,
+});
+const Product = dynamic(() => import("@/components/Product"), {
+  loading: () => <Loading />,
+});
+const SlideOver = dynamic(() => import("@/components/SlideOver"), {
+  loading: () => <Loading />,
+});
 export const CategoryDetails = ({
   categoryProducts,
   loading,

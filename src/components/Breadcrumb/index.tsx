@@ -35,7 +35,6 @@ export const Breadcrumb = ({
         const href = `/${pathNames.slice(0, index + 1).join("/")}`;
         const isActive = paths === href;
 
-        const isFirst = index === 0;
         const isLast = index === filteredPaths.length - 1;
 
         return (

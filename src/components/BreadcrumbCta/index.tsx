@@ -14,7 +14,7 @@ export const BreadcrumbCta = ({ item }: { item?: string }) => {
           <Button className="w-full" disabled>
             download
           </Button>
-          <Button className="w-full" variant="secondary" disabled>
+          <Button className="w-full text-nowrap" variant="secondary" disabled>
             Live Preview - Figma
           </Button>
         </div>

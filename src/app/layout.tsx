@@ -4,9 +4,10 @@ import Providers from "@/components/Providers";
 import { georgia, inter } from "./fonts";
 import clsx from "clsx";
 
-import { ErrorBoundary, ThemeHandler } from "@/components";
+import { ErrorBoundary, Logo, ThemeHandler } from "@/components";
 
 import "@/styles/globals.css";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "Azaiza Design Studio | Home",
@@ -27,10 +28,20 @@ export default function RootLayout({
     <html lang="en" className={classes}>
       <body className="pt-[70px] xl:pt-[83px] bg-background-light dark:bg-background-dark">
         <ErrorBoundary>
-          <Providers>
-            <ThemeHandler />
-            {children}
-          </Providers>
+          <Suspense
+            fallback={
+              <div className="flex items-center justify-center h-[60vh]">
+                <div className="animate-pulse">
+                  <Logo />
+                </div>
+              </div>
+            }
+          >
+            <Providers>
+              <ThemeHandler />
+              {children}
+            </Providers>
+          </Suspense>
         </ErrorBoundary>
       </body>
     </html>
