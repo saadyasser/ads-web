@@ -1,13 +1,11 @@
 import React from "react";
-import { Card } from "../";
-import { ProductImageType, ProductType } from "@/types";
 import Image from "next/image";
+
+import { Card } from "../";
 import clsx from "clsx";
+
 import { ProductDocument } from "@/types/app-write.types";
 
-export const findThumbnailImage = (items: ProductImageType[]) => {
-  return items.filter((item: ProductImageType) => item.isThumbnail);
-};
 export const Product = ({ product }: { product: ProductDocument }) => {
   const { description, imagesUrl, title: name, price } = product;
   const thumbnail = imagesUrl[0];

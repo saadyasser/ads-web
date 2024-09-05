@@ -13,14 +13,14 @@ export const categoriesData = [
     description: "+2k components ready to use!",
     lightImagePath: "/images/categories/light/mobile_templates_category.svg",
     darkImagePath: "/images/categories/dark/dark_mobile_templates_category.svg",
-    navigationPath: "/web_mobile-templates",
+    navigationPath: "/mobile-templates",
   },
   {
     heading: "Web Templates",
     description: "+2k components ready to use!",
     lightImagePath: "/images/categories/light/web_components_category.svg",
     darkImagePath: "/images/categories/dark/dark_web_components_category.svg",
-    navigationPath: "/web_mobile-templates",
+    navigationPath: "/web-templates",
   },
   {
     heading: "Design Systems",

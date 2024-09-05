@@ -1,5 +1,4 @@
 import { Divider, ErrorBoundary, GridWithSlider } from "@/components";
-import { getCategoryIdByName } from "@/lib/actions";
 import { listProductsByCategory } from "@/lib/actions/products.actions";
 
 export const ProductsSliderSection = async ({
@@ -9,8 +8,7 @@ export const ProductsSliderSection = async ({
   category: string;
   sectionHeading: string;
 }) => {
-  const categoryId = await getCategoryIdByName(category);
-  const datalist = categoryId && (await listProductsByCategory(categoryId));
+  const datalist = category && (await listProductsByCategory(category));
   if (datalist?.data?.length == 0) return;
   return (
     <ErrorBoundary>

@@ -8,18 +8,17 @@ import { Query } from "node-appwrite";
 
 export const DetailedCategoriesSection = async () => {
   const categoriesList = await listCategories([Query.orderDesc("$createdAt")]);
+
   return (
     <ErrorBoundary>
       <section className="flex flex-col gap-8 py-6 md:py-16 max-xl:px-4">
-        {categoriesList.data &&
+        {categoriesList.status == 200 &&
           categoriesList.data?.map((category: CategoryDocument) => (
-            <>
-              <ProductsSliderSection
-                key={category.$id}
-                category={category.name}
-                sectionHeading={cleanPath(category.name)}
-              />
-            </>
+            <ProductsSliderSection
+              key={category.$id}
+              category={category.$id}
+              sectionHeading={cleanPath(category.name)}
+            />
           ))}
       </section>
     </ErrorBoundary>

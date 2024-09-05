@@ -1,14 +1,9 @@
 "use client";
-import {
-  Container,
-  Input,
-  TextArea,
-  FileUploader,
-  SubmitButton,
-} from "@/components";
+import { Container, Input, TextArea, Loading } from "@/components";
 import { useShowToast } from "@/components/Toast";
 
 import { createCategory } from "@/lib/actions";
+import dynamic from "next/dynamic";
 
 import { useState } from "react";
 import { useForm, FormProvider } from "react-hook-form";
@@ -18,7 +13,14 @@ export type FormValues = {
   description: string;
   image: File[];
 };
-
+const FileUploader = dynamic(() => import("@/components/FileUploader"), {
+  loading: () => <Loading />,
+  ssr: false,
+});
+const SubmitButton = dynamic(() => import("@/components/SubmitButton"), {
+  loading: () => <Loading />,
+  ssr: false,
+});
 export const CreateCategoryForm = () => {
   const [droppedFiles, setDroppedFiles] = useState<File[]>();
   const toast = useShowToast();

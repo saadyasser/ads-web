@@ -1,19 +1,28 @@
 "use client";
-import { CustomMarkdown, H1, H2 } from "@/components";
-import PageSkeleton from "./PageSkeleton";
-import { ProductDocument } from "@/types/app-write.types";
-import { useEffect, useState } from "react";
-
+import { useState } from "react";
 import Image from "next/image";
-import LightboxWrapper from "./ImagesLightbox/LightboxWrapper";
-import { useRouter } from "next/navigation";
+import dynamic from "next/dynamic";
 
+import PageSkeleton from "./PageSkeleton";
+import { H2, Loading } from "@/components";
+
+import { ProductDocument } from "@/types/app-write.types";
+
+const CustomMarkdown = dynamic(() => import("@/components/CustomMarkdown"), {
+  loading: () => <Loading />,
+});
+const LightboxWrapper = dynamic(
+  () => import("./ImagesLightbox/LightboxWrapper"),
+  {
+    loading: () => <Loading />,
+  }
+);
 export const ProductDetails = ({
   product,
   loading,
 }: {
   product: ProductDocument;
-  loading: boolean;
+  loading?: boolean;
 }) => {
   const [currentIndex, setCurrentIndex] = useState(-1);
   return (

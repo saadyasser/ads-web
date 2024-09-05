@@ -30,6 +30,7 @@ import { MarkdownEditor } from "./MarkdownEditor";
 import { SubmitButton } from "./SubmitButton";
 import { FileUploader } from "./FileUploader";
 import ErrorBoundary from "./ErrorBoundary";
+import { Loading } from "./Loading";
 export {
   Dropdown,
   Providers,
@@ -63,5 +64,6 @@ export {
   SubmitButton,
   FileUploader,
   ErrorBoundary,
+  Loading,
 };
 export * from "./theme";
