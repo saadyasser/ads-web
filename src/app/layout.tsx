@@ -10,8 +10,25 @@ import "@/styles/globals.css";
 import { Suspense } from "react";
 
 export const metadata: Metadata = {
-  title: "Azaiza Design Studio | Home",
-  description: "Azaiza design studio",
+  metadataBase: new URL("http://localhost:3000"),
+
+  title: {
+    default: "Azaiza Design Studio",
+    template: "%s | Azaiza Design Studio",
+  },
+  description:
+    "Explore our collection of handmade UI components, templates, design systems, and color themes. All in one designed Figma Library.",
+  openGraph: {
+    title: "Azaiza Design Studio | Figma Library ",
+    description:
+      "Explore our collection of handmade UI components, templates, design systems, and color themes. All in one designed Figma Library.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Azaiza Design Studio | Figma Library ",
+    description:
+      "Explore our collection of handmade UI components, templates, design systems, and color themes. All in one designed Figma Library.",
+  },
 };
 
 export default function RootLayout({

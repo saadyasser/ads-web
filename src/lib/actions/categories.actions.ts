@@ -103,7 +103,11 @@ export const getCategoryIdByName = async (categoryName: string) => {
     }
 
     const category = response.documents[0];
-    return parseStringify(category.$id);
+    return parseStringify({
+      status: 200,
+      message: "got the category",
+      data: category.$id,
+    });
   } catch (error) {
     console.error("Failed to get category ID:", error);
     return parseStringify({

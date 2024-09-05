@@ -23,7 +23,7 @@ export const CategoryDetails = ({
   loading,
 }: {
   categoryProducts: ProductDocument[];
-  loading: boolean;
+  loading?: boolean;
 }) => {
   const [responsiveFilterToggle, setResponsiveFilterToggle] =
     useState<boolean>(false);

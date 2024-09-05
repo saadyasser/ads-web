@@ -22,7 +22,7 @@ export const ProductDetails = ({
   loading,
 }: {
   product: ProductDocument;
-  loading: boolean;
+  loading?: boolean;
 }) => {
   const [currentIndex, setCurrentIndex] = useState(-1);
   return (

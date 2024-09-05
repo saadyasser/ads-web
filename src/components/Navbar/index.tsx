@@ -19,7 +19,7 @@ export const Navbar = () => {
   const [burgerMenuOpen, setBurgerMenuOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 z-30 w-full py-4 border-b-[1px] border-black-light dark:border-black-darker bg-white text-black dark:bg-black-darker dark:text-white ">
+    <nav className="fixed top-0 z-50 w-full py-4 border-b-[1px] border-black-light dark:border-black-darker bg-white text-black dark:bg-black-darker dark:text-white ">
       <Container className="flex items-center justify-between gap-6 max-md:px-4">
         <Logo width={196} height={47} withBadge />
         <NavLinks className="items-center justify-between hidden gap-2 xl:gap-6 xl:flex" />

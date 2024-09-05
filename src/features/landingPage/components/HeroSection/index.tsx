@@ -5,13 +5,14 @@ import { ArrowRight } from "iconsax-react";
 import clsx from "clsx";
 import { useTheme } from "next-themes";
 import { useRouter } from "next/navigation";
+import AnimatedHero from "./AnimatedHero";
 
 export const HeroSection = () => {
   const { theme } = useTheme();
   const heroImagePath =
     theme === "dark"
-      ? "/images/hero_image.png"
-      : "/images/hero_image_light.png";
+      ? "/images/hero_image.svg"
+      : "/images/hero_image_light.svg";
   return (
     <Container className="max-xl:px-4">
       <section className="grid items-start w-full grid-cols-1 gap-8 lg:py-6 xl:grid-cols-2">
@@ -35,6 +36,7 @@ export const HeroSection = () => {
             className="w-full h-auto"
             priority
           />
+          {/* <AnimatedHero /> */}
           <ButtonGroup className="flex items-center justify-center xl:hidden" />
         </div>
       </section>
