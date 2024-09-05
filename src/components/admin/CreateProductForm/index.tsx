@@ -1,12 +1,7 @@
 "use client";
-import {
-  Container,
-  Input,
-  MarkdownEditor,
-  SubmitButton,
-  TextArea,
-} from "@/components";
-import FileUploader from "@/components/FileUploader";
+import { Container, Input, TextArea, Loading } from "@/components";
+import dynamic from "next/dynamic";
+
 import { useShowToast } from "@/components/Toast";
 import { createProduct } from "@/lib/actions/products.actions";
 import { CategoryDocument } from "@/types/app-write.types";
@@ -14,6 +9,18 @@ import { CategoryDocument } from "@/types/app-write.types";
 import { useState } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 
+const FileUploader = dynamic(() => import("@/components/FileUploader"), {
+  loading: () => <Loading />,
+  ssr: false,
+});
+const MarkdownEditor = dynamic(() => import("@/components/MarkdownEditor"), {
+  loading: () => <Loading />,
+  ssr: false,
+});
+const SubmitButton = dynamic(() => import("@/components/SubmitButton"), {
+  loading: () => <Loading />,
+  ssr: false,
+});
 export type FormValues = {
   title: string;
   price: string;
