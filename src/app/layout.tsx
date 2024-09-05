@@ -4,13 +4,31 @@ import Providers from "@/components/Providers";
 import { georgia, inter } from "./fonts";
 import clsx from "clsx";
 
-import { Footer, Navbar, ThemeSwitcher } from "@/components";
+import { ErrorBoundary, Logo, ThemeHandler } from "@/components";
 
 import "@/styles/globals.css";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
-  title: "Azaiza Design Studio | Home",
-  description: "Azaiza design studio",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL!),
+
+  title: {
+    default: "Azaiza Design Studio",
+    template: "%s | Azaiza Design Studio",
+  },
+  description:
+    "Explore our collection of handmade UI components, templates, design systems, and color themes. All in one designed Figma Library.",
+  openGraph: {
+    title: "Azaiza Design Studio | Figma Library ",
+    description:
+      "Explore our collection of handmade UI components, templates, design systems, and color themes. All in one designed Figma Library.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Azaiza Design Studio | Figma Library ",
+    description:
+      "Explore our collection of handmade UI components, templates, design systems, and color themes. All in one designed Figma Library.",
+  },
 };
 
 export default function RootLayout({
@@ -25,15 +43,23 @@ export default function RootLayout({
   );
   return (
     <html lang="en" className={classes}>
-      <body className="pt-[70px] lg:pt-[83px] ">
-        <Providers>
-          <ThemeSwitcher />
-          <Navbar />
-          <main className="min-h-screen py-6 lg:py-12 bg-background-light dark:bg-background-dark">
-            {children}
-          </main>
-          <Footer />
-        </Providers>
+      <body className="pt-[70px] xl:pt-[83px] bg-background-light dark:bg-background-dark">
+        <ErrorBoundary>
+          <Suspense
+            fallback={
+              <div className="flex items-center justify-center h-[60vh]">
+                <div className="animate-pulse">
+                  <Logo />
+                </div>
+              </div>
+            }
+          >
+            <Providers>
+              <ThemeHandler />
+              {children}
+            </Providers>
+          </Suspense>
+        </ErrorBoundary>
       </body>
     </html>
   );

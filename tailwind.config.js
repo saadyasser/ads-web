@@ -8,10 +8,15 @@ module.exports = {
   darkMode: "class",
   theme: {
     extend: {
-      backgroundImage: {},
+      backgroundImage: {
+        "what-makes-us-different": "url('/images/what-makes-us-different.png')",
+      },
       fontFamily: {
         georgia: ["var(--font-georgia)"],
         inter: ["var(--font-inter)"],
+      },
+      screens: {
+        lg: "1025px",
       },
       colors: {
         primary: {
@@ -110,6 +115,20 @@ module.exports = {
       },
       boxShadow: {
         custom: "0px 3px 7px 0px",
+      },
+      keyframes: {
+        "fade-in": {
+          "0%": { opacity: 0 },
+          "100%": { opacity: 1 },
+        },
+        "fade-out": {
+          "0%": { opacity: 1 },
+          "100%": { opacity: 0 },
+        },
+      },
+      animation: {
+        "fade-in": "fade-in 0.5s ease-in-out forwards",
+        "fade-out": "fade-out 0.4s ease-in-out forwards",
       },
     },
   },

@@ -1,3 +1,9 @@
+import {
+  FacebookIcon,
+  InstagramIcon,
+  LinkedinIcon,
+  TwitterXIcon,
+} from "@/lib/@react-icons";
 export const FOOTER_NAVIGATION = {
   quickLinks: [
     { name: "Home", href: "/" },
@@ -14,9 +20,9 @@ export const FOOTER_NAVIGATION = {
     { name: "Terms & Conditions", href: "#" },
   ],
   socialMedia: [
-    { name: "LinkedIn", href: "#" },
-    { name: "Instagram", href: "#" },
-    { name: "Twitter", href: "#" },
-    { name: "Facebook", href: "#" },
+    { name: "LinkedIn", href: "#", icon: LinkedinIcon },
+    { name: "Instagram", href: "#", icon: InstagramIcon },
+    { name: "Twitter", href: "#", icon: TwitterXIcon },
+    { name: "Facebook", href: "#", icon: FacebookIcon },
   ],
 } as const;
