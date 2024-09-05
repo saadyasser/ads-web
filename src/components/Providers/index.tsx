@@ -4,6 +4,7 @@ import { childrenType } from "@/types";
 import DarkModeProvider from "./DarkModeProvider";
 import { ToastContainer } from "react-toastify";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "react-toastify/dist/ReactToastify.css";
 
 type Props = {
@@ -16,6 +17,7 @@ export const Providers = ({ children }: Props) => {
       {children}
       <ToastContainer />
       <Analytics />
+      <SpeedInsights />
     </DarkModeProvider>
   );
 };
