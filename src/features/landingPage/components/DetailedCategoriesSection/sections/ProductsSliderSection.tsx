@@ -1,14 +1,15 @@
 import { Divider, ErrorBoundary, GridWithSlider } from "@/components";
 import { listProductsByCategory } from "@/lib/actions/products.actions";
+import { CategoryDocument } from "@/types/app-write.types";
 
 export const ProductsSliderSection = async ({
   category,
   sectionHeading,
 }: {
-  category: string;
+  category: CategoryDocument;
   sectionHeading: string;
 }) => {
-  const datalist = category && (await listProductsByCategory(category));
+  const datalist = category && (await listProductsByCategory(category.$id));
   if (datalist?.data?.length == 0) return;
   return (
     <ErrorBoundary>
@@ -16,7 +17,7 @@ export const ProductsSliderSection = async ({
         rewind
         navigation
         gridData={datalist.data}
-        heading={{ label: sectionHeading, value: category }}
+        heading={{ label: sectionHeading, value: category.name }}
       />
       <Divider />
     </ErrorBoundary>
