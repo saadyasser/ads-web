@@ -16,7 +16,7 @@ export const DetailedCategoriesSection = async () => {
           categoriesList.data?.map((category: CategoryDocument) => (
             <ProductsSliderSection
               key={category.$id}
-              category={category.$id}
+              category={category}
               sectionHeading={cleanPath(category.name)}
             />
           ))}
