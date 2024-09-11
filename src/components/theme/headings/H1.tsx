@@ -1,3 +1,4 @@
+"use client";
 import { childrenType } from "@/types";
 import clsx from "clsx";
 import React from "react";

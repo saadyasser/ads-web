@@ -3,7 +3,7 @@ import { useTheme } from "next-themes";
 import { CategoriesCardType } from "../categories.types";
 import Image from "next/image";
 import { Card } from "@/components";
-import { H3 } from "@/components/theme";
+import { H3, H2 } from "@/components/theme";
 
 export const CategoriesCard = ({
   heading,
@@ -21,7 +21,9 @@ export const CategoriesCard = ({
       navigateTo={navigationPath}
     >
       <div className="py-1 text-center text-black lg:py-4 dark:text-white">
-        <H3 className="mb-2 font-inter">{heading}</H3>
+        <h2 className="mb-2 font-inter text-lg md:text-xl font-bold leading-tight lg:leading-[24px]">
+          {heading}
+        </h2>
         <p className="text-xs md:text-sm">{description}</p>
       </div>
       <div className="flex items-center justify-center max-lg:h-[155px] p-2">

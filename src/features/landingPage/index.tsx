@@ -5,15 +5,15 @@ import { Loading } from "@/components";
 
 const DetailedCategoriesSection = dynamic(
   () => import("./components/DetailedCategoriesSection"),
-  { loading: () => <Loading />, ssr: true }
+  { loading: () => <Loading />, ssr: false }
 );
 const WhatMakesUsDifferent = dynamic(
   () => import("./components/WhatMakesUsDifferent"),
-  { loading: () => <Loading />, ssr: true }
+  { loading: () => <Loading />, ssr: false }
 );
 const ContactUs = dynamic(() => import("./components/ContactUs"), {
   loading: () => <Loading />,
-  ssr: true,
+  ssr: false,
 });
 export const LandingPage = () => {
   return (
