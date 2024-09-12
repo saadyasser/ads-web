@@ -3,9 +3,6 @@ import dynamic from "next/dynamic";
 import { Container, H1, Loading } from "@/components";
 import HeroImage from "./HeroImage";
 
-// const HeroImage = dynamic(() => import("./HeroImage"), {
-//   loading: () => <Loading />,
-// });
 const ButtonGroup = dynamic(() => import("./ButtonGroup"), {
   loading: () => <Loading />,
 });
@@ -26,18 +23,7 @@ export const HeroSection = () => {
           <ButtonGroup className="hidden xl:flex" />
         </div>
         <div className="order-2">
-          {/* <Image
-            src={heroImagePath}
-            alt="hero image"
-            width={616}
-            height={616}
-            className="w-full h-auto"
-            priority
-          /> */}
-          {/* <div className="max-h-[616px] max-w-[616px]"> */}
           <HeroImage />
-          {/* </div> */}
-          {/* <AnimatedHero /> */}
           <ButtonGroup className="flex items-center justify-center xl:hidden" />
         </div>
       </section>
