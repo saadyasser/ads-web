@@ -13,6 +13,7 @@ export type ProductType = {
   title: string;
   description: string;
   specifications?: string;
+  productId?: string;
   price: string;
   images: { file: FormData }[];
 };

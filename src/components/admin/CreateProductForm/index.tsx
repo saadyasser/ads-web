@@ -26,6 +26,7 @@ export type FormValues = {
   price: string;
   description: string;
   specifications: string;
+  productId: string;
   category: string;
   images: File[];
 };
@@ -100,6 +101,19 @@ export const CreateProductForm = ({
                   placeholder="Primary Button .."
                   errorMessage={methods.formState.errors.title?.message}
                   error={!!methods.formState.errors.title}
+                  required
+                />
+                <Input
+                  {...methods.register("productId", {
+                    required: "Product Id is required",
+                    validate: (value) =>
+                      /^(\w+_)+\w+$/.test(value) ||
+                      "Invalid product ID format, It should be like: product_id",
+                  })}
+                  label="Product Id"
+                  placeholder="Primary_Button .."
+                  errorMessage={methods.formState.errors.productId?.message}
+                  error={!!methods.formState.errors.productId}
                   required
                 />
                 <Input

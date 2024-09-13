@@ -51,14 +51,18 @@ export const createProduct = async ({ images, ...product }: ProductType) => {
         data: null,
       });
     }
-    const productData = await db.products.create({
-      imagesId: files.map((fileId: string) => fileId),
-      imagesUrl: files.map(
-        (fileId: string) =>
-          `${ENDPOINT}/storage/buckets/${PRODUCT_BUCKET_ID}/files/${fileId}/view??project=${PROJECT_ID}`
-      ),
-      ...product,
-    });
+    const { productId, ...restOfProduct } = product;
+    const productData = await db.products.create(
+      {
+        imagesId: files.map((fileId: string) => fileId),
+        imagesUrl: files.map(
+          (fileId: string) =>
+            `${ENDPOINT}/storage/buckets/${PRODUCT_BUCKET_ID}/files/${fileId}/view??project=${PROJECT_ID}`
+        ),
+        ...restOfProduct,
+      },
+      product?.productId
+    );
 
     revalidatePath("/admin/create/product");
     return parseStringify({
