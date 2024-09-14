@@ -29,6 +29,8 @@ export type FormValues = {
   productId: string;
   category: string;
   images: File[];
+  files: File[];
+  figmaPreview: string;
 };
 
 export const CreateProductForm = ({
@@ -37,6 +39,7 @@ export const CreateProductForm = ({
   categoriesList: CategoryDocument[];
 }) => {
   const [droppedFiles, setDroppedFiles] = useState<File[]>([]);
+  const [droppedProductFiles, setDroppedProductFiles] = useState<File[]>([]);
   const toast = useShowToast();
 
   const categorySelectOptions = categoriesList?.map((category) => {
@@ -51,11 +54,16 @@ export const CreateProductForm = ({
       specifications: "",
       category: "",
       images: [],
+      files: [],
+      figmaPreview: "",
     },
   });
 
   const handleDrop = (acceptedFiles: File[]) => {
     setDroppedFiles(acceptedFiles);
+  };
+  const handleFilesDrop = (acceptedFiles: File[]) => {
+    setDroppedProductFiles(acceptedFiles);
   };
   const onSubmit = methods.handleSubmit(async (data) => {
     const imageFiles = await Promise.all(
@@ -69,10 +77,21 @@ export const CreateProductForm = ({
         };
       })
     );
+    const productFilesData = await Promise.all(
+      droppedProductFiles.map(async (file) => {
+        const formData = new FormData();
+        formData.append("blobFile", file);
+        formData.append("fileName", file.name);
 
+        return {
+          file: formData,
+        };
+      })
+    );
     const productDate = {
       ...data,
       images: imageFiles,
+      files: productFilesData,
     };
     const response = await createProduct(productDate);
     console.log("🚀 ~ onSubmit ~ response:", response);
@@ -172,6 +191,23 @@ export const CreateProductForm = ({
                   dropHandler={handleDrop}
                   maxFiles={4}
                   name="images"
+                />
+                <FileUploader
+                  label="please choose product Files (choose 1 file with max size 5MB)"
+                  dropHandler={handleFilesDrop}
+                  maxFiles={4}
+                  name="files"
+                  accept="*"
+                />
+                <Input
+                  {...methods.register("figmaPreview", {
+                    required: "FigmaPreview is required",
+                  })}
+                  label="FigmaPreview"
+                  // placeholder="Primary Button .."
+                  errorMessage={methods.formState.errors.figmaPreview?.message}
+                  error={!!methods.formState.errors.figmaPreview}
+                  required
                 />
                 <SubmitButton isSubmitting={methods.formState.isSubmitting} />
               </form>

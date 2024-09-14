@@ -8,6 +8,8 @@ export interface ProductDocument extends Models.Document {
   imagesId: string[];
   imagesUrl: string[];
   category: CategoryDocument;
+  productFiles: string[];
+  figmaPreview: string;
 }
 export type ProductType = {
   title: string;
@@ -16,6 +18,7 @@ export type ProductType = {
   productId?: string;
   price: string;
   images: { file: FormData }[];
+  files: { file: FormData }[];
 };
 
 export interface CategoryDocument extends Models.Document {

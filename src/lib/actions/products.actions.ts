@@ -1,6 +1,11 @@
 "use server";
 
-import { ENDPOINT, PRODUCT_BUCKET_ID, PROJECT_ID } from "@/appwrite/config";
+import {
+  ENDPOINT,
+  PRODUCT_BUCKET_ID,
+  PRODUCT_FILES_BUCKET_ID,
+  PROJECT_ID,
+} from "@/appwrite/config";
 import { db, store } from "@/appwrite/database";
 import { ProductType } from "@/types/app-write.types";
 import { parseStringify } from "@/utils";
@@ -38,13 +43,47 @@ export const uploadProductImages = async (images: { file: FormData }[]) => {
   return parseStringify(imageIds);
 };
 
-export const createProduct = async ({ images, ...product }: ProductType) => {
+export const uploadProductsFiles = async (files: { file: FormData }[]) => {
+  const filesId: string[] = [];
+
+  for (const file of files) {
+    try {
+      if (file.file) {
+        const inputFile =
+          file &&
+          InputFile.fromBlob(
+            file.file?.get("blobFile") as Blob,
+            file.file?.get("fileName") as string
+          );
+        const uploadedFile = await store.productsFiles.upload(inputFile);
+
+        if (uploadedFile) {
+          filesId.push(uploadedFile.$id);
+        }
+      }
+    } catch (err) {
+      console.error(err);
+      return parseStringify({
+        status: 500,
+        message: `problem uploading files ${err}`,
+        data: null,
+      });
+    }
+  }
+  return parseStringify(filesId);
+};
+
+export const createProduct = async ({
+  images,
+  files,
+  ...product
+}: ProductType) => {
   try {
     // upload images
-    const files = await uploadProductImages(images);
-
+    const imagesUploadResponse = await uploadProductImages(images);
+    const filesUploadResponse = await uploadProductsFiles(files);
     // create product
-    if (!files) {
+    if (!imagesUploadResponse || !filesUploadResponse) {
       return parseStringify({
         status: 500,
         message: "problem creating the product : image uploading problem",
@@ -54,10 +93,14 @@ export const createProduct = async ({ images, ...product }: ProductType) => {
     const { productId, ...restOfProduct } = product;
     const productData = await db.products.create(
       {
-        imagesId: files.map((fileId: string) => fileId),
-        imagesUrl: files.map(
+        imagesId: imagesUploadResponse.map((fileId: string) => fileId),
+        imagesUrl: imagesUploadResponse.map(
           (fileId: string) =>
             `${ENDPOINT}/storage/buckets/${PRODUCT_BUCKET_ID}/files/${fileId}/view??project=${PROJECT_ID}`
+        ),
+        productFiles: filesUploadResponse.map(
+          (fileId: string) =>
+            `${ENDPOINT}/storage/buckets/${PRODUCT_FILES_BUCKET_ID}/files/${fileId}/view??project=${PROJECT_ID}`
         ),
         ...restOfProduct,
       },

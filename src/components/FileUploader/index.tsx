@@ -11,6 +11,7 @@ type FileUploaderProps = {
   label?: string;
   maxFiles?: number;
   maxFileSize?: number;
+  accept?: string;
 };
 
 export const FileUploader = ({
@@ -19,6 +20,7 @@ export const FileUploader = ({
   label,
   maxFiles = 4,
   maxFileSize = 5,
+  accept = "image/*",
 }: FileUploaderProps) => {
   const [files, setFiles] = useState<File[]>([]);
   const [error, setError] = useState<string | null>(null);
@@ -89,7 +91,7 @@ export const FileUploader = ({
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
-    accept: { "image/*": [] },
+    accept: { accept: [] },
     multiple: true,
     maxFiles,
     maxSize: maxFileSize * 1024 * 1024,
@@ -125,11 +127,9 @@ export const FileUploader = ({
       name={name}
       control={control}
       rules={{
-        required: "Please upload at least one image.",
+        required: "Please upload at least one file.",
         validate: (value) =>
-          value && value.length > 0
-            ? true
-            : "Please upload at least one image.",
+          value && value.length > 0 ? true : "Please upload at least one file.",
       }}
       render={({ field, fieldState }) => (
         <div className="my-3">
