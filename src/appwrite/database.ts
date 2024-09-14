@@ -6,6 +6,7 @@ import {
   CATEGORIES_IMAGES_BUCKET,
   databases,
   storage,
+  PRODUCT_FILES_BUCKET_ID,
 } from "./config";
 import { ID, Models } from "appwrite";
 
@@ -86,12 +87,16 @@ const buckets: BucketConfig[] = [
     bucketId: PRODUCT_BUCKET_ID!,
     name: "productsImages",
   },
+  {
+    bucketId: PRODUCT_FILES_BUCKET_ID!,
+    name: "productsFiles",
+  },
 ];
 
 buckets.forEach((bucket) => {
   store[bucket.name] = {
-    upload: (imageFile: File, id = ID.unique()) =>
-      storage.createFile(bucket.bucketId, id, imageFile),
+    upload: (file: File, id = ID.unique()) =>
+      storage.createFile(bucket.bucketId, id, file),
   };
 });
 

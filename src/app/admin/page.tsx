@@ -22,9 +22,6 @@ const AdminPage = async () => {
           <Button>Create new Category</Button>
         </Link>
       </div>
-      {/* {productsList.documents?.map((product: ProductDocument) => (
-        <CustomMarkdown key={product.$id} content={product?.specifications} />
-      ))} */}
     </div>
   );
 };

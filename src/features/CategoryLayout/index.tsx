@@ -7,6 +7,7 @@ import {
 } from "@/components";
 import clsx from "clsx";
 import { useEffect, useState } from "react";
+import { ProductProvider } from "./ProductProvider";
 
 export default function CategoryLayout({
   children,
@@ -35,7 +36,7 @@ export default function CategoryLayout({
     isScrolled ? "bg-white dark:bg-background-dark" : "bg-transparent"
   );
   return (
-    <>
+    <ProductProvider>
       <div className={containerClasses}>
         <Container className="flex items-center justify-between">
           <Breadcrumb homeElement="Home" capitalizeLinks />
@@ -53,6 +54,6 @@ export default function CategoryLayout({
       <div className="fixed bottom-0 right-0 flex w-full p-5 text-black dark:text-white dark:bg-background-dark bg-background-light xl:hidden">
         <BreadcrumbCta />
       </div>
-    </>
+    </ProductProvider>
   );
 }
