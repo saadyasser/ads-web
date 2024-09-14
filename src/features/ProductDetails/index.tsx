@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 
@@ -7,6 +7,7 @@ import PageSkeleton from "./PageSkeleton";
 import { H2, Loading } from "@/components";
 
 import { ProductDocument } from "@/types/app-write.types";
+import { useProductData } from "../CategoryLayout/ProductProvider";
 
 const CustomMarkdown = dynamic(() => import("@/components/CustomMarkdown"), {
   loading: () => <Loading />,
@@ -25,6 +26,10 @@ export const ProductDetails = ({
   loading?: boolean;
 }) => {
   const [currentIndex, setCurrentIndex] = useState(-1);
+  const { setProduct } = useProductData();
+  useEffect(() => {
+    setProduct(product);
+  }, [product]);
   return (
     <>
       {!product && loading ? (

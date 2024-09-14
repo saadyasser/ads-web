@@ -45,15 +45,19 @@ export const GridWithSlider = ({
           <div className="flex items-center gap-2">
             <button
               className="p-2 font-semibold text-black transition-all rounded-lg bg-white-hover active:text-primary-active hover:bg-white hover:text-primary dark:active:text-white-active dark:bg-black dark:text-white dark:hover:bg-black-darker focus-visible:outline-primary-hover"
+              name="button to navigate to the previous slide"
+              aria-label="button to navigate to the previous slide"
               onClick={() => swiperRef?.current?.slidePrev()}
             >
-              <ChevronLeft size="18" />
+              <ChevronLeft size="18" aria-label="Chevron Left" />
             </button>
             <button
+              name="button to navigate to the next slide"
+              aria-label="button to navigate to the next slide"
               className="p-2 font-semibold text-black transition-all rounded-lg bg-white-hover active:text-primary-active hover:bg-white hover:text-primary dark:active:text-white-active dark:bg-black dark:text-white dark:hover:bg-black-darker focus-visible:outline-primary-hover"
               onClick={() => swiperRef?.current?.slideNext()}
             >
-              <ChevronRight size="18" />
+              <ChevronRight size="18" aria-label="Chevron right" />
             </button>
           </div>
         )}

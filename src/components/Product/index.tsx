@@ -11,7 +11,7 @@ export const Product = ({ product }: { product: ProductDocument }) => {
   const thumbnail = imagesUrl[0];
   const priceClasses = clsx(
     "absolute top-4 md:top-6 right-4 z-20 rounded-full py-1 px-2 font-medium md:py-2 md:px-3 md:font-semibold text-xs text-center text-white",
-    price ? "bg-primary" : "bg-success"
+    price === "0" ? "bg-success" : "bg-primary"
   );
   return (
     <Card
@@ -19,7 +19,9 @@ export const Product = ({ product }: { product: ProductDocument }) => {
       navigateTo={`/${product?.category?.name}/${product?.$id}`}
       hoverEffect
     >
-      <span className={priceClasses}>{price ? `${price} $` : "Free"}</span>
+      <span className={priceClasses}>
+        {price === "0" ? "Free" : `${price} $`}
+      </span>
       <div className="flex items-center justify-center rounded-lg !w-full relative overflow-hidden h-[157px] md:h-[241px]">
         <Image
           src={thumbnail}

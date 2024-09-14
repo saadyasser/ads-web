@@ -151,3 +151,35 @@ body {
 .yarl__button {
   @apply !text-primary;
 }
+
+.cls-1 {
+  fill: #fff;
+}
+
+.cls-2 {
+  fill: #d8d8d8;
+}
+
+.cls-3 {
+  fill: #655cfe;
+}
+
+.cls-4 {
+  fill: #01112d;
+}
+
+.cls-5 {
+  fill: #e0e1e2;
+}
+
+.cls-6 {
+  fill: #c4c5c6;
+}
+
+.cls-7 {
+  fill: #e6e7e8;
+}
+
+.cls-8 {
+  fill: #ededed;
+}
