@@ -1,14 +1,21 @@
 import type { Metadata } from "next";
 
-import Providers from "@/components/Providers";
-import { georgia, inter } from "./fonts";
+import { inter, georgia } from "./fonts";
 import clsx from "clsx";
 
-import { ErrorBoundary, Logo, ThemeHandler } from "@/components";
+import { ErrorBoundary } from "@/components";
 
 import "@/styles/globals.css";
 import { Suspense } from "react";
+import dynamic from "next/dynamic";
 
+const Providers = dynamic(() => import("@/components/Providers"), {
+  ssr: true,
+});
+const ThemeHandler = dynamic(() => import("@/components/ThemeHandler"), {
+  ssr: true,
+});
+const Logo = dynamic(() => import("@/components/Logo"), { ssr: true });
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL!),
 

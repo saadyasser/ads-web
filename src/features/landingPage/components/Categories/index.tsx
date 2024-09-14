@@ -1,9 +1,16 @@
-import { Container } from "@/components";
+import { Container, Loading } from "@/components";
 import React from "react";
-import ResponsiveCategories from "./ResponsiveCategories";
-import CategoriesCard from "./CategoriesCard";
-import { categoriesData } from "@/features/data";
 
+import { categoriesData } from "@/features/data";
+import dynamic from "next/dynamic";
+import CategoriesCard from "./CategoriesCard";
+
+const ResponsiveCategories = dynamic(() => import("./ResponsiveCategories"), {
+  loading: () => <Loading />,
+});
+// const CategoriesCard = dynamic(() => import("./CategoriesCard"), {
+//   loading: () => <Loading />,
+// });
 export const Categories = () => {
   return (
     <section className="bg-[#F8F9FA] dark:bg-background-dark">

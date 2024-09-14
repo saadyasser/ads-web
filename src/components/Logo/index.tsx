@@ -43,10 +43,10 @@ export const Logo = ({
           height={height}
           priority
           src={logoPath}
-          alt={alt}
+          alt={theme === "dark" ? "ADS Dark Logo" : "ADS Light Logo"}
         />
         {withBadge && (
-          <span className="flex items-center justify-center px-3 py-1 mx-2 text-xs font-medium rounded-full lg:px-4 bg-primary-light-hover text-primary h-max dark:bg-[#0F0F0E] dark:text-white">
+          <span className="flex items-center justify-center px-3 py-1 mx-2 text-xs font-medium rounded-full lg:px-4 bg-primary-light-hover text-primary-dark h-max dark:bg-[#0F0F0E] dark:text-white">
             1.0 v
           </span>
         )}
