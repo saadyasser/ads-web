@@ -33,7 +33,7 @@ export const BreadcrumbCta = ({ item }: { item?: string }) => {
                   <LockIcon
                     width={20}
                     height={20}
-                    className="absolute text-white right-2 -top-2"
+                    className="absolute text-primary-hover dark:text-white right-2 -top-2"
                   />
                 </span>
               </Button>
