@@ -1,9 +1,15 @@
 "use client";
-import { Slider } from "@/components";
+import { Loading } from "@/components";
 import { categoriesData } from "@/features/data";
 import React from "react";
-import CategoriesCard from "../CategoriesCard";
+import dynamic from "next/dynamic";
 
+const Slider = dynamic(() => import("@/components/Slider"), {
+  loading: () => <Loading />,
+});
+const CategoriesCard = dynamic(() => import("../CategoriesCard"), {
+  loading: () => <Loading />,
+});
 export const ResponsiveCategories = () => {
   return (
     <div className="block cursor-grab lg:hidden">

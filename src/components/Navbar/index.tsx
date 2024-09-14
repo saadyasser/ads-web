@@ -1,18 +1,17 @@
 "use client";
-import {
-  Button,
-  Container,
-  Logo,
-  NavLink,
-  SlideOver,
-  ThemeSwitcher,
-} from "../";
+import { Button, Container, Loading, Logo } from "../";
 import { useTheme } from "next-themes";
 import { BurgerMenu } from "@/lib/@iconsax";
 import { useState } from "react";
 import clsx from "clsx";
 import { useRouter } from "next/navigation";
+import dynamic from "next/dynamic";
 
+const SlideOver = dynamic(() => import("../SlideOver"), {
+  loading: () => <Loading />,
+});
+const ThemeSwitcher = dynamic(() => import("../ThemeSwitcher"));
+const NavLink = dynamic(() => import("../NavLink"));
 export const Navbar = () => {
   const { theme } = useTheme();
   const { push } = useRouter();
@@ -39,12 +38,14 @@ export const Navbar = () => {
 
           <Button
             variant="secondary"
+            aria-label="burger menu button"
             onClick={() => setBurgerMenuOpen((prev) => !prev)}
             className="!flex xl:!hidden items-center justify-center !rounded-full !p-2 active:!shadow-none border-none !h-fit dark:bg-black-active "
           >
             <BurgerMenu
               size="20"
               className="h-fit text-primary fill-primary dark:text-white dark:fill-white"
+              aria-label="burger menu icon"
             />
           </Button>
 

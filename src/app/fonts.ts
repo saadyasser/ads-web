@@ -14,6 +14,8 @@ export const georgia = localFont({
       style: "normal",
     },
   ],
+  preload: true,
+  display: "swap",
   variable: "--font-georgia",
   adjustFontFallback: "Arial",
 });
@@ -23,3 +25,5 @@ export const inter = Inter({
   display: "swap",
   variable: "--font-inter",
 });
+
+export default georgia;
