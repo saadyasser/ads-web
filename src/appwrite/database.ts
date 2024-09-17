@@ -8,7 +8,7 @@ import {
   storage,
   PRODUCT_FILES_BUCKET_ID,
 } from "./config";
-import { ID, Models } from "appwrite";
+import { ID, Models } from "node-appwrite";
 
 interface CollectionConfig {
   databaseId: string;

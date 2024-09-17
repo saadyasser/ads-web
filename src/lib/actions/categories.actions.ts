@@ -8,9 +8,8 @@ import {
 import { db, store } from "@/appwrite/database";
 import { CategoryType } from "@/types/app-write.types";
 import { parseStringify } from "@/utils";
-import { Query } from "appwrite";
 import { revalidatePath } from "next/cache";
-import { InputFile } from "node-appwrite";
+import { Query, InputFile } from "node-appwrite";
 
 export const uploadCategoryImages = async (image: FormData) => {
   const imageIds: string[] = [];
@@ -124,7 +123,7 @@ export const updateCategory = async (id: string, payload: any) => {
     return parseStringify({
       status: 200,
       message: "Category updated successfully",
-      data: updatedCategory.documents,
+      data: updatedCategory,
     });
   } catch (err) {
     console.error(err);
