@@ -1,5 +1,5 @@
 "use client";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import Button from "../Button";
 import { useProductData } from "@/features/CategoryLayout/ProductProvider";
 import Link from "next/link";
@@ -7,7 +7,6 @@ import { LockIcon } from "@/lib/@react-icons";
 
 export const BreadcrumbCta = ({ item }: { item?: string }) => {
   const path = usePathname();
-  const { push } = useRouter();
   const urlPattern = /^\/[^\/]+\/[^\/]+$/;
   const isValidPath = urlPattern.test(path);
   const { product } = useProductData();
@@ -24,23 +23,29 @@ export const BreadcrumbCta = ({ item }: { item?: string }) => {
               download={product.price === "0" ? product.title : ""}
             >
               <Button
-                className="relative w-full"
+                className="w-full "
                 role="link"
                 disabled={!product || product.price !== "0"}
+                icon={
+                  product.price !== "0" && (
+                    <span>
+                      <LockIcon
+                        width={20}
+                        height={20}
+                        className="text-white right-2 -top-2"
+                      />
+                    </span>
+                  )
+                }
+                iconPosition="after"
               >
                 download
-                <span>
-                  <LockIcon
-                    width={20}
-                    height={20}
-                    className="absolute text-primary-hover dark:text-white right-2 -top-2"
-                  />
-                </span>
               </Button>
             </Link>
           )}
           <Link
             className="w-full"
+            target="_blank"
             href={product ? `${product.figmaPreview}` : ""}
             download={product ? product.figmaPreview : ""}
           >

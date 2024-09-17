@@ -29,6 +29,7 @@ export const ProductDetails = ({
   const { setProduct } = useProductData();
   useEffect(() => {
     setProduct(product);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [product]);
   return (
     <>
