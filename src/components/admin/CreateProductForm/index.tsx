@@ -179,7 +179,7 @@ export const CreateProductForm = ({
                   errorMessage={methods.formState.errors.description?.message}
                   error={!!methods.formState.errors.description}
                   inputClassName="min-h-[159px] h-[159px]"
-                  placeholder="Awesome hand-made primary button .."
+                  placeholder="Awesome pre-built primary button .."
                   required
                 />
                 <MarkdownEditor

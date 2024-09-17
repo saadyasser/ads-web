@@ -28,7 +28,7 @@ export const CardShape = (slide: ProductDocument) => {
           width={334}
           height={241}
           alt={title}
-          className="!w-full !h-full rounded-lg transition-all peer"
+          className="object-cover w-auto h-auto transition-all rounded-lg peer"
         />
       </div>
       <div className="w-full text-black dark:text-white">
