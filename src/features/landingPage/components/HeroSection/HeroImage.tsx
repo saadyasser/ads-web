@@ -16,7 +16,7 @@ export const HeroImage = () => {
       alt="hero image"
       width={616}
       height={616}
-      className="w-auto h-auto"
+      className="w-full h-auto"
       loading="eager"
       quality={80}
       priority
