@@ -13,13 +13,15 @@ export const DetailedCategoriesSection = async () => {
     <ErrorBoundary>
       <section className="flex flex-col gap-8 py-6 md:py-16 max-xl:px-4">
         {categoriesList.status == 200 &&
-          categoriesList.data?.map((category: CategoryDocument) => (
-            <ProductsSliderSection
-              key={category.$id}
-              category={category}
-              sectionHeading={cleanPath(category.name)}
-            />
-          ))}
+          categoriesList.data?.map(
+            (category: CategoryDocument, index: number) => (
+              <ProductsSliderSection
+                key={category.$id || index}
+                category={category}
+                sectionHeading={cleanPath(category.name)}
+              />
+            )
+          )}
       </section>
     </ErrorBoundary>
   );

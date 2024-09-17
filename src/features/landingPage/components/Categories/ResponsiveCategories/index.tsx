@@ -16,7 +16,7 @@ export const ResponsiveCategories = () => {
       <Slider
         slides={categoriesData}
         slideShape={(slide) => <CategoriesCard {...slide} />}
-        loop
+        loop={categoriesData?.length > 3}
         id="categories-slider"
       />
     </div>
