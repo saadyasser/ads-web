@@ -10,7 +10,7 @@ export const ProductsSliderSection = async ({
   sectionHeading: string;
 }) => {
   const datalist = category && (await listProductsByCategory(category.$id));
-  if (datalist?.data?.length == 0) return;
+  if (datalist?.status !== 200) return;
   return (
     <ErrorBoundary>
       <GridWithSlider

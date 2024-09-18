@@ -64,12 +64,19 @@ export const createCategory = async (category: CategoryType) => {
 
 export const listCategories = async (queries?: string[]) => {
   const categories = await db.categories.list(queries && queries);
-
-  return parseStringify({
-    status: 200,
-    message: "Category list",
-    data: categories.documents,
-  });
+  if (categories.documents.length > 0) {
+    return parseStringify({
+      status: 200,
+      message: "Category list",
+      data: categories.documents,
+    });
+  } else {
+    return parseStringify({
+      status: 404,
+      message: "no categories found",
+      data: null,
+    });
+  }
 };
 export const getCategory = async (id: string) => {
   try {

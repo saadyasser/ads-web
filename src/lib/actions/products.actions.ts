@@ -148,11 +148,19 @@ export const listProducts = async (limit: number = 1000) => {
       Query.orderDesc("$createdAt"),
       Query.limit(limit),
     ]);
-    return parseStringify({
-      status: 200,
-      message: "products list",
-      data: products.documents,
-    });
+    if (products?.documents.length > 0) {
+      return parseStringify({
+        status: 200,
+        message: "products list",
+        data: products.documents,
+      });
+    } else {
+      return parseStringify({
+        status: 404,
+        message: "No products found ",
+        data: null,
+      });
+    }
   } catch (err) {
     console.error(err);
     return parseStringify({
@@ -169,15 +177,31 @@ export const listProductsByCategory = async (categoryId: string) => {
       Query.limit(1000),
       Query.orderDesc("$createdAt"),
     ]);
-    const categoryProducts = products.documents.filter(
-      (product) => product?.category?.$id === categoryId
-    );
-
-    return parseStringify({
-      status: 200,
-      message: "products list",
-      data: categoryProducts,
-    });
+    let categoryProducts;
+    if (products.documents.length > 0) {
+      categoryProducts = products.documents.filter(
+        (product) => product?.category?.$id === categoryId
+      );
+      if (categoryProducts.length > 0) {
+        return parseStringify({
+          status: 200,
+          message: "products list",
+          data: categoryProducts,
+        });
+      } else {
+        return parseStringify({
+          status: 404,
+          message: "no products found inside this category",
+          data: null,
+        });
+      }
+    } else {
+      return parseStringify({
+        status: 404,
+        message: "no products found",
+        data: null,
+      });
+    }
   } catch (err) {
     console.error("Failed to list products:", err);
     return parseStringify({
