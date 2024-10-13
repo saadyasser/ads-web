@@ -19,9 +19,9 @@ module.exports = {
       },
       colors: {
         primary: {
-          DEFAULT: "#655CFE",
+          DEFAULT: "#473BF0",
           hover: "#5B53E5",
-          active: "#514ACB",
+          active: "#3327DC",
           light: "#F0EFFF",
           "light-hover": "#E8E7FF",
           "light-active": "#CFCCFF",
@@ -32,7 +32,7 @@ module.exports = {
           shadow: "rgba(81, 74, 203, 0.31)",
         },
         secondary: {
-          DEFAULT: "#01112D",
+          DEFAULT: "#01C38D",
           hover: "#010F29",
           active: "#010E24",
           light: "#E6E7EA",
