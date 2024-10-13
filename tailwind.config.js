@@ -12,8 +12,7 @@ module.exports = {
         "what-makes-us-different": "url('/images/what-makes-us-different.png')",
       },
       fontFamily: {
-        georgia: ["var(--font-georgia)"],
-        inter: ["var(--font-inter)"],
+        gilroy: ["var(--font-gilroy)"],
       },
       screens: {
         lg: "1025px",

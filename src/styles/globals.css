@@ -11,7 +11,7 @@ body {
   @apply overflow-x-hidden;
 }
 .btn {
-  @apply flex items-center justify-center gap-2 px-4 py-3 text-sm font-medium leading-4 transition-all border rounded-lg md:text-base md:px-8 md:py-4 font-inter border-inherit disabled:opacity-50 disabled:bg-opacity-50 disabled:border-opacity-0 active:shadow-custom h-[50px] focus-visible:outline-primary-hover;
+  @apply flex items-center justify-center gap-2 px-4 py-3 text-sm font-medium leading-4 transition-all border rounded-lg md:text-base md:px-8 md:py-4 font-gilroy border-inherit disabled:opacity-50 disabled:bg-opacity-50 disabled:border-opacity-0 active:shadow-custom h-[50px] focus-visible:outline-primary-hover;
 }
 .btn-primary {
   @apply text-white bg-primary border-primary hover:bg-primary-hover hover:border-primary-hover active:bg-primary-active active:border-primary-active active:shadow-primary;

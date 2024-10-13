@@ -21,7 +21,7 @@ export const Breadcrumb = ({
 
   const containerClasses = clsx("flex items-center gap-2", containerClassName);
   const activeClasses = clsx(
-    "font-bold font-georgia text-base md:text-xl lg:text-3xl !cursor-auto",
+    "font-bold font-gilroy text-base md:text-xl lg:text-3xl !cursor-auto",
     activeClassName
   );
 
