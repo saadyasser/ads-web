@@ -5,6 +5,8 @@
 */
 export { getVariant } from "./getVariant";
 export { cleanPath } from "./cleanPaths";
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
 
 export const fileToBase64 = (file: File): Promise<string> => {
   return new Promise((resolve, reject) => {
@@ -15,3 +17,7 @@ export const fileToBase64 = (file: File): Promise<string> => {
   });
 };
 export const parseStringify = (value: any) => JSON.parse(JSON.stringify(value));
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
