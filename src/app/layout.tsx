@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { inter, georgia } from "./fonts";
+import { gilroy } from "./fonts";
 import clsx from "clsx";
 
 import { ErrorBoundary } from "@/components";
@@ -43,11 +43,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const classes = clsx(
-    georgia.variable,
-    inter.variable,
-    "scroll-smooth h-auto"
-  );
+  const classes = clsx(gilroy.variable, "font-gilroy scroll-smooth h-auto");
   return (
     <html lang="en" className={classes}>
       <body className="pt-[70px] xl:pt-[83px] bg-background-light dark:bg-background-dark">

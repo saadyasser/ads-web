@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* General styles */
 :root {
   --slide-height: 19rem;
   --slide-spacing: 1rem;
@@ -10,8 +11,10 @@
 body {
   @apply overflow-x-hidden;
 }
+
+/* Button classes */
 .btn {
-  @apply flex items-center justify-center gap-2 px-4 py-3 text-sm font-medium leading-4 transition-all border rounded-lg md:text-base md:px-8 md:py-4 font-inter border-inherit disabled:opacity-50 disabled:bg-opacity-50 disabled:border-opacity-0 active:shadow-custom h-[50px] focus-visible:outline-primary-hover;
+  @apply flex items-center justify-center gap-2 px-4 py-3 text-sm font-medium leading-4 transition-all border rounded-lg md:text-base md:px-8 md:py-4 font-gilroy border-inherit disabled:opacity-50 disabled:bg-opacity-50 disabled:border-opacity-0 active:shadow-custom h-[50px] focus-visible:outline-primary-hover;
 }
 .btn-primary {
   @apply text-white bg-primary border-primary hover:bg-primary-hover hover:border-primary-hover active:bg-primary-active active:border-primary-active active:shadow-primary;
@@ -33,6 +36,7 @@ body {
   @apply text-white bg-alert border-alert hover:bg-alert-hover hover:border-alert-hover active:bg-alert-active active:border-alert-active active:shadow-alert-shadow;
 }
 
+/* markdown editor classes */
 .wmde-markdown-var {
   @apply mt-2 !bg-black rounded-lg border-[1px] border-[#303030] dark:border-black p-4 px-3 dark:text-white;
 }
@@ -40,13 +44,14 @@ body {
 .wmde-markdown pre {
   @apply !text-white;
 }
+
+/* custom container */
 .custom-container {
   position: relative !important;
   margin-right: 0 !important;
   margin-left: auto !important;
   width: 100% !important;
   max-width: none !important;
-  /* right: 0 !important; */
 }
 
 @media (min-width: 640px) {
@@ -86,10 +91,7 @@ body {
   }
 }
 
-.hover-zoom-effect:hover img {
-  @apply transition-transform duration-500 ease-in-out transform scale-110;
-}
-
+/* Swiper slider classes */
 .main-slider .swiper-slide {
   display: flex;
   justify-content: center;
@@ -99,6 +101,19 @@ body {
 .thumb-slider .swiper-slide {
   width: auto;
   cursor: pointer;
+}
+.product-details__swiper .swiper-slide {
+  cursor: pointer;
+  opacity: 0.4;
+}
+
+.product-details__swiper .swiper-slide-thumb-active {
+  opacity: 1;
+}
+
+/* Components classes */
+.hover-zoom-effect:hover img {
+  @apply transition-transform duration-500 ease-in-out transform scale-110;
 }
 
 .thumbnail {
@@ -134,14 +149,7 @@ body {
   display: block;
   transition: all 0.3ms ease;
 }
-.product-details__swiper .swiper-slide {
-  cursor: pointer;
-  opacity: 0.4;
-}
 
-.product-details__swiper .swiper-slide-thumb-active {
-  opacity: 1;
-}
 .yarl__thumbnails_thumbnail {
   border-color: transparent !important;
 }
