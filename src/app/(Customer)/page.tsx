@@ -7,34 +7,42 @@ import CardLoading from "@/features/landingPage/components/Categories/CardLoadin
 const Categories = dynamic(
   () => import("@/features/landingPage/components/Categories"),
   {
-    loading: () => {
-      return (
-        <div className="overflow-hidden">
-          {[1, 2, 3, 4].map((val) => (
-            <CardLoading key={val} />
-          ))}
-        </div>
-      );
-    },
+    loading: () => (
+      <div className="overflow-hidden">
+        {[1, 2, 3, 4].map((val) => (
+          <CardLoading key={val} />
+        ))}
+      </div>
+    ),
     ssr: true,
   }
 );
+
 const DetailedCategoriesSection = dynamic(
   () => import("@/features/landingPage/components/DetailedCategoriesSection"),
-  { loading: () => <Loading />, ssr: true }
+  {
+    loading: () => <Loading />,
+    ssr: true,
+  }
 );
+
 const WhatMakesUsDifferent = dynamic(
   () => import("@/features/landingPage/components/WhatMakesUsDifferent"),
-  { loading: () => <Loading />, ssr: false }
+  {
+    loading: () => <Loading />,
+    ssr: true,
+  }
 );
+
 const ContactUs = dynamic(
   () => import("@/features/landingPage/components/ContactUs"),
   {
     loading: () => <Loading />,
-    ssr: false,
+    ssr: true,
   }
 );
-export const LandingPage = () => {
+
+export default function LandingPage() {
   return (
     <>
       <HeroSection />
@@ -44,6 +52,4 @@ export const LandingPage = () => {
       <ContactUs />
     </>
   );
-};
-
-export default LandingPage;
+}
