@@ -43,7 +43,7 @@ export const CreateProductForm = ({
   const toast = useShowToast();
 
   const categorySelectOptions = categoriesList?.map((category) => {
-    return { name: category.name, value: category.$id };
+    return { name: category.name, value: category.$id || 1 };
   });
 
   const methods = useForm<FormValues>({
@@ -95,11 +95,11 @@ export const CreateProductForm = ({
     };
     const response = await createProduct(productDate);
     console.log("🚀 ~ onSubmit ~ response:", response);
-    if (response.status == 200 && response.data) {
-      toast("Successfully created the  Product", "success");
-      methods.reset();
-      setDroppedFiles([]);
-    } else toast("Error creating the product", "error");
+    // if (response.status == 200 && response.data) {
+    //   toast("Successfully created the  Product", "success");
+    //   methods.reset();
+    //   setDroppedFiles([]);
+    // } else toast("Error creating the product", "error");
   });
 
   return (

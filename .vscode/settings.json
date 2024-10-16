@@ -2,5 +2,9 @@
     "cSpell.words": [
         "Lightbox",
         "swiper"
-    ]
+    ],
+    "tailwindCSS.experimental.classRegex": [
+    ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    ["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
+  ]
 }

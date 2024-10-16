@@ -9,16 +9,16 @@ export const ProductsSliderSection = async ({
   category: CategoryDocument;
   sectionHeading: string;
 }) => {
-  const datalist = category && (await listProductsByCategory(category.$id));
-  if (datalist?.status !== 200) return;
+  // const datalist = category && (await listProductsByCategory(category.$id));
+  // if (datalist?.status !== 200) return;
   return (
     <ErrorBoundary>
-      <GridWithSlider
+      {/* <GridWithSlider
         rewind
         navigation
         gridData={datalist.data}
         heading={{ label: sectionHeading, value: category.name }}
-      />
+      /> */}
       <Divider />
     </ErrorBoundary>
   );

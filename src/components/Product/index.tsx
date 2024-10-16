@@ -16,7 +16,7 @@ export const Product = ({ product }: { product: ProductDocument }) => {
   return (
     <Card
       className="relative !items-start !justify-start gap-4 hover-zoom-effect"
-      navigateTo={`/${product?.category?.name}/${product?.$id}`}
+      // navigateTo={`/${product?.category?.name}/${product?.$id}`}
       hoverEffect
     >
       <span className={priceClasses}>

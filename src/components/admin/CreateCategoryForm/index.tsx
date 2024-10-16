@@ -23,7 +23,7 @@ const SubmitButton = dynamic(() => import("@/components/SubmitButton"), {
 });
 export const CreateCategoryForm = () => {
   const [droppedFiles, setDroppedFiles] = useState<File[]>();
-  const toast = useShowToast();
+  // const toast = useShowToast();
 
   const methods = useForm<FormValues>({
     defaultValues: {
@@ -48,12 +48,12 @@ export const CreateCategoryForm = () => {
       image: formData,
     };
     console.log("🚀 ~ onSubmit ~ categoryDate:", categoryDate);
-    const response = await createCategory(categoryDate);
-    if (response.status == 200 && response.data) {
-      toast("Successfully created the  Category", "success");
-      methods.reset();
-      setDroppedFiles([]);
-    }
+    // const response = await createCategory(categoryDate);
+    // if (response.status == 200 && response.data) {
+    //   toast("Successfully created the  Category", "success");
+    //   methods.reset();
+    //   setDroppedFiles([]);
+    // }
   });
 
   return (
