@@ -23,7 +23,7 @@ export const FeaturesCards = () => {
                 <div className="flex items-center justify-center p-3 rounded-full bg-[#01112D] dark:bg-primary w-fit">
                   {createElement(feature?.icon)}
                 </div>
-                <H3 className="font-inter">{feature.heading}</H3>
+                <H3 className="font-gilroy">{feature.heading}</H3>
                 <p>{feature.description}</p>
               </div>
             </Card>
@@ -52,7 +52,7 @@ export const FeaturesCards = () => {
                   <div className="flex items-center justify-center p-3 rounded-full bg-[#01112D] dark:bg-primary w-fit">
                     {createElement(feature?.icon)}
                   </div>
-                  <H3 className="font-inter">{feature.heading}</H3>
+                  <H3 className="font-gilroy">{feature.heading}</H3>
                   <p>{feature.description}</p>
                 </div>
               </Card>

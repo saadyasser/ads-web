@@ -21,7 +21,7 @@ export const CategoriesCard = ({
       navigateTo={navigationPath}
     >
       <div className="py-1 text-center text-black lg:py-4 dark:text-white">
-        <h2 className="mb-2 font-inter text-lg md:text-xl font-bold leading-tight lg:leading-[24px]">
+        <h2 className="mb-2 font-gilroy text-lg md:text-xl font-bold leading-tight lg:leading-[24px]">
           {heading}
         </h2>
         <p className="text-xs md:text-sm">{description}</p>

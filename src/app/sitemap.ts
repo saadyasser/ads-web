@@ -1,8 +1,6 @@
 import { listCategories } from "@/lib/actions";
 import { listProducts } from "@/lib/actions/products.actions";
 import { CategoryDocument, ProductDocument } from "@/types/app-write.types";
-import { Query } from "appwrite";
-import { url } from "inspector";
 import { MetadataRoute } from "next";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {

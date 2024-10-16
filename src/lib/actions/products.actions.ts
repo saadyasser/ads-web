@@ -9,9 +9,8 @@ import {
 import { db, store } from "@/appwrite/database";
 import { ProductType } from "@/types/app-write.types";
 import { parseStringify } from "@/utils";
-import { Query } from "appwrite";
 import { revalidatePath } from "next/cache";
-import { InputFile } from "node-appwrite";
+import { Query, InputFile } from "node-appwrite";
 
 export const uploadProductImages = async (images: { file: FormData }[]) => {
   const imageIds: string[] = [];
@@ -131,7 +130,7 @@ export const updateProduct = async (id: string, product: any) => {
     return parseStringify({
       status: 200,
       message: "product updated successfully",
-      data: updatedProduct.documents,
+      data: updatedProduct,
     });
   } catch (err) {
     console.error(err);
@@ -149,11 +148,19 @@ export const listProducts = async (limit: number = 1000) => {
       Query.orderDesc("$createdAt"),
       Query.limit(limit),
     ]);
-    return parseStringify({
-      status: 200,
-      message: "products list",
-      data: products.documents,
-    });
+    if (products?.documents.length > 0) {
+      return parseStringify({
+        status: 200,
+        message: "products list",
+        data: products.documents,
+      });
+    } else {
+      return parseStringify({
+        status: 404,
+        message: "No products found ",
+        data: null,
+      });
+    }
   } catch (err) {
     console.error(err);
     return parseStringify({
@@ -170,15 +177,31 @@ export const listProductsByCategory = async (categoryId: string) => {
       Query.limit(1000),
       Query.orderDesc("$createdAt"),
     ]);
-    const categoryProducts = products.documents.filter(
-      (product) => product?.category?.$id === categoryId
-    );
-
-    return parseStringify({
-      status: 200,
-      message: "products list",
-      data: categoryProducts,
-    });
+    let categoryProducts;
+    if (products.documents.length > 0) {
+      categoryProducts = products.documents.filter(
+        (product) => product?.category?.$id === categoryId
+      );
+      if (categoryProducts.length > 0) {
+        return parseStringify({
+          status: 200,
+          message: "products list",
+          data: categoryProducts,
+        });
+      } else {
+        return parseStringify({
+          status: 404,
+          message: "no products found inside this category",
+          data: null,
+        });
+      }
+    } else {
+      return parseStringify({
+        status: 404,
+        message: "no products found",
+        data: null,
+      });
+    }
   } catch (err) {
     console.error("Failed to list products:", err);
     return parseStringify({

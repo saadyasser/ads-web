@@ -8,9 +8,8 @@ import {
 import { db, store } from "@/appwrite/database";
 import { CategoryType } from "@/types/app-write.types";
 import { parseStringify } from "@/utils";
-import { Query } from "appwrite";
 import { revalidatePath } from "next/cache";
-import { InputFile } from "node-appwrite";
+import { Query, InputFile } from "node-appwrite";
 
 export const uploadCategoryImages = async (image: FormData) => {
   const imageIds: string[] = [];
@@ -65,12 +64,19 @@ export const createCategory = async (category: CategoryType) => {
 
 export const listCategories = async (queries?: string[]) => {
   const categories = await db.categories.list(queries && queries);
-
-  return parseStringify({
-    status: 200,
-    message: "Category list",
-    data: categories.documents,
-  });
+  if (categories.documents.length > 0) {
+    return parseStringify({
+      status: 200,
+      message: "Category list",
+      data: categories.documents,
+    });
+  } else {
+    return parseStringify({
+      status: 404,
+      message: "no categories found",
+      data: null,
+    });
+  }
 };
 export const getCategory = async (id: string) => {
   try {
@@ -124,7 +130,7 @@ export const updateCategory = async (id: string, payload: any) => {
     return parseStringify({
       status: 200,
       message: "Category updated successfully",
-      data: updatedCategory.documents,
+      data: updatedCategory,
     });
   } catch (err) {
     console.error(err);

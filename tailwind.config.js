@@ -12,17 +12,16 @@ module.exports = {
         "what-makes-us-different": "url('/images/what-makes-us-different.png')",
       },
       fontFamily: {
-        georgia: ["var(--font-georgia)"],
-        inter: ["var(--font-inter)"],
+        gilroy: ["var(--font-gilroy)"],
       },
       screens: {
         lg: "1025px",
       },
       colors: {
         primary: {
-          DEFAULT: "#655CFE",
+          DEFAULT: "#473BF0",
           hover: "#5B53E5",
-          active: "#514ACB",
+          active: "#3327DC",
           light: "#F0EFFF",
           "light-hover": "#E8E7FF",
           "light-active": "#CFCCFF",
@@ -33,7 +32,7 @@ module.exports = {
           shadow: "rgba(81, 74, 203, 0.31)",
         },
         secondary: {
-          DEFAULT: "#01112D",
+          DEFAULT: "#01C38D",
           hover: "#010F29",
           active: "#010E24",
           light: "#E6E7EA",
@@ -132,5 +131,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require("tailwindcss-animate")],
 };
