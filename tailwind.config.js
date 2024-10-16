@@ -20,8 +20,8 @@ module.exports = {
       colors: {
         primary: {
           DEFAULT: "#473BF0",
-          hover: "#5B53E5",
-          active: "#3327DC",
+          hover: "#4035D8",
+          active: "#392FC0",
           light: "#F0EFFF",
           "light-hover": "#E8E7FF",
           "light-active": "#CFCCFF",
@@ -32,9 +32,9 @@ module.exports = {
           shadow: "rgba(81, 74, 203, 0.31)",
         },
         secondary: {
-          DEFAULT: "#01C38D",
-          hover: "#010F29",
-          active: "#010E24",
+          DEFAULT: "#D4F03C",
+          hover: "#BFD836",
+          active: "#AAC030",
           light: "#E6E7EA",
           "light-hover": "#D9DBE0",
           "light-active": "#B0B5BE",
@@ -69,9 +69,9 @@ module.exports = {
           darker: "#595959",
         },
         danger: {
-          DEFAULT: "#B91313",
-          hover: "#A71111",
-          active: "#940F0F",
+          DEFAULT: "#F45A51",
+          hover: "#DC5149",
+          active: "#C34841",
           light: "#F8E7E7",
           "light-hover": "#F5DCDC",
           "light-active": "#E9B6B6",
@@ -82,9 +82,9 @@ module.exports = {
           shadow: "rgba(148, 15, 15, 0.3)",
         },
         success: {
-          DEFAULT: "#0A9927",
-          hover: "#098A23",
-          active: "#087A1F",
+          DEFAULT: "#45DB77",
+          hover: "#3EC56B",
+          active: "#37AF5F",
           light: "#E7F5E9",
           "light-hover": "#DAF0DF",
           "light-active": "#B3DFBC",
@@ -95,9 +95,9 @@ module.exports = {
           shadow: "rgba(9, 138, 35, 0.3)",
         },
         alert: {
-          DEFAULT: "#C77605",
-          hover: "#B36A05",
-          active: "#9F5E04",
+          DEFAULT: "#F8CB42",
+          hover: "#DFB73B",
+          active: "#C6A235",
           light: "#F9F1E6",
           "light-hover": "#F7EADA",
           "light-active": "#EED5B2",
@@ -108,8 +108,8 @@ module.exports = {
           shadow: "rgba(179, 106, 5, 0.3)",
         },
         background: {
-          light: "#FBFBFB",
-          dark: "#0A0A0A",
+          light: "#F4F7FA",
+          dark: "#0E2841",
         },
       },
       boxShadow: {
