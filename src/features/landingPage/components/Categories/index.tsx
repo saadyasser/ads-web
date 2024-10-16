@@ -4,10 +4,11 @@ import React from "react";
 import { categoriesData } from "@/features/data";
 import dynamic from "next/dynamic";
 import CategoriesCard from "./CategoriesCard";
+import ResponsiveCategories from "./ResponsiveCategories";
 
-const ResponsiveCategories = dynamic(() => import("./ResponsiveCategories"), {
-  loading: () => <Loading />,
-});
+// const ResponsiveCategories = dynamic(() => import("./ResponsiveCategories"), {
+//   loading: () => <Loading />,
+// });
 
 export const Categories = () => {
   return (

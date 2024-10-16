@@ -1,17 +1,17 @@
 "use client";
-import { Button, Container, Loading, Logo } from "../";
+import { Button, Container, Loading, Logo, NavLink, SlideOver, ThemeSwitcher } from "../";
 import { useTheme } from "next-themes";
 import { BurgerMenu } from "@/lib/@iconsax";
 import { useState } from "react";
 import clsx from "clsx";
 import { useRouter } from "next/navigation";
-import dynamic from "next/dynamic";
+// import dynamic from "next/dynamic";
 
-const SlideOver = dynamic(() => import("../SlideOver"), {
-  loading: () => <Loading />,
-});
-const ThemeSwitcher = dynamic(() => import("../ThemeSwitcher"));
-const NavLink = dynamic(() => import("../NavLink"));
+// const SlideOver = dynamic(() => import("../SlideOver"), {
+//   loading: () => <Loading />,
+// });
+// const ThemeSwitcher = dynamic(() => import("../ThemeSwitcher"));
+// const NavLink = dynamic(() => import("../NavLink"));
 export const Navbar = () => {
   const { theme } = useTheme();
   const { push } = useRouter();
@@ -79,7 +79,7 @@ export const Navbar = () => {
 
 export default Navbar;
 
-export const navLinks = [
+const navLinks = [
   { title: "Home", path: "/", exact: true },
   { title: "Components", path: "/ui-components" },
   { title: "Mobile Templates", path: "/mobile-templates" },

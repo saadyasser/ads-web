@@ -2,10 +2,11 @@ import dynamic from "next/dynamic";
 
 import { Container, H1, Loading } from "@/components";
 import HeroImage from "./HeroImage";
+import ButtonGroup from "./ButtonGroup";
 
-const ButtonGroup = dynamic(() => import("./ButtonGroup"), {
-  loading: () => <Loading />,
-});
+// const ButtonGroup = dynamic(() => import("./ButtonGroup"), {
+//   loading: () => <Loading />,
+// });
 
 export const HeroSection = () => {
   return (

@@ -4,16 +4,16 @@ import dynamic from "next/dynamic";
 import clsx from "clsx";
 
 import { gilroy } from "./fonts"; // Ensure the font import is correct
-import { ErrorBoundary } from "@/components";
+import { ErrorBoundary, Logo, Providers, ThemeHandler } from "@/components";
 import "@/styles/globals.css";
 
-const Providers = dynamic(() => import("@/components/Providers"), {
-  ssr: true,
-});
-const ThemeHandler = dynamic(() => import("@/components/ThemeHandler"), {
-  ssr: true,
-});
-const Logo = dynamic(() => import("@/components/Logo"), { ssr: true });
+// const Providers = dynamic(() => import("@/components/Providers"), {
+//   ssr: true,
+// });
+// const ThemeHandler = dynamic(() => import("@/components/ThemeHandler"), {
+//   ssr: true,
+// });
+// const Logo = dynamic(() => import("@/components/Logo"), { ssr: true });
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL!),
