@@ -8,6 +8,10 @@ module.exports = {
   darkMode: "class",
   theme: {
     extend: {
+      fontSize: {
+        '3xl': '32px',
+        '4xl': '40px',
+      },
       backgroundImage: {
         "what-makes-us-different": "url('/images/what-makes-us-different.png')",
       },
@@ -104,6 +108,7 @@ module.exports = {
         "fade-out": "fade-out 0.4s ease-in-out forwards",
       },
     },
+  
   },
   plugins: [require("tailwindcss-animate")],
 };

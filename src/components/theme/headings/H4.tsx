@@ -2,7 +2,7 @@ import { childrenType } from "@/types";
 import clsx from "clsx";
 import React from "react";
 
-export const H2 = ({
+export const H4 = ({
   children,
   className,
 }: {
@@ -10,10 +10,10 @@ export const H2 = ({
   className?: string;
 }) => {
   const classes = clsx(
-    "text-2xl lg:text-4xl md:text-3xl font-bold lg:text-4xl font-gilroy ",
+    "text-base lg:text-2xl md:text-lg font-bold font-gilroy",
     className
   );
-  return <h2 className={classes}>{children}</h2>;
+  return <h4 className={classes}>{children}</h4>;
 };
 
-export default H2;
+export default H4;
