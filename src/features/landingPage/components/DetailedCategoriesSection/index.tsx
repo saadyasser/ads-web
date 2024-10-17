@@ -11,7 +11,7 @@ export const DetailedCategoriesSection = async () => {
   return (
     <ErrorBoundary>
       <section className="flex flex-col gap-8 py-6 md:py-16 max-xl:px-4">
-        {categoriesList.status == 200 &&
+        {/* {categoriesList?.status == 200 &&
           categoriesList.data?.map(
             (category: CategoryDocument, index: number) => (
               <ProductsSliderSection
@@ -20,7 +20,7 @@ export const DetailedCategoriesSection = async () => {
                 sectionHeading={cleanPath(category.name)}
               />
             )
-          )}
+          )} */}
       </section>
     </ErrorBoundary>
   );

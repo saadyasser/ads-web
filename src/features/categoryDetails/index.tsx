@@ -62,8 +62,8 @@ export const CategoryDetails = ({
           {categoryProducts &&
             categoryProducts.length > 0 &&
             !loading &&
-            categoryProducts.map((product: ProductDocument) => (
-              <li className="col-span-1" key={product.$id}>
+            categoryProducts.map((product: ProductDocument, index) => (
+              <li className="col-span-1" key={index}>
                 <Product product={product} />
               </li>
             ))}

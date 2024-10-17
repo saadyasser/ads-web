@@ -13,12 +13,12 @@ export const CardShape = (slide: ProductDocument) => {
     price,
     category,
     imagesUrl,
-    $id,
+    // $id,
   } = slide;
   return (
     <Card
       className="!items-start !justify-start gap-4 hover-zoom-effect"
-      navigateTo={`${category?.name}/${$id}`}
+      // navigateTo={`${category?.name}/${$id}`}
       hoverEffect
     >
       {/* <div className="flex items-center justify-center max-lg:h-[150px] max-lg:[157px] lg:h-[200px] rounded-lg !w-full 2xl:h-[241px] relative overflow-hidden"> */}
