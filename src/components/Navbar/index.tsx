@@ -1,5 +1,13 @@
 "use client";
-import { Button, Container, Loading, Logo, NavLink, SlideOver, ThemeSwitcher } from "../";
+import {
+  Button,
+  Container,
+  Loading,
+  Logo,
+  NavLink,
+  SlideOver,
+  ThemeSwitcher,
+} from "../";
 import { useTheme } from "next-themes";
 import { BurgerMenu } from "@/lib/@iconsax";
 import { useState } from "react";
@@ -18,9 +26,9 @@ export const Navbar = () => {
   const [burgerMenuOpen, setBurgerMenuOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 z-50 w-full py-4 border-b-[1px] border-black-light dark:border-black-darker bg-white text-black dark:bg-black-darker dark:text-white ">
+    <nav className="fixed top-0 z-50 w-full  py-4 lg:py-6">
       <Container className="flex items-center justify-between gap-6 max-md:px-4">
-        <Logo width={196} height={47} withBadge />
+        <Logo width={196} height={47} />
         <NavLinks className="items-center justify-between hidden gap-2 xl:gap-6 xl:flex" />
         <div className="flex items-center gap-3 lg:gap-4">
           <Button
@@ -64,9 +72,9 @@ export const Navbar = () => {
           open={burgerMenuOpen}
           setOpen={setBurgerMenuOpen}
         >
-          <div className="p-3 rounded-lg bg-background-light dark:bg-black">
+          <div className="p-3 rounded-lg bg-red-500 dark:bg-black">
             <NavLinks
-              className="flex flex-col w-full gap-3"
+              className="flex flex-col w-full gap-4"
               linkClassName="!w-full items-center justify-center !text-base !font-medium"
               onLinkClick={() => setBurgerMenuOpen(false)}
             />

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import React, { Suspense } from "react";
-import dynamic from "next/dynamic";
+// import dynamic from "next/dynamic";
 import clsx from "clsx";
 
 import { gilroy } from "./fonts"; // Ensure the font import is correct

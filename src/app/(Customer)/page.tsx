@@ -1,6 +1,12 @@
 import React from "react";
-import { Categories, ContactUs, DetailedCategoriesSection, HeroSection, WhatMakesUsDifferent } from "@/features/landingPage/components";
-import dynamic from "next/dynamic";
+import {
+  Categories,
+  ContactUs,
+  DetailedCategoriesSection,
+  HeroSection,
+  WhatMakesUsDifferent,
+} from "@/features/landingPage/components";
+// import dynamic from "next/dynamic";
 import { Loading } from "@/components";
 import CardLoading from "@/features/landingPage/components/Categories/CardLoading";
 
@@ -47,7 +53,7 @@ export default function LandingPage() {
     <>
       <HeroSection />
       <Categories />
-      
+
       {/* <DetailedCategoriesSection /> */}
       <WhatMakesUsDifferent />
       <ContactUs />
