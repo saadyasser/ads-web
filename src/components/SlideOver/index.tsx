@@ -77,7 +77,7 @@ export const SlideOver = ({
                         )}
                         <div className="flex items-center ml-3 h-7">
                           <Button
-                            variant="secondary"
+                            intent="secondary"
                             className="!h-fit !py-3 !px-3 !rounded-full dark:bg-black-hover dark:text-white border-none shadow-none"
                             onClick={() => setOpen(false)}
                           >

@@ -3,7 +3,7 @@
     example :
     export { getHelper } from "helpers";
 */
-export { getVariant } from "./getVariant";
+// export { getVariant } from "./getVariant";
 export { cleanPath } from "./cleanPaths";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";

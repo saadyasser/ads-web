@@ -12,7 +12,7 @@ export const ThemeSwitcher = () => {
   };
   return (
     <Button
-      variant="secondary"
+      intent="secondary"
       onClick={handleThemeChange}
       name="theme switcher button"
       aria-label="theme switcher button"

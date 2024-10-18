@@ -75,6 +75,7 @@ export const button = cva(
           "hover:bg-success-light-hover",
           "active:bg-success-light-active",
         ],
+        custom: ["text-accent-dark"],
       },
     },
 

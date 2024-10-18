@@ -51,7 +51,7 @@ export const BreadcrumbCta = ({ item }: { item?: string }) => {
           >
             <Button
               className="w-full text-nowrap"
-              variant="secondary"
+              intent="secondary"
               role="link"
               disabled={!product}
             >
