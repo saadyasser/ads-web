@@ -7,8 +7,9 @@ import {
   WhatMakesUsDifferent,
 } from "@/features/landingPage/components";
 // import dynamic from "next/dynamic";
-import { Loading } from "@/components";
+import { Button, Container, Loading } from "@/components";
 import CardLoading from "@/features/landingPage/components/Categories/CardLoading";
+import { ChevronLeft } from "@/lib/@iconsax";
 
 // const Categories = dynamic(
 //   () => import("@/features/landingPage/components/Categories"),
@@ -53,7 +54,28 @@ export default function LandingPage() {
     <>
       <HeroSection />
       <Categories />
-
+      <Container className="flex w-full gap-2">
+        <Button intent="primary">test</Button>
+        <Button intent="primaryLight">test</Button>
+        <Button intent="secondary">test</Button>
+        <Button intent="secondaryLight">test</Button>
+        <Button intent="danger">test</Button>
+        <Button intent="dangerLight">test</Button>
+        <Button intent="alert">test</Button>
+        <Button intent="alertLight">test</Button>
+        <Button intent="success">test</Button>
+        <Button intent="successLight">test</Button>
+        <Button intent="primary" icon={<ChevronLeft />} iconPosition="before">
+          test
+        </Button>
+        <Button
+          intent="primaryLight"
+          icon={<ChevronLeft />}
+          iconPosition="after"
+        >
+          test
+        </Button>
+      </Container>
       {/* <DetailedCategoriesSection /> */}
       <WhatMakesUsDifferent />
       <ContactUs />
