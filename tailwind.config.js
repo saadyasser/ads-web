@@ -9,8 +9,8 @@ module.exports = {
   theme: {
     extend: {
       fontSize: {
-        '3xl': '32px',
-        '4xl': '40px',
+        "3xl": "32px",
+        "4xl": "40px",
       },
       backgroundImage: {
         "what-makes-us-different": "url('/images/what-makes-us-different.png')",
@@ -38,7 +38,11 @@ module.exports = {
           light: "#FBFEEC",
           "light-hover": "#F9FDE2",
           "light-active": "#F2FAC3",
+          darker: "#4A5415",
           shadow: "rgba(121, 121, 121, 0.31)",
+        },
+        accent: {
+          dark: "#0E2841",
         },
         black: {
           DEFAULT: "#0D0D0D",
@@ -65,16 +69,8 @@ module.exports = {
           light: "#FEEFEE",
           "light-hover": "#FDE6E5",
           "light-active": "#FCCCC9",
+          darker: "#551F1C",
           shadow: "rgba(148, 15, 15, 0.3)",
-        },
-        success: {
-          DEFAULT: "#45DB77",
-          hover: "#3EC56B",
-          active: "#37AF5F",
-          light: "#ECFBF1",
-          "light-hover": "#E3FAEB",
-          "light-active": "#C5F4D5",
-          shadow: "rgba(9, 138, 35, 0.3)",
         },
         alert: {
           DEFAULT: "#F8CB42",
@@ -83,7 +79,18 @@ module.exports = {
           light: "#FEFAEC",
           "light-hover": "#FEF7E3",
           "light-active": "#FDEFC4",
+          darker: "#574717",
           shadow: "rgba(179, 106, 5, 0.3)",
+        },
+        success: {
+          DEFAULT: "#45DB77",
+          hover: "#3EC56B",
+          active: "#37AF5F",
+          light: "#ECFBF1",
+          "light-hover": "#E3FAEB",
+          "light-active": "#C5F4D5",
+          darker: "#184D2A",
+          shadow: "rgba(9, 138, 35, 0.3)",
         },
         background: {
           light: "#F4F7FA",
@@ -108,7 +115,6 @@ module.exports = {
         "fade-out": "fade-out 0.4s ease-in-out forwards",
       },
     },
-  
   },
   plugins: [require("tailwindcss-animate")],
 };
