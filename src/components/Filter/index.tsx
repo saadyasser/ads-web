@@ -18,7 +18,7 @@ export const Filter = () => {
         inputClassName="bg-background-light dark:bg-background-dark !border-transparent"
         cta={
           <Button
-            variant="custom"
+            intent="custom"
             className="!p-3 border-none text-black bg-black dark:bg-white !rounded-xl !h-fit"
           >
             <SearchIcon

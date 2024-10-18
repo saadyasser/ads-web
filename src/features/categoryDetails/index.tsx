@@ -43,7 +43,7 @@ export const CategoryDetails = ({
         </SlideOver>
         <Button
           className="fixed !hidden bottom-10 right-4 max-xl:!flex items-center justify-center z-20 !px-4"
-          variant="secondary"
+          intent="secondary"
           onClick={() => setResponsiveFilterToggle((prev) => !prev)}
         >
           <FilterIcon size="24" />

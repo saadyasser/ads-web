@@ -71,7 +71,7 @@ export const ButtonGroup = ({ className }: { className?: string }) => {
           Discover our UI Components
         </Button>
         <Button
-          variant="secondary"
+          intent="secondary"
           className="w-full max-xl:!text-sm dark:!text-black"
         >
           Full Access for Figma Library!

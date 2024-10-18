@@ -30,7 +30,7 @@ export const WhatMakesUsDifferent = () => {
             </p>
           </div>
           {theme === "dark" ? (
-            <Button variant="secondary">Get Started Today!</Button>
+            <Button intent="secondary">Get Started Today!</Button>
           ) : (
             <Button>Get Started Today!</Button>
           )}

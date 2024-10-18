@@ -2,7 +2,7 @@
 import { Container, Input, TextArea, Loading } from "@/components";
 import dynamic from "next/dynamic";
 
-import { useShowToast } from "@/components/Toast";
+// import { useShowToast } from "@/components/Toast";
 import { createProduct } from "@/lib/actions/products.actions";
 import { CategoryDocument } from "@/types/app-write.types";
 
@@ -40,7 +40,7 @@ export const CreateProductForm = ({
 }) => {
   const [droppedFiles, setDroppedFiles] = useState<File[]>([]);
   const [droppedProductFiles, setDroppedProductFiles] = useState<File[]>([]);
-  const toast = useShowToast();
+  // const toast = useShowToast();
 
   const categorySelectOptions = categoriesList?.map((category) => {
     return { name: category.name, value: category.$id || 1 };

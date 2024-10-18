@@ -1,13 +1,11 @@
 import { forwardRef } from "react";
-import clsx from "clsx";
 
 import { ButtonProps, RefType } from "./Button.types";
-
-import { getVariant } from "@/utils";
+import { button } from "./ButtonStyles";
 
 export const Button = forwardRef<RefType, ButtonProps>((props, ref) => {
   const {
-    variant = "primary",
+    intent = "primary",
     type = "button",
     className,
     children,
@@ -16,9 +14,8 @@ export const Button = forwardRef<RefType, ButtonProps>((props, ref) => {
     ...rest
   } = props;
 
-  const mergedClasses = clsx("btn", getVariant(variant), className);
   return (
-    <button ref={ref} className={mergedClasses} {...rest}>
+    <button ref={ref} className={button({ intent, className })} {...rest}>
       {icon && iconPosition === "before" && (
         <span className="flex items-center">{icon}</span>
       )}

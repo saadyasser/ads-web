@@ -32,7 +32,7 @@ export const Navbar = () => {
         <NavLinks className="items-center justify-between hidden gap-2 xl:gap-6 xl:flex" />
         <div className="flex items-center gap-3 lg:gap-4">
           <Button
-            variant="custom"
+            intent="custom"
             onClick={() => push("/#contact_us")}
             className={clsx(
               "!hidden xl:!flex !text-sm 2xl:!text-base",
@@ -45,7 +45,7 @@ export const Navbar = () => {
           </Button>
 
           <Button
-            variant="secondary"
+            intent="secondary"
             aria-label="burger menu button"
             onClick={() => setBurgerMenuOpen((prev) => !prev)}
             className="!flex xl:!hidden items-center justify-center !rounded-full !p-2 active:!shadow-none border-none !h-fit dark:bg-black-active "
@@ -62,7 +62,7 @@ export const Navbar = () => {
         <SlideOver
           footer={
             <Button
-              variant="secondary"
+              intent="secondary"
               className="w-full"
               onClick={() => push("/#contact_us")}
             >
