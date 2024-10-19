@@ -13,10 +13,10 @@ const FileUploader = dynamic(() => import("@/components/FileUploader"), {
   loading: () => <Loading />,
   ssr: false,
 });
-const MarkdownEditor = dynamic(() => import("@/components/MarkdownEditor"), {
-  loading: () => <Loading />,
-  ssr: false,
-});
+// const MarkdownEditor = dynamic(() => import("@/components/MarkdownEditor"), {
+//   loading: () => <Loading />,
+//   ssr: false,
+// });
 const SubmitButton = dynamic(() => import("@/components/SubmitButton"), {
   loading: () => <Loading />,
   ssr: false,
@@ -43,7 +43,7 @@ export const CreateProductForm = ({
   // const toast = useShowToast();
 
   const categorySelectOptions = categoriesList?.map((category) => {
-    return { name: category.name, value: category.$id || 1 };
+    return { name: category.name, value: 1 };
   });
 
   const methods = useForm<FormValues>({
@@ -182,10 +182,10 @@ export const CreateProductForm = ({
                   placeholder="Awesome pre-built primary button .."
                   required
                 />
-                <MarkdownEditor
+                {/* <MarkdownEditor
                   name="specifications"
                   label="Product Specifications"
-                />
+                /> */}
                 <FileUploader
                   label="please choose product images (choose 4 images with max size 5MB)"
                   dropHandler={handleDrop}

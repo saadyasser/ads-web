@@ -1,4 +1,4 @@
-import { Models } from "node-appwrite";
+// import { Models } from "node-appwrite";
 
 export interface ProductDocument {
   title: string;
@@ -21,7 +21,8 @@ export type ProductType = {
   files: { file: FormData }[];
 };
 
-export interface CategoryDocument extends Models.Document {
+export interface CategoryDocument {
+  // extends Models.Document
   name: string;
   imageUrl: string;
   description?: string;
