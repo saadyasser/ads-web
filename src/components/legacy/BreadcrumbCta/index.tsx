@@ -1,6 +1,6 @@
 "use client";
 import { usePathname } from "next/navigation";
-import Button from "../Button";
+import Button from "../../Button";
 import { useProductData } from "@/features/CategoryLayout/ProductProvider";
 import Link from "next/link";
 import { LockIcon } from "@/lib/@react-icons";

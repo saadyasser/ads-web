@@ -3,7 +3,7 @@ import React from "react";
 import { usePathname } from "next/navigation";
 import { BreadCrumbProps } from "./Breadcrumb.types";
 import clsx from "clsx";
-import { Link } from "../";
+import { Link } from "../..";
 import { cleanPath } from "@/utils";
 
 export const Breadcrumb = ({

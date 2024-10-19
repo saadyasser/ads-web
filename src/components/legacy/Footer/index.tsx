@@ -1,5 +1,5 @@
 import { FOOTER_NAVIGATION } from "@/data";
-import { Logo, Container, Link, Divider } from "../";
+import { Logo, Container, Link, Divider } from "../../";
 import { createElement } from "react";
 
 export const Footer = () => {

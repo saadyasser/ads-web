@@ -31,7 +31,7 @@ class ErrorBoundary extends React.Component<
       return (
         <div className="flex flex-col items-center justify-center p-8 text-gray-900 bg-gray-100 dark:bg-gray-900 dark:text-gray-100">
           <div className="p-6 text-center bg-white rounded-lg shadow-lg dark:bg-gray-800">
-            <h1 className="text-4xl font-bold text-[#655CFE] dark:text-[#a99eff]">
+            <h1 className="text-4xl font-bold text-primary dark:text-secondary">
               Something went wrong
             </h1>
             <p className="mt-4 text-lg">
@@ -40,7 +40,7 @@ class ErrorBoundary extends React.Component<
             </p>
             <button
               onClick={() => window.location.reload()}
-              className="mt-6 bg-[#655CFE] text-white font-semibold py-2 px-4 rounded hover:bg-[#5147cc] transition-colors"
+              className="px-4 py-2 mt-6 font-semibold text-white transition-colors rounded bg-primary hover:bg-primary-hover"
             >
               Refresh Page
             </button>
