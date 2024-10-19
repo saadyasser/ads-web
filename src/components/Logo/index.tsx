@@ -14,7 +14,7 @@ export const Logo = ({
   width = 164,
   height = 40,
   wrapperClassName = "",
-  withBadge = false,
+  withBadge = true,
 }: LogoType) => {
   const [logoPath, setLogoPath] = useState(src || "/images/logos/ads_logo.svg");
   const { theme } = useTheme();
@@ -35,8 +35,12 @@ export const Logo = ({
   );
   return (
     <div className={wrapperClasses}>
-      <Link href="/" className="!gap-0">
+      <Link
+        href="/"
+        className="flex-col gap-[7px] justify-start items-start p-0"
+      >
         <span className="sr-only">ADS Logo</span>
+
         <Image
           className={logoClasses}
           width={width}
@@ -46,9 +50,16 @@ export const Logo = ({
           alt={theme === "dark" ? "ADS Dark Logo" : "ADS Light Logo"}
         />
         {withBadge && (
-          <span className="flex items-center justify-center px-3 py-1 mx-2 text-xs font-medium rounded-full lg:px-4 bg-primary-light-hover text-primary-dark h-max dark:bg-[#0F0F0E] dark:text-white">
-            1.0 v
-          </span>
+          <Image
+            className="w-auto h-auto"
+            width={55.51}
+            height={8.66}
+            priority
+            src="/images/logos/ads_logo_badge.svg"
+            alt={
+              theme === "dark" ? "ADS Dark Logo Badge" : "ADS Light Logo Badge "
+            }
+          />
         )}
       </Link>
     </div>

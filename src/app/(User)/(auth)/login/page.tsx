@@ -1,8 +1,7 @@
-import { Card } from "@/components";
 import React from "react";
 
 const Login = () => {
-  return <Card>Auth Card</Card>;
+  return <div>Auth Card</div>;
 };
 
 export default Login;

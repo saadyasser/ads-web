@@ -5,6 +5,8 @@ import { RecoveryIcon } from "./RecoveryIcon";
 import { FigmaIcon } from "./FigmaIcon";
 import { SketchIcon } from "./SketchIcon";
 import { XdIcon } from "./XdIcon";
+import { FavouriteIcon } from "./FavouriteIcon";
+import { BagIcon } from "./BagIcon"
 export {
   StackedLayersIcon,
   CopyIcon,
@@ -13,4 +15,6 @@ export {
   FigmaIcon,
   SketchIcon,
   XdIcon,
+  FavouriteIcon,
+  BagIcon
 };
