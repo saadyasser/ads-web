@@ -20,7 +20,7 @@ import { useRouter } from "next/navigation";
 // });
 // const ThemeSwitcher = dynamic(() => import("../ThemeSwitcher"));
 // const NavLink = dynamic(() => import("../NavLink"));
-export const Navbar = ({ className = "" }: { className: string }) => {
+export const Navbar = ({ className = "" }: { className?: string }) => {
   const { theme } = useTheme();
   const { push } = useRouter();
   const [burgerMenuOpen, setBurgerMenuOpen] = useState(false);
