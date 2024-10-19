@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import Button from "../Button";
+import Button from "../../Button";
 import { Moon, Sun } from "@/lib/@iconsax";
 import { useTheme } from "next-themes";
 
