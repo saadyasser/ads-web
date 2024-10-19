@@ -1,7 +1,7 @@
 import { cva } from "class-variance-authority";
 
 export const button = cva(
-  "flex items-center justify-center gap-2 px-4 py-[18px] font-bold text-base font-gilroy leading-5 rounded-lg text-center transition-all duration-150 disabled:opacity-40 disabled:bg-opacity-40 focus-visible:outline-primary-hover",
+  "flex items-center justify-center gap-2 rounded-lg font-gilroy leading-5 text-sm xl:text-base text-center disabled:opacity-40 disabled:bg-opacity-40focus-visible:outline-primary-hover py-[14px] px-4 md:py-4 xl:py-[18px] transition-all duration-150",
   {
     variants: {
       intent: {
@@ -78,7 +78,22 @@ export const button = cva(
         custom: ["text-accent-dark"],
       },
     },
-
+    compoundVariants: [
+      {
+        intent: ["primary", "secondary", "danger", "alert", "success"],
+        className: "font-bold",
+      },
+      {
+        intent: [
+          "primaryLight",
+          "secondaryLight",
+          "dangerLight",
+          "alertLight",
+          "successLight",
+        ],
+        className: "font-semibold",
+      },
+    ],
     defaultVariants: {
       intent: "primary",
     },
