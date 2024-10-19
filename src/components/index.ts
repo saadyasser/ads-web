@@ -23,7 +23,6 @@ import { Product } from "./Product";
 import { Filter } from "./Filter";
 import { RadioGroup } from "./RadioGroup";
 import { Skeleton } from "./Skeleton";
-import { CustomMarkdown } from "./CustomMarkdown";
 import { BreadcrumbCta } from "./BreadcrumbCta";
 import { Select } from "./Select";
 import { MarkdownEditor } from "./MarkdownEditor";
@@ -57,7 +56,6 @@ export {
   Filter,
   RadioGroup,
   Skeleton,
-  CustomMarkdown,
   BreadcrumbCta,
   Select,
   MarkdownEditor,
