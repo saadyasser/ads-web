@@ -13,7 +13,7 @@ export const Link = ({
   const linkClasses = clsx(
     noStyle
       ? "truncate transition-all"
-      : "flex items-center gap-2 leading-6 truncate transition-all hover:!text-primary-hover active:text-primary-active focus-visible:outline-primary-hover",
+      : "flex items-center gap-2 leading-6 truncate transition-all  active:text-primary-active focus-visible:outline-primary-hover",
     className
   );
   return (

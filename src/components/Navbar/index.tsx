@@ -20,19 +20,19 @@ import { useRouter } from "next/navigation";
 // });
 // const ThemeSwitcher = dynamic(() => import("../ThemeSwitcher"));
 // const NavLink = dynamic(() => import("../NavLink"));
-export const Navbar = () => {
+export const Navbar = ({ className = "" }: { className: string }) => {
   const { theme } = useTheme();
   const { push } = useRouter();
   const [burgerMenuOpen, setBurgerMenuOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 z-50 w-full  py-4 lg:py-6">
+    <nav className={`fixed top-0 z-50 w-full  py-4 lg:py-6 ${className}`}>
       <Container className="flex items-center justify-between gap-6 max-md:px-4">
         <Logo width={196} height={47} />
         <NavLinks className="items-center justify-between hidden gap-2 xl:gap-6 xl:flex" />
         <div className="flex items-center gap-3 lg:gap-4">
           <Button
-            intent="custom"
+            variant="custom"
             onClick={() => push("/#contact_us")}
             className={clsx(
               "!hidden xl:!flex !text-sm 2xl:!text-base",
@@ -45,7 +45,7 @@ export const Navbar = () => {
           </Button>
 
           <Button
-            intent="secondary"
+            variant="secondary"
             aria-label="burger menu button"
             onClick={() => setBurgerMenuOpen((prev) => !prev)}
             className="!flex xl:!hidden items-center justify-center !rounded-full !p-2 active:!shadow-none border-none !h-fit dark:bg-black-active "
@@ -62,7 +62,7 @@ export const Navbar = () => {
         <SlideOver
           footer={
             <Button
-              intent="secondary"
+              variant="secondary"
               className="w-full"
               onClick={() => push("/#contact_us")}
             >
