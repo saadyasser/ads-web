@@ -43,6 +43,7 @@ module.exports = {
         },
         accent: {
           dark: "#0E2841",
+          gray: "#D3D4D1"
         },
         black: {
           DEFAULT: "#0D0D0D",
