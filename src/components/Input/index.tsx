@@ -22,10 +22,10 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       `${success && "border-success"} ${error && "border-danger"}`
     );
     return (
-      <div className="w-full">
+      <div className={`w-full ${containerClassname}`}>
         <Label
           htmlFor={props.name}
-          className={`block text-sm mb-2 text-accent-dark ${containerClassname}`}
+          className="block text-sm mb-2 text-accent-dark leading-none"
         >
           {label}
         </Label>
