@@ -1,4 +1,10 @@
 import { Input } from "@/components";
+import {
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSlot,
+  Otp,
+} from "@/components/ui/input-otp";
 import React from "react";
 
 const Login = () => {
@@ -26,6 +32,7 @@ const Login = () => {
         type="password"
         placeholder="enter name"
       />
+      <Otp />
     </div>
   );
 };
