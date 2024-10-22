@@ -1,6 +1,8 @@
+"use client";
 import type { Metadata } from "next";
 import React, { Suspense } from "react";
 // import dynamic from "next/dynamic";
+import { SessionProvider } from "next-auth/react";
 import clsx from "clsx";
 
 import { gilroy } from "./fonts"; // Ensure the font import is correct
@@ -15,7 +17,7 @@ import "@/styles/globals.css";
 // });
 // const Logo = dynamic(() => import("@/components/Logo"), { ssr: true });
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL!),
   title: {
     default: "Azaiza Design Studio",
@@ -46,22 +48,24 @@ export default function RootLayout({
   return (
     <html lang="en" className={classes}>
       <body className="pt-[70px] xl:pt-[83px] bg-background-light dark:bg-background-dark">
-        <ErrorBoundary>
-          <Suspense
-            fallback={
-              <div className="flex items-center justify-center h-[60vh]">
-                <div className="animate-pulse">
-                  <Logo />
+        <SessionProvider>
+          <ErrorBoundary>
+            <Suspense
+              fallback={
+                <div className="flex items-center justify-center h-[60vh]">
+                  <div className="animate-pulse">
+                    <Logo />
+                  </div>
                 </div>
-              </div>
-            }
-          >
-            <Providers>
-              <ThemeHandler />
-              {children}
-            </Providers>
-          </Suspense>
-        </ErrorBoundary>
+              }
+            >
+              <Providers>
+                <ThemeHandler />
+                {children}
+              </Providers>
+            </Suspense>
+          </ErrorBoundary>
+        </SessionProvider>
       </body>
     </html>
   );
