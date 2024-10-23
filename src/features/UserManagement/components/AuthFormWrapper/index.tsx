@@ -1,4 +1,4 @@
-import { H3 } from "@/components";
+import { H4 } from "@/components";
 import Link from "next/link";
 import React from "react";
 
@@ -11,7 +11,7 @@ interface AuthFormWrapperProps {
   children: React.ReactNode;
 }
 
-const AuthFormWrapper = ({
+export const AuthFormWrapper = ({
   title,
   description,
   ctaQuestion,
@@ -21,14 +21,16 @@ const AuthFormWrapper = ({
 }: AuthFormWrapperProps) => {
   return (
     <div>
-      <H3 className="text-md">{title}</H3>
-      <p>{description}</p>
+      <H4 className="mb-2">{title}</H4>
+      <p className="text-sm mb-6">{description}</p>
       {children}
       {ctaLink && (
-        <div>
-          <p>{ctaQuestion}</p>
-          <Link href={ctaLink}>{ctaLinkText}</Link>
-        </div>
+        <p className="text-[#161C2D] text-center mt-6">
+          {ctaQuestion}
+          <Link className="text-primary" href={ctaLink}>
+            {ctaLinkText}
+          </Link>
+        </p>
       )}
     </div>
   );

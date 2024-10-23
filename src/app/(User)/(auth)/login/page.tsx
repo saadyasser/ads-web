@@ -11,7 +11,9 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import React from "react";
 
 const Login = () => {
-  const { status } = useSession();
+  const { status, data } = useSession();
+  console.log(data);
+
   return (
     <AuthFormWrapper
       title="Reset Your Password"
@@ -20,7 +22,22 @@ const Login = () => {
       ctaLinkText="Back to Login"
       ctaLink="/"
     >
-      <span>Test Form Content</span>
+      <span
+        className="mb-6"
+        onClick={() => {
+          signIn("google");
+        }}
+      >
+        Test Form Content
+      </span>
+      <span
+        className="mb-6"
+        onClick={() => {
+          signOut();
+        }}
+      >
+        Sign Out
+      </span>
     </AuthFormWrapper>
   );
 };

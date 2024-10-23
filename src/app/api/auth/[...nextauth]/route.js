@@ -40,7 +40,7 @@ const handler = NextAuth({
     callbacks: {
         async signIn({ user, account, profile }) {
 
-
+          console.log("Provider", account, user, profile);
             console.log("Provider", account.provider);
             
 
