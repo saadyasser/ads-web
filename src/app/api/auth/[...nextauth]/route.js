@@ -40,8 +40,9 @@ const handler = NextAuth({
     callbacks: {
         async signIn({ user, account, profile }) {
 
-          console.log("Provider", account, user, profile);
+            console.log("Provider", account, user, profile);
             console.log("Provider", account.provider);
+            
             
 
             // Example: Log the user in your database if they are new

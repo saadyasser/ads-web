@@ -12,7 +12,7 @@ const InputOTP = React.forwardRef<
   <OTPInput
     ref={ref}
     containerClassName={cn(
-      "flex items-center gap-2 has-[:disabled]:opacity-50",
+      "flex items-center gap-2 has-[:disabled]:opacity-50 ",
       containerClassName
     )}
     className={cn("disabled:cursor-not-allowed", className)}
@@ -27,7 +27,7 @@ const InputOTPGroup = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("flex items-center gap-2 mx-auto", className)}
+    className={cn("flex items-center gap-2 mx-auto mb-6", className)}
     {...props}
   />
 ));
@@ -71,17 +71,23 @@ const InputOTPSeparator = React.forwardRef<
 ));
 InputOTPSeparator.displayName = "InputOTPSeparator";
 
-const Otp = () => {
+const Otp = ({ errorMessage = "", ...props }) => {
   return (
-    <InputOTP maxLength={6}>
+    <InputOTP maxLength={6} {...props}>
       <InputOTPGroup>
-        <InputOTPSlot index={0} />
-        <InputOTPSlot index={1} />
-        <InputOTPSlot index={2} />
-        <InputOTPSlot index={3} />
-        <InputOTPSlot index={4} />
-        <InputOTPSlot index={5} />
+        {[0, 1, 2, 3, 4, 5].map((index) => (
+          <InputOTPSlot
+            key={index}
+            index={index}
+            className={`${errorMessage && "border-danger"}`}
+          />
+        ))}
       </InputOTPGroup>
+      {errorMessage && (
+        <p className="absolute bottom-0 left-0 text-center text-xs text-danger mt-1">
+          {errorMessage}
+        </p>
+      )}
     </InputOTP>
   );
 };
