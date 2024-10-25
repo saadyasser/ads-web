@@ -4,14 +4,39 @@ import React from "react";
 import { Button, Input } from "@/components";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 type Inputs = {
   email: string;
 };
 
+interface SuccessResponse {
+  status: "success";
+  statusCode: number;
+  message: string;
+  data: any; // Replace `any` with your actual data type if available
+}
+
+interface ErrorResponse {
+  status: "failed";
+  statusCode: number;
+  message: string;
+  data: null;
+}
+type ApiResponse = SuccessResponse | ErrorResponse;
+
 const ForgetPasswordForm = () => {
-  const mutation = useMutation((formData: Inputs) =>
-    axios.post("https://api.azaiza.com/api/user/password/forgot", formData)
+  const mutation = useMutation<ApiResponse, any, Inputs>(
+    (formData: Inputs) =>
+      axios.post("https://api.azaiza.com/api/user/password/forgot", formData),
+    {
+      onSuccess: (response) => {
+        Cookies.set("_id", response.data.data._id); // Save the user's _id in a cookie
+      },
+      onError: (error) => {
+        console.log("Success:", error.message);
+      },
+    }
   );
 
   const {
@@ -23,14 +48,7 @@ const ForgetPasswordForm = () => {
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     if (isValid) {
       console.log("success");
-      mutation.mutate(data, {
-        onSuccess: (response) => {
-          console.log("Form submitted successfully!", response.data);
-        },
-        onError: (error) => {
-          console.error("Error submitting the form:", error);
-        },
-      });
+      mutation.mutate(data);
     } else {
       console.log("error");
     }

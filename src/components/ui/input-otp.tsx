@@ -73,22 +73,30 @@ InputOTPSeparator.displayName = "InputOTPSeparator";
 
 const Otp = ({ errorMessage = "", ...props }) => {
   return (
-    <InputOTP maxLength={6} {...props}>
-      <InputOTPGroup>
-        {[0, 1, 2, 3, 4, 5].map((index) => (
-          <InputOTPSlot
-            key={index}
-            index={index}
-            className={`${errorMessage && "border-danger"}`}
-          />
-        ))}
-      </InputOTPGroup>
-      {errorMessage && (
-        <p className="absolute bottom-0 left-0 text-center text-xs text-danger mt-1">
-          {errorMessage}
-        </p>
-      )}
-    </InputOTP>
+    <>
+      <label
+        htmlFor="code"
+        className="block text-sm mb-2 text-accent-dark leading-none"
+      >
+        Verification Code
+      </label>
+      <InputOTP maxLength={6} {...props}>
+        <InputOTPGroup>
+          {[0, 1, 2, 3, 4, 5].map((index) => (
+            <InputOTPSlot
+              key={index}
+              index={index}
+              className={`${errorMessage && "border-danger"}`}
+            />
+          ))}
+        </InputOTPGroup>
+        {errorMessage && (
+          <p className="absolute bottom-0 left-0 text-center text-xs text-danger mt-1">
+            {errorMessage}
+          </p>
+        )}
+      </InputOTP>
+    </>
   );
 };
 
