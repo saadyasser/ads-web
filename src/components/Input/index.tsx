@@ -27,7 +27,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     ref
   ) => {
     const inputClassName = cn(
-      "block w-full rounded-xl border-[1px] border-primary-light-active p-4 text-accent-dark placeholder:text-accent-dark hover:border-accent-gray focus:border-accent-dark outline-none",
+      "block w-full rounded-xl border-[1px] border-primary-light-active px-4 py-3 text-accent-dark placeholder:text-accent-dark hover:border-accent-gray focus:border-accent-dark outline-none md:py-4 lg:py-[18px]",
       className,
       { "border-success": success, "border-danger": error }
     );
