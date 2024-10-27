@@ -25,13 +25,14 @@ interface ErrorResponse {
 }
 type ApiResponse = SuccessResponse | ErrorResponse;
 
-const ForgetPasswordForm = () => {
+const ForgetPasswordForm = ({ onSuccess = () => {} }) => {
   const mutation = useMutation<ApiResponse, any, Inputs>(
     (formData: Inputs) =>
       axios.post("https://api.azaiza.com/api/user/password/forgot", formData),
     {
       onSuccess: (response) => {
         Cookies.set("_id", response.data.data._id); // Save the user's _id in a cookie
+        onSuccess();
       },
       onError: (error) => {
         console.log("Success:", error.message);

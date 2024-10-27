@@ -41,7 +41,7 @@ interface ErrorResponse {
 
 type ApiResponse = SuccessResponse | ErrorResponse;
 
-const VerificationCodeSent = () => {
+const VerificationCodeSent = ({ onSuccess = () => {} }) => {
   const mutation = useMutation<ApiResponse, any, Inputs>(
     (formData: Inputs) =>
       axios.post(
@@ -50,8 +50,8 @@ const VerificationCodeSent = () => {
       ),
     {
       onSuccess: (response) => {
-        console.log("Success:", response.message);
         Cookies.set("recoverToken", response.data.data.recoverToken); // Save the user's _id in a cookie
+        onSuccess();
       },
       onError: (error: any) => {
         const errResponse = error.response?.data as ErrorResponse;
