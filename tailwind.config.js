@@ -43,7 +43,7 @@ module.exports = {
         },
         accent: {
           dark: "#0E2841",
-          gray: "#D3D4D1"
+          gray: "#D3D4D1",
         },
         black: {
           DEFAULT: "#0D0D0D",
@@ -96,6 +96,9 @@ module.exports = {
         background: {
           light: "#F4F7FA",
           dark: "#0E2841",
+        },
+        border: {
+          DEFAULT: "#E7E9ED",
         },
       },
       boxShadow: {

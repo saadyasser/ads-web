@@ -28,6 +28,7 @@ import { SubmitButton } from "./SubmitButton";
 import { FileUploader } from "./FileUploader";
 import ErrorBoundary from "./ErrorBoundary";
 import { Loading } from "./Loading";
+import { GoogleIcon } from "./svg/GoogleIcon";
 export {
   Providers,
   ThemeHandler,
@@ -59,5 +60,6 @@ export {
   FileUploader,
   ErrorBoundary,
   Loading,
+  GoogleIcon,
 };
 export * from "./theme";

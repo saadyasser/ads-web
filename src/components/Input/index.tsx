@@ -11,7 +11,7 @@ export interface InputProps
   errorMessage?: string; // To show validation error messages
 }
 
-const Input = React.forwardRef<HTMLInputElement, InputProps>(
+export const Input = React.forwardRef<HTMLInputElement, InputProps>(
   (
     {
       className,
@@ -27,7 +27,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     ref
   ) => {
     const inputClassName = cn(
-      "block w-full rounded-xl border-[1px] border-primary-light-active p-4 text-accent-dark placeholder:text-accent-dark hover:border-accent-gray focus:border-accent-dark outline-none",
+      "block w-full rounded-xl border-[1px] border-[#E7E9ED] placeholder:text-black/70 p-4 text-black/70 focus:border-black-light-active outline-none transition-all align-middle",
       className,
       { "border-success": success, "border-danger": error }
     );
@@ -41,7 +41,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       <div className={cn("relative w-full pb-5", containerClassname)}>
         <Label
           htmlFor={inputId}
-          className="block text-sm mb-2 text-accent-dark leading-none"
+          className="block mb-2 text-sm font-semibold leading-none text-accent-dark"
         >
           {label}
         </Label>
@@ -53,7 +53,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           {...props} // Apply all props here including onChange, value, etc.
         />
         {errorMessage && (
-          <p className="absolute bottom-0 left-0 text-xs text-danger mt-1">
+          <p className="absolute bottom-0 left-0 mt-1 text-xs text-danger">
             {errorMessage}
           </p>
         )}
@@ -63,4 +63,4 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 );
 Input.displayName = "Input";
 
-export { Input };
+export default Input;
