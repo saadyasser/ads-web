@@ -58,7 +58,6 @@ const ForgetPasswordForm = ({ onSuccess = () => {} }) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Input
-        containerClassname="mb-6"
         label="Email"
         type="email"
         placeholder="Enter your email address"
@@ -78,7 +77,9 @@ const ForgetPasswordForm = ({ onSuccess = () => {} }) => {
         className="w-full !py-4"
         disabled={mutation.isLoading}
       >
-        Send Verification Code
+        {mutation.status === "loading"
+          ? "Sending..."
+          : "Send Verification Code"}
       </Button>
     </form>
   );

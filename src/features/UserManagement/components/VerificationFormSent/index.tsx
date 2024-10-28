@@ -112,7 +112,9 @@ const VerificationCodeSent = ({ onSuccess = () => {} }) => {
         className="w-full !py-4"
         disabled={mutation.isLoading || !!errors.code || !isValid}
       >
-        Send Verification Code
+        {mutation.status === "loading"
+          ? "Submiting..."
+          : "Send Verification Code"}
       </Button>
     </form>
   );

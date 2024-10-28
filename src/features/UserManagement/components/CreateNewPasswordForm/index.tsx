@@ -67,7 +67,6 @@ const CreateNewPasswordForm = ({
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Input
-        containerClassname="mb-6"
         label="Password"
         type="password"
         placeholder="Enter your password"
@@ -105,7 +104,9 @@ const CreateNewPasswordForm = ({
         className="w-full !py-4"
         disabled={mutation.isLoading}
       >
-        Send Verification Code
+        {mutation.status === "loading"
+          ? "Changinging..."
+          : "Change Your Password"}
       </Button>
     </form>
   );
