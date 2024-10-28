@@ -21,12 +21,14 @@ export const AuthFormWrapper = ({
 }: AuthFormWrapperProps) => {
   return (
     <div>
-      <H4 className="mb-2">{title}</H4>
-      <p className="text-sm mb-6">{description}</p>
+      <H4 className="mb-2 text-xl md:text-2xl md:leading-[30px] lg:leading-[30px] leading-6 tracking-[-1px]">
+        {title}
+      </H4>
+      <p className="text-sm leading-4 mb-4 md:mb-6">{description}</p>
       {children}
       {ctaLink && (
-        <p className="text-[#161C2D] text-center mt-6">
-          {ctaQuestion}
+        <p className="text-[#161C2D] text-sm md:text-base font-medium text-center mt-4 md:mt-6">
+          {ctaQuestion}{" "}
           <Link className="text-primary" href={ctaLink}>
             {ctaLinkText}
           </Link>

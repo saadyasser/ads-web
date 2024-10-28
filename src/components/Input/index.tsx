@@ -27,7 +27,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     ref
   ) => {
     const inputClassName = cn(
-      "block w-full rounded-xl border-[1px] border-primary-light-active px-4 py-3 text-accent-dark placeholder:text-accent-dark hover:border-accent-gray focus:border-accent-dark outline-none md:py-4 lg:py-[18px]",
+      "block w-full rounded-xl border-[1px] border-primary-light-active px-4 py-3 text-accent-dark placeholder:text-accent-dark hover:border-accent-gray focus:border-accent-dark outline-none md:py-4 lg:py-[18px] leading-[18px]",
       className,
       { "border-success": success, "border-danger": error }
     );
@@ -38,10 +38,15 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     console.log(errorMessage, "message");
 
     return (
-      <div className={cn("relative w-full pb-5", containerClassname)}>
+      <div
+        className={cn(
+          "relative w-full pb-4 md:pb-4 md:mb-2 ",
+          containerClassname
+        )}
+      >
         <Label
           htmlFor={inputId}
-          className="block text-sm mb-2 text-accent-dark leading-none"
+          className="block text-sm mb-2 font-semibold text-accent-dark leading-none"
         >
           {label}
         </Label>
@@ -53,7 +58,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           {...props} // Apply all props here including onChange, value, etc.
         />
         {errorMessage && (
-          <p className="absolute bottom-0 left-0 text-xs text-danger mt-1">
+          <p className="absolute bottom-0 left-0 pl-2 text-xs text-danger mt-1">
             {errorMessage}
           </p>
         )}

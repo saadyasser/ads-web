@@ -67,7 +67,6 @@ const CreateNewPasswordForm = ({
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Input
-        containerClassname="mb-6"
         label="Password"
         type="password"
         placeholder="Enter your password"

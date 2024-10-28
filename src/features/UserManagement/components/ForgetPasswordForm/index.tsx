@@ -58,7 +58,6 @@ const ForgetPasswordForm = ({ onSuccess = () => {} }) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Input
-        containerClassname="mb-6"
         label="Email"
         type="email"
         placeholder="Enter your email address"
