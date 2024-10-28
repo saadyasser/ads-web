@@ -19,50 +19,62 @@ import {
   Otp,
 } from "@/components/ui/input-otp";
 import { isDirty } from "zod";
+import Cookies from "js-cookie";
 
 type Inputs = {
   code: string;
   _id: string;
 };
-
 interface SuccessResponse {
-  status: string;
+  status: "success";
   statusCode: number;
   message: string;
-  data: null;
+  data: any; // Replace `any` with your actual data type if available
 }
+
 interface ErrorResponse {
-  status: string;
+  status: "failed";
   statusCode: number;
   message: string;
   data: null;
 }
 
-const VerificationCodeSent = () => {
-  const mutation = useMutation((formData: Inputs) =>
-    axios.post("https://api.azaiza.com/api/user/password/verify-code", formData)
+type ApiResponse = SuccessResponse | ErrorResponse;
+
+const VerificationCodeSent = ({ onSuccess = () => {} }) => {
+  const mutation = useMutation<ApiResponse, any, Inputs>(
+    (formData: Inputs) =>
+      axios.post(
+        "https://api.azaiza.com/api/user/password/verify-code",
+        formData
+      ),
+    {
+      onSuccess: (response) => {
+        Cookies.set("recoverToken", response.data.data.recoverToken); // Save the user's _id in a cookie
+        onSuccess();
+      },
+      onError: (error: any) => {
+        const errResponse = error.response?.data as ErrorResponse;
+        setErrorMessage(errResponse.message);
+      },
+    }
   );
 
   const [errorMessage, setErrorMessage] = useState("");
+
+  const _id = Cookies.get("_id");
 
   const {
     register,
     control,
     handleSubmit,
     formState: { errors, isValid, isDirty },
-  } = useForm<Inputs>({ defaultValues: { code: "", _id: "123456" } });
+  } = useForm<Inputs>({ defaultValues: { code: "", _id: _id } });
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     if (isValid) {
       console.log("success");
-      mutation.mutate(data, {
-        onSuccess: (response) => {
-          console.log(mutation.data, "onsuccess");
-        },
-        onError: (error) => {
-          setErrorMessage(mutation.error.response.data.message);
-        },
-      });
+      mutation.mutate(data);
     }
   };
 
@@ -94,11 +106,11 @@ const VerificationCodeSent = () => {
           </FormItem>
         )}
       />
-      <input type="hidden" {...register("_id")} />
+      <input type="hidden" {...register("_id")} value={_id} />
       <Button
         type="submit"
         className="w-full !py-4"
-        disabled={mutation.isLoading || !!errors.pin || !isValid}
+        disabled={mutation.isLoading || !!errors.code || !isValid}
       >
         Send Verification Code
       </Button>
