@@ -78,7 +78,9 @@ const ForgetPasswordForm = ({ onSuccess = () => {} }) => {
         className="w-full !py-4"
         disabled={mutation.isLoading}
       >
-        Send Verification Code
+        {mutation.status === "loading"
+          ? "Sending..."
+          : "Send Verification Code"}
       </Button>
     </form>
   );

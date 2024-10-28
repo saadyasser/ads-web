@@ -105,7 +105,9 @@ const CreateNewPasswordForm = ({
         className="w-full !py-4"
         disabled={mutation.isLoading}
       >
-        Send Verification Code
+        {mutation.status === "loading"
+          ? "Changinging..."
+          : "Change Your Password"}
       </Button>
     </form>
   );
