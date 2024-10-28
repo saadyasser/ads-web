@@ -6,7 +6,8 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import React from "react";
+import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 
 // Define Zod schema for form validation
 const loginSchema = z.object({
@@ -23,7 +24,9 @@ const loginSchema = z.object({
 type LoginFormValues = z.infer<typeof loginSchema>;
 
 const Login = () => {
-  const { status, data } = useSession();
+  const { status, data: sessionData } = useSession();
+  const [backendError, setBackendError] = useState<string | null | undefined>();
+  const router = useRouter();
 
   const {
     register, // To register inputs with React Hook Form
@@ -36,20 +39,27 @@ const Login = () => {
   // Handle normal login with credentials
   const onSubmit = async (data: LoginFormValues) => {
     const { email, password } = data;
-    const response = await signIn("credentials", {
-      emailOrUserName: email,
-      password,
-      redirect: true,
-      callbackUrl: "/",
-    });
+    try {
+      const response = await signIn("credentials", {
+        emailOrUserName: email,
+        password,
+        redirect: false,
+      });
+      console.log("🚀 ~ onSubmit ~ response:", response);
 
-    if (response?.error) {
-      console.error("Login error:", response.error);
-    } else {
-      console.log("Login successful:", response);
+      if (response && response?.status >= 400 && response?.status < 500) {
+        setBackendError(response?.error);
+      }
+      if (response && response?.status >= 200 && response?.status < 300) {
+        console.log(sessionData, status);
+        router.push("/");
+      }
+    } catch (err) {
+      console.log("Login error:", err);
+      // @ts-expect-error unknown compatibility
+      setBackendError(err);
     }
   };
-
   // Handle Google login
   const handleGoogleSignIn = async () => {
     await signIn("google", { callbackUrl: "/", redirect: true });
@@ -88,7 +98,11 @@ const Login = () => {
             errorMessage={errors.password?.message}
             autoComplete="password"
           />
-
+          {backendError && (
+            <p className="pb-2 text-sm text-center text-danger">
+              {backendError}
+            </p>
+          )}
           <Button type="submit" className="w-full mb-2" disabled={isSubmitting}>
             {isSubmitting ? "Logging in..." : "Login"}
           </Button>

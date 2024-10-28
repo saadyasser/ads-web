@@ -7,6 +7,8 @@ export interface InputProps
   label: string;
   success?: boolean;
   error?: boolean;
+  withErrorPlace?: boolean;
+  inputClassName?: string;
   containerClassname?: string;
   errorMessage?: string; // To show validation error messages
 }

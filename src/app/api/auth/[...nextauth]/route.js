@@ -17,33 +17,24 @@ const handler = NextAuth({
           password: credentials.password,
         };
         if (user) {
-          try {
-            const response = await fetch(
-              `https://api.azaiza.com/api/user/auth/login`,
-              {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                  emailOrUserName: user.emailOrUserName,
-                  password: user.password,
-                }),
-              }
-            );
-            console.log("🚀 ~ authorize ~ response:", response);
-
-            if (!response.ok) {
-              console.error("Failed to call API after login");
-              return false; // Return false if you want to prevent sign-in
+          const response = await fetch(
+            `https://api.azaiza.com/api/user/auth/login`,
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                emailOrUserName: user.emailOrUserName,
+                password: user.password,
+              }),
             }
-
-            console.log("API called successfully after login");
-            return user;
-          } catch (error) {
-            console.error("Error calling API after login:", error);
-            return false;
+          );
+          const data = await response.json();
+          if (!data.ok) {
+            throw new Error(data?.message);
           }
+          return user;
         } else {
           return null;
         }
@@ -54,6 +45,7 @@ const handler = NextAuth({
     async signIn({ user, account, profile }) {
       console.log("Provider", account, user, profile);
       console.log("Provider", account.provider);
+      //TODO: handle login after getting data from google
       return true; // Allow sign-in
     },
     async session({ session, token }) {
