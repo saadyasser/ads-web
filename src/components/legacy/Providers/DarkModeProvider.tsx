@@ -20,9 +20,9 @@ export const DarkModeProvider = ({ children }: Props) => {
     if (storedTheme) {
       setTheme(storedTheme);
     } else {
-      const defaultTheme = isNightTime ? "dark" : "light";
-      setTheme(defaultTheme);
-      localStorage.setItem("theme", defaultTheme);
+      // const defaultTheme = isNightTime ? "dark" : "light";
+      setTheme("light");
+      localStorage.setItem("theme", "light");
     }
 
     setMounted(true);
