@@ -10,6 +10,7 @@ interface AuthFormWrapperProps {
   description: childrenType;
   ctaQuestion?: string;
   ctaLink?: string;
+  catAction?: () => void;
   ctaLinkText?: string;
   children?: React.ReactNode;
   isSuccess?: boolean;
@@ -20,6 +21,7 @@ export const AuthFormWrapper = ({
   description,
   ctaQuestion,
   ctaLink,
+  catAction = () => {},
   ctaLinkText,
   isSuccess = false,
   children,
@@ -56,7 +58,14 @@ export const AuthFormWrapper = ({
       {ctaLink && !isSuccess && (
         <p className="text-[#161C2D] text-sm md:text-base font-medium text-center mt-4 md:mt-6 lg:mt-4 2xl:mt-6 !leading-[18px]">
           {ctaQuestion}{" "}
-          <Link className="text-primary" href={ctaLink}>
+          <Link
+            className="text-primary"
+            href={ctaLink}
+            onClick={(e) => {
+              e.preventDefault();
+              catAction();
+            }}
+          >
             {ctaLinkText}
           </Link>
         </p>

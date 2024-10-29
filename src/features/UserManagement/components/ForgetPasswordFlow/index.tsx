@@ -7,6 +7,7 @@ import React, { useEffect, useState } from "react";
 import Cookies from "js-cookie"; // Import js-cookie
 import CreateNewPasswordForm from "@/features/UserManagement/components/CreateNewPasswordForm";
 import { useRouter } from "next/navigation";
+import axios from "axios";
 
 const ForgetPasswordFlow = () => {
   const router = useRouter();
@@ -28,6 +29,18 @@ const ForgetPasswordFlow = () => {
     setRecoverToken(true);
   };
 
+  const [isResending, setIsResending] = useState(false);
+  const resendCode = async () => {
+    const email = Cookies.get("email");
+    setIsResending(true);
+    const response = await axios.post(
+      "https://api.azaiza.com/api/user/password/forgot",
+      {
+        email,
+      }
+    );
+    setIsResending(false);
+  };
   return (
     <>
       {isFlowCompleted ? (
@@ -49,7 +62,10 @@ const ForgetPasswordFlow = () => {
           title="Enter Verification Code"
           description="Please enter the verification code sent to your email."
           ctaQuestion="Didn't receive the code?"
-          ctaLinkText="Resend Code"
+          ctaLinkText={isResending ? "Resending..." : "Resend Code"}
+          catAction={() => {
+            resendCode();
+          }}
           ctaLink="/login"
         >
           <VerificationCodeSent onSuccess={onVerificationCodeSentSuccess} />
