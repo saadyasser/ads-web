@@ -12,7 +12,7 @@ export default function RootLayout({
         <ErrorBoundary>
           {" "}
           <section className="w-full max-w-[486px] px-6 md:px-0">
-            <Card className="block rounded-xl  p-4 border-[1px] border-[#E7E9ED] md:rounded-2xl  md:p-6  lg:p-8 ">
+            <Card className="block rounded-xl  p-4 border-[1px] border-[#E7E9ED] md:rounded-2xl  md:p-6  lg:p-4 2xl:p-8 ">
               {children}
             </Card>
           </section>

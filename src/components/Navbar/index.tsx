@@ -27,7 +27,7 @@ export const Navbar = ({ className = "" }: { className?: string }) => {
   const [burgerMenuOpen, setBurgerMenuOpen] = useState(false);
 
   return (
-    <nav className={`fixed top-0 z-50 w-full  py-4 lg:py-6 ${className}`}>
+    <nav className={`fixed top-0 z-50 w-full  py-4 2xl:py-6 ${className}`}>
       <div className="flex items-center justify-between gap-6 px-4 lg:px-20 md:px-8">
         <Logo width={196} height={47} />
         <NavLinks className="items-center justify-between hidden gap-2 xl:gap-6 xl:flex" />

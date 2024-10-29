@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 
 const ForgetPasswordFlow = () => {
   const router = useRouter();
+  const [isFlowCompleted, setIsFlowCompleted] = useState(false);
   const [hasId, setHasId] = useState(() => {
     const id = Cookies.get("_id");
     return !!id;
@@ -29,10 +30,18 @@ const ForgetPasswordFlow = () => {
 
   return (
     <>
-      {!!hasRecoverToken ? (
+      {isFlowCompleted ? (
+        <AuthFormWrapper
+          isSuccess={true}
+          title="Successfully Changed Password"
+          description="Please enter the verification code sent to your email."
+          ctaLinkText="Resend Code"
+          ctaLink="/login"
+        />
+      ) : !!hasRecoverToken ? (
         <CreateNewPasswordForm
           onSuccess={() => {
-            router.push("/login");
+            setIsFlowCompleted(true);
           }}
         />
       ) : hasId ? (
