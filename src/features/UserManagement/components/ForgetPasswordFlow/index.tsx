@@ -58,18 +58,7 @@ const ForgetPasswordFlow = () => {
           }}
         />
       ) : hasId ? (
-        <AuthFormWrapper
-          title="Enter Verification Code"
-          description="Please enter the verification code sent to your email."
-          ctaQuestion="Didn't receive the code?"
-          ctaLinkText={isResending ? "Resending..." : "Resend Code"}
-          catAction={() => {
-            resendCode();
-          }}
-          ctaLink="/login"
-        >
-          <VerificationCodeSent onSuccess={onVerificationCodeSentSuccess} />
-        </AuthFormWrapper>
+        <VerificationCodeSent onSuccess={onVerificationCodeSentSuccess} />
       ) : (
         <AuthFormWrapper
           title="Reset Your Password"
