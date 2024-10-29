@@ -35,7 +35,7 @@ export const AuthFormWrapper = ({
         {title}
       </H4>
       <p
-        className={`text-sm leading-4 mb-4 md:mb-6 ${
+        className={`text-sm leading-4 mb-4 md:mb-6 lg:mb-4 2xl:mb-6 ${
           isSuccess && "text-center"
         }`}
       >
@@ -53,7 +53,7 @@ export const AuthFormWrapper = ({
         </Button>
       )}
       {ctaLink && !isSuccess && (
-        <p className="text-[#161C2D] text-sm md:text-base font-medium text-center mt-4 md:mt-6">
+        <p className="text-[#161C2D] text-sm md:text-base font-medium text-center mt-4 md:mt-6 lg:mt-4 2xl:mt-6 !leading-[18px]">
           {ctaQuestion}{" "}
           <Link className="text-primary" href={ctaLink}>
             {ctaLinkText}
