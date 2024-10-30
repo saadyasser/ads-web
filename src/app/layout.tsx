@@ -9,6 +9,7 @@ import { gilroy } from "./fonts"; // Ensure the font import is correct
 import { ErrorBoundary, Logo, Providers, ThemeHandler } from "@/components";
 import "@/styles/globals.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { usePathname } from "next/navigation";
 
 // const Providers = dynamic(() => import("@/components/Providers"), {
 //   ssr: true,
@@ -48,9 +49,11 @@ export default function RootLayout({
 
   const queryClient = new QueryClient();
 
+  const pathname = usePathname();
+
   return (
     <html lang="en" className={classes}>
-      <body className="pt-[70px] xl:pt-[83px] bg-background-light">
+      <body className=" bg-background-light">
         <SessionProvider>
           <ErrorBoundary>
             <Suspense

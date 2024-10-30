@@ -29,7 +29,9 @@ import { FileUploader } from "./FileUploader";
 import ErrorBoundary from "./ErrorBoundary";
 import { Loading } from "./Loading";
 import { GoogleIcon } from "./svg/GoogleIcon";
+import { SearchBar } from "./SearchBar";
 export {
+  SearchBar,
   Providers,
   ThemeHandler,
   ThemeSwitcher,
