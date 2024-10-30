@@ -12,6 +12,7 @@ import Link from "next/link";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { CircleExclamationIcon } from "@/lib/@react-icons";
+import Cookies from "js-cookie";
 
 const signUpSchema = z
   .object({
@@ -24,7 +25,7 @@ const signUpSchema = z
       .min(1, { message: "Username is required" })
       .regex(/^[a-z0-9._'-]+$/, {
         message:
-          "Username can only contain letters, numbers, dashes (-), underscores (_), apostrophes ('), and periods (.)",
+          "Username can only contain letters, numbers, or [- , _ , ' , .]",
       }),
     password: z
       .string()
@@ -70,17 +71,22 @@ const SignUp = () => {
   } = useForm<SignUpFormValues>({ resolver: zodResolver(signUpSchema) });
 
   const signUpMutation = useMutation(signUpUser, {
-    onSuccess: async (data) => {
+    onSuccess: async (resData) => {
+      const { data } = resData;
+      Cookies.set("email", data?.user?.email);
+      Cookies.set("_id", data?.user?._id);
       const response = await signIn("credentials", {
-        emailOrUserName: data.email,
-        password: data.password,
+        emailOrUserName: data?.user.email,
+        password: data?.user.password,
         redirect: false,
       });
-      //@ts-expect-error data not found
+
+      console.log("🚀 ~ onSuccess: ~ response:", response);
+      // @ts-expect-error data not found
       if (response?.data?.message) {
         setBackendError(response.error);
       } else {
-        router.push("/");
+        router.push("/user-verification");
       }
     },
     onError: (error) => {
@@ -107,12 +113,11 @@ const SignUp = () => {
       ctaLink="/login"
     >
       {backendError && (
-        <div className="flex items-center gap-2 p-2 mb-6 text-sm text-center rounded-lg text-danger-dark bg-danger-light">
-          <CircleExclamationIcon
-            size={36}
-            className="p-2 rounded-lg text-danger-dark bg-danger-light-hover"
-          />
-          <p>{backendError}</p>
+        <div className="flex items-center gap-2 p-2 mb-6 text-center rounded-lg text-danger-dark bg-danger-light">
+          <div className="p-2 rounded-lg bg-danger-light-hover">
+            <CircleExclamationIcon size={26} className=" text-danger-dark" />
+          </div>
+          <p className="text-sm font-medium">{backendError}</p>
         </div>
       )}
       <div className="space-y-3">
