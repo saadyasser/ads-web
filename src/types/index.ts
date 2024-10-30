@@ -53,3 +53,16 @@ export interface CategoryType {
   name: string;
   products: ProductType[];
 }
+
+export type UserType = {
+  _id: string;
+  role: "user" | "publisher" | "admin" | "superAdmin";
+  email: string;
+  userName: string;
+  displayName: string;
+  isEmailVerified: boolean;
+  profileImage: string | null;
+  favoriteList: string[] | [];
+  downloads: string[] | [];
+  paid: number;
+};

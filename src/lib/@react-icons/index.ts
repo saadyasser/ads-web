@@ -29,6 +29,7 @@ export {
   HiBars3 as BarsIcon,
 } from "react-icons/hi2";
 export { FaLock as LockIcon } from "react-icons/fa";
+export { FaCircleExclamation as CircleExclamationIcon } from "react-icons/fa6";
 
 export { CiMenuBurger as BurgerMenuIcon } from "react-icons/ci";
 export { IoCloseSharp as CloseIcon } from "react-icons/io5";

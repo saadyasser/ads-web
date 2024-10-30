@@ -25,7 +25,7 @@ export const AuthFormWrapper = ({
       <H4 className="mb-2 text-xl md:text-2xl md:leading-[30px] lg:leading-[30px] leading-6 tracking-[-1px]">
         {title}
       </H4>
-      <p className="text-sm leading-4 mb-4 md:mb-6">{description}</p>
+      <div className="mb-4 text-sm leading-4 md:mb-6">{description}</div>
       {children}
       {ctaLink && (
         <p className="text-[#161C2D] text-sm md:text-base font-medium text-center mt-4 md:mt-6">
