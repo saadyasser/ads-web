@@ -62,7 +62,7 @@ export const AuthFormWrapper = ({
             className="text-primary"
             href={ctaLink}
             onClick={(e) => {
-              e.preventDefault();
+              // e.preventDefault();
               catAction();
             }}
           >
