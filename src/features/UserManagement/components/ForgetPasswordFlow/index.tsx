@@ -7,9 +7,11 @@ import React, { useEffect, useState } from "react";
 import Cookies from "js-cookie"; // Import js-cookie
 import CreateNewPasswordForm from "@/features/UserManagement/components/CreateNewPasswordForm";
 import { useRouter } from "next/navigation";
+import axios from "axios";
 
 const ForgetPasswordFlow = () => {
   const router = useRouter();
+  const [isFlowCompleted, setIsFlowCompleted] = useState(false);
   const [hasId, setHasId] = useState(() => {
     const id = Cookies.get("_id");
     return !!id;
@@ -27,24 +29,36 @@ const ForgetPasswordFlow = () => {
     setRecoverToken(true);
   };
 
+  const [isResending, setIsResending] = useState(false);
+  const resendCode = async () => {
+    const email = Cookies.get("email");
+    setIsResending(true);
+    const response = await axios.post(
+      "https://api.azaiza.com/api/user/password/forgot",
+      {
+        email,
+      }
+    );
+    setIsResending(false);
+  };
   return (
     <>
-      {!!hasRecoverToken ? (
+      {isFlowCompleted ? (
+        <AuthFormWrapper
+          isSuccess={true}
+          title="Successfully Changed Password"
+          description="Please enter the verification code sent to your email."
+          ctaLinkText="Resend Code"
+          ctaLink="/login"
+        />
+      ) : !!hasRecoverToken ? (
         <CreateNewPasswordForm
           onSuccess={() => {
-            router.push("/login");
+            setIsFlowCompleted(true);
           }}
         />
       ) : hasId ? (
-        <AuthFormWrapper
-          title="Enter Verification Code"
-          description="Please enter the verification code sent to your email."
-          ctaQuestion="Didn't receive the code?"
-          ctaLinkText="Resend Code"
-          ctaLink="/login"
-        >
-          <VerificationCodeSent onSuccess={onVerificationCodeSentSuccess} />
-        </AuthFormWrapper>
+        <VerificationCodeSent onSuccess={onVerificationCodeSentSuccess} />
       ) : (
         <AuthFormWrapper
           title="Reset Your Password"

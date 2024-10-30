@@ -29,7 +29,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     ref
   ) => {
     const inputClassName = cn(
-      "block w-full rounded-xl border-[1px] border-primary-light-active px-4 py-3 text-accent-dark placeholder:text-accent-dark hover:border-accent-gray focus:border-accent-dark outline-none md:py-4 lg:py-[18px] leading-[18px]",
+      "block w-full rounded-xl border-[1px] border-primary-light-active px-4 py-3 text-accent-dark placeholder:text-accent-dark hover:border-accent-gray focus:border-accent-dark outline-none md:py-4  2xl:py-[18px] leading-[18px]",
       className,
       { "border-success": success, "border-danger": error }
     );
@@ -42,13 +42,13 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     return (
       <div
         className={cn(
-          "relative w-full pb-4 md:pb-4 md:mb-2 ",
+          "relative w-full pb-4 md:pb-4 md:mb-2 lg:pb-4 2xl:pb-4 2xl:mb-2",
           containerClassname
         )}
       >
         <Label
           htmlFor={inputId}
-          className="block text-sm mb-2 font-semibold text-accent-dark leading-none"
+          className="block text-sm mb-2 lg:mb-1 2xl:mb-2 font-semibold text-accent-dark leading-none"
         >
           {label}
         </Label>

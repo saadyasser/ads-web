@@ -20,6 +20,7 @@ import {
 } from "@/components/ui/input-otp";
 import { isDirty } from "zod";
 import Cookies from "js-cookie";
+import AuthFormWrapper from "../AuthFormWrapper";
 
 type Inputs = {
   code: string;
@@ -78,45 +79,67 @@ const VerificationCodeSent = ({ onSuccess = () => {} }) => {
     }
   };
 
-  console.log(errors, isDirty, "errors");
+  const [isResending, setIsResending] = useState(false);
+  const resendCode = async () => {
+    const email = Cookies.get("email");
+    setIsResending(true);
+    const response = await axios.post(
+      "https://api.azaiza.com/api/user/password/forgot",
+      {
+        email,
+      }
+    );
+    setIsResending(false);
+  };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <FormField
-        control={control}
-        name="code"
-        rules={{
-          required: "PIN is required",
-          minLength: { value: 6, message: "PIN must be exactly 6 digits" },
-          maxLength: { value: 6, message: "PIN must be exactly 6 digits" },
-          pattern: {
-            value: /^[0-9]{6}$/, // Ensures it's 6 digits
-            message: "PIN must be a 6-digit number",
-          },
-        }}
-        render={({ field }) => (
-          <FormItem>
-            <Otp
-              errorMessage={errorMessage}
-              maxLength={6}
-              value={field.value} // Hook up the field value to the OTPInput
-              onChange={field.onChange} // Ensure this updates the form state
-              onBlur={field.onBlur}
-            />
-          </FormItem>
-        )}
-      />
-      <input type="hidden" {...register("_id")} value={_id} />
-      <Button
-        type="submit"
-        className="w-full !py-4"
-        disabled={mutation.isLoading || !!errors.code || !isValid}
-      >
-        {mutation.status === "loading"
-          ? "Submiting..."
-          : "Send Verification Code"}
-      </Button>
-    </form>
+    <AuthFormWrapper
+      title="Enter Verification Code"
+      description="Please enter the verification code sent to your email."
+      ctaQuestion="Didn't receive the code?"
+      ctaLinkText={isResending ? "Resending..." : "Resend Code"}
+      catAction={() => {
+        resendCode();
+      }}
+      ctaLink="/login"
+    >
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <FormField
+          control={control}
+          name="code"
+          rules={{
+            required: "PIN is required",
+            minLength: { value: 6, message: "PIN must be exactly 6 digits" },
+            maxLength: { value: 6, message: "PIN must be exactly 6 digits" },
+            pattern: {
+              value: /^[0-9]{6}$/, // Ensures it's 6 digits
+              message: "PIN must be a 6-digit number",
+            },
+          }}
+          render={({ field }) => (
+            <FormItem>
+              <Otp
+                errorMessage={errorMessage}
+                maxLength={6}
+                value={field.value} // Hook up the field value to the OTPInput
+                onChange={field.onChange} // Ensure this updates the form state
+                onBlur={field.onBlur}
+              />
+            </FormItem>
+          )}
+        />
+        <input type="hidden" {...register("_id")} value={_id} />
+        <Button
+          type="submit"
+          className="w-full !py-4"
+          disabled={mutation.isLoading || !!errors.code || !isValid}
+        >
+          {mutation.status === "loading"
+            ? "Submiting..."
+            : "Send Verification Code"}
+        </Button>
+      </form>
+    </AuthFormWrapper>
   );
 };
 
