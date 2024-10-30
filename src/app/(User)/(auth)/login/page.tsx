@@ -8,6 +8,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import { CircleExclamationIcon } from "@/lib/@react-icons";
 
 // Define Zod schema for form validation
 const loginSchema = z.object({
@@ -77,6 +78,14 @@ const Login = () => {
       ctaLinkText="Create an account"
       ctaLink="/sign-up"
     >
+      {backendError && (
+        <div className="flex items-center gap-2 p-2 mb-6 text-center rounded-lg text-danger-dark bg-danger-light">
+          <div className="p-2 rounded-lg bg-danger-light-hover">
+            <CircleExclamationIcon size={26} className=" text-danger-dark" />
+          </div>
+          <p className="text-sm font-medium">{backendError}</p>
+        </div>
+      )}
       <div className="space-y-3">
         <form className="space-y-3" onSubmit={handleSubmit(onSubmit)}>
           <Input
@@ -98,11 +107,7 @@ const Login = () => {
             errorMessage={errors.password?.message}
             autoComplete="password"
           />
-          {backendError && (
-            <p className="pb-2 text-sm text-center text-danger">
-              {backendError}
-            </p>
-          )}
+
           <Button type="submit" className="w-full mb-2" disabled={isSubmitting}>
             {isSubmitting ? "Logging in..." : "Login"}
           </Button>
