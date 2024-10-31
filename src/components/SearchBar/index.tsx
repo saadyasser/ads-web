@@ -29,8 +29,11 @@ export const SearchBar: React.FC<TargetComponentProps> = ({
   }, [onVisibilityChange]);
 
   return (
-    <div className="text-4xl font-extrabold text-white" ref={targetRef}>
-      Sea
+    <div
+      className="text-4xl text-center font-extrabold text-white"
+      ref={targetRef}
+    >
+      Search Bar
     </div>
   );
 };
