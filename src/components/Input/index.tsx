@@ -37,8 +37,6 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     // Ensure the input has an id, or fallback to a generated one for accessibility
     const inputId = id || `input-${label.replace(/\s+/g, "-").toLowerCase()}`;
 
-    console.log(errorMessage, "message");
-
     return (
       <div
         className={cn(
@@ -48,7 +46,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       >
         <Label
           htmlFor={inputId}
-          className="block text-sm mb-2 lg:mb-1 2xl:mb-2 font-semibold text-accent-dark leading-none"
+          className="block mb-2 text-sm font-semibold leading-none lg:mb-1 2xl:mb-2 text-accent-dark"
         >
           {label}
         </Label>
@@ -60,7 +58,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           {...props} // Apply all props here including onChange, value, etc.
         />
         {errorMessage && (
-          <p className="absolute bottom-0 left-0 pl-2 text-xs text-danger mt-1">
+          <p className="absolute bottom-0 left-0 pl-2 mt-1 text-xs text-danger">
             {errorMessage}
           </p>
         )}

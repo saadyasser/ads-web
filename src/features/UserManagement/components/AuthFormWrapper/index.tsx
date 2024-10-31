@@ -37,13 +37,13 @@ export const AuthFormWrapper = ({
       >
         {title}
       </H4>
-      <p
+      <div
         className={`text-sm leading-4 mb-4 md:mb-6 lg:mb-4 2xl:mb-6 ${
           isSuccess && "text-center"
         }`}
       >
         {description}
-      </p>
+      </div>
       {children}
       {isSuccess && ctaLink && (
         <Button
@@ -62,7 +62,7 @@ export const AuthFormWrapper = ({
             className="text-primary"
             href={ctaLink}
             onClick={(e) => {
-              e.preventDefault();
+              // e.preventDefault();
               catAction();
             }}
           >

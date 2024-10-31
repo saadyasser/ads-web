@@ -45,15 +45,37 @@ const handler = NextAuth({
     async signIn({ user, account, profile }) {
       console.log("Provider", account, user, profile);
       console.log("Provider", account.provider);
-      //TODO: handle login after getting data from google
-      return true; // Allow sign-in
+      // handling google auth
+      if (account.provider === "google") {
+        const response = await fetch(
+          `https://api.azaiza.com/api/user/auth/google`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              token: account?.access_token,
+            }),
+          }
+        );
+        const data = await response.json();
+        console.log("🚀 ~ signIn ~ data:", data);
+        if (!data.ok || data.statusCode >= 400) {
+          throw new Error(data?.message);
+        }
+        return user;
+      } else {
+        return null;
+      }
     },
-    async session({ session, token }) {
-      // Attach custom data to the session if needed
-      session.user.id = token.sub; // Example: Add user ID to session
-      session.user.role = "user"; // Add a role to the session (optional)
-      return session;
-    },
+    // return true; // Allow sign-in
+  },
+  async session({ session, token }) {
+    console.log("🚀 ~ session ~ token:", token);
+    console.log("🚀 ~ session ~ session:", session);
+
+    return session;
   },
   pages: {
     signIn: "/login",

@@ -70,6 +70,7 @@ module.exports = {
           light: "#FEEFEE",
           "light-hover": "#FDE6E5",
           "light-active": "#FCCCC9",
+          dark: "#B7443D",
           darker: "#551F1C",
           shadow: "rgba(148, 15, 15, 0.3)",
         },
