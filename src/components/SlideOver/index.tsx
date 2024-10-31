@@ -35,8 +35,11 @@ export const SlideOver = ({
   const navClassName =
     isScrollY || pathname !== "/" ? "bg-white" : "bg-accent-dark";
   const buttonsClassName =
-    isScrollY || pathname !== "/" ? "bg-primary-light" : "bg-accent-dark-hover";
-  const iconColor = isScrollY ? "#0E2841" : "white";
+    (isScrollY && pathname === "/") || pathname !== "/"
+      ? "!bg-primary-light hover:!bg-primary-light-hover"
+      : "!bg-accent-dark-hover hover:!bg-accent-dark-hover";
+  const iconColor =
+    (isScrollY && pathname === "/") || pathname !== "/" ? "#0E2841" : "white";
   return (
     <Transition show={open} as={Fragment}>
       <Dialog as="div" className="relative z-40" onClose={setOpen}>
