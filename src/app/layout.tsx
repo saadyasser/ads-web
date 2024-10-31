@@ -53,7 +53,7 @@ export default function RootLayout({
 
   return (
     <html lang="en" className={classes}>
-      <body className=" bg-background-light">
+      <body className="pt-[70px] xl:pt-[83px] bg-black">
         <SessionProvider>
           <ErrorBoundary>
             <Suspense
