@@ -46,8 +46,6 @@ const Login = () => {
         password,
         redirect: false,
       });
-      console.log("🚀 ~ onSubmit ~ response:", response);
-
       if (response && response?.status >= 400 && response?.status < 500) {
         setBackendError(response?.error);
       }
@@ -63,7 +61,23 @@ const Login = () => {
   };
   // Handle Google login
   const handleGoogleSignIn = async () => {
-    await signIn("google", { callbackUrl: "/", redirect: true });
+    try {
+      const response = await signIn("google", {
+        redirect: false,
+        // callbackUrl: "/",
+      });
+      console.log("🚀 ~ handleGoogleSignIn ~ response:", response);
+      if (response && response?.status >= 400 && response?.status < 500) {
+        setBackendError(response?.error);
+      }
+      if (response && response?.status >= 200 && response?.status < 300) {
+        console.log(sessionData, status);
+      }
+    } catch (err) {
+      console.log("Login error:", err);
+      // @ts-expect-error unknown compatibility
+      setBackendError(err);
+    }
   };
 
   return (
