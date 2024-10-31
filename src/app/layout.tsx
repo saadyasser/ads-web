@@ -53,7 +53,11 @@ export default function RootLayout({
 
   return (
     <html lang="en" className={classes}>
-      <body className="pt-[70px] xl:pt-[83px] bg-black">
+      <body
+        className={`pt-[70px] xl:pt-[83px] ${
+          pathname === "/" ? "bg-black" : ""
+        }`}
+      >
         <SessionProvider>
           <ErrorBoundary>
             <Suspense
