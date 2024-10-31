@@ -33,7 +33,7 @@ export const NavLink = ({
     activeClasses,
     pathname === "/" &&
       !isScrollY &&
-      `text-white ${isActive && "text-secondary"} hover:text-secondary`,
+      `text-white ${isActive && "!text-secondary"} hover:!text-secondary`,
     pathname === "/" &&
       isScrollY &&
       `text-accent-dark ${isActive && "text-primary"} hover:text-primary`

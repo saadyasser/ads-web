@@ -42,7 +42,8 @@ export const Navbar = ({
     className,
     pathname === "/" ? "bg-transparent" : "",
     isScrollY && pathname === "/" ? "bg-white" : "",
-    burgerMenuOpen && !isScrollY && "bg-accent-dark"
+    burgerMenuOpen && !isScrollY && "bg-accent-dark",
+    pathname !== "/" && "bg-white"
   );
 
   const buttonsClassName = cn(
@@ -51,7 +52,8 @@ export const Navbar = ({
   );
   const iconColor = cn(
     pathname === "/" && !isScrollY && "white",
-    pathname === "/" && isScrollY && "#0E2841"
+    pathname === "/" && isScrollY && "#0E2841",
+    pathname !== "/" && "#0E2841"
   );
   return (
     <nav
@@ -80,9 +82,7 @@ export const Navbar = ({
         {pathname !== "/" && <Logo withBadge={false} width={196} height={47} />}
 
         <NavLinks
-          className={`items-center justify-between hidden gap-2 xl:gap-6 xl:flex ${
-            isScrollY ? "bg-white" : "bg-accent-dark-hover"
-          }`}
+          className={`items-center justify-between hidden gap-2 xl:gap-6 xl:flex transparent`}
         />
         <div className="flex items-center gap-3 lg:gap-4">
           {searchIconhidden && (
@@ -144,15 +144,19 @@ export const Navbar = ({
         >
           <div
             className={`p-3 rounded-lg ${
-              !isScrollY ? "bg-accent-dark-hover" : "bg-white "
+              !isScrollY && pathname === "/"
+                ? "bg-accent-dark-hover"
+                : "bg-white "
             }  `}
           >
             <NavLinks
               className={`flex flex-col w-full gap-3 ${
-                !isScrollY ? "bg-accent-dark-hover " : "bg-white"
+                !isScrollY && pathname === "/"
+                  ? "bg-accent-dark-hover "
+                  : "bg-white"
               }`}
               linkClassName={`!w-full items-center justify-center !text-base !font-extrabold ${
-                !isScrollY
+                !isScrollY && pathname === "/"
                   ? " !text-white hover:!text-secondary"
                   : " !text-accent-dark hover:!text-primary"
               } `}

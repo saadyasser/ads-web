@@ -32,10 +32,10 @@ export const SlideOver = ({
   const pathname = usePathname();
   const { isScrollY } = useSCrollY();
 
-  const navClassName = isScrollY ? "bg-white" : "bg-accent-dark";
-  const buttonsClassName = isScrollY
-    ? "bg-primary-light"
-    : "bg-accent-dark-hover";
+  const navClassName =
+    isScrollY || pathname !== "/" ? "bg-white" : "bg-accent-dark";
+  const buttonsClassName =
+    isScrollY || pathname !== "/" ? "bg-primary-light" : "bg-accent-dark-hover";
   const iconColor = isScrollY ? "#0E2841" : "white";
   return (
     <Transition show={open} as={Fragment}>
