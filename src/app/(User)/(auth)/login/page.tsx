@@ -25,16 +25,17 @@ const loginSchema = z.object({
 type LoginFormValues = z.infer<typeof loginSchema>;
 
 const Login = () => {
-  const { status, data: sessionData } = useSession();
+  const { status: sessionStat, data: sessionData } = useSession();
   const [backendError, setBackendError] = useState<string | null | undefined>();
+  const [temp, setTemp] = useState();
   const router = useRouter();
 
   const {
-    register, // To register inputs with React Hook Form
-    handleSubmit, // To handle form submission
-    formState: { errors, isSubmitting }, // Get form state
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
   } = useForm<LoginFormValues>({
-    resolver: zodResolver(loginSchema), // Use Zod schema for validation
+    resolver: zodResolver(loginSchema),
   });
 
   // Handle normal login with credentials
@@ -81,71 +82,91 @@ const Login = () => {
   };
 
   return (
-    <AuthFormWrapper
-      title="Login"
-      description={
-        <p className="italic">
-          Fill the following information to access your <b>ADS</b> account!
-        </p>
-      }
-      ctaQuestion="Don’t have an account?"
-      ctaLinkText="Create an account"
-      ctaLink="/sign-up"
-    >
-      {backendError && (
-        <div className="flex items-center gap-2 p-2 mb-6 text-center rounded-lg text-danger-dark bg-danger-light">
-          <div className="p-2 rounded-lg bg-danger-light-hover">
-            <CircleExclamationIcon size={26} className=" text-danger-dark" />
+    <>
+      <AuthFormWrapper
+        title="Login"
+        description={
+          <p className="italic">
+            Fill the following information to access your <b>ADS</b> account!
+          </p>
+        }
+        ctaQuestion="Don’t have an account?"
+        ctaLinkText="Create an account"
+        ctaLink="/sign-up"
+      >
+        {backendError && (
+          <div className="flex items-center gap-2 p-2 mb-6 text-center rounded-lg text-danger-dark bg-danger-light">
+            <div className="p-2 rounded-lg bg-danger-light-hover">
+              <CircleExclamationIcon size={26} className=" text-danger-dark" />
+            </div>
+            <p className="text-sm font-medium">{backendError}</p>
           </div>
-          <p className="text-sm font-medium">{backendError}</p>
-        </div>
-      )}
-      <div className="space-y-3">
-        <form className="space-y-3" onSubmit={handleSubmit(onSubmit)}>
-          <Input
-            label="Email"
-            type="email"
-            placeholder="i.e. john@mail.com"
-            {...register("email")}
-            error={!!errors.email?.message}
-            errorMessage={errors.email?.message}
-            autoComplete="email"
-          />
+        )}
+        <div className="space-y-3">
+          <form className="space-y-3" onSubmit={handleSubmit(onSubmit)}>
+            <Input
+              label="Email"
+              type="email"
+              placeholder="i.e. john@mail.com"
+              {...register("email")}
+              error={!!errors.email?.message}
+              errorMessage={errors.email?.message}
+              autoComplete="email"
+            />
 
-          <Input
-            label="Password"
-            type="password"
-            placeholder="******"
-            {...register("password")}
-            error={!!errors.password?.message}
-            errorMessage={errors.password?.message}
-            autoComplete="password"
-          />
+            <Input
+              label="Password"
+              type="password"
+              placeholder="******"
+              {...register("password")}
+              error={!!errors.password?.message}
+              errorMessage={errors.password?.message}
+              autoComplete="password"
+            />
 
-          <Button type="submit" className="w-full mb-2" disabled={isSubmitting}>
-            {isSubmitting ? "Logging in..." : "Login"}
-          </Button>
-        </form>
-        <div className="flex flex-col items-center gap-6 pt-6">
-          <div className="relative w-full">
-            <hr className="w-full text-background-light" />
-            <p className="absolute px-1 text-sm font-medium text-center bg-white text-background-dark inset-x-1/4 md:inset-x-1/3 -top-2.5">
-              Or Continue With
-            </p>
+            <Button
+              type="submit"
+              className="w-full mb-2"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? "Logging in..." : "Login"}
+            </Button>
+          </form>
+          <div className="flex flex-col items-center gap-6 pt-6">
+            <div className="relative w-full">
+              <hr className="w-full text-background-light" />
+              <p className="absolute px-1 text-sm font-medium text-center bg-white text-background-dark inset-x-1/4 md:inset-x-1/3 -top-2.5">
+                Or Continue With
+              </p>
+            </div>
+
+            <Button
+              intent="custom"
+              type="button"
+              onClick={handleGoogleSignIn}
+              className="w-full p-4 font-medium text-center transition-all border bg-background-light border-border text-accent-dark hover:bg-background-light/50"
+            >
+              <GoogleIcon />
+              <span>Google</span>
+            </Button>
           </div>
-
-          <Button
-            intent="custom"
-            type="button"
-            onClick={handleGoogleSignIn}
-            className="w-full p-4 font-medium text-center transition-all border bg-background-light border-border text-accent-dark hover:bg-background-light/50"
-          >
-            <GoogleIcon />
-            <span>Google</span>
-          </Button>
         </div>
-      </div>
-    </AuthFormWrapper>
+      </AuthFormWrapper>
+
+      <p className="max-w-screen-xl text-wrap">
+        {
+          //@ts-expect-error account not defined
+          sessionData?.account?.provider
+        }
+      </p>
+      <p className="max-w-screen-xl text-wrap">
+        token:{" "}
+        {
+          //@ts-expect-error account not defined
+          sessionData?.account?.access_token
+        }
+      </p>
+    </>
   );
 };
 

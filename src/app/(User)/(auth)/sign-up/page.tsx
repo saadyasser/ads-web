@@ -82,6 +82,7 @@ const SignUp = () => {
       });
 
       console.log("🚀 ~ onSuccess: ~ response:", response);
+      alert(response);
       // @ts-expect-error data not found
       if (response?.data?.message) {
         setBackendError(response.error);

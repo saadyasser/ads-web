@@ -11,80 +11,66 @@ const handler = NextAuth({
     }),
     CredentialsProvider({
       name: "Credentials",
-      async authorize(credentials, req) {
-        const user = {
-          emailOrUserName: credentials.emailOrUserName,
-          password: credentials.password,
-        };
-        if (user) {
-          const response = await fetch(
-            `https://api.azaiza.com/api/user/auth/login`,
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                emailOrUserName: user.emailOrUserName,
-                password: user.password,
-              }),
-            }
-          );
-          const data = await response.json();
-          if (!data.ok) {
-            throw new Error(data?.message);
+      async authorize(credentials) {
+        const response = await fetch(
+          `https://api.azaiza.com/api/user/auth/login`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              emailOrUserName: credentials.emailOrUserName,
+              password: credentials.password,
+            }),
           }
-          return user;
-        } else {
-          return null;
+        );
+
+        const data = await response.json();
+        if (!data.ok) {
+          throw new Error(data?.message);
         }
+        return { id: data.id, name: data.name, email: data.email };
       },
     }),
   ],
   callbacks: {
     async signIn({ user, account, profile }) {
-      console.log("Provider", account, user, profile);
-      console.log("Provider", account.provider);
-      // handling google auth
-      if (account.provider === "google") {
-        const response = await fetch(
-          `https://api.azaiza.com/api/user/auth/google`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              token: account?.access_token,
-            }),
-          }
-        );
-        const data = await response.json();
-        console.log("🚀 ~ signIn ~ data:", data);
-        if (!data.ok || data.statusCode >= 400) {
-          throw new Error(data?.message);
-        }
-        return user;
-      } else {
-        return null;
-      }
-    },
-    // return true; // Allow sign-in
-  },
-  async session({ session, token }) {
-    console.log("🚀 ~ session ~ token:", token);
-    console.log("🚀 ~ session ~ session:", session);
+      // if (account.provider === "google") {
+      //   const response = await fetch(
+      //     `https://api.azaiza.com/api/user/auth/google`,
+      //     {
+      //       method: "POST",
+      //       headers: { "Content-Type": "application/json" },
+      //       body: JSON.stringify({ token: account.access_token }),
+      //     }
+      //   );
 
-    return session;
+      //   const data = await response.json();
+      //   if (!data.ok || data.statusCode >= 400) {
+      //     throw new Error(data?.message);
+      //   }
+      // }
+      return true; // Allow sign-in
+    },
+
+    async jwt({ token, user, account, profile }) {
+      // If it's the first time, add user, profile, and account to the token
+      if (user) {
+        token.user = user;
+        token.account = account;
+        token.profile = profile;
+      }
+      return token;
+    },
+
+    async session({ session, token }) {
+      session.user = token.user;
+      session.account = token.account;
+      session.profile = token.profile;
+      return session;
+    },
   },
   pages: {
     signIn: "/login",
-    // newUser: "/sign-up",
-    // "signOut":false,
-    // "error": "/[...nextauth]/error",
-    // "verify": "/[...nextauth]/verify/[...params]",
-    // "account": "/[...nextauth]/account",
-    // "api/auth/callback": "/api/auth/callback",
   },
 });
 
