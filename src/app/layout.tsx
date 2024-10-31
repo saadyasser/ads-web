@@ -49,36 +49,28 @@ export default function RootLayout({
 
   const queryClient = new QueryClient();
 
-  const pathname = usePathname();
-
   return (
     <html lang="en" className={classes}>
-      <body
-        className={`pt-[70px] xl:pt-[83px] ${
-          pathname === "/" ? "bg-black" : ""
-        }`}
-      >
-        <SessionProvider>
-          <ErrorBoundary>
-            <Suspense
-              fallback={
-                <div className="flex items-center justify-center h-[60vh]">
-                  <div className="animate-pulse">
-                    <Logo />
-                  </div>
+      <SessionProvider>
+        <ErrorBoundary>
+          <Suspense
+            fallback={
+              <div className="flex items-center justify-center h-[60vh]">
+                <div className="animate-pulse">
+                  <Logo />
                 </div>
-              }
-            >
-              <QueryClientProvider client={queryClient}>
-                <Providers>
-                  <ThemeHandler />
-                  {children}
-                </Providers>
-              </QueryClientProvider>
-            </Suspense>
-          </ErrorBoundary>
-        </SessionProvider>
-      </body>
+              </div>
+            }
+          >
+            <QueryClientProvider client={queryClient}>
+              <Providers>
+                <ThemeHandler />
+                {children}
+              </Providers>
+            </QueryClientProvider>
+          </Suspense>
+        </ErrorBoundary>
+      </SessionProvider>
     </html>
   );
 }

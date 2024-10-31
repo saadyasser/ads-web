@@ -6,7 +6,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <>
+    <body className="pt-[70px] xl:pt-[83px]">
       <Navbar className="bg-white" />
       <main className="flex justify-center items-center xl:min-h-[calc(100vh-83px)] min-h-[calc(100vh-70px)]   py-6 lg:py-12  dark:bg-background-dark">
         <ErrorBoundary>
@@ -18,6 +18,6 @@ export default function RootLayout({
           </section>
         </ErrorBoundary>
       </main>
-    </>
+    </body>
   );
 }
