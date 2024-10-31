@@ -7,8 +7,14 @@ import { SketchIcon } from "./SketchIcon";
 import { XdIcon } from "./XdIcon";
 import { FavouriteIcon } from "./FavouriteIcon";
 import { BagIcon } from "./BagIcon";
-import { SuccessIcon } from "./SuccessIcon"
+import { SuccessIcon } from "./SuccessIcon";
+import { SearchIcon } from "./SearchIcon";
+import { BurgerMenu } from "./BurgerMenu";
+import { CloseIcon } from "./CloseIcon";
 export {
+  CloseIcon,
+  BurgerMenu,
+  SearchIcon,
   StackedLayersIcon,
   CopyIcon,
   VCIcon,

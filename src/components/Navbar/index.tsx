@@ -9,11 +9,13 @@ import {
   ThemeSwitcher,
 } from "../";
 import { useTheme } from "next-themes";
-import { BurgerMenu } from "@/lib/@iconsax";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import clsx from "clsx";
-import { useRouter } from "next/navigation";
-import { BagIcon, FavouriteIcon } from "../svg";
+import { usePathname, useRouter } from "next/navigation";
+import { BagIcon, BurgerMenu, FavouriteIcon } from "../svg";
+import { cn } from "@/utils";
+import { useSCrollY } from "@/hooks";
+import { SearchIcon } from "@/components/svg";
 // import dynamic from "next/dynamic";
 
 // const SlideOver = dynamic(() => import("../SlideOver"), {
@@ -21,48 +23,147 @@ import { BagIcon, FavouriteIcon } from "../svg";
 // });
 // const ThemeSwitcher = dynamic(() => import("../ThemeSwitcher"));
 // const NavLink = dynamic(() => import("../NavLink"));
-export const Navbar = ({ className = "" }: { className?: string }) => {
+export const Navbar = ({
+  className = "",
+  searchIconhidden = false,
+}: {
+  className?: string;
+  searchIconhidden?: boolean;
+}) => {
   const { theme } = useTheme();
   const { push } = useRouter();
+  const pathname = usePathname();
   const [burgerMenuOpen, setBurgerMenuOpen] = useState(false);
 
+  const { isScrollY } = useSCrollY();
+
+  const navClassName = cn(
+    "fixed top-0 z-50 w-full  py-4 2xl:py-6",
+    className,
+    pathname === "/" ? "bg-transparent" : "",
+    isScrollY && pathname === "/" ? "bg-white" : "",
+    burgerMenuOpen && !isScrollY && "bg-accent-dark",
+    pathname !== "/" && "bg-white"
+  );
+
+  const buttonsClassName = cn(
+    pathname === "/" && !isScrollY && "!bg-accent-dark-hover",
+    pathname === "/" && isScrollY && "bg-primary"
+  );
+  const iconColor = cn(
+    pathname === "/" && !isScrollY && "white",
+    pathname === "/" && isScrollY && "#0E2841",
+    pathname !== "/" && "#0E2841"
+  );
   return (
-    <nav className={`fixed top-0 z-50 w-full  py-4 2xl:py-6 ${className}`}>
+    <nav
+      className={`${navClassName} transition-all duration-500`}
+      onScroll={(e) => {
+        console.log(e, scrollY);
+      }}
+    >
       <div className="flex items-center justify-between gap-6 px-4 lg:px-20 md:px-8">
-        <Logo width={196} height={47} />
-        <NavLinks className="items-center justify-between hidden gap-2 xl:gap-6 xl:flex" />
+        {pathname === "/" && !isScrollY && (
+          <Logo
+            withBadge={false}
+            width={196}
+            height={47}
+            src="/images/logos/home_ads_logo.svg"
+          />
+        )}
+        {pathname === "/" && isScrollY && (
+          <Logo
+            withBadge={false}
+            width={196}
+            height={47}
+            src="/images/logos/home_scrollable_ads_logo.svg"
+          />
+        )}
+        {pathname !== "/" && <Logo withBadge={false} width={196} height={47} />}
+
+        <NavLinks
+          className={`items-center justify-between hidden gap-2 xl:gap-6 xl:flex transparent`}
+        />
         <div className="flex items-center gap-3 lg:gap-4">
+          {searchIconhidden && (
+            <Button
+              className={buttonsClassName}
+              intent="primaryLight"
+              name="Favourite Button"
+            >
+              <SearchIcon aria-label="Favourite Icon" color={iconColor} />
+            </Button>
+          )}
           <Button
+            className={buttonsClassName}
             intent="primaryLight"
-            onClick={() => push("/login")}
-            className={clsx("!hidden xl:!flex !text-sm 2xl:!text-base")}
+            aria-label="Bag button"
           >
-            Sign In / Register
+            <BagIcon aria-label="Bag Icon" color={iconColor} />
           </Button>
 
-          <Button
-            intent="primaryLight"
-            aria-label="burger menu button"
-            onClick={() => setBurgerMenuOpen((prev) => !prev)}
-            className="!flex xl:!hidden items-center justify-center !rounded-full !p-2 active:!shadow-none border-none !h-fit dark:bg-black-active "
-          >
-            <BurgerMenu
-              size="20"
-              className="h-fit text-primary fill-primary dark:text-white dark:fill-white"
-              aria-label="burger menu icon"
-            />
-          </Button>
-          <Button intent="primaryLight" aria-label="Bag button">
-            <BagIcon aria-label="Bag Icon" />
-          </Button>
           <Button
             intent="primaryLight"
             aria-label="burger menu button"
             name="Favourite Button"
+            className={`hidden md:flex ${buttonsClassName}`}
           >
-            <FavouriteIcon aria-label="Favourite Icon" />
+            <FavouriteIcon color={iconColor} aria-label="Favourite Icon" />
+          </Button>
+
+          <Button
+            intent="primaryLight"
+            onClick={() => push("/login")}
+            className={clsx(
+              "!hidden md:!flex !text-sm md:!text-base bg-secondary text-accent-dark"
+            )}
+          >
+            Sign In / Register
+          </Button>
+          <Button
+            intent="primaryLight"
+            aria-label="burger menu button"
+            onClick={() => setBurgerMenuOpen((prev) => !prev)}
+            className={`!flex xl:!hidden items-center justify-center   active:!shadow-none border-none !h-fit  ${buttonsClassName}`}
+          >
+            <BurgerMenu color={iconColor} />
           </Button>
         </div>
+        <SlideOver
+          footer={
+            <Button
+              intent="primaryLight"
+              onClick={() => push("/login")}
+              className={clsx("w-full bg-secondary text-accent-dark")}
+            >
+              Sign In / Register
+            </Button>
+          }
+          open={burgerMenuOpen}
+          setOpen={setBurgerMenuOpen}
+        >
+          <div
+            className={`p-3 rounded-lg ${
+              !isScrollY && pathname === "/"
+                ? "bg-accent-dark-hover"
+                : "bg-white "
+            }  `}
+          >
+            <NavLinks
+              className={`flex flex-col w-full gap-3 ${
+                !isScrollY && pathname === "/"
+                  ? "bg-accent-dark-hover "
+                  : "bg-white"
+              }`}
+              linkClassName={`!w-full items-center justify-center !text-base !font-extrabold ${
+                !isScrollY && pathname === "/"
+                  ? " !text-white hover:!text-secondary"
+                  : " !text-accent-dark hover:!text-primary"
+              } `}
+              onLinkClick={() => setBurgerMenuOpen(false)}
+            />
+          </div>
+        </SlideOver>
       </div>
     </nav>
   );
@@ -87,6 +188,8 @@ const NavLinks = ({
   linkClassName?: string;
   onLinkClick?: () => void;
 }) => {
+  const { isScrollY } = useSCrollY();
+  const pathname = usePathname();
   const classes = clsx("max-xl:!text-sm  font-medium", className);
   const linkClasses = clsx("w-max", linkClassName);
   return (

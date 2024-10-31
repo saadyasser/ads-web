@@ -3,3 +3,6 @@
     example :
     export { useHook } from "useHook";
 */
+
+export * from "./useScrollY"
+
