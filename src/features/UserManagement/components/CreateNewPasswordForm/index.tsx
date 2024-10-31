@@ -1,11 +1,12 @@
 "use client";
 import { useForm, SubmitHandler, FieldError } from "react-hook-form";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Input } from "@/components";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
+import { CircleExclamationIcon } from "@/lib/@react-icons";
 
 type Inputs = {
   password: string;
@@ -33,6 +34,7 @@ const CreateNewPasswordForm = ({
 }: {
   onSuccess: () => void;
 }) => {
+  const [backendError, setBackendError] = useState("");
   const recoverToken = Cookies.get("recoverToken");
 
   const mutation = useMutation<ApiResponse, any, Inputs>(
@@ -45,7 +47,8 @@ const CreateNewPasswordForm = ({
         onSuccess();
       },
       onError: (error) => {
-        console.error("Error:", error.message);
+        const errResponse = error.response?.data as ErrorResponse;
+        setBackendError(errResponse.message);
       },
     }
   );
@@ -66,6 +69,14 @@ const CreateNewPasswordForm = ({
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
+      {backendError && (
+        <div className="flex items-center gap-2 p-2 mb-6 text-center rounded-lg text-danger-dark bg-danger-light">
+          <div className="p-2 rounded-lg bg-danger-light-hover">
+            <CircleExclamationIcon size={26} className=" text-danger-dark" />
+          </div>
+          <p className="text-sm font-medium">{backendError}</p>
+        </div>
+      )}
       <Input
         label="Password"
         type="password"

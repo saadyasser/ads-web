@@ -64,8 +64,8 @@ const ForgetPasswordFlow = () => {
           title="Reset Your Password"
           description="Enter your email address to recover your password!"
           ctaQuestion="Remember your password?"
+          catAction={resendCode}
           ctaLinkText="Back to Login"
-          ctaLink="/login"
         >
           <ForgetPasswordForm onSuccess={onForgetPasswordSuccess} />
         </AuthFormWrapper>

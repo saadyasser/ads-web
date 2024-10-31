@@ -21,7 +21,7 @@ export const AuthFormWrapper = ({
   description,
   ctaQuestion,
   ctaLink,
-  catAction = () => {},
+  catAction,
   ctaLinkText,
   isSuccess = false,
   children,
@@ -62,8 +62,8 @@ export const AuthFormWrapper = ({
             className="text-primary"
             href={ctaLink}
             onClick={(e) => {
-              // e.preventDefault();
-              catAction();
+              catAction && e.preventDefault();
+              catAction && catAction();
             }}
           >
             {ctaLinkText}
