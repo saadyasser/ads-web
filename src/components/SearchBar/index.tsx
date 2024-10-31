@@ -30,7 +30,7 @@ export const SearchBar: React.FC<TargetComponentProps> = ({
 
   return (
     <div className="text-4xl font-extrabold text-white" ref={targetRef}>
-      Seaaaaaaaaaaaaaaaaarch Baaaaaaaaaaaar
+      Sea
     </div>
   );
 };

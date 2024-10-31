@@ -42,7 +42,7 @@ module.exports = {
           shadow: "rgba(121, 121, 121, 0.31)",
         },
         accent: {
-          dark: "#0E2841",
+          dark: {DEFAULT:"#0E2841", hover:"#0D243B"},
           gray: "#D3D4D1",
         },
         black: {

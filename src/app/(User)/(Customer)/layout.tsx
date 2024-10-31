@@ -14,7 +14,7 @@ export default function RootLayout({
   return (
     <>
       <Navbar searchIconhidden={searchIconhidden} />
-      <main className="min-h-screen py-6 lg:py-12 bg-background-dark dark:bg-background-dark">
+      <main className="min-h-screen py-6 lg:py-12 bg-black dark:bg-background-dark">
         <ErrorBoundary>
           {children}
           <SearchBar
