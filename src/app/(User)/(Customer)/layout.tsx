@@ -12,7 +12,7 @@ export default function RootLayout({
   console.log(searchIconhidden, "earchHidden");
 
   return (
-    <>
+    <body className="pt-[70px] xl:pt-[83px] bg-black">
       <Navbar searchIconhidden={searchIconhidden} />
       <main className="min-h-screen py-6 lg:py-12 bg-black dark:bg-background-dark">
         <ErrorBoundary>
@@ -141,6 +141,6 @@ export default function RootLayout({
         </ErrorBoundary>
       </main>
       <Footer />
-    </>
+    </body>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 import { useForm, SubmitHandler, FieldError } from "react-hook-form";
-import React from "react";
+import React, { useState } from "react";
 import { Button, Input } from "@/components";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
@@ -26,6 +26,7 @@ interface ErrorResponse {
 type ApiResponse = SuccessResponse | ErrorResponse;
 
 const ForgetPasswordForm = ({ onSuccess = () => {} }) => {
+  const [backendError, setBackendError] = useState("");
   const {
     register,
     watch,
@@ -43,7 +44,8 @@ const ForgetPasswordForm = ({ onSuccess = () => {} }) => {
         onSuccess();
       },
       onError: (error) => {
-        console.log("Success:", error.message);
+        const errResponse = error.response?.data as ErrorResponse;
+        setBackendError(errResponse.message);
       },
     }
   );
@@ -70,8 +72,8 @@ const ForgetPasswordForm = ({ onSuccess = () => {} }) => {
             message: "Enter a valid email address",
           },
         })} // Directly call register here
-        error={!!errors.email} // Mark input as error if validation fails
-        errorMessage={(errors.email as FieldError)?.message} // Extract message from FieldError
+        error={!!errors.email || !!backendError} // Mark input as error if validation fails
+        errorMessage={(errors.email as FieldError)?.message || backendError} // Extract message from FieldError
       />
 
       <Button

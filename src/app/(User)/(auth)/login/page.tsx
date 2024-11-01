@@ -100,7 +100,6 @@ const Login = () => {
             <p className="text-sm font-medium">{backendError}</p>
           </div>
         )}
-        <button onClick={() => signOut()}>sign out</button>
         <div className="space-y-3">
           <form className="space-y-3" onSubmit={handleSubmit(onSubmit)}>
             <Input
