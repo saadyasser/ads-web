@@ -1,6 +1,7 @@
 import * as React from "react";
 import { cn } from "@/utils";
 import { Label } from "../ui/label";
+import { EyeClosedIcon, EyeOpenIcon } from "@/lib/@react-icons";
 
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -28,13 +29,18 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     },
     ref
   ) => {
+    const [showPassword, setShowPassword] = React.useState(false);
+
+    const togglePasswordVisibility = () => {
+      setShowPassword((prev) => !prev);
+    };
+
     const inputClassName = cn(
-      "block w-full rounded-xl border-[1px] border-primary-light-active px-4 py-3 text-accent-dark placeholder:text-accent-dark hover:border-accent-gray focus:border-accent-dark outline-none md:py-4  2xl:py-[18px] leading-[18px]",
+      "block w-full rounded-xl border-[1px] border-primary-light-active px-4 py-3 text-accent-dark placeholder:text-accent-dark hover:border-accent-gray focus:border-accent-dark outline-none md:py-4 2xl:py-[18px] leading-[18px] pr-10 transition-all",
       className,
       { "border-success": success, "border-danger": error }
     );
 
-    // Ensure the input has an id, or fallback to a generated one for accessibility
     const inputId = id || `input-${label.replace(/\s+/g, "-").toLowerCase()}`;
 
     return (
@@ -52,11 +58,25 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         </Label>
         <input
           id={inputId}
-          type={type}
+          type={showPassword ? "text" : type}
           className={inputClassName}
           ref={ref}
-          {...props} // Apply all props here including onChange, value, etc.
+          {...props}
         />
+        {type === "password" && (
+          <button
+            type="button"
+            onClick={togglePasswordVisibility}
+            className="absolute inset-y-0 flex items-center focus:outline-none right-3"
+            aria-label={showPassword ? "Hide password" : "Show password"}
+          >
+            {showPassword ? (
+              <EyeClosedIcon className="w-5 h-5 text-[#292D32]" />
+            ) : (
+              <EyeOpenIcon className="w-5 h-5 text-[#292D32]" />
+            )}
+          </button>
+        )}
         {errorMessage && (
           <p className="absolute bottom-0 left-0 pl-2 mt-1 text-xs text-danger">
             {errorMessage}

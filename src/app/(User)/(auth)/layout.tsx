@@ -8,16 +8,16 @@ export default function RootLayout({
   return (
     <>
       <Navbar className="bg-white" />
-      <main className="flex justify-center items-center xl:min-h-[calc(100vh-83px)] min-h-[calc(100vh-70px)]   py-6 lg:py-12  dark:bg-background-dark">
+      <main className="flex items-center justify-center pt-[89px] 2xl:pt-[109px]  dark:bg-background-dark">
         <ErrorBoundary>
-          {" "}
           <section className="w-full max-w-[486px] px-6 md:px-0">
-            <Card className="block rounded-xl  p-4 border-[1px] border-[#E7E9ED] md:rounded-2xl  md:p-6  lg:p-4 2xl:p-8 ">
+            <Card className="block p-4 border border-[#E7E9ED] rounded-xl md:rounded-2xl md:p-6 lg:p-4 2xl:p-8">
               {children}
             </Card>
           </section>
         </ErrorBoundary>
       </main>
+      {/* <Footer /> */}
     </>
   );
 }
