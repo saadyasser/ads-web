@@ -47,8 +47,14 @@ const ForgetPasswordFlow = () => {
         <AuthFormWrapper
           isSuccess={true}
           title="Successfully Changed Password"
-          description="Please enter the verification code sent to your email."
-          ctaLinkText="Resend Code"
+          description={
+            <p>
+              Your password has been changed successfully.
+              <br />
+              Use your new password to log in.
+            </p>
+          }
+          ctaLinkText="Back to Login"
           ctaLink="/login"
         />
       ) : !!hasRecoverToken ? (

@@ -9,6 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { CircleExclamationIcon } from "@/lib/@react-icons";
+import Link from "next/link";
 
 // Define Zod schema for form validation
 const loginSchema = z.object({
@@ -27,7 +28,6 @@ type LoginFormValues = z.infer<typeof loginSchema>;
 const Login = () => {
   const { status: sessionStat, data: sessionData } = useSession();
   const [backendError, setBackendError] = useState<string | null | undefined>();
-  const [temp, setTemp] = useState();
   const router = useRouter();
 
   const {
@@ -51,7 +51,6 @@ const Login = () => {
         setBackendError(response?.error);
       }
       if (response && response?.status >= 200 && response?.status < 300) {
-        console.log(sessionData, status);
         router.push("/");
       }
     } catch (err) {
@@ -67,7 +66,6 @@ const Login = () => {
         redirect: false,
         // callbackUrl: "/",
       });
-      console.log("🚀 ~ handleGoogleSignIn ~ response:", response);
       if (response && response?.status >= 400 && response?.status < 500) {
         setBackendError(response?.error);
       }
@@ -102,6 +100,7 @@ const Login = () => {
             <p className="text-sm font-medium">{backendError}</p>
           </div>
         )}
+        <button onClick={() => signOut()}>sign out</button>
         <div className="space-y-3">
           <form className="space-y-3" onSubmit={handleSubmit(onSubmit)}>
             <Input
@@ -114,15 +113,25 @@ const Login = () => {
               autoComplete="email"
             />
 
-            <Input
-              label="Password"
-              type="password"
-              placeholder="******"
-              {...register("password")}
-              error={!!errors.password?.message}
-              errorMessage={errors.password?.message}
-              autoComplete="password"
-            />
+            <div className="relative">
+              <Input
+                label="Password"
+                type="password"
+                placeholder="******"
+                {...register("password")}
+                error={!!errors.password?.message}
+                errorMessage={errors.password?.message}
+                autoComplete="password"
+              />
+              <div className="flex items-center justify-end gap-2 -mt-4">
+                <Link
+                  href="/forget-password"
+                  className="text-primary font-semibold text-[12px] hover:text-primary-hover active:text-primary-active mt-0"
+                >
+                  Forgot password?
+                </Link>
+              </div>
+            </div>
 
             <Button
               type="submit"
@@ -160,7 +169,6 @@ const Login = () => {
         }
       </p>
       <p className="max-w-screen-xl text-wrap">
-        token:{" "}
         {
           //@ts-expect-error account not defined
           sessionData?.account?.access_token

@@ -52,6 +52,7 @@ const signUpSchema = z
 type SignUpFormValues = z.infer<typeof signUpSchema>;
 
 const signUpUser = async (data: SignUpFormValues) => {
+  Cookies.set("pass", data.password);
   const response = await axios.post(
     "https://api.azaiza.com/api/user/auth/signup",
     data
@@ -60,7 +61,7 @@ const signUpUser = async (data: SignUpFormValues) => {
 };
 
 const SignUp = () => {
-  const { data: sessionData } = useSession();
+  const { data: sessionData, update } = useSession();
   const [backendError, setBackendError] = useState<string | null | undefined>();
   const router = useRouter();
 
@@ -72,21 +73,20 @@ const SignUp = () => {
 
   const signUpMutation = useMutation(signUpUser, {
     onSuccess: async (resData) => {
-      const { data } = resData;
-      Cookies.set("email", data?.user?.email);
-      Cookies.set("_id", data?.user?._id);
+      Cookies.set("email", resData?.data?.user?.email);
+      Cookies.set("_id", resData?.data?.user?._id);
+      const password = Cookies.get("pass");
       const response = await signIn("credentials", {
-        emailOrUserName: data?.user.email,
-        password: data?.user.password,
+        emailOrUserName: resData?.data?.user.email,
+        password: password,
         redirect: false,
       });
 
-      console.log("🚀 ~ onSuccess: ~ response:", response);
-      alert(response);
-      // @ts-expect-error data not found
+      //   @ts-expect-error data not found
       if (response?.data?.message) {
         setBackendError(response.error);
       } else {
+        console.log("🚀 ~ onSuccess: ~ response:", response);
         router.push("/user-verification");
       }
     },

@@ -21,6 +21,7 @@ import {
 import { isDirty } from "zod";
 import Cookies from "js-cookie";
 import AuthFormWrapper from "../AuthFormWrapper";
+import { useSession } from "next-auth/react";
 
 type Inputs = {
   code: string;
@@ -80,17 +81,20 @@ const VerificationCodeSent = ({ onSuccess = () => {} }) => {
   };
 
   const [isResending, setIsResending] = useState(false);
-  const resendCode = async () => {
-    const email = Cookies.get("email");
-    setIsResending(true);
-    const response = await axios.post(
-      "https://api.azaiza.com/api/user/password/forgot",
-      {
-        email,
-      }
-    );
-    setIsResending(false);
-  };
+  const { data: user } = useSession();
+  // const resendCode = async () => {
+  //   // const email = Cookies.get("email");
+  //   setIsResending(true);
+  //   const response = await axios.get(
+  //     "https://api.azaiza.com/api/user/profile/verify",
+  //     {
+  //      headers:{
+  //       Authorization:`Bearer ${user?.token}`
+  //      }
+  //     }
+  //   );
+  //   setIsResending(false);
+  // };
 
   return (
     <AuthFormWrapper
@@ -99,9 +103,9 @@ const VerificationCodeSent = ({ onSuccess = () => {} }) => {
       ctaQuestion="Didn't receive the code?"
       ctaLinkText={isResending ? "Resending..." : "Resend Code"}
       catAction={() => {
-        resendCode();
+        // resendCode();
       }}
-      ctaLink="/login"
+      ctaLink="/"
     >
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormField

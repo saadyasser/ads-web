@@ -25,10 +25,17 @@ const handler = NextAuth({
         );
 
         const data = await response.json();
-        if (!data.ok) {
+        console.log("🚀 ~ authorize ~ data:", data);
+        if (data.statusCode >= 400) {
           throw new Error(data?.message);
+        } else {
+          return {
+            accessToken: data.data.accessToken,
+            refreshToken: data.data.refreshToken,
+            isEmailVerified: data.data.isEmailVerified,
+            user: data.data.user,
+          };
         }
-        return { id: data.id, name: data.name, email: data.email };
       },
     }),
   ],
@@ -52,20 +59,24 @@ const handler = NextAuth({
       return true; // Allow sign-in
     },
 
-    async jwt({ token, user, account, profile }) {
-      // If it's the first time, add user, profile, and account to the token
-      if (user) {
-        token.user = user;
-        token.account = account;
-        token.profile = profile;
+    async jwt({ token, user, trigger }) {
+      console.log("🚀 ~ jwt ~ user:", user);
+      if (user || trigger === "update") {
+        token.accessToken = user.accessToken;
+        token.refreshToken = user.refreshToken;
+        token.isEmailVerified = user.isEmailVerified;
+        token.user = user.user; // Only the user data object
       }
       return token;
     },
 
     async session({ session, token }) {
+      session.accessToken = token.accessToken;
+      session.refreshToken = token.refreshToken;
+      session.isEmailVerified = token.isEmailVerified;
       session.user = token.user;
-      session.account = token.account;
-      session.profile = token.profile;
+      console.log("🚀 ~ session ~ session:", session);
+
       return session;
     },
   },
