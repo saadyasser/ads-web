@@ -1,5 +1,8 @@
 "use client";
 import { useEffect, useRef } from "react";
+import Input from "../Input";
+import Button from "../Button";
+import { SearchIcon } from "../svg";
 interface TargetComponentProps {
   onVisibilityChange: (visible: boolean) => void;
 }
@@ -30,10 +33,21 @@ export const SearchBar: React.FC<TargetComponentProps> = ({
 
   return (
     <div
-      className="text-4xl text-center font-extrabold text-white"
+      className=" w-2/4 mx-auto bg-white rounded-xl xl:p-4 p-3 border-[1px] border-primary-light-active hover:border-accent-gray focus:border-accent-dark"
       ref={targetRef}
     >
-      Search Bar
+      <div className="flex items-center">
+        <Input
+          className="grow-1 border-0"
+          name="search-term"
+          id="search-term"
+          placeholder="Component, figma, ui, graphic, etc."
+        />
+        <Button>
+          <SearchIcon color="white" />
+          <span>Search</span>
+        </Button>
+      </div>
     </div>
   );
 };

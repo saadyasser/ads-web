@@ -5,7 +5,7 @@ import { EyeClosedIcon, EyeOpenIcon } from "@/lib/@react-icons";
 
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
-  label: string;
+  label?: string;
   success?: boolean;
   error?: boolean;
   withErrorPlace?: boolean;
@@ -18,7 +18,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
   (
     {
       className,
-      label,
+      label = "",
       type,
       success,
       error,
@@ -50,12 +50,14 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           containerClassname
         )}
       >
-        <Label
-          htmlFor={inputId}
-          className="block mb-2 text-sm font-semibold leading-none lg:mb-1 2xl:mb-2 text-accent-dark"
-        >
-          {label}
-        </Label>
+        {label && (
+          <Label
+            htmlFor={inputId}
+            className="block mb-2 text-sm font-semibold leading-none lg:mb-1 2xl:mb-2 text-accent-dark"
+          >
+            {label}
+          </Label>
+        )}
         <input
           id={inputId}
           type={showPassword ? "text" : type}
