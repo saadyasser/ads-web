@@ -66,6 +66,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         {type === "password" && (
           <button
             type="button"
+            tabIndex={-1}
             onClick={togglePasswordVisibility}
             className="absolute inset-y-0 flex items-center focus:outline-none right-3"
             aria-label={showPassword ? "Hide password" : "Show password"}

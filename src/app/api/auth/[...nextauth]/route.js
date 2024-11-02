@@ -56,16 +56,22 @@ const handler = NextAuth({
       //     throw new Error(data?.message);
       //   }
       // }
-      return true; // Allow sign-in
+      return { user, account, profile }; // Allow sign-in
     },
 
-    async jwt({ token, user, trigger }) {
+    async jwt({ token, user, account, profile, trigger }) {
       console.log("🚀 ~ jwt ~ user:", user);
-      if (user || trigger === "update") {
+      if (user && account && account.provider === "google") {
+        token.accessToken = account.access_token;
+        token.refreshToken = "";
+        token.isEmailVerified = true;
+        token.user = account;
+      }
+      if (user && account.provider === "credentials") {
         token.accessToken = user.accessToken;
         token.refreshToken = user.refreshToken;
         token.isEmailVerified = user.isEmailVerified;
-        token.user = user.user; // Only the user data object
+        token.user = user.user;
       }
       return token;
     },

@@ -88,10 +88,6 @@ const VerificationCodeSent = ({
 
   const [isResending, setIsResending] = useState(false);
   const { data: user } = useSession();
-  console.log(
-    resendStatus,
-    "reseeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeend starus"
-  );
 
   const resendCode = async () => {
     setIsResending(true);
@@ -100,6 +96,7 @@ const VerificationCodeSent = ({
         "https://api.azaiza.com/api/user/profile/verify",
         {
           headers: {
+            // @ts-expect-error access token is not defined
             Authorization: `Bearer ${user?.accessToken}`,
           },
         }
