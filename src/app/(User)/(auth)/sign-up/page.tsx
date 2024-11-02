@@ -122,7 +122,7 @@ const SignUp = () => {
         </div>
       )}
       <div className="space-y-3">
-        <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
+        <form className="space-y-1" onSubmit={handleSubmit(onSubmit)}>
           <Input
             label="Email"
             type="email"
