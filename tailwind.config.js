@@ -43,7 +43,7 @@ module.exports = {
         },
         accent: {
           dark: {DEFAULT:"#0E2841", hover:"#0D243B"},
-          gray: "#D3D4D1",
+          gray: {DEFAULT: "#D3D4D1", light: "F1F2F1"}
         },
         black: {
           DEFAULT: "#0D0D0D",
