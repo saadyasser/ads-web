@@ -106,6 +106,14 @@ module.exports = {
         custom: "0px 3px 7px 0px",
       },
       keyframes: {
+        'slide-in-from-bottom': {
+          '0%': { transform: 'translateY(100%)', opacity: '0' },
+          '100%': { transform: 'translateY(0)', opacity: '1' },
+        },
+        'slide-out-to-top': {
+          '0%': { transform: 'translateY(0)', opacity: '1' },
+          '100%': { transform: 'translateY(-100%)', opacity: '0' },
+        },
         "fade-in": {
           "0%": { opacity: 0 },
           "100%": { opacity: 1 },
@@ -116,6 +124,8 @@ module.exports = {
         },
       },
       animation: {
+        'slide-in-from-bottom': 'slide-in-from-bottom 0.7s ease-in-out',
+        'slide-out-to-top': 'slide-out-to-top 0.7s ease-in-out',
         "fade-in": "fade-in 0.5s ease-in-out forwards",
         "fade-out": "fade-out 0.4s ease-in-out forwards",
       },

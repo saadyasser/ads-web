@@ -30,7 +30,9 @@ import ErrorBoundary from "./ErrorBoundary";
 import { Loading } from "./Loading";
 import { GoogleIcon } from "./svg/GoogleIcon";
 import { SearchBar } from "./SearchBar";
+import { RotatingList } from "./RotatingList";
 export {
+  RotatingList,
   SearchBar,
   Providers,
   ThemeHandler,
