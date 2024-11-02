@@ -5,7 +5,12 @@ import React from "react";
 
 const UserVerification = () => {
   const router = useRouter();
-  return <VerificationCodeSent onSuccess={() => router.push("/")} />;
+  return (
+    <VerificationCodeSent
+      resendStatus="VERIFICATION"
+      onSuccess={() => router.push("/")}
+    />
+  );
 };
 
 export default UserVerification;

@@ -43,7 +43,13 @@ interface ErrorResponse {
 
 type ApiResponse = SuccessResponse | ErrorResponse;
 
-const VerificationCodeSent = ({ onSuccess = () => {} }) => {
+const VerificationCodeSent = ({
+  onSuccess = () => {},
+  resendStatus,
+}: {
+  onSuccess?: () => void;
+  resendStatus: "FORGET" | "VERIFICATION";
+}) => {
   const mutation = useMutation<ApiResponse, any, Inputs>(
     (formData: Inputs) =>
       axios.post(
@@ -82,19 +88,35 @@ const VerificationCodeSent = ({ onSuccess = () => {} }) => {
 
   const [isResending, setIsResending] = useState(false);
   const { data: user } = useSession();
-  // const resendCode = async () => {
-  //   // const email = Cookies.get("email");
-  //   setIsResending(true);
-  //   const response = await axios.get(
-  //     "https://api.azaiza.com/api/user/profile/verify",
-  //     {
-  //      headers:{
-  //       Authorization:`Bearer ${user?.token}`
-  //      }
-  //     }
-  //   );
-  //   setIsResending(false);
-  // };
+  console.log(
+    resendStatus,
+    "reseeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeend starus"
+  );
+
+  const resendCode = async () => {
+    setIsResending(true);
+    if (resendStatus === "VERIFICATION") {
+      const response = await axios.get(
+        "https://api.azaiza.com/api/user/profile/verify",
+        {
+          headers: {
+            Authorization: `Bearer ${user?.accessToken}`,
+          },
+        }
+      );
+      setIsResending(false);
+    } else {
+      const email = Cookies.get("email");
+      setIsResending(true);
+      const response = await axios.post(
+        "https://api.azaiza.com/api/user/password/forgot",
+        {
+          email,
+        }
+      );
+      setIsResending(false);
+    }
+  };
 
   return (
     <AuthFormWrapper
@@ -103,7 +125,7 @@ const VerificationCodeSent = ({ onSuccess = () => {} }) => {
       ctaQuestion="Didn't receive the code?"
       ctaLinkText={isResending ? "Resending..." : "Resend Code"}
       catAction={() => {
-        // resendCode();
+        resendCode();
       }}
       ctaLink="/"
     >
