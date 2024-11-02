@@ -64,7 +64,10 @@ const ForgetPasswordFlow = () => {
           }}
         />
       ) : hasId ? (
-        <VerificationCodeSent onSuccess={onVerificationCodeSentSuccess} />
+        <VerificationCodeSent
+          resendStatus="FORGET"
+          onSuccess={onVerificationCodeSentSuccess}
+        />
       ) : (
         <AuthFormWrapper
           title="Reset Your Password"
