@@ -24,7 +24,11 @@ import { Loading } from "@/components";
 export const LandingPage = () => {
   return (
     <>
-      <HeroSection />
+      <HeroSection
+        setSearchIconhidden={(visible) => {
+          console.log(visible);
+        }}
+      />
       <Categories />
       <DetailedCategoriesSection />
       <WhatMakesUsDifferent />
