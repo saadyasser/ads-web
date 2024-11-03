@@ -28,6 +28,56 @@ const productsList: Product[] = [
     imageUrl: "/images/products/product-1.png",
   },
   {
+    name: "Design System Ui Kit",
+    category: "UI Components",
+    imageUrl: "/images/products/product-1.png",
+  },
+  {
+    name: "Design System Ui Kit",
+    category: "UI Components",
+    imageUrl: "/images/products/product-1.png",
+  },
+  {
+    name: "Design System Ui Kit",
+    category: "UI Components",
+    imageUrl: "/images/products/product-1.png",
+  },
+  {
+    name: "Design System Ui Kit",
+    category: "UI Components",
+    imageUrl: "/images/products/product-1.png",
+  },
+  {
+    name: "Design System Ui Kit",
+    category: "UI Components",
+    imageUrl: "/images/products/product-1.png",
+  },
+  {
+    name: "Design System Ui Kit",
+    category: "UI Components",
+    imageUrl: "/images/products/product-1.png",
+  },
+  {
+    name: "Design System Ui Kit",
+    category: "UI Components",
+    imageUrl: "/images/products/product-1.png",
+  },
+  {
+    name: "Design System Ui Kit",
+    category: "UI Components",
+    imageUrl: "/images/products/product-1.png",
+  },
+  {
+    name: "Design System Ui Kit",
+    category: "UI Components",
+    imageUrl: "/images/products/product-1.png",
+  },
+  {
+    name: "Design System Ui Kit",
+    category: "UI Components",
+    imageUrl: "/images/products/product-1.png",
+  },
+  {
     name: "Figma Icon Set",
     category: "Icon Sets",
     imageUrl: "/images/products/product-2.png",
@@ -157,7 +207,7 @@ export const SearchBar: React.FC<TargetComponentProps> = ({
               filteredProducts.length === 0
                 ? "justify-center h-32 "
                 : "justify-start max-h-[372px] p-3 !pb-0"
-            } absolute top-[calc(100%+12px)] left-0 border-[1px] border-accent-dark  overflow-hidden`}
+            } absolute top-[calc(100%+12px)] left-0 border-[1px] border-accent-dark  overflow-y-auto`}
           >
             {filteredProducts.length > 0 ? (
               filteredProducts.map((product, index) => (
