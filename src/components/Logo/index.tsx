@@ -27,7 +27,7 @@ export const Logo = ({
       );
     } else setLogoPath(src);
   }, [theme, src]);
-  const logoClasses = clsx("w-[92px] h-[22px] lg:h-auto lg:w-auto", className);
+  const logoClasses = clsx("w-[92px] h-[22px]", className);
   const wrapperClasses = clsx(
     "flex",
     wrapperClassName,

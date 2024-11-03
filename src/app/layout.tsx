@@ -61,7 +61,7 @@ export default function RootLayout({
               }
             >
               <Providers>
-                {children}
+                <QueryProvider>{children}</QueryProvider>
                 <ThemeHandler />
               </Providers>
             </Suspense>

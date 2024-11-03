@@ -11,7 +11,7 @@ export const H1 = ({
   className?: string;
 }) => {
   const classes = clsx(
-    "font-bold text-3xl lg:text-5xl md:text-4xl font-gilroy",
+    "font-bold text-3xl  md:text-4xl font-gilroy",
     className
   );
   return <h1 className={classes}>{children}</h1>;

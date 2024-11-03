@@ -46,7 +46,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     return (
       <div
         className={cn(
-          "relative w-full pb-4 md:pb-4  lg:pb-4 2xl:pb-4 ",
+          "relative w-full pb-4  2xl:pb-4 ",
           containerClassname
         )}
       >

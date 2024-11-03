@@ -48,7 +48,7 @@ export const NavLink = ({
     >
       {children}
       {isActive && (
-        <span className="absolute text-lg md:text-xl  lg:text-2xl left-[50%] bottom-0 ">
+        <span className="absolute text-lg md:text-xl   left-[50%] bottom-0 ">
           .
         </span>
       )}

@@ -31,7 +31,7 @@ export const AuthFormWrapper = ({
     <div>
       {isSuccess && <SuccessIcon className="mx-auto mb-4 md:mb-6" />}
       <H4
-        className={`mb-2 text-xl md:text-2xl md:leading-[30px] lg:leading-[30px] leading-6 tracking-[-1px] ${
+        className={`mb-2 text-xl md:text-2xl md:leading-[30px]  leading-6 tracking-[-1px] ${
           isSuccess && "text-center"
         }`}
       >
