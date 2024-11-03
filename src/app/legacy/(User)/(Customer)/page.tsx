@@ -52,11 +52,11 @@ import { ChevronLeft } from "@/lib/@iconsax";
 export default function LandingPage() {
   return (
     <>
-      <HeroSection
+      {/* <HeroSection
         setSearchIconhidden={(visible) => {
           console.log(visible);
         }}
-      />
+      /> */}
       <Categories />
       <Container className="flex w-full gap-2">
         <Button intent="primary">test</Button>
