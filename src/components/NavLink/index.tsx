@@ -28,7 +28,7 @@ export const NavLink = ({
   //   "text-white active:text-secondary hover:text-secondary text-accent-dark active:text-primary hover:text-primary";
 
   const linkClasses = clsx(
-    "  w-max font-medium text-black hover:text-black hover:font-bold !py-4 transition-all duration-300 ",
+    "relative w-max font-medium text-black hover:text-black hover:font-bold !py-4 transition-all duration-300 ",
     className,
     activeClasses,
     pathname === "/" &&
@@ -47,6 +47,11 @@ export const NavLink = ({
       onClick={onClick && onClick}
     >
       {children}
+      {isActive && (
+        <span className="absolute text-lg md:text-xl  lg:text-2xl left-[50%] bottom-0 ">
+          .
+        </span>
+      )}
     </Link>
   );
 };
