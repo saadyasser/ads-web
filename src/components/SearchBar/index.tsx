@@ -172,7 +172,7 @@ export const SearchBar: React.FC<TargetComponentProps> = ({
   return (
     <>
       <div
-        className="relative mb-4 md:mb-6 mx-auto bg-white rounded-xl xl:p-4 p-3 border-[1px] border-primary-light-active hover:border-accent-gray focus:border-accent-dark"
+        className="relative mb-4 md:mb-6 mx-auto bg-white rounded-xl 2xl:p-4 p-3 border-[1px] border-primary-light-active hover:border-accent-gray focus:border-accent-dark"
         ref={targetRef}
       >
         <form
