@@ -140,7 +140,6 @@ const SignUp = () => {
             {...register("userName")}
             error={!!errors.userName?.message}
             errorMessage={errors.userName?.message}
-            autoComplete="userName"
           />
           <Input
             label="Password"
@@ -158,7 +157,7 @@ const SignUp = () => {
             {...register("confirmPassword")}
             error={!!errors.confirmPassword?.message}
             errorMessage={errors.confirmPassword?.message}
-            autoComplete="confirmPassword"
+            autoComplete="password"
           />
           <Button
             type="submit"
