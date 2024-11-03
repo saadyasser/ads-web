@@ -8,8 +8,7 @@ import clsx from "clsx";
 import { gilroy } from "./fonts"; // Ensure the font import is correct
 import { ErrorBoundary, Logo, Providers, ThemeHandler } from "@/components";
 import "@/styles/globals.css";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { usePathname } from "next/navigation";
+import QueryProvider from "@/providers/QueryProvider";
 
 // const Providers = dynamic(() => import("@/components/Providers"), {
 //   ssr: true,
@@ -47,30 +46,28 @@ export default function RootLayout({
 }) {
   const classes = clsx(gilroy.variable, "font-gilroy scroll-smooth h-auto");
 
-  const queryClient = new QueryClient();
-
   return (
     <html lang="en" className={classes}>
-      <SessionProvider>
-        <ErrorBoundary>
-          <Suspense
-            fallback={
-              <div className="flex items-center justify-center h-[60vh]">
-                <div className="animate-pulse">
-                  <Logo />
+      <body>
+        <SessionProvider>
+          <ErrorBoundary>
+            <Suspense
+              fallback={
+                <div className="flex items-center justify-center h-[60vh]">
+                  <div className="animate-pulse">
+                    <Logo />
+                  </div>
                 </div>
-              </div>
-            }
-          >
-            <QueryClientProvider client={queryClient}>
+              }
+            >
               <Providers>
-                <ThemeHandler />
                 {children}
+                <ThemeHandler />
               </Providers>
-            </QueryClientProvider>
-          </Suspense>
-        </ErrorBoundary>
-      </SessionProvider>
+            </Suspense>
+          </ErrorBoundary>
+        </SessionProvider>
+      </body>
     </html>
   );
 }
