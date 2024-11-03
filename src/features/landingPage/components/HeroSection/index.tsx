@@ -14,7 +14,7 @@ export const HeroSection = ({
   setSearchIconhidden: (visible: boolean) => void;
 }) => {
   return (
-    <header className="max-xl:px-4 py-44 bg-accent-dark">
+    <header className="max-xl:px-4 py-44 bg-accent-dark bg-[url(/images/hero-bg.png)]">
       <RotatingList />
       <SearchBar
         onVisibilityChange={(visible) => setSearchIconhidden(!visible)}
