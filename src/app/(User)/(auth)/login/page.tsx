@@ -10,6 +10,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { CircleExclamationIcon } from "@/lib/@react-icons";
 import Link from "next/link";
+import Cookies from "js-cookie";
 
 // Define Zod schema for form validation
 const loginSchema = z.object({
@@ -51,7 +52,7 @@ const Login = () => {
         setBackendError(response?.error);
       }
       if (response && response?.status >= 200 && response?.status < 300) {
-        router.push("/");
+        // router.push("/");
       }
     } catch (err) {
       console.log("Login error:", err);
@@ -66,10 +67,12 @@ const Login = () => {
         redirect: false,
         // callbackUrl: "/",
       });
+      console.log("🚀 ~ handleGoogleSignIn ~ response:", response);
       if (response && response?.status >= 400 && response?.status < 500) {
         setBackendError(response?.error);
       }
       if (response && response?.status >= 200 && response?.status < 300) {
+        // Cookies.set("google_token",response?.)
         console.log(sessionData, status);
       }
     } catch (err) {
@@ -125,7 +128,7 @@ const Login = () => {
               <div className="flex items-center justify-end gap-2 -mt-4">
                 <Link
                   href="/forget-password"
-                  className="text-primary font-semibold text-[12px] hover:text-primary-hover active:text-primary-active mt-0"
+                  className="text-primary z-20 font-semibold text-[12px] hover:text-primary-hover active:text-primary-active mt-0"
                 >
                   Forgot password?
                 </Link>
@@ -164,15 +167,12 @@ const Login = () => {
       <p className="max-w-screen-xl text-wrap">
         {
           //@ts-expect-error account not defined
-          sessionData?.account?.provider
+          sessionData?.accessToken
         }
       </p>
-      <p className="max-w-screen-xl text-wrap">
-        {
-          //@ts-expect-error account not defined
-          sessionData?.account?.access_token
-        }
-      </p>
+      <span className="mt-4 text-danger" onClick={() => signOut()}>
+        sign out{" "}
+      </span>
     </>
   );
 };

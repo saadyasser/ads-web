@@ -49,6 +49,7 @@ export const SearchBar: React.FC<TargetComponentProps> = ({
 
     return () => {
       if (targetRef.current) {
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         observer.unobserve(targetRef.current);
       }
     };
