@@ -68,7 +68,7 @@ export const Categories = () => {
       <p className="text-xs md:text-sm md:font-semibold 2xl:text-base 2xl:font-semibold text-black mb-4 2xl:mb-6">
         With lots of unique blocks, you can easily build a page without coding.
       </p>
-      <div className=" grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-3 2xl:gap-4 ">
+      <div className=" grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-3 2xl:gap-4 ">
         {categoriesList.map((category: Category) => (
           <Link
             onMouseEnter={() => {
@@ -84,15 +84,19 @@ export const Categories = () => {
             <div className="flex gap-3 justify-start items-center">
               <Category1 className="w-6 h-6 md:w-[43px] md:h-[43px]" />
               <div>
-                <h6 className="text-sm md:text-base leading-5 text-accent-dark mb-2 font-bold">
+                <h6 className="text-left text-sm md:text-base leading-5 text-accent-dark mb-2 font-bold">
                   {category.name}
                 </h6>
-                <p className="text-xs md:sm text-accent-dark">+1,1k Assets</p>
+                <p className="text-left text-xs md:sm text-accent-dark">
+                  +1,1k Assets
+                </p>
               </div>
             </div>
             <div
               className={`w-10 h-10 bg-white rounded-full self-end ${
-                category.id === hoverdCategoryId ? "visible" : "invisible"
+                category.id === hoverdCategoryId
+                  ? "hidden lg:visible"
+                  : "hidden"
               }`}
             >
               <RightArrow />

@@ -160,14 +160,14 @@ export const SearchBar: React.FC<TargetComponentProps> = ({
   return (
     <>
       <div
-        className="relative mb-4 md:mb-6 mx-auto bg-white rounded-xl 2xl:p-4 p-3 border-[1px] border-primary-light-active hover:border-accent-gray focus:border-accent-dark"
+        className="relative mb-4 md:mb-6 mx-auto bg-white rounded-xl 2xl:p-4 pl-3 py-2 pr-2 border-[1px] border-primary-light-active hover:border-accent-gray focus:border-accent-dark"
         ref={targetRef}
       >
         <div className="flex flex-col items-center">
           <div className="flex w-full items-center">
             <Input
               containerClassname="!pb-0"
-              className="pl-0 grow-1 border-0"
+              className="pl-0 pr-[10px] grow-1 border-0"
               id="search-term"
               placeholder="Component, figma, ui, graphic, etc."
               {...register("searchTerm", {
@@ -179,8 +179,6 @@ export const SearchBar: React.FC<TargetComponentProps> = ({
               })}
             />
             <Button
-              type="button"
-              disabled={!searchTerm}
               onClick={() => {
                 searchTerm && router.push("/products?searchTerm=" + searchTerm);
               }}
@@ -253,7 +251,7 @@ export const SearchBar: React.FC<TargetComponentProps> = ({
         ].map((categoryName, key) => (
           <Button
             key={key}
-            className={`!bg-accent-dark hover:!bg-accent-dark-hover shrink-0 grow-0 flex-wrap px-2`}
+            className={`!bg-accent-dark-hover hover:!bg-accent-dark shrink-0 grow-0 flex-wrap px-2`}
           >
             {categoryName}
           </Button>
