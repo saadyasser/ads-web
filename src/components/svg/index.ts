@@ -11,7 +11,10 @@ import { SuccessIcon } from "./SuccessIcon";
 import { SearchIcon } from "./SearchIcon";
 import { BurgerMenu } from "./BurgerMenu";
 import { CloseIcon } from "./CloseIcon";
+export { Category1 } from "./Categories";
+import { RightArrow } from "./RightArrow"
 export {
+  RightArrow,
   CloseIcon,
   BurgerMenu,
   SearchIcon,

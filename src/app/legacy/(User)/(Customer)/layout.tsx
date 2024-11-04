@@ -8,7 +8,7 @@ export default function RootLayout({
   return (
     <>
       <Navbar />
-      <main className="min-h-screen py-6 lg:py-12 bg-background-light dark:bg-background-dark">
+      <main className="min-h-screen py-6  bg-background-light dark:bg-background-dark">
         <ErrorBoundary>{children}</ErrorBoundary>
       </main>
       <Footer />

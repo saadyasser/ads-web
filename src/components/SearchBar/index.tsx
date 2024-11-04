@@ -6,6 +6,8 @@ import Button from "../Button";
 import { SearchIcon } from "../svg";
 import Card from "../Card";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 interface TargetComponentProps {
   onVisibilityChange: (visible: boolean) => void;
@@ -22,6 +24,56 @@ interface FormValues {
 }
 
 const productsList: Product[] = [
+  {
+    name: "Design System Ui Kit",
+    category: "UI Components",
+    imageUrl: "/images/products/product-1.png",
+  },
+  {
+    name: "Design System Ui Kit",
+    category: "UI Components",
+    imageUrl: "/images/products/product-1.png",
+  },
+  {
+    name: "Design System Ui Kit",
+    category: "UI Components",
+    imageUrl: "/images/products/product-1.png",
+  },
+  {
+    name: "Design System Ui Kit",
+    category: "UI Components",
+    imageUrl: "/images/products/product-1.png",
+  },
+  {
+    name: "Design System Ui Kit",
+    category: "UI Components",
+    imageUrl: "/images/products/product-1.png",
+  },
+  {
+    name: "Design System Ui Kit",
+    category: "UI Components",
+    imageUrl: "/images/products/product-1.png",
+  },
+  {
+    name: "Design System Ui Kit",
+    category: "UI Components",
+    imageUrl: "/images/products/product-1.png",
+  },
+  {
+    name: "Design System Ui Kit",
+    category: "UI Components",
+    imageUrl: "/images/products/product-1.png",
+  },
+  {
+    name: "Design System Ui Kit",
+    category: "UI Components",
+    imageUrl: "/images/products/product-1.png",
+  },
+  {
+    name: "Design System Ui Kit",
+    category: "UI Components",
+    imageUrl: "/images/products/product-1.png",
+  },
   {
     name: "Design System Ui Kit",
     category: "UI Components",
@@ -49,20 +101,20 @@ export const SearchBar: React.FC<TargetComponentProps> = ({
 }) => {
   const {
     register,
-    handleSubmit,
-    formState: { errors },
     setValue,
     clearErrors,
-    trigger,
     watch,
+    formState: { errors },
   } = useForm<FormValues>();
+
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
-  const [searchSubmitted, setSearchSubmitted] = useState(false);
-  const [lastSearchTerm, setLastSearchTerm] = useState<string | null>(null); // Track last valid search term
-
+  const [lastSearchTerm, setLastSearchTerm] = useState<string | null>(null);
   const targetRef = useRef<HTMLDivElement | null>(null);
 
+  const searchTerm = watch("searchTerm");
+
+  // Observe visibility change for the target element
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -86,53 +138,36 @@ export const SearchBar: React.FC<TargetComponentProps> = ({
     setSelectedCategory(category === selectedCategory ? null : category);
   };
 
-  const onSubmit: SubmitHandler<FormValues> = (data) => {
+  // Filter products based on the search term and selected category
+  useEffect(() => {
     const results = productsList.filter((product) => {
-      const matchesSearchTerm = data.searchTerm
-        ? product.name.toLowerCase().includes(data.searchTerm.toLowerCase())
-        : true; // If no search term, consider it a match.
+      const matchesSearchTerm = searchTerm
+        ? product.name.toLowerCase().includes(searchTerm.toLowerCase())
+        : true;
 
       const matchesCategory = selectedCategory
         ? product.category === selectedCategory
-        : true; // If no category selected, consider it a match.
+        : true;
 
-      return matchesSearchTerm && matchesCategory; // Both conditions must be true.
+      return matchesSearchTerm && matchesCategory;
     });
 
     setFilteredProducts(results);
-    setLastSearchTerm(data.searchTerm); // Save the last valid search term
-    setSearchSubmitted(true);
-  };
-  const handleSearchClick = async () => {
-    const isValid = await trigger("searchTerm");
-    if (isValid) {
-      handleSubmit(onSubmit)(); // Call handleSubmit without parameters
-    }
-  };
+  }, [searchTerm, selectedCategory]);
 
-  // Re-run the search when user fixes input after validation error
-  const searchTerm = watch("searchTerm");
-
-  useEffect(() => {
-    if (searchSubmitted && !errors.searchTerm && searchTerm) {
-      onSubmit({ searchTerm }); // Call onSubmit directly with searchTerm
-    }
-  }, [searchTerm, errors.searchTerm, searchSubmitted]);
+  const router = useRouter();
 
   return (
     <>
       <div
-        className="relative mb-4 md:mb-6 mx-auto bg-white rounded-xl xl:p-4 p-3 border-[1px] border-primary-light-active hover:border-accent-gray focus:border-accent-dark"
+        className="relative mb-4 md:mb-6 mx-auto bg-white rounded-xl 2xl:p-4 p-3 border-[1px] border-primary-light-active hover:border-accent-gray focus:border-accent-dark"
         ref={targetRef}
       >
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className="flex flex-col items-center"
-        >
+        <div className="flex flex-col items-center">
           <div className="flex w-full items-center">
             <Input
               containerClassname="!pb-0"
-              className="grow-1 border-0"
+              className="pl-0 grow-1 border-0"
               id="search-term"
               placeholder="Component, figma, ui, graphic, etc."
               {...register("searchTerm", {
@@ -143,25 +178,34 @@ export const SearchBar: React.FC<TargetComponentProps> = ({
                 },
               })}
             />
-            <Button type="button" onClick={handleSearchClick}>
+            <Button
+              type="button"
+              disabled={!searchTerm}
+              onClick={() => {
+                searchTerm && router.push("/products?searchTerm=" + searchTerm);
+              }}
+            >
               <SearchIcon color="white" />
               <span>Search</span>
             </Button>
           </div>
-        </form>
+        </div>
 
-        {/* Show results when search is submitted and there are no validation errors */}
-        {searchSubmitted && !errors.searchTerm && (
+        {/* Display filtered products */}
+        {searchTerm && (
           <Card
-            className={`w-full flex flex-col  gap-2 ${
+            className={`w-full flex flex-col gap-2 ${
               filteredProducts.length === 0
-                ? "justify-center h-32 "
+                ? "justify-center h-32"
                 : "justify-start max-h-[372px] p-3 !pb-0"
-            } absolute top-[calc(100%+12px)] left-0 border-[1px] border-accent-dark  overflow-hidden`}
+            } absolute top-[calc(100%+12px)] left-0 border-[1px] border-accent-dark overflow-y-auto`}
           >
             {filteredProducts.length > 0 ? (
               filteredProducts.map((product, index) => (
-                <article
+                <Link
+                  href={`/products/${product.name
+                    .toLocaleLowerCase()
+                    .replaceAll(" ", "-")}}`}
                   className="w-full flex gap-3 pb-[6px] border-b-[1px] border-accent-gray-light"
                   key={index}
                 >
@@ -188,7 +232,7 @@ export const SearchBar: React.FC<TargetComponentProps> = ({
                       </p>
                     </div>
                   </div>
-                </article>
+                </Link>
               ))
             ) : (
               <p>No products found</p>
@@ -209,12 +253,7 @@ export const SearchBar: React.FC<TargetComponentProps> = ({
         ].map((categoryName, key) => (
           <Button
             key={key}
-            onClick={() => handleCategoryClick(categoryName)}
-            className={`${
-              selectedCategory === categoryName
-                ? "!bg-accent-dark"
-                : "!bg-accent-dark-hover"
-            } shrink-0 grow-0 flex-wrap px-2`}
+            className={`!bg-accent-dark hover:!bg-accent-dark-hover shrink-0 grow-0 flex-wrap px-2`}
           >
             {categoryName}
           </Button>
