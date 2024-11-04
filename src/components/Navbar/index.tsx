@@ -47,6 +47,7 @@ export const Navbar = ({
   );
 
   const buttonsClassName = cn(
+    "xl:!py-4",
     pathname === "/" && !isScrollY && "!bg-accent-dark-hover",
     pathname === "/" && isScrollY && "bg-primary"
   );
@@ -62,7 +63,7 @@ export const Navbar = ({
         console.log(e, scrollY);
       }}
     >
-      <div className="flex items-center justify-between gap-6 px-4 lg:px-20 md:px-8">
+      <div className="flex items-center justify-between gap-6 px-4  md:px-8">
         {pathname === "/" && !isScrollY && (
           <Logo
             withBadge={false}
@@ -84,7 +85,7 @@ export const Navbar = ({
         <NavLinks
           className={`items-center justify-between hidden gap-2 xl:gap-6 xl:flex transparent`}
         />
-        <div className="flex items-center gap-3 lg:gap-4">
+        <div className="flex items-center gap-3 ">
           {searchIconhidden && (
             <Button
               className={buttonsClassName}
@@ -115,7 +116,7 @@ export const Navbar = ({
             intent="primaryLight"
             onClick={() => push("/login")}
             className={clsx(
-              "!hidden md:!flex !text-sm md:!text-base bg-secondary text-accent-dark"
+              "!hidden md:!flex !text-sm md:!text-base bg-secondary text-accent-dark xl:py-4"
             )}
           >
             Sign In / Register
