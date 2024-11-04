@@ -86,7 +86,7 @@ const SignUp = () => {
       if (response?.data?.message) {
         setBackendError(response.error);
       } else {
-        console.log("🚀 ~ onSuccess: ~ response:", response);
+        Cookies.remove("pass");
         router.push("/user-verification");
       }
     },

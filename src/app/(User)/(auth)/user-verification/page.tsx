@@ -8,7 +8,9 @@ const UserVerification = () => {
   return (
     <VerificationCodeSent
       resendStatus="VERIFICATION"
-      handleSuccess={() => router.push("/")}
+      handleSuccess={() => {
+        router.push("/");
+      }}
     />
   );
 };

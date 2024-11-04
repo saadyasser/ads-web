@@ -66,7 +66,7 @@ const VerificationCodeSent = ({
     {
       onSuccess: (response) => {
         console.log("success response", response);
-        Cookies.set("recoverToken", response.data.data.recoverToken); // Save the user's _id in a cookie
+        Cookies.set("recoverToken", response.data.recoverToken); // Save the user's _id in a cookie
         handleSuccess && handleSuccess();
       },
       onError: (error: any) => {

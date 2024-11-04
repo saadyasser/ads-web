@@ -52,7 +52,7 @@ const Login = () => {
         setBackendError(response?.error);
       }
       if (response && response?.status >= 200 && response?.status < 300) {
-        // router.push("/");
+        router.push("/");
       }
     } catch (err) {
       console.log("Login error:", err);
