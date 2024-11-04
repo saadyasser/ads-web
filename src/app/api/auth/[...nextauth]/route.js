@@ -1,4 +1,3 @@
-// app/api/auth/[...nextauth]/route.ts
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
@@ -25,7 +24,6 @@ const handler = NextAuth({
         );
 
         const data = await response.json();
-        console.log("🚀 ~ authorize ~ data:", data);
         if (data.statusCode >= 400) {
           throw new Error(data?.message);
         } else {
@@ -40,34 +38,40 @@ const handler = NextAuth({
     }),
   ],
   callbacks: {
-    async signIn({ user, account, profile }) {
-      // if (account.provider === "google") {
-      //   const response = await fetch(
-      //     `https://api.azaiza.com/api/user/auth/google`,
-      //     {
-      //       method: "POST",
-      //       headers: { "Content-Type": "application/json" },
-      //       body: JSON.stringify({ token: account.access_token }),
-      //     }
-      //   );
+    async signIn({ user, account }) {
+      if (account.provider === "google") {
+        const response = await fetch(
+          `https://api.azaiza.com/api/user/auth/google`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ token: account.id_token }),
+          }
+        );
 
-      //   const data = await response.json();
-      //   if (!data.ok || data.statusCode >= 400) {
-      //     throw new Error(data?.message);
-      //   }
-      // }
-      return { user, account, profile }; // Allow sign-in
+        const data = await response.json();
+        if (data.statusCode >= 400) {
+          throw new Error(data?.message);
+        } else {
+          // Merge API response into `user` so `jwt` callback receives it
+          user.accessToken = data.data.accessToken;
+          user.refreshToken = data.data.refreshToken;
+          user.isEmailVerified = data.data.isEmailVerified;
+          user.isNewUser = data.data.isNewUser;
+          user.userDetails = data.data.user;
+        }
+      }
+      return true;
     },
 
-    async jwt({ token, user, account, profile, trigger }) {
-      console.log("🚀 ~ jwt ~ user:", user);
-      if (user && account && account.provider === "google") {
-        token.accessToken = account.access_token;
-        token.refreshToken = "";
-        token.isEmailVerified = true;
-        token.user = account;
-      }
-      if (user && account.provider === "credentials") {
+    async jwt({ token, user, account }) {
+      if (user && account?.provider === "google") {
+        token.isNewUser = user.isNewUser;
+        token.accessToken = user.accessToken;
+        token.refreshToken = user.refreshToken;
+        token.isEmailVerified = user.userDetails.isEmailVerified;
+        token.user = user.userDetails;
+      } else if (user && account?.provider === "credentials") {
         token.accessToken = user.accessToken;
         token.refreshToken = user.refreshToken;
         token.isEmailVerified = user.isEmailVerified;
@@ -80,9 +84,8 @@ const handler = NextAuth({
       session.accessToken = token.accessToken;
       session.refreshToken = token.refreshToken;
       session.isEmailVerified = token.isEmailVerified;
+      session.isNewUser = token.isNewUser;
       session.user = token.user;
-      console.log("🚀 ~ session ~ session:", session);
-
       return session;
     },
   },

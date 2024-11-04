@@ -44,22 +44,30 @@ interface ErrorResponse {
 type ApiResponse = SuccessResponse | ErrorResponse;
 
 const VerificationCodeSent = ({
-  onSuccess = () => {},
+  handleSuccess,
   resendStatus,
 }: {
-  onSuccess?: () => void;
+  handleSuccess?: () => void;
   resendStatus: "FORGET" | "VERIFICATION";
 }) => {
+  const { data } = useSession();
   const mutation = useMutation<ApiResponse, any, Inputs>(
     (formData: Inputs) =>
       axios.post(
-        "https://api.azaiza.com/api/user/password/verify-code",
-        formData
+        "https://api.azaiza.com/api/user/profile/verify",
+        { code: formData.code },
+        {
+          headers: {
+            // @ts-expect-error access token is not defined
+            Authorization: `Bearer ${data?.accessToken}`,
+          },
+        }
       ),
     {
       onSuccess: (response) => {
+        console.log("success response", response);
         Cookies.set("recoverToken", response.data.data.recoverToken); // Save the user's _id in a cookie
-        onSuccess();
+        handleSuccess && handleSuccess();
       },
       onError: (error: any) => {
         const errResponse = error.response?.data as ErrorResponse;
@@ -158,7 +166,7 @@ const VerificationCodeSent = ({
           disabled={mutation.isLoading || !!errors.code || !isValid}
         >
           {mutation.status === "loading"
-            ? "Submiting..."
+            ? "Submitting..."
             : "Send Verification Code"}
         </Button>
       </form>

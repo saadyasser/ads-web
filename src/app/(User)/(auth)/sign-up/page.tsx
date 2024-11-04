@@ -95,6 +95,22 @@ const SignUp = () => {
       setBackendError(error?.response.data?.message);
     },
   });
+  const handleGoogleSignIn = async () => {
+    try {
+      const response = await signIn("google", {
+        redirect: false,
+      });
+      if (response && response?.status >= 400 && response?.status < 500) {
+        setBackendError(response?.error);
+      }
+      if (response && response?.status >= 200 && response?.status < 300) {
+        router.push("/");
+      }
+    } catch (err) {
+      // @ts-expect-error unknown compatibility
+      setBackendError(err);
+    }
+  };
 
   const onSubmit = async (data: SignUpFormValues) => {
     setBackendError(null);
@@ -196,9 +212,7 @@ const SignUp = () => {
           <Button
             intent="custom"
             type="button"
-            onClick={() =>
-              signIn("google", { callbackUrl: "/", redirect: true })
-            }
+            onClick={handleGoogleSignIn}
             className="w-full p-4 font-medium text-center transition-all border bg-background-light border-border text-accent-dark hover:bg-background-light/50"
           >
             <GoogleIcon />

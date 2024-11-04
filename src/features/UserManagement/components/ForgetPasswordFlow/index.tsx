@@ -66,7 +66,7 @@ const ForgetPasswordFlow = () => {
       ) : hasId ? (
         <VerificationCodeSent
           resendStatus="FORGET"
-          onSuccess={onVerificationCodeSentSuccess}
+          handleSuccess={() => onVerificationCodeSentSuccess()}
         />
       ) : (
         <AuthFormWrapper
