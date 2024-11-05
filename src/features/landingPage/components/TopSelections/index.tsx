@@ -112,16 +112,20 @@ export const TopSelections = ({
                   </p>
                 </div>
                 <div className="flex items-center">
-                  <FavouriteIcon fill="#0E2841" />
-                  <span className="text-xs text-accent-dark">200K</span>
+                  <FavouriteIcon width={16} height={16} fill="#0E2841" />
+                  <span
+                    className={`text-xs text-accent-dark pl-[2px] ${
+                      withRate && "pr-2"
+                    }`}
+                  >
+                    200K
+                  </span>
                   {withRate && (
                     <>
-                      <StarIcon
-                        className="pl-2"
-                        color="#0E2841"
-                        fill="#0E2841"
-                      />
-                      <span className="text-xs text-accent-dark">4.9/5</span>
+                      <StarIcon color="#0E2841" fill="#0E2841" />
+                      <span className="text-xs text-accent-dark pl-[2px]">
+                        4.9/5
+                      </span>
                     </>
                   )}
                 </div>
