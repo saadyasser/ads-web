@@ -13,7 +13,11 @@ import { BurgerMenu } from "./BurgerMenu";
 import { CloseIcon } from "./CloseIcon";
 export { Category1 } from "./Categories";
 import { RightArrow } from "./RightArrow"
+import { FilledFavouriteIcon } from "./FilledFavouriteIcon";
+import { StarIcon } from "./StarIcon";
 export {
+  StarIcon,
+  FilledFavouriteIcon,
   RightArrow,
   CloseIcon,
   BurgerMenu,

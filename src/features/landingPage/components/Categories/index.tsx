@@ -68,7 +68,7 @@ export const Categories = () => {
       <p className="text-xs md:text-sm md:font-semibold 2xl:text-base 2xl:font-semibold text-black mb-4 2xl:mb-6">
         With lots of unique blocks, you can easily build a page without coding.
       </p>
-      <div className=" grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-3 2xl:gap-4 ">
+      <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-3 2xl:gap-4 ">
         {categoriesList.map((category: Category) => (
           <Link
             onMouseEnter={() => {
