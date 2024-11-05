@@ -137,7 +137,7 @@ const SignUp = () => {
           <p className="text-sm font-medium">{backendError}</p>
         </div>
       )}
-      <div className="space-y-3">
+      <div className="pt-1 space-y-3">
         <form className="space-y-1" onSubmit={handleSubmit(onSubmit)}>
           <Input
             label="Email"

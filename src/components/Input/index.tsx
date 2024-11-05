@@ -36,41 +36,35 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     };
 
     const inputClassName = cn(
-      "block w-full rounded-xl border-[1px] border-primary-light-active px-4 py-3 text-accent-dark placeholder:text-accent-dark hover:border-accent-gray focus:border-accent-dark outline-none md:py-4 2xl:py-[18px] leading-[18px] pr-10 transition-all",
+      "block w-full rounded-xl mt-4 border-[1px] bg-transparent border-primary-light-active px-4 py-3 text-accent-dark placeholder:text-accent-dark hover:border-accent-gray focus:border-accent-dark outline-none md:py-4 2xl:py-[18px] leading-[18px] pr-10 transition-all appearance-none peer focus:outline-none focus:ring-0",
       className,
       { "border-success": success, "border-danger": error }
     );
-
+    const labelClassName =
+      "absolute duration-300 transform -translate-y-10 top-5 -z-10 origin-[0] peer-focus:start-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0  peer-focus:-translate-y-10 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto left-3 peer-focus:left-3 leading-none text-accent-dark";
     const inputId = id || `input-${label.replace(/\s+/g, "-").toLowerCase()}`;
 
     return (
       <div
-        className={cn(
-          "relative w-full pb-4  2xl:pb-4 ",
-          containerClassname
-        )}
+        className={cn("relative w-full pb-4 z-0 2xl:pb-4 ", containerClassname)}
       >
-        {label && (
-          <Label
-            htmlFor={inputId}
-            className="block mb-2 text-sm font-semibold leading-none lg:mb-1 2xl:mb-2 text-accent-dark"
-          >
-            {label}
-          </Label>
-        )}
         <input
           id={inputId}
           type={showPassword ? "text" : type}
           className={inputClassName}
           ref={ref}
           {...props}
+          placeholder=" "
         />
+        <Label htmlFor={inputId} className={labelClassName}>
+          {label}
+        </Label>
         {type === "password" && (
           <button
             type="button"
             tabIndex={-1}
             onClick={togglePasswordVisibility}
-            className="absolute inset-y-0 flex items-center focus:outline-none right-3"
+            className="absolute flex items-center top-4 focus:outline-none right-3 h-fit"
             aria-label={showPassword ? "Hide password" : "Show password"}
           >
             {showPassword ? (

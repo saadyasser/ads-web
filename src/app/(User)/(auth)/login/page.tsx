@@ -16,8 +16,21 @@ import Cookies from "js-cookie";
 const loginSchema = z.object({
   email: z
     .string()
-    .min(1, { message: "Email is required" })
-    .email({ message: "Invalid email address" }),
+    .min(1, { message: "This field is required" })
+    .refine(
+      (value) => {
+        // Check if the value is a valid email format
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        // Check if the value is a valid username format (alphanumeric and at least 3 characters)
+        const usernameRegex = /^[a-zA-Z0-9_]{3,}$/;
+
+        return emailRegex.test(value) || usernameRegex.test(value);
+      },
+      {
+        message:
+          "Must be a valid email or a username with at least 3 characters",
+      }
+    ),
   password: z
     .string()
     .min(6, { message: "Password must be at least 6 characters long" }),
@@ -83,7 +96,7 @@ const Login = () => {
     <AuthFormWrapper
       title="Login"
       description={
-        <p className="italic">
+        <p className="mb-4 italic">
           Fill the following information to access your <b>ADS</b> account!
         </p>
       }
@@ -99,12 +112,15 @@ const Login = () => {
           <p className="text-sm font-medium">{backendError}</p>
         </div>
       )}
-      <div className="space-y-3">
-        <form className="space-y-1" onSubmit={handleSubmit(onSubmit)}>
+      <div className="pt-1 space-y-2 xl:space-y-4">
+        <form
+          className="space-y-2 xl:space-y-4"
+          onSubmit={handleSubmit(onSubmit)}
+        >
           <Input
-            label="Email"
-            type="email"
-            placeholder="i.e. john@mail.com"
+            label="Email or Username"
+            type="test"
+            placeholder="i.e. john@mail.com or ahmeduxui"
             {...register("email")}
             error={!!errors.email?.message}
             errorMessage={errors.email?.message}
@@ -121,7 +137,7 @@ const Login = () => {
               errorMessage={errors.password?.message}
               autoComplete="password"
             />
-            <div className="flex items-center justify-end gap-2 -mt-4">
+            <div className="flex items-center justify-end gap-2 -mt-2">
               <Link
                 href="/forget-password"
                 className="text-primary z-20 font-semibold text-[12px] hover:text-primary-hover active:text-primary-active mt-0"
