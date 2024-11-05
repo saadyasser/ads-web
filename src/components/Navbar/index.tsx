@@ -107,7 +107,12 @@ export const Navbar = ({
             intent="primaryLight"
             aria-label="Bag button"
           >
-            <BagIcon aria-label="Bag Icon" color={iconColor} />
+            <BagIcon
+              aria-label="Bag Icon"
+              color={iconColor}
+              width={25}
+              height={25}
+            />
           </Button>
 
           <Button

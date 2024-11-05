@@ -77,7 +77,7 @@ export const Categories = () => {
             onMouseLeave={() => {
               setHoveredCategoryId(undefined);
             }}
-            className="flex justify-between items-center bg-background-light hover:bg-secondary text-accent-dark  p-4 text-center rounded-lg md:rounded-2xl transition-colors duration-500"
+            className="flex justify-between items-center bg-background-light hover:bg-secondary text-accent-dark  p-4 text-center rounded-lg md:rounded-2xl transition-colors ease-in duration-500"
             key={category.id}
             href={category.link}
           >
@@ -93,10 +93,10 @@ export const Categories = () => {
               </div>
             </div>
             <div
-              className={`w-10 h-10 bg-white rounded-full self-end ${
+              className={`w-10 h-10 rounded-full self-end bg-secondary-hover ${
                 category.id === hoverdCategoryId
-                  ? "hidden lg:visible"
-                  : "hidden"
+                  ? "invisible lg:visible"
+                  : "invisible"
               }`}
             >
               <RightArrow />
