@@ -104,7 +104,7 @@ export const SearchBar: React.FC<TargetComponentProps> = ({
           <div className="flex w-full items-center">
             <Input
               containerClassname="!pb-0"
-              className="pl-0 pr-[10px] grow-1 border-0 text-lg"
+              className="pl-0 pr-[10px] grow-1 border-0 text-lg mt-0"
               id="search-term"
               placeholder="Component, figma, ui, graphic, etc."
               // Pass the `register` attributes and combine the refs
