@@ -58,7 +58,7 @@ export const Navbar = ({
   );
   return (
     <nav
-      className={`${navClassName} transition-all duration-500`}
+      className={`${navClassName} transition-all  duration-700`}
       onScroll={(e) => {
         console.log(e, scrollY);
       }}
@@ -80,7 +80,14 @@ export const Navbar = ({
             src="/images/logos/home_scrollable_ads_logo.svg"
           />
         )}
-        {pathname !== "/" && <Logo withBadge={false} width={196} height={47} />}
+        {pathname !== "/" && (
+          <Logo
+            withBadge={false}
+            width={196}
+            height={47}
+            src="/images/logos/home_scrollable_ads_logo.svg"
+          />
+        )}
 
         <NavLinks
           className={`items-center justify-between hidden gap-2 xl:gap-6 xl:flex transparent`}
@@ -100,7 +107,12 @@ export const Navbar = ({
             intent="primaryLight"
             aria-label="Bag button"
           >
-            <BagIcon aria-label="Bag Icon" color={iconColor} />
+            <BagIcon
+              aria-label="Bag Icon"
+              color={iconColor}
+              width={25}
+              height={25}
+            />
           </Button>
 
           <Button
