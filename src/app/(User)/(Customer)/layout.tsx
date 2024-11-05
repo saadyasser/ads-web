@@ -11,7 +11,7 @@ export default function RootLayout({
   // const [searchIconhidden, setSearchIconhidden] = useState(false);
 
   return (
-    <div className="!overflow-y-auto">
+    <div>
       <Navbar searchIconhidden={false} />
       <main>
         <ErrorBoundary>

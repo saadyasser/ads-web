@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import Input from "../Input";
 import Button from "../Button";
 import { SearchIcon } from "../svg";
@@ -8,6 +8,7 @@ import Card from "../Card";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { productsList } from "./data";
 
 interface TargetComponentProps {
   onVisibilityChange: (visible: boolean) => void;
@@ -23,79 +24,6 @@ interface FormValues {
   searchTerm: string;
 }
 
-const productsList: Product[] = [
-  {
-    name: "Design System Ui Kit",
-    category: "UI Components",
-    imageUrl: "/images/products/product-1.png",
-  },
-  {
-    name: "Design System Ui Kit",
-    category: "UI Components",
-    imageUrl: "/images/products/product-1.png",
-  },
-  {
-    name: "Design System Ui Kit",
-    category: "UI Components",
-    imageUrl: "/images/products/product-1.png",
-  },
-  {
-    name: "Design System Ui Kit",
-    category: "UI Components",
-    imageUrl: "/images/products/product-1.png",
-  },
-  {
-    name: "Design System Ui Kit",
-    category: "UI Components",
-    imageUrl: "/images/products/product-1.png",
-  },
-  {
-    name: "Design System Ui Kit",
-    category: "UI Components",
-    imageUrl: "/images/products/product-1.png",
-  },
-  {
-    name: "Design System Ui Kit",
-    category: "UI Components",
-    imageUrl: "/images/products/product-1.png",
-  },
-  {
-    name: "Design System Ui Kit",
-    category: "UI Components",
-    imageUrl: "/images/products/product-1.png",
-  },
-  {
-    name: "Design System Ui Kit",
-    category: "UI Components",
-    imageUrl: "/images/products/product-1.png",
-  },
-  {
-    name: "Design System Ui Kit",
-    category: "UI Components",
-    imageUrl: "/images/products/product-1.png",
-  },
-  {
-    name: "Design System Ui Kit",
-    category: "UI Components",
-    imageUrl: "/images/products/product-1.png",
-  },
-  {
-    name: "Figma Icon Set",
-    category: "Icon Sets",
-    imageUrl: "/images/products/product-2.png",
-  },
-  {
-    name: "Mobile App UI",
-    category: "Mobile Templates",
-    imageUrl: "/images/products/product-3.png",
-  },
-  {
-    name: "Web Template",
-    category: "Web Templates",
-    imageUrl: "/images/products/product-1.png",
-  },
-];
-
 export const SearchBar: React.FC<TargetComponentProps> = ({
   onVisibilityChange,
 }) => {
@@ -109,8 +37,8 @@ export const SearchBar: React.FC<TargetComponentProps> = ({
 
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
-  const [lastSearchTerm, setLastSearchTerm] = useState<string | null>(null);
   const targetRef = useRef<HTMLDivElement | null>(null);
+  const inputRef = useRef<HTMLInputElement | null>(null); // Ref for input
 
   const searchTerm = watch("searchTerm");
 
@@ -157,32 +85,42 @@ export const SearchBar: React.FC<TargetComponentProps> = ({
 
   const router = useRouter();
 
+  // Extract `ref` from `register`
+  const { ref: registerRef, ...rest } = register("searchTerm", {
+    required: "Please enter a search term.",
+    onChange: (e) => {
+      setValue("searchTerm", e.target.value);
+      clearErrors("searchTerm");
+    },
+  });
+
   return (
     <>
       <div
-        className="relative mb-4 md:mb-6 mx-auto bg-white rounded-xl 2xl:p-4 p-3 border-[1px] border-primary-light-active hover:border-accent-gray focus:border-accent-dark"
+        className="relative mb-4 md:mb-6 mx-auto bg-white rounded-xl 2xl:p-4 pl-3 py-2 pr-2 border-[1px] border-primary-light-active hover:border-accent-gray focus:border-accent-dark"
         ref={targetRef}
       >
         <div className="flex flex-col items-center">
           <div className="flex w-full items-center">
             <Input
               containerClassname="!pb-0"
-              className="pl-0 grow-1 border-0"
+              className="pl-0 pr-[10px] grow-1 border-0"
               id="search-term"
               placeholder="Component, figma, ui, graphic, etc."
-              {...register("searchTerm", {
-                required: "Please enter a search term.",
-                onChange: (e) => {
-                  setValue("searchTerm", e.target.value);
-                  clearErrors("searchTerm");
-                },
-              })}
+              // Pass the `register` attributes and combine the refs
+              {...rest}
+              ref={(e) => {
+                registerRef(e); // Assign react-hook-form's ref
+                inputRef.current = e; // Assign your custom ref
+              }}
             />
             <Button
-              type="button"
-              disabled={!searchTerm}
               onClick={() => {
-                searchTerm && router.push("/products?searchTerm=" + searchTerm);
+                if (!searchTerm || filteredProducts.length === 0) {
+                  inputRef.current?.focus(); // Focus the input if searchTerm is empty
+                } else {
+                  router.push("/products?searchTerm=" + searchTerm);
+                }
               }}
             >
               <SearchIcon color="white" />
@@ -253,7 +191,8 @@ export const SearchBar: React.FC<TargetComponentProps> = ({
         ].map((categoryName, key) => (
           <Button
             key={key}
-            className={`!bg-accent-dark hover:!bg-accent-dark-hover shrink-0 grow-0 flex-wrap px-2`}
+            className={`!bg-accent-dark-hover hover:!bg-accent-dark shrink-0 grow-0 flex-wrap px-2`}
+            onClick={() => handleCategoryClick(categoryName)}
           >
             {categoryName}
           </Button>

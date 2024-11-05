@@ -23,7 +23,7 @@ export interface StaticImageData {
   blurWidth?: number;
   blurHeight?: number;
 }
-export interface SvgProps extends React.SVGProps<SVGSVGElement> {}
+export interface SvgProps extends React.SVGProps<SVGSVGElement> { }
 
 export type SvgType = FC<SvgProps>;
 
