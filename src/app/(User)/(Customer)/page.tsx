@@ -1,4 +1,8 @@
-import { Categories, TopSelections } from "@/features/landingPage/components";
+import {
+  Categories,
+  TestimonialsSection,
+  TopSelections,
+} from "@/features/landingPage/components";
 import StatisticsSection from "@/features/landingPage/components/StatisticsSection";
 import React from "react";
 
@@ -15,6 +19,7 @@ export default function LandingPage() {
         <TopSelections selectBy="Wireframes" />
       </div>
       <StatisticsSection />
+      <TestimonialsSection />
     </div>
   );
 }
