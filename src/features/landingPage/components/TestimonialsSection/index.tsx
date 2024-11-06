@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export const TestimonialsSection = () => {
   return (
-    <section className="py-6 px-4 md:py-10 md:px-8 2xl:px-[120px]  bg-primary bg-size">
+    <section className="py-6 px-4 md:py-10 md:px-8 2xl:px-[120px] bg-[url(/images/bg-testimonial.png)] bg-primary">
       <div className="max-w-[655px] mx-auto flex flex-col justify-center gap-4 md:gap-6 2xl:gap-10">
         <h2 className="text-sm text-[#01c38d] font-bold text-center">
           Testimonial

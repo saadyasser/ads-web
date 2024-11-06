@@ -1,3 +1,4 @@
+import { Footer } from "@/components";
 import {
   Categories,
   TestimonialsSection,
@@ -20,6 +21,7 @@ export default function LandingPage() {
       </div>
       <StatisticsSection />
       <TestimonialsSection />
+      <Footer />
     </div>
   );
 }

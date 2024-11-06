@@ -5,7 +5,7 @@ import { createElement } from "react";
 export const Footer = () => {
   return (
     <footer
-      className="text-white bg-secondary dark:bg-black-darker"
+      className="text-white bg-accent-dark"
       aria-labelledby="footer-heading"
     >
       <Container className="max-xl:px-4">
@@ -13,73 +13,136 @@ export const Footer = () => {
           Footer
         </h2>
         <div className="pt-8 pb-8 md:pt-16">
-          <div className="grid xl:grid-cols-5 xl:gap-8">
-            <div className="col-span-2 space-y-4 max-xl:text-center">
+          <div className="grid  md:grid-cols-6 md:grid-rows-1  xl:grid-cols-5 gap-4 md:gap-8 xl:gap-8">
+            <div className="col-span-2  space-y-4 max-xl:text-center">
               <Logo
-                src="/images/logos/ads_logo_dark.svg"
-                wrapperClassName="max-xl:justify-center"
+                withBadge={false}
+                src="/images/logos/home_ads_logo.svg"
+                wrapperClassName="max-xl:justify-center md:justify-start"
               />
-              <p className="text-sm leading-6 ">
+              <p className="text-sm leading-6 mb-4 md:text-left">
                 With our extensive library of pre-built components and
                 resources, you can kickstart any project and save thousands of
                 hours of design work.
               </p>
-              <Divider className="border-b xl:!hidden !my-4 border-[#0F2448] dark:border-black-darker" />
+              <Divider className="border-b md:!hidden border-[#ffffff1a] " />
             </div>
-            <div className="grid items-start justify-between grid-cols-2 col-span-2 gap-4 mt-4 xl:gap-8 xl:grid-cols-3 xl:col-span-3 xl:mt-0">
+            <div className="grid items-start justify-between grid-cols-1 col-span-1 md:col-span-4 gap-4  xl:gap-8 xl:grid-cols-3 xl:col-span-3">
               <div>
-                <h3 className="text-base font-bold leading-6 xl:text-xl">
-                  <span className="mr-2 text-primary font-bolder">-</span>
+                <h3 className="text-base font-bold leading-6 xl:text-xl text-center md:text-left">
                   Quick Links
                 </h3>
-                <ul role="list" className="mt-6 ml-4 space-y-4">
+                <ul
+                  role="list"
+                  className="mt-6 ml-4 space-y-4 mb-4 md:grid md:grid-cols-2 md:gap-y-4"
+                >
                   {FOOTER_NAVIGATION.quickLinks.map((item) => (
-                    <li key={item.name}>
-                      <Link href={item.href} className="text-sm">
+                    <li className="!mt-0" key={item.name}>
+                      <Link
+                        href={item.href}
+                        className="justify-center md:justify-start md:items-end text-sm"
+                      >
                         {item.name}
                       </Link>
                     </li>
                   ))}
                 </ul>
+                <Divider className="border-b md:!hidden border-[#ffffff1a] " />
               </div>
-              <div>
-                <h3 className="text-base font-bold leading-6 xl:text-xl">
-                  <span className="mr-2 text-primary font-bolder">-</span>
-                  Help{" "}
-                </h3>
-                <ul role="list" className="mt-6 ml-4 space-y-4">
-                  {FOOTER_NAVIGATION.help.map((item) => (
-                    <li key={item.name}>
-                      <Link href={item.href} className="text-sm">
-                        {item.name}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
+            </div>
+            <div className="md:grid md:grid-cols-6 md:gap-8 md:grid-rows-1 md:col-span-6">
+              <div className="md:col-span-2"></div>
+              <div className="grid items-start justify-between grid-cols-1 col-span-1 md:col-span-4 gap-4  xl:gap-8 xl:grid-cols-3 xl:col-span-3">
+                <div>
+                  <ul
+                    role="list"
+                    className="mt-6 ml-4 space-y-4 mb-4 md:grid md:grid-cols-2 md:gap-y-4 "
+                  >
+                    <ul
+                      role="list"
+                      className="mt-6 ml-4 space-y-4 mb-4 md:grid md:grid-cols-2"
+                    >
+                      <div className="col-span-1">
+                        <h3 className="text-base font-bold leading-6 xl:text-xl md:text-left text-center">
+                          Quick Links
+                        </h3>
+                        {[1, 2, 3, 4].map((item) => (
+                          <li key={item}>
+                            <Link
+                              href="/"
+                              className="justify-center md:justify-start text-sm"
+                            >
+                              test tea
+                            </Link>
+                          </li>
+                        ))}
+                      </div>
+                      <Divider className="border-b md:!hidden border-[#ffffff1a] " />
+                    </ul>
+                    <div className="col-span-1">
+                      <h3 className="text-base font-bold leading-6 xl:text-xl md:text-left text-center">
+                        Quick Links
+                      </h3>
+                      <ul role="list" className="mt-6 ml-4 space-y-4 mb-4">
+                        {[1, 2, 3, 4].map((item) => (
+                          <li key={item}>
+                            <Link
+                              href="/"
+                              className="justify-center md:justify-start text-sm"
+                            >
+                              test tea
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </ul>
+                  <Divider className="border-b md:!hidden border-[#ffffff1a] " />
+                </div>
               </div>
-
-              <div className="mt-4 xl:mt-0 max-xl:col-span-2">
-                <Divider className="border-b xl:!hidden !my-4 border-[#0F2448] dark:border-black-darker" />
-                <h3 className="text-base font-bold leading-6 xl:text-xl">
-                  <span className="mr-2 text-primary font-bolder">-</span>
-                  Social Media{" "}
-                </h3>
-                <ul role="list" className="mt-6 ml-4 space-y-5">
-                  {FOOTER_NAVIGATION.socialMedia.map((item) => (
-                    <li key={item.name}>
-                      <Link href={item.href} className="text-sm">
-                        {createElement(item.icon, { className: "w-6 h-6" })}
-                        {item.name}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
+              <div className="md:col-span-3 md:grid md:grid-cols-2">
+                {/* <div className="">
+                  <h3 className="text-base font-bold leading-6 xl:text-xl md:text-left text-center">
+                    Quick Links
+                  </h3>
+                  <ul role="list" className="mt-6 ml-4 space-y-4 mb-4">
+                    {[1, 2, 3, 4].map((item) => (
+                      <li key={item}>
+                        <Link
+                          href="/"
+                          className="justify-center md:justify-start text-sm"
+                        >
+                          test tea
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                  <Divider className="border-b md:!hidden border-[#ffffff1a] " />
+                </div>
+                <div className="">
+                  <h3 className="text-base font-bold leading-6 xl:text-xl md:text-left text-center">
+                    Quick Links
+                  </h3>
+                  <ul role="list" className="mt-6 ml-4 space-y-4 mb-4">
+                    {[1, 2, 3, 4].map((item) => (
+                      <li key={item}>
+                        <Link
+                          href="/"
+                          className="justify-center md:justify-start text-sm"
+                        >
+                          test tea
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                  <Divider className="border-b md:!hidden border-[#ffffff1a] " />
+                </div> */}
               </div>
             </div>
           </div>
           <div className="pt-4 mt-4">
-            <Divider className="border-b border-secondary-active dark:border-black-darker" />
-            <p className="my-4 leading-5 text-center">
+            <Divider className="border-b border-[#ffffff1a]" />
+            <p className="py-4 leading-5 text-center">
               &copy; All rights reserved for | Azaiza Design Studio{" "}
               {new Date().getFullYear()}
             </p>
