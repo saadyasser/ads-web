@@ -13,8 +13,8 @@ export const Footer = () => {
           Footer
         </h2>
         <div className="pt-8 pb-8 md:pt-16">
-          <div className="grid  md:grid-cols-6 md:grid-rows-1  xl:grid-cols-5 gap-4 md:gap-8 xl:gap-8">
-            <div className="col-span-2  space-y-4 max-xl:text-center">
+          <div className="md:grid  md:grid-cols-6 md:grid-rows-1  xl:grid-cols-5 gap-4 md:gap-8 xl:gap-8">
+            <div className="md:col-span-2  space-y-4 max-xl:text-center">
               <Logo
                 withBadge={false}
                 src="/images/logos/home_ads_logo.svg"
@@ -63,7 +63,7 @@ export const Footer = () => {
                       className="mt-6 ml-4 space-y-4 mb-4 md:grid md:grid-cols-2"
                     >
                       <div className="col-span-1">
-                        <h3 className="text-base font-bold leading-6 xl:text-xl md:text-left text-center">
+                        <h3 className="text-base font-bold leading-6 xl:text-xl md:text-left text-center mb-4">
                           Quick Links
                         </h3>
                         {[1, 2, 3, 4].map((item) => (
@@ -83,7 +83,7 @@ export const Footer = () => {
                       <h3 className="text-base font-bold leading-6 xl:text-xl md:text-left text-center">
                         Quick Links
                       </h3>
-                      <ul role="list" className="mt-6 ml-4 space-y-4 mb-4">
+                      <ul role="list" className="mt-6 ml-4 space-y-4 ">
                         {[1, 2, 3, 4].map((item) => (
                           <li key={item}>
                             <Link
@@ -97,7 +97,7 @@ export const Footer = () => {
                       </ul>
                     </div>
                   </ul>
-                  <Divider className="border-b md:!hidden border-[#ffffff1a] " />
+                  {/* <Divider className="border-b md:!hidden border-[#ffffff1a] " /> */}
                 </div>
               </div>
               <div className="md:col-span-3 md:grid md:grid-cols-2">
