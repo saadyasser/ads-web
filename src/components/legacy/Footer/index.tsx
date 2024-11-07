@@ -1,6 +1,8 @@
 import { FOOTER_NAVIGATION } from "@/data";
 import { Logo, Container, Link, Divider } from "../../";
 import { createElement } from "react";
+import { InstgramIcon, LinkedInIcon } from "@/components/svg";
+import TwitterIcon from "@/components/svg/TwitterIcon";
 
 export const Footer = () => {
   return (
@@ -12,7 +14,7 @@ export const Footer = () => {
         Footer
       </h2>
       <div className="pt-8 md:pt-16">
-        <div className="md:grid	 md:grid-cols-6 md:grid-rows-1  xl:grid-cols-12 gap-8 xl:gap-8">
+        <div className="md:grid	 md:grid-cols-6 md:grid-rows-1  xl:grid-cols-12 gap-8 md:gap-y-3 md:gap-x-8 xl:gap-8">
           <div className="md:col-span-2 xl:col-span-3  space-y-4 max-xl:text-center">
             <Logo
               withBadge={false}
@@ -20,16 +22,21 @@ export const Footer = () => {
               wrapperClassName="max-xl:justify-center md:justify-start"
             />
             <p className="text-sm leading-6 mb-4 md:text-left">
-              With our extensive library of pre-built components and resources,
-              you can kickstart any project and save thousands of hours of
-              design work.
+              With lots of unique blocks, you can easily build a page without
+              coding. Build your next landing page.
             </p>
+            <div className="flex gap-4 mt-4">
+              <TwitterIcon />
+              <LinkedInIcon />
+              <InstgramIcon />
+              <LinkedInIcon />
+            </div>
             <Divider className="border-b md:!hidden border-[#ffffff1a] " />
           </div>
           <div className="grid items-start justify-between grid-cols-1 xl:col-span-4 col-span-1 md:col-span-4 gap-4  xl:gap-8 ">
-            <div className="mt-4 ">
+            <div>
               <h3 className="text-base font-bold leading-6 xl:text-xl text-center md:text-left">
-                Quick Links
+                Explore
               </h3>
               <ul
                 role="list"
@@ -55,22 +62,22 @@ export const Footer = () => {
               <div className="xl:col-span-5 xl:grid xl:grid-cols-5">
                 <ul
                   role="list"
-                  className="mt-4 md:ml-0 space-y-4 xl:space-y-0 mb-4 md:mb-0 md:grid md:grid-cols-2 xl:grid-cols-5 xl:col-span-5 md:gap-y-4 xl:mt-0"
+                  className="mt-4 md:ml-0 space-y-4 xl:space-y-0 mb-4 md:mb-0 md:grid md:grid-cols-2 xl:grid-cols-5 xl:col-span-5 md:gap-y-4 md:mt-0"
                 >
                   <ul
                     role="list"
-                    className="mt-4 md:ml-0 space-y-4 mb-4 md:mb-0 md:col-span-1 md:grid md:grid-cols-5 xl:block xl:col-span-2"
+                    className="mt-4 md:ml-0 space-y-4 mb-4 md:mb-0 md:col-span-1 md:grid md:grid-cols-5 xl:block xl:col-span-2 xl:mt-0"
                   >
                     <div className="col-span-1 md:col-span-5">
                       <h3 className="text-base font-bold leading-6 xl:text-xl md:text-left text-center md:mb-4 mb-4">
-                        Quick Links
+                        ADS
                       </h3>
                       <div className="flex flex-col gap-4">
                         {FOOTER_NAVIGATION.test.map((item) => (
                           <li key={item.name}>
                             <Link
                               href="/"
-                              className="justify-center md:justify-start text-sm md:ml-4 xl:ml-0"
+                              className="justify-center md:justify-start text-sm md:ml-0"
                             >
                               {item.name}
                             </Link>
@@ -81,15 +88,15 @@ export const Footer = () => {
                     <Divider className="border-b md:!hidden border-[#ffffff1a] " />
                   </ul>
                   <div className="hidden xl:block xl:col-span-1"></div>
-                  <div className="mt-0 col-span-2 md:col-span-1">
+                  <div className="mt-0 col-span-2 md:col-span-1 xl:col-span-2">
                     <h3 className="text-base font-bold leading-6 xl:text-xl md:text-left text-center xl:mb-4">
-                      Quick Links
+                      Have an issue?
                     </h3>
                     <ul
                       role="list"
                       className="ml-0 mt-4  md:ml-4 space-y-4 xl:ml-0 "
                     >
-                      {FOOTER_NAVIGATION.test.map((item) => (
+                      {FOOTER_NAVIGATION.help.map((item) => (
                         <li key={item.name}>
                           <Link
                             href="/"

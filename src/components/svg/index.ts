@@ -15,7 +15,12 @@ export { Category1 } from "./Categories";
 import { RightArrow } from "./RightArrow"
 import { FilledFavouriteIcon } from "./FilledFavouriteIcon";
 import { StarIcon } from "./StarIcon";
+import { LinkedInIcon } from "./LinkedInIcon";
+import { InstgramIcon } from "./InstgramIcon";
+import { TwitterIcon } from "./TwitterIcon";
 export {
+  InstgramIcon,
+  LinkedInIcon,
   StarIcon,
   FilledFavouriteIcon,
   RightArrow,
