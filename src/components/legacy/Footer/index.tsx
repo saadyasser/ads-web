@@ -34,7 +34,7 @@ export const Footer = () => {
             <Divider className="border-b md:!hidden border-[#ffffff1a] " />
           </div>
           <div className="grid items-start justify-between grid-cols-1 xl:col-span-4 col-span-1 md:col-span-4 gap-4  xl:gap-8 ">
-            <div>
+            <div className="mt-4 md:mt-0">
               <h3 className="text-base font-bold leading-6 xl:text-xl text-center md:text-left">
                 Explore
               </h3>
