@@ -119,7 +119,8 @@ const Login = () => {
         >
           <Input
             label="Email or Username"
-            type="test"
+            type="text"
+            floatLabel
             placeholder="i.e. john@mail.com or ahmeduxui"
             {...register("email")}
             error={!!errors.email?.message}
@@ -131,6 +132,7 @@ const Login = () => {
             <Input
               label="Password"
               type="password"
+              floatLabel
               placeholder="******"
               {...register("password")}
               error={!!errors.password?.message}

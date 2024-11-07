@@ -101,10 +101,10 @@ export const SearchBar: React.FC<TargetComponentProps> = ({
         ref={targetRef}
       >
         <div className="flex flex-col items-center">
-          <div className="flex w-full items-center">
+          <div className="flex items-center w-full">
             <Input
               containerClassname="!pb-0"
-              className="pl-0 pr-[10px] grow-1 border-0 text-lg mt-0"
+              className="pl-0 pr-[10px] grow-1 border-0 text-lg mt-0 md:!py-2 2xl:!py-2"
               id="search-term"
               placeholder="Component, figma, ui, graphic, etc."
               // Pass the `register` attributes and combine the refs
@@ -180,7 +180,7 @@ export const SearchBar: React.FC<TargetComponentProps> = ({
       </div>
 
       {/* Category buttons */}
-      <div className="mx-auto mt-2 flex justify-center shrink lg:shrink-0 md:gap-2 gap-1 flex-wrap">
+      <div className="flex flex-wrap justify-center gap-1 mx-auto mt-2 shrink lg:shrink-0 md:gap-2">
         {[
           "Icon Sets",
           "UI Components",

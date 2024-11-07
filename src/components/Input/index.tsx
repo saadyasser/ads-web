@@ -11,6 +11,7 @@ export interface InputProps
   withErrorPlace?: boolean;
   inputClassName?: string;
   containerClassname?: string;
+  floatLabel?: boolean;
   errorMessage?: string; // To show validation error messages
 }
 
@@ -25,6 +26,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       containerClassname,
       id,
       errorMessage,
+      floatLabel,
       ...props // Use spread to accept all props like onChange, value, name, etc.
     },
     ref
@@ -36,17 +38,29 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     };
 
     const inputClassName = cn(
-      "block w-full rounded-xl mt-4 border-[1px] bg-transparent border-primary-light-active px-4 py-3 text-accent-dark placeholder:text-accent-dark hover:border-accent-gray focus:border-accent-dark outline-none md:py-4 2xl:py-[18px] leading-[18px] pr-10 transition-all appearance-none peer focus:outline-none focus:ring-0",
+      "block w-full rounded-xl border-[1px] bg-transparent border-primary-light-active px-4 py-3 text-accent-dark placeholder:text-accent-dark hover:border-accent-gray focus:border-accent-dark outline-none md:py-4 2xl:py-[18px] leading-[18px] pr-10 transition-all focus:outline-none focus:ring-0",
       className,
+      floatLabel && `appearance-none peer`,
       { "border-success": success, "border-danger": error }
     );
-    const labelClassName =
-      "absolute duration-300 transform -translate-y-10 top-5 -z-10 origin-[0] peer-focus:start-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0  peer-focus:-translate-y-10 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto left-3 peer-focus:left-3 leading-none text-accent-dark";
+    const labelClassName = cn(
+      "text-accent-dark leading-none text-sm font-semibold duration-300",
+      floatLabel
+        ? `absolute transform -translate-y-10 top-4 
+      -z-10 origin-[0] peer-focus:start-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0
+       peer-focus:-translate-y-10 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto left-2 peer-focus:left-2
+      `
+        : "block mb-2 lg:mb-1 2xl:mb-2 "
+    );
     const inputId = id || `input-${label.replace(/\s+/g, "-").toLowerCase()}`;
 
     return (
       <div
-        className={cn("relative w-full pb-4 z-0 2xl:pb-4 ", containerClassname)}
+        className={cn(
+          "relative w-full pb-4 2xl:pb-4 ",
+          floatLabel && "z-0 mt-5",
+          containerClassname
+        )}
       >
         <input
           id={inputId}
@@ -54,11 +68,13 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           className={inputClassName}
           ref={ref}
           {...props}
-          placeholder=" "
+          placeholder={floatLabel ? " " : props.placeholder}
         />
-        <Label htmlFor={inputId} className={labelClassName}>
-          {label}
-        </Label>
+        {label && (
+          <Label htmlFor={inputId} className={labelClassName}>
+            {label}
+          </Label>
+        )}
         {type === "password" && (
           <button
             type="button"
@@ -75,7 +91,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           </button>
         )}
         {errorMessage && (
-          <p className="absolute bottom-0 left-0 pl-2 mt-1 text-xs text-danger">
+          <p className="absolute left-0 pl-2 mt-1 text-xs font-medium -bottom-2 text-danger">
             {errorMessage}
           </p>
         )}
