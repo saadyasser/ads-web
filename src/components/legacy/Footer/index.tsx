@@ -25,7 +25,7 @@ export const Footer = () => {
               With lots of unique blocks, you can easily build a page without
               coding. Build your next landing page.
             </p>
-            <div className="flex gap-4 mt-4">
+            <div className=" flex gap-4 mt-4 justify-center md:justify-start">
               <TwitterIcon />
               <LinkedInIcon />
               <InstgramIcon />
