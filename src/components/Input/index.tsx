@@ -57,7 +57,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     return (
       <div
         className={cn(
-          "relative w-full pb-4 2xl:pb-4 ",
+          "relative w-full 2xl:pb-4 transition  ",
           floatLabel && "z-0 mt-5",
           containerClassname
         )}
@@ -91,7 +91,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           </button>
         )}
         {errorMessage && (
-          <p className="absolute left-0 pl-2 mt-1 text-xs font-medium -bottom-2 text-danger">
+          <p className="left-0 pl-2 mt-1 text-xs font-medium -bottom-2 text-danger">
             {errorMessage}
           </p>
         )}

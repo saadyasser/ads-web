@@ -142,6 +142,7 @@ const SignUp = () => {
           <Input
             label="Email"
             type="email"
+            floatLabel
             placeholder="i.e. john@mail.com"
             {...register("email")}
             error={!!errors.email?.message}
@@ -151,6 +152,7 @@ const SignUp = () => {
           />
           <Input
             label="User Name"
+            floatLabel
             type="text"
             placeholder="ahmedazy.uxui"
             {...register("userName")}
@@ -160,6 +162,7 @@ const SignUp = () => {
           <Input
             label="Password"
             type="password"
+            floatLabel
             placeholder="******"
             {...register("password")}
             error={!!errors.password?.message}
@@ -169,6 +172,7 @@ const SignUp = () => {
           <Input
             label="Confirm Your Password"
             type="password"
+            floatLabel
             placeholder="******"
             {...register("confirmPassword")}
             error={!!errors.confirmPassword?.message}

@@ -149,7 +149,7 @@ export const SearchBar: React.FC<TargetComponentProps> = ({
               }}
             >
               <SearchIcon color="white" />
-              <span>Search</span>
+              <span className="max-lg:hidden">Search</span>
             </Button>
           </div>
         </div>
