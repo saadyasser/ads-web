@@ -32,24 +32,23 @@ export const TopSelections = ({
 }) => {
   return (
     <section className={className}>
-      <H2 className="text-accent-dark mb-3 ">
-        Select a category -{" "}
-        <span className="font-normal italic">{selectBy}</span>
+      <H2 className="text-accent-dark mb-1 ">
+        Top 8 Selection - <span className="font-normal italic">{selectBy}</span>
       </H2>
       <div className="flex justify-between items-center mb-4 2xl:mb-6">
-        <p className="text-xs md:text-sm md:font-semibold 2xl:text-base 2xl:font-semibold text-black ">
+        <p className="text-xs md:text-sm  2xl:text-base  text-black font-light">
           With lots of unique blocks, you can easily build a page without
           coding.
         </p>
         <Link
           href="/test"
-          className="flex justify-between items-center text-center font-semibold invisible md:visible text-[#01C38D] pr-4 md:pr-8 2xl:pr-20"
+          className="md:flex justify-between items-center text-center font-semibold hidden  text-[#01C38D] pr-4 md:pr-8 2xl:pr-20"
         >
           <span>Explore Design Systems</span>
           <RightArrow fill="#01C38D" color="#01C38D" />
         </Link>
       </div>
-      <div className=" flex  gap-2 md:gap-3 2xl:gap-4 overflow-hidden">
+      <div className=" flex  gap-2 md:gap-3 2xl:gap-4 overflow-x-auto scrollbar-hide">
         {productsList.map((product: Product, index) => (
           <Link
             key={index}
@@ -136,7 +135,7 @@ export const TopSelections = ({
       </div>
       <Link
         href="/test"
-        className="flex  items-center  font-semibold visible md:invisible text-[#01C38D] mt-4"
+        className="flex  items-center  font-semibold visible md:invisible text-[#01C38D] mt-3"
       >
         <span>Explore Design Systems</span>
         <RightArrow fill="#01C38D" color="#01C38D" />

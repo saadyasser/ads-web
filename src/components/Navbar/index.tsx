@@ -12,7 +12,7 @@ import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import clsx from "clsx";
 import { usePathname, useRouter } from "next/navigation";
-import { BagIcon, BurgerMenu, FavouriteIcon } from "../svg";
+import { BagIcon, BurgerMenu, CloseIcon, FavouriteIcon } from "../svg";
 import { cn } from "@/utils";
 import { useSCrollY } from "@/hooks";
 import { SearchIcon } from "@/components/svg";
@@ -139,7 +139,15 @@ export const Navbar = ({
             onClick={() => setBurgerMenuOpen((prev) => !prev)}
             className={`!flex xl:!hidden items-center justify-center   active:!shadow-none border-none !h-fit  ${buttonsClassName}`}
           >
-            <BurgerMenu color={iconColor} />
+            {!burgerMenuOpen ? (
+              <BurgerMenu color={iconColor} />
+            ) : (
+              <CloseIcon
+                onClick={() => setBurgerMenuOpen((prev) => !prev)}
+                aria-label="Close Icon"
+                color={iconColor}
+              />
+            )}
           </Button>
         </div>
         <SlideOver
