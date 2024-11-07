@@ -32,11 +32,11 @@ export const TopSelections = ({
 }) => {
   return (
     <section className={className}>
-      <H2 className="text-accent-dark mb-1 ">
-        Top 8 Selection - <span className="font-normal italic">{selectBy}</span>
+      <H2 className="mb-1 text-accent-dark ">
+        Top 8 Selection - <span className="italic font-normal">{selectBy}</span>
       </H2>
-      <div className="flex justify-between items-center mb-4 2xl:mb-6">
-        <p className="text-xs md:text-sm  2xl:text-base  text-black font-light">
+      <div className="flex items-center justify-between mb-4 2xl:mb-6">
+        <p className="text-xs font-light text-black md:text-sm 2xl:text-base">
           With lots of unique blocks, you can easily build a page without
           coding.
         </p>
@@ -48,18 +48,18 @@ export const TopSelections = ({
           <RightArrow fill="#01C38D" color="#01C38D" />
         </Link>
       </div>
-      <div className=" flex  gap-2 md:gap-3 2xl:gap-4 overflow-x-auto scrollbar-hide">
+      <div className="flex gap-2 overflow-x-auto md:gap-3 2xl:gap-4 scrollbar-hide">
         {productsList.map((product: Product, index) => (
           <Link
             key={index}
-            className="shrink-0 grow basis-4/5 md:basis-[45%]  xl:md:basis-[22%] rounded-lg md:rounded-2xl transition-colors duration-500"
+            className="shrink-0 grow basis-4/5 md:basis-[45%]  xl:md:basis-[22%] md:rounded-2xl transition-colors duration-150 rounded-2xl"
             href={product.name.toLowerCase().replaceAll(" ", "-")}
           >
             <Card className="block">
               <div className="relative group">
                 {/* Overlay Div */}
-                <div className=" flex flex-col gap-3 absolute px-2 pb-2 pt-10 inset-0 bg-[rgba(0,0,0,0.5)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in rounded-lg md:rounded-xl z-10">
-                  <div className="basis-4/5  flex items-center gap-2 justify-center">
+                <div className=" flex flex-col gap-3 absolute px-2 pb-2 pt-10 inset-0 bg-[rgba(0,0,0,0.3)] opacity-0 group-hover:opacity-100 transition-opacity duration-150 ease-in rounded-xl md:rounded-xl z-10">
+                  <div className="flex items-center justify-center gap-2 basis-4/5">
                     <span className="p-2 bg-white rounded-full">
                       <FavouriteIcon color="#0e2841" />
                     </span>
@@ -68,7 +68,7 @@ export const TopSelections = ({
                     </span>
                   </div>
                   <Link
-                    className=" text-white font-semibold flex justify-center items-center"
+                    className="flex items-center justify-center font-semibold text-white "
                     href={product.name.toLowerCase().replaceAll(" ", "-")}
                   >
                     <span>Show Detail</span>
@@ -94,7 +94,7 @@ export const TopSelections = ({
                   </span>
                 )}
               </div>
-              <h6 className="text-sm md:text-base leading-5 text-accent-dark my-2 font-bold">
+              <h6 className="my-2 text-sm font-bold leading-5 md:text-base text-accent-dark">
                 {product.name}
               </h6>
               <div className="flex justify-between">
