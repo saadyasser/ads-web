@@ -5,6 +5,11 @@ import {
   TwitterXIcon,
 } from "@/lib/@react-icons";
 export const FOOTER_NAVIGATION = {
+  test: [
+    { name: "About us", href: "/about-us" },
+    { name: "Web & Mobile", href: "/web-mobile" },
+    { name: "Web Templates", href: "/web-templates" },
+    { name: "About us", href: "/about-us" }],
   quickLinks: [
     { name: "Home", href: "/" },
     { name: "UI Components", href: "/ui-components" },
@@ -15,10 +20,6 @@ export const FOOTER_NAVIGATION = {
     { name: "Web Templates", href: "/web-templates" },
     { name: "About us", href: "/about-us" },
   ],
-  test: [{ name: "About us", href: "/about-us" },
-  { name: "Web & Mobile", href: "/web-mobile" },
-  { name: "Web Templates", href: "/web-templates" },
-  { name: "About us", href: "/about-us" },],
   help: [
     { name: "Contact us", href: "#" },
     { name: "Our Policies", href: "#" },
