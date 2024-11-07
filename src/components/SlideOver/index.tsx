@@ -84,7 +84,7 @@ export const SlideOver = ({
                   <div
                     className={`flex flex-col h-full pt-8  shadow-xl ${navClassName}`}
                   >
-                    <div className="px-4 sm:px-6">
+                    {/* <div className="px-4 sm:px-6">
                       <div className="flex items-start justify-between">
                         <DialogTitle className="text-lg font-medium text-gray-900">
                           {pathname === "/" && !isScrollY && (
@@ -129,7 +129,7 @@ export const SlideOver = ({
                           </Button>
                         </div>
                       </div>
-                    </div>
+                    </div> */}
                     <div className="relative flex-1 py-6 mt-6 overflow-y-auto sm:px-6">
                       <div className="absolute inset-0 w-full max-w-full px-4 sm:px-6">
                         <div className="pt-3 ">{children}</div>

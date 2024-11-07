@@ -81,7 +81,7 @@ export const Footer = () => {
                     <Divider className="border-b md:!hidden border-[#ffffff1a] " />
                   </ul>
                   <div className="hidden xl:block xl:col-span-1"></div>
-                  <div className="mt-0 pt-4 md:pt-0 col-span-2 md:col-span-1">
+                  <div className="mt-0 col-span-2 md:col-span-1">
                     <h3 className="text-base font-bold leading-6 xl:text-xl md:text-left text-center xl:mb-4">
                       Quick Links
                     </h3>

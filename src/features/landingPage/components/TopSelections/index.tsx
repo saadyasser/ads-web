@@ -32,11 +32,11 @@ export const TopSelections = ({
 }) => {
   return (
     <section className={className}>
-      <H2 className="text-accent-dark mb-3 ">
+      <H2 className="text-accent-dark mb-1 ">
         Top 8 Selection - <span className="font-normal italic">{selectBy}</span>
       </H2>
       <div className="flex justify-between items-center mb-4 2xl:mb-6">
-        <p className="text-xs md:text-sm md:font-semibold 2xl:text-base 2xl:font-semibold text-black ">
+        <p className="text-xs md:text-sm  2xl:text-base  text-black font-light">
           With lots of unique blocks, you can easily build a page without
           coding.
         </p>
