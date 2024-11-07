@@ -9,6 +9,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { productsList } from "./data";
+// import { XIcon } from "../svg"; // Assuming you have an X icon component for closing
 
 interface TargetComponentProps {
   onVisibilityChange: (visible: boolean) => void;
@@ -37,12 +38,13 @@ export const SearchBar: React.FC<TargetComponentProps> = ({
 
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+  const [isCardVisible, setIsCardVisible] = useState(false); // State for card visibility
   const targetRef = useRef<HTMLDivElement | null>(null);
-  const inputRef = useRef<HTMLInputElement | null>(null); // Ref for input
+  const cardRef = useRef<HTMLDivElement | null>(null); // Ref for the card
+  const inputRef = useRef<HTMLInputElement | null>(null);
 
   const searchTerm = watch("searchTerm");
 
-  // Observe visibility change for the target element
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -66,7 +68,6 @@ export const SearchBar: React.FC<TargetComponentProps> = ({
     setSelectedCategory(category === selectedCategory ? null : category);
   };
 
-  // Filter products based on the search term and selected category
   useEffect(() => {
     const results = productsList.filter((product) => {
       const matchesSearchTerm = searchTerm
@@ -81,11 +82,11 @@ export const SearchBar: React.FC<TargetComponentProps> = ({
     });
 
     setFilteredProducts(results);
+    setIsCardVisible(searchTerm?.length > 0); // Show card if there's a search term
   }, [searchTerm, selectedCategory]);
 
   const router = useRouter();
 
-  // Extract `ref` from `register`
   const { ref: registerRef, ...rest } = register("searchTerm", {
     required: "Please enter a search term.",
     onChange: (e) => {
@@ -93,6 +94,31 @@ export const SearchBar: React.FC<TargetComponentProps> = ({
       clearErrors("searchTerm");
     },
   });
+
+  const handleDismiss = () => {
+    setIsCardVisible(false);
+  };
+
+  // Handle click outside to dismiss the card
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        cardRef.current &&
+        !cardRef.current.contains(event.target as Node) &&
+        !inputRef.current?.contains(event.target as Node)
+      ) {
+        setIsCardVisible(false);
+      }
+    };
+
+    if (isCardVisible) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isCardVisible]);
 
   return (
     <>
@@ -107,17 +133,16 @@ export const SearchBar: React.FC<TargetComponentProps> = ({
               className="pl-0 pr-[10px] grow-1 border-0 text-lg mt-0 md:!py-2 2xl:!py-2"
               id="search-term"
               placeholder="Component, figma, ui, graphic, etc."
-              // Pass the `register` attributes and combine the refs
               {...rest}
               ref={(e) => {
-                registerRef(e); // Assign react-hook-form's ref
-                inputRef.current = e; // Assign your custom ref
+                registerRef(e);
+                inputRef.current = e;
               }}
             />
             <Button
               onClick={() => {
-                if (!searchTerm || filteredProducts.length === 0) {
-                  inputRef.current?.focus(); // Focus the input if searchTerm is empty
+                if (!searchTerm || filteredProducts?.length === 0) {
+                  inputRef.current?.focus();
                 } else {
                   router.push("/products?searchTerm=" + searchTerm);
                 }
@@ -130,20 +155,28 @@ export const SearchBar: React.FC<TargetComponentProps> = ({
         </div>
 
         {/* Display filtered products */}
-        {searchTerm && (
+        {isCardVisible && searchTerm && (
           <Card
             className={`w-full flex flex-col gap-2 ${
-              filteredProducts.length === 0
+              filteredProducts?.length === 0
                 ? "justify-center h-32"
                 : "justify-start max-h-[372px] p-3 !pb-0"
             } absolute top-[calc(100%+12px)] left-0 border-[1px] border-accent-dark overflow-y-auto`}
+            ref={cardRef} // Attach ref to the card
           >
-            {filteredProducts.length > 0 ? (
-              filteredProducts.map((product, index) => (
+            <button
+              onClick={handleDismiss}
+              className="absolute top-2 right-2 text-accent-dark"
+              aria-label="Close"
+            >
+              {/* <XIcon className="w-4 h-4" /> */}
+            </button>
+            {filteredProducts?.length > 0 ? (
+              filteredProducts?.map((product, index) => (
                 <Link
                   href={`/products/${product.name
                     .toLocaleLowerCase()
-                    .replaceAll(" ", "-")}}`}
+                    .replaceAll(" ", "-")}`}
                   className="w-full flex gap-3 pb-[6px] border-b-[1px] border-accent-gray-light"
                   key={index}
                 >
