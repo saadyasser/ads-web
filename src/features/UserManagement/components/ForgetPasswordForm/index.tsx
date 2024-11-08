@@ -5,6 +5,7 @@ import { Button, Input } from "@/components";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import Cookies from "js-cookie";
+import { CircleExclamationIcon } from "@/lib/@react-icons";
 
 type Inputs = {
   email: string;
@@ -60,33 +61,46 @@ const ForgetPasswordForm = ({ onSuccess = () => {} }) => {
   };
 
   return (
-    <form className="flex flex-col space-y-4" onSubmit={handleSubmit(onSubmit)}>
-      <Input
-        label="Email"
-        floatLabel
-        type="email"
-        placeholder="Enter your email address"
-        {...register("email", {
-          required: "Email is required",
-          pattern: {
-            value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
-            message: "Enter a valid email address",
-          },
-        })} // Directly call register here
-        error={!!errors.email || !!backendError} // Mark input as error if validation fails
-        errorMessage={(errors.email as FieldError)?.message || backendError} // Extract message from FieldError
-      />
-
-      <Button
-        type="submit"
-        className="w-full !py-4"
-        disabled={mutation.isLoading}
+    <>
+      {backendError && (
+        <div className="flex items-center gap-2 p-2 mb-6 text-center rounded-lg text-danger-dark bg-danger-light">
+          <div className="p-2 rounded-lg bg-danger-light-hover">
+            <CircleExclamationIcon size={26} className=" text-danger-dark" />
+          </div>
+          <p className="text-sm font-medium">{backendError}</p>
+        </div>
+      )}
+      <form
+        className="flex flex-col space-y-4"
+        onSubmit={handleSubmit(onSubmit)}
       >
-        {mutation.status === "loading"
-          ? "Sending..."
-          : "Send Verification Code"}
-      </Button>
-    </form>
+        <Input
+          label="Email"
+          floatLabel
+          type="email"
+          placeholder="Enter your email address"
+          {...register("email", {
+            required: "Email is required",
+            pattern: {
+              value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+              message: "Enter a valid email address",
+            },
+          })}
+          error={!!errors.email}
+          errorMessage={(errors.email as FieldError)?.message}
+        />
+
+        <Button
+          type="submit"
+          className="w-full !py-4"
+          disabled={mutation.isLoading}
+        >
+          {mutation.status === "loading"
+            ? "Sending..."
+            : "Send Verification Code"}
+        </Button>
+      </form>
+    </>
   );
 };
 
