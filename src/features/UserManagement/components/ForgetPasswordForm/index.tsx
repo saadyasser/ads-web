@@ -60,9 +60,10 @@ const ForgetPasswordForm = ({ onSuccess = () => {} }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form className="flex flex-col space-y-4" onSubmit={handleSubmit(onSubmit)}>
       <Input
         label="Email"
+        floatLabel
         type="email"
         placeholder="Enter your email address"
         {...register("email", {

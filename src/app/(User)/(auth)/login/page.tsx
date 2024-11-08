@@ -112,9 +112,9 @@ const Login = () => {
           <p className="text-sm font-medium">{backendError}</p>
         </div>
       )}
-      <div className="pt-1 space-y-2 xl:space-y-4">
+      <div className="pt-1 space-y-2 xl:space-y-2">
         <form
-          className="space-y-2 xl:space-y-4"
+          className="flex flex-col space-y-4"
           onSubmit={handleSubmit(onSubmit)}
         >
           <Input
@@ -128,25 +128,23 @@ const Login = () => {
             autoComplete="email"
           />
 
-          <div className="relative">
-            <Input
-              label="Password"
-              type="password"
-              floatLabel
-              placeholder="******"
-              {...register("password")}
-              error={!!errors.password?.message}
-              errorMessage={errors.password?.message}
-              autoComplete="password"
-            />
-            <div className="flex items-center justify-end gap-2 -mt-2">
-              <Link
-                href="/forget-password"
-                className="text-primary z-20 font-semibold text-[12px] hover:text-primary-hover active:text-primary-active "
-              >
-                Forgot password?
-              </Link>
-            </div>
+          <Input
+            label="Password"
+            type="password"
+            floatLabel
+            placeholder="******"
+            {...register("password")}
+            error={!!errors.password?.message}
+            errorMessage={errors.password?.message}
+            autoComplete="password"
+          />
+          <div className="flex items-center justify-end gap-2 mt-2">
+            <Link
+              href="/forget-password"
+              className="text-primary z-20 font-semibold text-[12px] hover:text-primary-hover active:text-primary-active "
+            >
+              Forgot password?
+            </Link>
           </div>
 
           <Button type="submit" className="w-full mb-2" disabled={isSubmitting}>

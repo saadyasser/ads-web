@@ -55,10 +55,10 @@ export const TopSelections = ({
             className="shrink-0 grow basis-4/5 md:basis-[45%]  xl:md:basis-[22%] md:rounded-2xl transition-colors duration-150 rounded-2xl"
             href={product.name.toLowerCase().replaceAll(" ", "-")}
           >
-            <Card className="block">
+            <Card className="block rounded-2xl">
               <div className="relative group">
                 {/* Overlay Div */}
-                <div className=" flex flex-col gap-3 absolute px-2 pb-2 pt-10 inset-0 bg-[rgba(0,0,0,0.3)] opacity-0 group-hover:opacity-100 transition-opacity duration-150 ease-in rounded-xl md:rounded-xl z-10">
+                <div className=" flex flex-col gap-3 absolute px-2 pb-2 pt-10 inset-0 bg-[rgba(0,0,0,0.3)] opacity-0 group-hover:opacity-100 transition-opacity duration-150 ease-in rounded-xl z-10">
                   <div className="flex items-center justify-center gap-2 basis-4/5">
                     <span className="p-2 bg-white rounded-full">
                       <FavouriteIcon color="#0e2841" />
@@ -81,7 +81,7 @@ export const TopSelections = ({
                   width={336}
                   height={248}
                   src={"/images/products/product-1-xl.png"}
-                  className="w-full h-auto rounded-lg md:rounded-xl"
+                  className="w-full h-auto rounded-xl md:rounded-xl"
                   alt="Product Image"
                 />
                 {product.price !== 0 ? (

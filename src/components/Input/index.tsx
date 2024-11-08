@@ -40,15 +40,15 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const inputClassName = cn(
       "block w-full rounded-xl border-[1px] bg-transparent border-primary-light-active px-4 py-3 text-accent-dark placeholder:text-accent-dark hover:border-accent-gray focus:border-accent-dark outline-none md:py-4 2xl:py-[18px] leading-[18px] pr-10 transition-all focus:outline-none focus:ring-0",
       className,
-      floatLabel && `appearance-none peer`,
+      floatLabel && `appearance-none peer mt-5`,
       { "border-success": success, "border-danger": error }
     );
     const labelClassName = cn(
       "text-accent-dark leading-none text-sm font-semibold duration-300",
       floatLabel
-        ? `absolute transform -translate-y-10 top-4 
+        ? `absolute transform -translate-y-10 top-3 lg:top-4 
       -z-10 origin-[0] peer-focus:start-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0
-       peer-focus:-translate-y-10 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto left-2 peer-focus:left-2
+       peer-focus:-translate-y-10 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto left-3 peer-focus:left-3
       `
         : "block mb-2 lg:mb-1 2xl:mb-2 "
     );
@@ -57,42 +57,44 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     return (
       <div
         className={cn(
-          "relative w-full 2xl:pb-4 transition  ",
-          floatLabel && "z-0 mt-5",
+          "w-full transition",
+          floatLabel && "z-0 ",
           containerClassname
         )}
       >
-        <input
-          id={inputId}
-          type={showPassword ? "text" : type}
-          className={inputClassName}
-          ref={ref}
-          {...props}
-          placeholder={floatLabel ? " " : props.placeholder}
-        />
-        {label && (
-          <Label htmlFor={inputId} className={labelClassName}>
-            {label}
-          </Label>
-        )}
-        {type === "password" && (
-          <button
-            type="button"
-            tabIndex={-1}
-            onClick={togglePasswordVisibility}
-            className="absolute flex items-center top-4 focus:outline-none right-3 h-fit"
-            aria-label={showPassword ? "Hide password" : "Show password"}
-          >
-            {showPassword ? (
-              <EyeClosedIcon className="w-5 h-5 text-[#292D32]" />
-            ) : (
-              <EyeOpenIcon className="w-5 h-5 text-[#292D32]" />
-            )}
-          </button>
-        )}
+        <div className={cn("relative w-full", containerClassname)}>
+          <input
+            id={inputId}
+            type={showPassword ? "text" : type}
+            className={inputClassName}
+            ref={ref}
+            {...props}
+            placeholder={floatLabel ? " " : props.placeholder}
+          />
+          {label && (
+            <Label htmlFor={inputId} className={labelClassName}>
+              {label}
+            </Label>
+          )}
+          {type === "password" && (
+            <button
+              type="button"
+              tabIndex={-1}
+              onClick={togglePasswordVisibility}
+              className="absolute flex items-center top-4 focus:outline-none right-3 h-fit"
+              aria-label={showPassword ? "Hide password" : "Show password"}
+            >
+              {showPassword ? (
+                <EyeClosedIcon className="w-5 h-5 text-[#292D32]" />
+              ) : (
+                <EyeOpenIcon className="w-5 h-5 text-[#292D32]" />
+              )}
+            </button>
+          )}
+        </div>
         {errorMessage && (
-          <p className="left-0 pl-2 mt-1 text-xs font-medium -bottom-2 text-danger">
-            {errorMessage}
+          <p className="h-4 pl-2 mt-1 text-xs font-medium text-danger">
+            {errorMessage && errorMessage}
           </p>
         )}
       </div>

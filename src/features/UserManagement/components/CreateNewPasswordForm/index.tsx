@@ -68,7 +68,7 @@ const CreateNewPasswordForm = ({
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <>
       {backendError && (
         <div className="flex items-center gap-2 p-2 mb-6 text-center rounded-lg text-danger-dark bg-danger-light">
           <div className="p-2 rounded-lg bg-danger-light-hover">
@@ -77,49 +77,56 @@ const CreateNewPasswordForm = ({
           <p className="text-sm font-medium">{backendError}</p>
         </div>
       )}
-      <Input
-        label="Password"
-        type="password"
-        placeholder="Enter your password"
-        {...register("password", {
-          required: "Password is required",
-          pattern: {
-            value:
-              /^(?![^A-Za-z0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\S]{8,}$/,
-            message: "Enter a valid password",
-          },
-        })}
-        error={!!errors.password}
-        errorMessage={(errors.password as FieldError)?.message}
-      />
-      <Input
-        label="Confirm Password"
-        type="password"
-        placeholder="Confirm your password"
-        {...register("confirmPassword", {
-          required: "Confirm password is required",
-          pattern: {
-            value:
-              /^(?![^A-Za-z0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\S]{8,}$/,
-            message: "Enter a valid password",
-          },
-        })}
-        error={!!errors.confirmPassword}
-        errorMessage={(errors.confirmPassword as FieldError)?.message}
-      />
-
-      <input type="hidden" {...register("recoverToken")} />
-
-      <Button
-        type="submit"
-        className="w-full !py-4"
-        disabled={mutation.isLoading}
+      <form
+        className="flex flex-col space-y-4"
+        onSubmit={handleSubmit(onSubmit)}
       >
-        {mutation.status === "loading"
-          ? "Changinging..."
-          : "Change Your Password"}
-      </Button>
-    </form>
+        <Input
+          label="Password"
+          type="password"
+          floatLabel
+          placeholder="Enter your password"
+          {...register("password", {
+            required: "Password is required",
+            pattern: {
+              value:
+                /^(?![^A-Za-z0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\S]{8,}$/,
+              message: "Enter a valid password",
+            },
+          })}
+          error={!!errors.password}
+          errorMessage={(errors.password as FieldError)?.message}
+        />
+        <Input
+          label="Confirm Password"
+          type="password"
+          floatLabel
+          placeholder="Confirm your password"
+          {...register("confirmPassword", {
+            required: "Confirm password is required",
+            pattern: {
+              value:
+                /^(?![^A-Za-z0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\S]{8,}$/,
+              message: "Enter a valid password",
+            },
+          })}
+          error={!!errors.confirmPassword}
+          errorMessage={(errors.confirmPassword as FieldError)?.message}
+        />
+
+        <input type="hidden" {...register("recoverToken")} />
+
+        <Button
+          type="submit"
+          className="w-full !py-4"
+          disabled={mutation.isLoading}
+        >
+          {mutation.status === "loading"
+            ? "Changinging..."
+            : "Change Your Password"}
+        </Button>
+      </form>
+    </>
   );
 };
 

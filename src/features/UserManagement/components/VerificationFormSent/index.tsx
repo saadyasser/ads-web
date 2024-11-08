@@ -52,21 +52,27 @@ const VerificationCodeSent = ({
 }) => {
   const { data } = useSession();
   const mutation = useMutation<ApiResponse, any, Inputs>(
-    (formData: Inputs) =>
-      axios.post(
-        "https://api.azaiza.com/api/user/profile/verify",
-        { code: formData.code },
-        {
-          headers: {
-            // @ts-expect-error access token is not defined
-            Authorization: `Bearer ${data?.accessToken}`,
-          },
-        }
-      ),
+    (formData: Inputs) => {
+      return resendStatus === "VERIFICATION"
+        ? axios.post(
+            "https://api.azaiza.com/api/user/profile/verify",
+            { code: formData.code },
+            {
+              headers: {
+                // @ts-expect-error access token is not defined
+                Authorization: `Bearer ${data?.accessToken}`,
+              },
+            }
+          )
+        : axios.post("https://api.azaiza.com/api/user/password/verify-code", {
+            code: formData.code,
+            _id: Cookies.get("_id"),
+          });
+    },
     {
       onSuccess: (response) => {
         console.log("success response", response);
-        Cookies.set("recoverToken", response.data.recoverToken); // Save the user's _id in a cookie
+        Cookies.set("recoverToken", response.data.data.recoverToken); // Save the user's _id in a cookie
         handleSuccess && handleSuccess();
       },
       onError: (error: any) => {
