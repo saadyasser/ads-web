@@ -1,4 +1,5 @@
 interface Product {
+  id: number;
   name: string;
   imageUrl: string;
   category: string;
@@ -6,86 +7,79 @@ interface Product {
 }
 export const productsList: Product[] = [
   {
+    id: 1,
     name: "Design System Ui Kit",
     category: "UI Components",
     imageUrl: "/images/products/product-1.png",
     price: 100
   },
   {
+    id: 2,
     name: "Design System Ui Kit",
     category: "UI Components",
     imageUrl: "/images/products/product-1.png",
     price: 0
   },
   {
+    id: 3,
     name: "Design System Ui Kit",
     category: "UI Components",
     imageUrl: "/images/products/product-1.png",
     price: 100
   },
   {
+    id: 4,
     name: "Design System Ui Kit",
     category: "UI Components",
     imageUrl: "/images/products/product-1.png",
     price: 100
   },
   {
+    id: 5,
     name: "Design System Ui Kit",
     category: "UI Components",
     imageUrl: "/images/products/product-1.png",
     price: 100
   },
   {
+    id: 6,
     name: "Design System Ui Kit",
     category: "UI Components",
     imageUrl: "/images/products/product-1.png",
     price: 100
   },
   {
+    id: 7,
     name: "Design System Ui Kit",
     category: "UI Components",
     imageUrl: "/images/products/product-1.png",
     price: 100
   },
   {
+    id: 8,
     name: "Design System Ui Kit",
     category: "UI Components",
     imageUrl: "/images/products/product-1.png",
     price: 100
   },
   {
+    id: 10,
     name: "Design System Ui Kit",
     category: "UI Components",
     imageUrl: "/images/products/product-1.png",
     price: 100
   },
   {
+    id: 11,
     name: "Design System Ui Kit",
     category: "UI Components",
     imageUrl: "/images/products/product-1.png",
     price: 100
   },
   {
+    id: 12,
     name: "Design System Ui Kit",
     category: "UI Components",
-    imageUrl: "/images/products/product-1.png",
-    price: 100
-  },
-  {
-    name: "Figma Icon Set",
-    category: "Icon Sets",
-    imageUrl: "/images/products/product-2.png",
-    price: 100
-  },
-  {
-    name: "Mobile App UI",
-    category: "Mobile Templates",
-    imageUrl: "/images/products/product-3.png",
-    price: 100
-  },
-  {
-    name: "Web Template",
-    category: "Web Templates",
     imageUrl: "/images/products/product-1.png",
     price: 100
   },
