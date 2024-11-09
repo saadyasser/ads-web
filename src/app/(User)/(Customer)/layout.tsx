@@ -8,14 +8,18 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // const [searchIconhidden, setSearchIconhidden] = useState(false);
+  const [searchIconhidden, setSearchIconhidden] = useState(false);
 
   return (
     <div>
-      <Navbar searchIconhidden={false} />
+      <Navbar searchIconhidden={searchIconhidden} />
       <main>
         <ErrorBoundary>
-          <HeroSection setSearchIconhidden={() => {}} />
+          <HeroSection
+            setSearchIconhidden={(visible) => {
+              setSearchIconhidden(visible);
+            }}
+          />
           {children}
         </ErrorBoundary>
       </main>
