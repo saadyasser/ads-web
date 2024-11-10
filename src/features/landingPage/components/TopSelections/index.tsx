@@ -1,7 +1,7 @@
 "use client";
 import { H2 } from "@/components";
 import { productsList } from "@/components/SearchBar/data";
-import { RightArrow } from "@/components/svg";
+import { BagIcon, RightArrow } from "@/components/svg";
 import Link from "next/link";
 import { useRef, useState, useEffect } from "react";
 import Product from "../Product";
@@ -39,7 +39,7 @@ export const TopSelections = ({
   const scrollLeft = () => {
     if (scrollContainerRef.current) {
       scrollContainerRef.current.scrollBy({
-        left: -300,
+        left: -400,
         behavior: "smooth",
       });
     }
@@ -48,7 +48,7 @@ export const TopSelections = ({
   const scrollRight = () => {
     if (scrollContainerRef.current) {
       scrollContainerRef.current.scrollBy({
-        left: 300,
+        left: 400,
         behavior: "smooth",
       });
     }
@@ -87,50 +87,53 @@ export const TopSelections = ({
           className="md:flex justify-between items-center text-center font-semibold hidden text-[#01C38D] pr-4 md:pr-8 2xl:pr-20"
         >
           <span>Explore Design Systems</span>
-          <RightArrow fill="#01C38D" color="#01C38D" />
+          <RightArrow
+            fill="#01C38D"
+            color="#01C38D"
+            style={{ transform: "scale(.7)" }}
+          />
         </Link>
       </div>
-      <div className="relative">
+
+      <div
+        className="flex gap-2 overflow-x-auto md:gap-3 2xl:gap-4 scrollbar-hide"
+        ref={scrollContainerRef}
+      >
+        {productsList.map((product: Product, index) => (
+          <Product key={index} product={product} withRate={withRate} />
+        ))}
+      </div>
+      <div className="flex gap-2 2xl:gap-3 justify-center mt-3">
         {/* Left Arrow */}
         <button
           onClick={scrollLeft}
-          className={`absolute left-0 top-0 bottom-0 z-10 flex items-center justify-center px-4 bg-white shadow-md ${
-            isAtStart ? "opacity-50 cursor-not-allowed" : ""
+          className={`flex items-center justify-center p-2 bg-white rounded-full  shadow-md ${
+            isAtStart ? "opacity-60 cursor-not-allowed" : ""
           }`}
           disabled={isAtStart}
+          style={{ transform: "rotate(180deg) scale(.7)" }}
         >
-          ←
+          <RightArrow fill="#0e2841" color="#0e2841" />
         </button>
-
-        {/* Scrollable section */}
-        <div
-          className="flex gap-2 overflow-x-auto md:gap-3 2xl:gap-4 scrollbar-hide"
-          ref={scrollContainerRef}
-        >
-          {productsList.map((product: Product, index) => (
-            <Product key={index} product={product} withRate={withRate} />
-          ))}
-        </div>
-
-        {/* Right Arrow */}
         <button
           onClick={scrollRight}
-          className={`absolute right-0 top-0 bottom-0 z-10 flex items-center justify-center px-4 bg-white shadow-md ${
+          className={`flex items-center justify-center p-2 bg-white rounded-full  shadow-md ${
             isAtEnd ? "opacity-50 cursor-not-allowed" : ""
           }`}
           disabled={isAtEnd}
+          style={{ transform: "scale(.7)" }}
         >
-          →
+          <RightArrow fill="#0e2841" color="#0e2841" />
         </button>
+        {/* Scrollable section */}
       </div>
-
-      <Link
+      {/* <Link
         href="/test"
         className="flex  items-center  font-semibold visible md:invisible text-[#01C38D] mt-3"
       >
         <span>Explore Design Systems</span>
         <RightArrow fill="#01C38D" color="#01C38D" />
-      </Link>
+      </Link> */}
     </section>
   );
 };
