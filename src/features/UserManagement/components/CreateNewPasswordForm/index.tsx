@@ -5,8 +5,9 @@ import { Button, Input } from "@/components";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import Cookies from "js-cookie";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { CircleExclamationIcon } from "@/lib/@react-icons";
+import AuthFormWrapper from "../AuthFormWrapper";
 
 type Inputs = {
   password: string;
@@ -35,8 +36,13 @@ const CreateNewPasswordForm = ({
   onSuccess: () => void;
 }) => {
   const [backendError, setBackendError] = useState("");
+  const router = useRouter();
   const recoverToken = Cookies.get("recoverToken");
-
+  // useEffect(() => {
+  if (!recoverToken || recoverToken === undefined) {
+    router.push("/forget-password");
+  }
+  // }, [recoverToken]);
   const mutation = useMutation<ApiResponse, any, Inputs>(
     (formData: Inputs) =>
       axios.post("https://api.azaiza.com/api/user/password/recover", formData),
@@ -68,7 +74,14 @@ const CreateNewPasswordForm = ({
   };
 
   return (
-    <>
+    <AuthFormWrapper
+      title="Create New Password"
+      description="Create strong new password for your account, and remember don’t share it with anybody else!"
+      ctaQuestion=""
+      ctaLinkText=""
+      catAction={() => {}}
+      ctaLink="/"
+    >
       {backendError && (
         <div className="flex items-center gap-2 p-2 mb-6 text-center rounded-lg text-danger-dark bg-danger-light">
           <div className="p-2 rounded-lg bg-danger-light-hover">
@@ -115,7 +128,10 @@ const CreateNewPasswordForm = ({
         />
 
         <input type="hidden" {...register("recoverToken")} />
-
+        <p className="text-sm">
+          Use 8 or more characters with a mix of letters, numbers and symbols.
+          Must not contain your name or username.
+        </p>
         <Button
           type="submit"
           className="w-full !py-4"
@@ -126,7 +142,7 @@ const CreateNewPasswordForm = ({
             : "Change Your Password"}
         </Button>
       </form>
-    </>
+    </AuthFormWrapper>
   );
 };
 
