@@ -59,7 +59,6 @@ const VerificationCodeSent = ({
             { code: formData.code },
             {
               headers: {
-                // @ts-expect-error access token is not defined
                 Authorization: `Bearer ${data?.accessToken}`,
               },
             }
@@ -110,7 +109,6 @@ const VerificationCodeSent = ({
         "https://api.azaiza.com/api/user/profile/verify",
         {
           headers: {
-            // @ts-expect-error access token is not defined
             Authorization: `Bearer ${user?.accessToken}`,
           },
         }
