@@ -15,7 +15,6 @@ export const NavLink = ({
 }: NavLinkProps) => {
   const pathname = usePathname();
   const { isScrollY } = useSCrollY();
-  console.log(isScrollY && pathname === "/", "checking for scroll");
 
   const isActive = exact ? pathname === href : pathname.startsWith(href);
   const activeClasses = isActive && " !font-bold";
