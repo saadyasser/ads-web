@@ -16,6 +16,8 @@ import { BagIcon, BurgerMenu, CloseIcon, FavouriteIcon } from "../svg";
 import { cn } from "@/utils";
 import { useSCrollY } from "@/hooks";
 import { SearchIcon } from "@/components/svg";
+import { useRequireAuth } from "@/hooks/useAuth";
+import { signOut, useSession } from "next-auth/react";
 // import dynamic from "next/dynamic";
 
 // const SlideOver = dynamic(() => import("../SlideOver"), {
@@ -33,6 +35,7 @@ export const Navbar = ({
   const { theme } = useTheme();
   const { push } = useRouter();
   const pathname = usePathname();
+  const session = useRequireAuth();
   const [burgerMenuOpen, setBurgerMenuOpen] = useState(false);
 
   const { isScrollY } = useSCrollY();
@@ -124,15 +127,19 @@ export const Navbar = ({
             <FavouriteIcon color={iconColor} aria-label="Favourite Icon" />
           </Button>
 
-          <Button
-            intent="primaryLight"
-            onClick={() => push("/login")}
-            className={clsx(
-              "!hidden md:!flex !text-sm md:!text-base bg-secondary text-accent-dark xl:py-4"
-            )}
-          >
-            Sign In / Register
-          </Button>
+          {!session?.accessToken ? (
+            <Button
+              intent="primaryLight"
+              onClick={() => push("/login")}
+              className={clsx(
+                "!hidden md:!flex !text-sm md:!text-base bg-secondary text-accent-dark xl:py-4"
+              )}
+            >
+              Sign In / Register
+            </Button>
+          ) : (
+            <Button onClick={() => signOut()}>Sign out</Button>
+          )}
           <Button
             intent="primaryLight"
             aria-label="burger menu button"
@@ -152,13 +159,17 @@ export const Navbar = ({
         </div>
         <SlideOver
           footer={
-            <Button
-              intent="primaryLight"
-              onClick={() => push("/login")}
-              className={clsx("w-full bg-secondary text-accent-dark")}
-            >
-              Sign In / Register
-            </Button>
+            !session?.accessToken ? (
+              <Button
+                intent="primaryLight"
+                onClick={() => push("/login")}
+                className={clsx("w-full bg-secondary text-accent-dark")}
+              >
+                Sign In / Register
+              </Button>
+            ) : (
+              <Button onClick={() => signOut()}>Sign out</Button>
+            )
           }
           open={burgerMenuOpen}
           setOpen={setBurgerMenuOpen}

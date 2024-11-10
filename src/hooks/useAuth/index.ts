@@ -1,18 +1,14 @@
-export interface UserSession {
-  id: string;
-  email: string;
-  role: "user" | "publisher";
-  verified: boolean;
-  name?: string;
-}
+"use client";
 
+import { Session } from "next-auth";
 import { useSession } from "next-auth/react";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export function useRequireAuth(options?: {
   requireVerified?: boolean;
   requirePublisher?: boolean;
-}) {
+}): Session | null {
+  const router = useRouter();
   const { data: session, status } = useSession();
 
   if (status === "loading") {
@@ -20,21 +16,22 @@ export function useRequireAuth(options?: {
   }
 
   if (!session) {
-    redirect("/login");
+    router.push("/login");
   }
 
   if (options?.requireVerified && !session?.user.isEmailVerified) {
-    redirect("/verify-account");
+    router.push("/verify-account");
   }
 
   if (options?.requirePublisher && session?.user.role !== "publisher") {
-    redirect("/");
+    router.push("/");
   }
 
   return session;
 }
 
-export function useRequireGuest() {
+export function useRequireGuest(): boolean | null {
+  const router = useRouter();
   const { data: session, status } = useSession();
 
   if (status === "loading") {
@@ -42,13 +39,16 @@ export function useRequireGuest() {
   }
 
   if (session) {
-    redirect("/");
+    router.push("/");
   }
 
   return true;
 }
 
-export function useOptionalAuth() {
+export function useOptionalAuth(): {
+  session: Session | null;
+  status: "authenticated" | "loading" | "unauthenticated";
+} {
   const { data: session, status } = useSession();
   return { session, status };
 }
