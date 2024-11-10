@@ -95,45 +95,43 @@ export const TopSelections = ({
         </Link>
       </div>
 
-      <div
-        className="flex gap-2 overflow-x-auto md:gap-3 2xl:gap-4 scrollbar-hide"
-        ref={scrollContainerRef}
-      >
-        {productsList.map((product: Product, index) => (
-          <Product key={index} product={product} withRate={withRate} />
-        ))}
-      </div>
-      <div className="flex gap-2 2xl:gap-3 justify-center mt-3">
-        {/* Left Arrow */}
-        <button
-          onClick={scrollLeft}
-          className={`flex items-center justify-center p-2 bg-white rounded-full  shadow-md ${
-            isAtStart ? "opacity-60 cursor-not-allowed" : ""
-          }`}
-          disabled={isAtStart}
-          style={{ transform: "rotate(180deg) scale(.7)" }}
+      {/* Left Arrow */}
+
+      {/* Scrollable section */}
+      <div className="relative">
+        <div
+          className=" flex gap-2 overflow-x-auto md:gap-3 2xl:gap-4 scrollbar-hide"
+          ref={scrollContainerRef}
         >
-          <RightArrow fill="#0e2841" color="#0e2841" />
-        </button>
-        <button
-          onClick={scrollRight}
-          className={`flex items-center justify-center p-2 bg-white rounded-full  shadow-md ${
-            isAtEnd ? "opacity-50 cursor-not-allowed" : ""
-          }`}
-          disabled={isAtEnd}
-          style={{ transform: "scale(.7)" }}
-        >
-          <RightArrow fill="#0e2841" color="#0e2841" />
-        </button>
-        {/* Scrollable section */}
+          <button
+            onClick={scrollLeft}
+            className={`absolute left-[-24px] md:left-[-30px] top-[41%] z-50 transform -translate-y-1/2 scale-50 p-1 md:scale-75 rotate-180 md:p-2  bg-white rounded-full shadow-md ${
+              isAtStart ? "opacity-70 cursor-not-allowed" : "opacity-100"
+            }`}
+          >
+            <RightArrow fill="#0e2841" color="#0e2841" />
+          </button>
+          {productsList.map((product: Product, index) => (
+            <Product key={index} product={product} withRate={withRate} />
+          ))}
+          <button
+            onClick={scrollRight}
+            className={`absolute  right-[-24px] md:right-[-30px] z-10 top-[41%] transform -translate-y-1/2 scale-50 p-1 md:p-2 md:scale-75 bg-white rounded-full shadow-md ${
+              isAtEnd ? "opacity-70 cursor-not-allowed" : "opacity-100"
+            }`}
+          >
+            <RightArrow fill="#0e2841" color="#0e2841" />
+          </button>
+          {/* Right Arrow */}
+        </div>
       </div>
-      {/* <Link
+      <Link
         href="/test"
         className="flex  items-center  font-semibold visible md:invisible text-[#01C38D] mt-3"
       >
         <span>Explore Design Systems</span>
         <RightArrow fill="#01C38D" color="#01C38D" />
-      </Link> */}
+      </Link>
     </section>
   );
 };

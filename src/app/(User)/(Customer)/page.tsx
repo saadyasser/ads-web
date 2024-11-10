@@ -11,7 +11,7 @@ export default function LandingPage() {
   return (
     <div>
       <Categories />
-      <div className="flex flex-col gap-5 md:gap-0  bg-background-light py-6 pl-4 pr-0 md:py-10 md:pl-8 2xl:py-[60px] 2xl:pl-20">
+      <div className="flex flex-col gap-5 md:gap-0  bg-background-light py-6 px-4  md:py-10 md:px-8 2xl:py-[60px] 2xl:px-20">
         <TopSelections selectBy="September 2024!" withRate={true} />
         <TopSelections selectBy="Design System" />
         <TopSelections selectBy="UI Components" />
