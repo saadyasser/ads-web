@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { cn } from "@/utils";
 import { productsList } from "@/data/products_list";
+import { ProductsFilter } from "@/features/Categories/components";
 // import { XIcon } from "../svg"; // Assuming you have an X icon component for closing
 
 interface TargetComponentProps {
@@ -39,6 +40,7 @@ export const SearchBar: React.FC<TargetComponentProps> = ({
   className = "",
   inputClassName = "",
 }) => {
+  const [filterVisibility, setFilterVisibility] = useState(false);
   const {
     register,
     setValue,
@@ -143,7 +145,7 @@ export const SearchBar: React.FC<TargetComponentProps> = ({
 
   return (
     <>
-      <div className={containerClass} ref={targetRef}>
+      <div className={`relative ${containerClass}`} ref={targetRef}>
         <div className="flex flex-col items-center">
           <div className="flex items-center w-full">
             <Input
@@ -170,9 +172,22 @@ export const SearchBar: React.FC<TargetComponentProps> = ({
                 <SearchIcon color="white" />
                 <span className="max-lg:hidden">Search</span>
               </Button>
-              {withFilter && <SearchFilterIcon />}
+              {withFilter && (
+                <SearchFilterIcon
+                  onClick={() => {
+                    setFilterVisibility(true);
+                  }}
+                  className="xl:hidden"
+                />
+              )}
             </div>
           </div>
+
+          {filterVisibility && (
+            <div className="absolute right-0 top-[calc(100%+8px)] z-50 xl:hidden">
+              <ProductsFilter />
+            </div>
+          )}
         </div>
 
         {/* Display filtered products */}
