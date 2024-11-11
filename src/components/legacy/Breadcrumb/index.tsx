@@ -21,14 +21,16 @@ export const Breadcrumb = ({
 
   const containerClasses = clsx("flex items-center gap-2", containerClassName);
   const activeClasses = clsx(
-    "font-bold font-gilroy text-base md:text-xl lg:text-3xl !cursor-auto",
+    "font-bold font-gilroy text-lg leading-5 !cursor-auto",
     activeClassName
   );
 
   return (
     <ul className={containerClasses}>
       <li className={listClassName || ""}>
-        <Link href={"/"}>{homeElement}</Link>
+        <Link className="text-sm !leading-4" href={"/"}>
+          {homeElement}
+        </Link>
       </li>
       {filteredPaths.length > 0 && separator}
       {filteredPaths.map((link, index) => {
@@ -43,13 +45,13 @@ export const Breadcrumb = ({
               className={clsx(
                 listClassName,
                 { [activeClasses]: isActive },
-                !isLast ? "hidden lg:inline-block" : ""
+                !isLast ? "hidden lg:inline-block text-sm leading-4" : ""
               )}
             >
               <Link
                 href={href}
                 aria-current={isActive ? "page" : undefined}
-                className="!leading-normal"
+                className={isActive ? "!leading-5 " : "text-sm leading-4"}
               >
                 {capitalizeLinks ? link : link.toLowerCase()}
               </Link>

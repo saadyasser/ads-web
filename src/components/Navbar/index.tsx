@@ -138,7 +138,15 @@ export const Navbar = ({
               Sign In / Register
             </Button>
           ) : (
-            <Button onClick={() => signOut()}>Sign out</Button>
+            <Button
+              intent="primaryLight"
+              onClick={() => signOut()}
+              className={clsx(
+                "!flex !text-sm md:!text-base bg-secondary text-accent-dark xl:py-4"
+              )}
+            >
+              signout
+            </Button>
           )}
           <Button
             intent="primaryLight"

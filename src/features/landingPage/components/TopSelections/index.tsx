@@ -1,6 +1,6 @@
 "use client";
 import { H2 } from "@/components";
-import { productsList } from "@/components/SearchBar/data";
+import { productsList } from "../../../../../data";
 import { BagIcon, RightArrow } from "@/components/svg";
 import Link from "next/link";
 import { useRef, useState, useEffect } from "react";

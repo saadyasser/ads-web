@@ -17,8 +17,11 @@ import { FilledFavouriteIcon } from "./FilledFavouriteIcon";
 import { StarIcon } from "./StarIcon";
 import { LinkedInIcon } from "./LinkedInIcon";
 import { InstgramIcon } from "./InstgramIcon";
+import { SearchFilterIcon } from "./SearchFilterIcon";
 import { TwitterIcon } from "./TwitterIcon";
 export {
+  SearchFilterIcon,
+  TwitterIcon,
   InstgramIcon,
   LinkedInIcon,
   StarIcon,

@@ -3,16 +3,22 @@ import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import Input from "../Input";
 import Button from "../Button";
-import { SearchIcon } from "../svg";
+import { SearchFilterIcon, SearchIcon } from "../svg";
 import Card from "../Card";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { cn } from "@/utils";
 import { productsList } from "./data";
 // import { XIcon } from "../svg"; // Assuming you have an X icon component for closing
 
 interface TargetComponentProps {
-  onVisibilityChange: (visible: boolean) => void;
+  onVisibilityChange?: (visible: boolean) => void;
+  withSearchResults?: boolean;
+  withFilter?: boolean;
+  withCategories?: boolean;
+  className?: string;
+  inputClassName?: string;
 }
 
 interface Product {
@@ -26,7 +32,12 @@ interface FormValues {
 }
 
 export const SearchBar: React.FC<TargetComponentProps> = ({
-  onVisibilityChange,
+  onVisibilityChange = () => {},
+  withSearchResults = true,
+  withFilter = false,
+  withCategories = true,
+  className = "",
+  inputClassName = "",
 }) => {
   const {
     register,
@@ -120,17 +131,24 @@ export const SearchBar: React.FC<TargetComponentProps> = ({
     };
   }, [isCardVisible]);
 
+  const containerClass = cn(
+    "relative mb-4 md:mb-6 mx-auto bg-white rounded-xl 2xl:p-4 pl-3 py-1 pr-1 border-[1px] border-primary-light-active hover:border-accent-gray focus:border-accent-dark",
+    className
+  );
+
+  const inputClass = cn(
+    "pl-0 pr-[10px] grow-1 border-0 md:text-lg mt-0 md:!py-2 2xl:!py-2",
+    inputClassName
+  );
+
   return (
     <>
-      <div
-        className="relative mb-4 md:mb-6 mx-auto bg-white rounded-xl 2xl:p-4 pl-3 py-2 pr-2 border-[1px] border-primary-light-active hover:border-accent-gray focus:border-accent-dark"
-        ref={targetRef}
-      >
+      <div className={containerClass} ref={targetRef}>
         <div className="flex flex-col items-center">
           <div className="flex items-center w-full">
             <Input
               containerClassname="!pb-0"
-              className="pl-0 pr-[10px] grow-1 border-0 text-lg mt-0 md:!py-2 2xl:!py-2"
+              className={inputClass}
               id="search-term"
               placeholder="Component, figma, ui, graphic, etc."
               {...rest}
@@ -139,23 +157,26 @@ export const SearchBar: React.FC<TargetComponentProps> = ({
                 inputRef.current = e;
               }}
             />
-            <Button
-              onClick={() => {
-                if (!searchTerm || filteredProducts?.length === 0) {
-                  inputRef.current?.focus();
-                } else {
-                  router.push("/products?searchTerm=" + searchTerm);
-                }
-              }}
-            >
-              <SearchIcon color="white" />
-              <span className="max-lg:hidden">Search</span>
-            </Button>
+            <div className="flex items-center gap-2 md:gap-4">
+              <Button
+                onClick={() => {
+                  if (!searchTerm || filteredProducts?.length === 0) {
+                    inputRef.current?.focus();
+                  } else {
+                    router.push("/products?searchTerm=" + searchTerm);
+                  }
+                }}
+              >
+                <SearchIcon color="white" />
+                <span className="max-lg:hidden">Search</span>
+              </Button>
+              {withFilter && <SearchFilterIcon />}
+            </div>
           </div>
         </div>
 
         {/* Display filtered products */}
-        {isCardVisible && searchTerm && (
+        {withSearchResults && isCardVisible && searchTerm && (
           <Card
             className={`w-full flex flex-col gap-2 ${
               filteredProducts?.length === 0
@@ -212,25 +233,26 @@ export const SearchBar: React.FC<TargetComponentProps> = ({
         )}
       </div>
 
-      {/* Category buttons */}
-      <div className="flex flex-wrap justify-center gap-1 mx-auto mt-2 shrink lg:shrink-0 md:gap-2">
-        {[
-          "Icon Sets",
-          "UI Components",
-          "Web Templates",
-          "Design Resources",
-          "Design Systems",
-          "Mobile Templates",
-        ].map((categoryName, key) => (
-          <Button
-            key={key}
-            className={`!bg-accent-dark-hover hover:!bg-accent-dark shrink-0 grow-0 flex-wrap px-2`}
-            onClick={() => handleCategoryClick(categoryName)}
-          >
-            {categoryName}
-          </Button>
-        ))}
-      </div>
+      {withCategories && (
+        <div className="flex flex-wrap justify-center gap-1 mx-auto mt-2 shrink lg:shrink-0 md:gap-2">
+          {[
+            "Icon Sets",
+            "UI Components",
+            "Web Templates",
+            "Design Resources",
+            "Design Systems",
+            "Mobile Templates",
+          ].map((categoryName, key) => (
+            <Button
+              key={key}
+              className={`!bg-accent-dark-hover hover:!bg-accent-dark shrink-0 grow-0 flex-wrap px-2`}
+              onClick={() => handleCategoryClick(categoryName)}
+            >
+              {categoryName}
+            </Button>
+          ))}
+        </div>
+      )}
     </>
   );
 };
