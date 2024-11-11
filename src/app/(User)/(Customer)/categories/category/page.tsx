@@ -1,5 +1,7 @@
+import { ProductList } from "@/features/Categories/components";
+
 const CategoryPage = () => {
-  return <div>category page</div>;
+  return <ProductList />;
 };
 
 export default CategoryPage;

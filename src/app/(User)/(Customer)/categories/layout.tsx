@@ -8,6 +8,7 @@ import {
   Navbar,
   SearchBar,
 } from "@/components";
+import { ProductsFilter } from "@/features/Categories/components";
 import React from "react";
 
 const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -24,9 +25,10 @@ const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             withSearchResults={false}
           />
         </div>
-        <div className=" p-4 md:px-8 xl:px-20 bg-background-light">
+        <div className=" p-4  md:px-8 md:pt-6 xl:px-20 bg-background-light">
           <ErrorBoundary>
-            <section className="w-full max-w-[486px] px-6 md:px-0">
+            <section className="grid gap-4 grid-cols-1 xl:grid-cols-4 grid-rows-4 overflow-y-hidden">
+              <ProductsFilter className="hidden xl:block xl:col-span-1" />
               {children}
             </section>
           </ErrorBoundary>

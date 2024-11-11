@@ -1,10 +1,10 @@
 "use client";
 import { H2 } from "@/components";
-import { productsList } from "../../../../../data";
 import { BagIcon, RightArrow } from "@/components/svg";
 import Link from "next/link";
 import { useRef, useState, useEffect } from "react";
 import Product from "../Product";
+import { productsList } from "@/data/products_list";
 
 interface Product {
   id: number;
