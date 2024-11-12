@@ -11,6 +11,7 @@ import Link from "next/link";
 import { cn } from "@/utils";
 import { productsList } from "@/data/products_list";
 import { ProductsFilter } from "@/features/Categories/components";
+import { isValid } from "zod";
 // import { XIcon } from "../svg"; // Assuming you have an X icon component for closing
 
 interface TargetComponentProps {
@@ -175,7 +176,7 @@ export const SearchBar: React.FC<TargetComponentProps> = ({
               {withFilter && (
                 <SearchFilterIcon
                   onClick={() => {
-                    setFilterVisibility(true);
+                    setFilterVisibility((isVisible) => !isVisible);
                   }}
                   className="xl:hidden"
                 />

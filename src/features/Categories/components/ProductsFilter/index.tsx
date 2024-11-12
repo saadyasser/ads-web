@@ -37,7 +37,7 @@ export const ProductsFilter = () => {
         >
           Format
         </span>
-        <div className="flex gap-2">
+        <div className="flex gap-2 flex-wrap">
           <Button className="!py-[10px] !px-4 !rounded-[40px] !bg-accent-dark !text-xs lg:!text-sm ">
             Free
           </Button>

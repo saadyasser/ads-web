@@ -31,7 +31,9 @@ import { Loading } from "./Loading";
 import { GoogleIcon } from "./svg/GoogleIcon";
 import { SearchBar } from "./SearchBar";
 import { RotatingList } from "./RotatingList";
+import { NavLinks } from "./NavLinks"
 export {
+  NavLinks,
   RotatingList,
   SearchBar,
   Providers,

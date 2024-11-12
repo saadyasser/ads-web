@@ -5,6 +5,7 @@ import {
   Loading,
   Logo,
   NavLink,
+  NavLinks,
   SlideOver,
   ThemeSwitcher,
 } from "../";
@@ -211,40 +212,38 @@ export const Navbar = ({
 
 export default Navbar;
 
-const navLinks = [
-  { title: "Home", path: "/", exact: true },
-  { title: "Components", path: "/ui-components" },
-  { title: "Mobile Templates", path: "/mobile-templates" },
-  { title: "Ready Flows", path: "/ready-flows" },
-  { title: "Design systems", path: "/design-systems" },
-  { title: "Color-Themes", path: "/color-themes" },
-];
-const NavLinks = ({
-  className,
-  linkClassName,
-  onLinkClick,
-}: {
-  className?: string;
-  linkClassName?: string;
-  onLinkClick?: () => void;
-}) => {
-  const { isScrollY } = useSCrollY();
-  const pathname = usePathname();
-  const classes = clsx("max-xl:!text-sm  font-medium", className);
-  const linkClasses = clsx("w-max", linkClassName);
-  return (
-    <div className={classes}>
-      {navLinks.map((item) => (
-        <NavLink
-          href={item.path}
-          exact={item?.exact}
-          key={item.path}
-          className={linkClasses}
-          onClick={onLinkClick}
-        >
-          {item.title}
-        </NavLink>
-      ))}
-    </div>
-  );
-};
+// const navLinks = [
+//   { title: "Home", path: "/", exact: true },
+//   { title: "Components", path: "/ui-components" },
+//   { title: "Mobile Templates", path: "/mobile-templates" },
+//   { title: "Ready Flows", path: "/ready-flows" },
+//   { title: "Design systems", path: "/design-systems" },
+//   { title: "Color-Themes", path: "/color-themes" },
+// ];
+// const NavLinks = ({
+//   className,
+//   linkClassName,
+//   onLinkClick,
+// }: {
+//   className?: string;
+//   linkClassName?: string;
+//   onLinkClick?: () => void;
+// }) => {
+//   const classes = clsx("max-xl:!text-sm  font-medium", className);
+//   const linkClasses = clsx("w-max", linkClassName);
+//   return (
+//     <div className={classes}>
+//       {navLinks.map((item) => (
+//         <NavLink
+//           href={item.path}
+//           exact={item?.exact}
+//           key={item.path}
+//           className={linkClasses}
+//           onClick={onLinkClick}
+//         >
+//           {item.title}
+//         </NavLink>
+//       ))}
+//     </div>
+//   );
+// };
