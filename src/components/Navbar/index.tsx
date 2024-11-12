@@ -35,7 +35,7 @@ export const Navbar = ({
   const { theme } = useTheme();
   const { push } = useRouter();
   const pathname = usePathname();
-  const session = useRequireAuth();
+  const session = useSession();
   const [burgerMenuOpen, setBurgerMenuOpen] = useState(false);
 
   const { isScrollY } = useSCrollY();
@@ -127,7 +127,7 @@ export const Navbar = ({
             <FavouriteIcon color={iconColor} aria-label="Favourite Icon" />
           </Button>
 
-          {!session?.accessToken ? (
+          {!session?.data?.accessToken ? (
             <Button
               intent="primaryLight"
               onClick={() => push("/login")}
@@ -159,7 +159,7 @@ export const Navbar = ({
         </div>
         <SlideOver
           footer={
-            !session?.accessToken ? (
+            !session?.data?.accessToken ? (
               <Button
                 intent="primaryLight"
                 onClick={() => push("/login")}
