@@ -19,6 +19,7 @@ import { useSCrollY } from "@/hooks";
 import { SearchIcon } from "@/components/svg";
 import { useRequireAuth } from "@/hooks/useAuth";
 import { signOut, useSession } from "next-auth/react";
+import { CategoryType } from "@/types";
 // import dynamic from "next/dynamic";
 
 // const SlideOver = dynamic(() => import("../SlideOver"), {
@@ -27,11 +28,13 @@ import { signOut, useSession } from "next-auth/react";
 // const ThemeSwitcher = dynamic(() => import("../ThemeSwitcher"));
 // const NavLink = dynamic(() => import("../NavLink"));
 export const Navbar = ({
+  categories,
   className = "",
   searchIconhidden = false,
 }: {
   className?: string;
   searchIconhidden?: boolean;
+  categories: CategoryType[];
 }) => {
   const { theme } = useTheme();
   const { push } = useRouter();
@@ -44,7 +47,7 @@ export const Navbar = ({
   const navClassName = cn(
     "fixed top-0 z-50 w-full py-4",
     className,
-    pathname === "/" ? "bg-transparent" : "",
+    pathname === "/" && !isScrollY ? "bg-transparent" : "",
     isScrollY && pathname === "/" ? "bg-white" : "",
     burgerMenuOpen && !isScrollY && "bg-accent-dark",
     pathname !== "/" && "bg-white"
@@ -94,6 +97,7 @@ export const Navbar = ({
         )}
 
         <NavLinks
+          categories={categories}
           className={`items-center justify-between hidden gap-2 xl:gap-6 xl:flex transparent`}
         />
         <div className="flex items-center gap-3 ">
@@ -191,6 +195,7 @@ export const Navbar = ({
             }  `}
           >
             <NavLinks
+              categories={categories}
               className={`flex flex-col w-full gap-3 ${
                 !isScrollY && pathname === "/"
                   ? "bg-accent-dark-hover "

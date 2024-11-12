@@ -1,3 +1,5 @@
+export * from "./categorytype"
+
 /*
     To export all general types from one single source of truth
     example :
@@ -48,11 +50,11 @@ export type ProductType = {
   specifications?: string;
 };
 
-export interface CategoryType {
-  id: Categories;
-  name: string;
-  products: ProductType[];
-}
+// export interface CategoryType {
+//   id: Categories;
+//   name: string;
+//   products: ProductType[];
+// }
 
 export type UserType = {
   _id: string;

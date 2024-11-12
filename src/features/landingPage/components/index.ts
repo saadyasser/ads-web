@@ -6,7 +6,9 @@ import { ContactUs } from "./ContactUs";
 import { TopSelections } from "./TopSelections";
 import { TestimonialsSection } from "./TestimonialsSection"
 import { Product } from "./Product";
+import { GeneralLayout } from "./GeneralLayout"
 export {
+  GeneralLayout,
   Product,
   TestimonialsSection,
   HeroSection,

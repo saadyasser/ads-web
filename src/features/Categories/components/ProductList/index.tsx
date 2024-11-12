@@ -11,7 +11,9 @@ export const ProductList = ({ className = "" }: { className?: string }) => {
   return (
     <div className={containerClassName}>
       {productsList.map((product) => (
-        <Product product={product} withRate={true} />
+        <React.Fragment key={product.id}>
+          <Product product={product} withRate={true} />
+        </React.Fragment>
       ))}
     </div>
   );
