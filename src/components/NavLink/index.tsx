@@ -30,6 +30,10 @@ export const NavLink = ({
     "relative w-max font-medium text-black hover:text-black hover:font-bold !py-4 transition-all duration-300 ",
     className,
     activeClasses,
+    pathname !== "/" &&
+      !isScrollY &&
+      isActive &&
+      "!text-secondary hover:!text-secondary",
     pathname === "/" &&
       !isScrollY &&
       `text-white ${isActive && "!text-secondary"} hover:!text-secondary`,

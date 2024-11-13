@@ -1,6 +1,7 @@
 "use client";
 import { ErrorBoundary, Navbar } from "@/components";
 import { GeneralLayout, HeroSection } from "@/features/landingPage/components";
+import { CategoryType } from "@/types";
 import { useState } from "react";
 
 export default function RootLayout({

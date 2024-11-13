@@ -12,6 +12,7 @@ import { cn } from "@/utils";
 import { productsList } from "@/data/products_list";
 import { ProductsFilter } from "@/features/Categories/components";
 import { isValid } from "zod";
+import { useCategories } from "@/features/Categories/providers";
 // import { XIcon } from "../svg"; // Assuming you have an X icon component for closing
 
 interface TargetComponentProps {
@@ -50,6 +51,7 @@ export const SearchBar: React.FC<TargetComponentProps> = ({
     formState: { errors },
   } = useForm<FormValues>();
 
+  const { categories: data } = useCategories();
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [isCardVisible, setIsCardVisible] = useState(false); // State for card visibility

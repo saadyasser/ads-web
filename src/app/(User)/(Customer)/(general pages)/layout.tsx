@@ -2,6 +2,7 @@
 import { Footer, Navbar } from "@/components";
 import React from "react";
 import { CategoryType } from "@/types";
+import { CategoriesProvider } from "@/features/Categories/providers";
 
 // RootLayout component that fetches categories and passes them as props to children
 const RootLayout = async ({ children }: { children: React.ReactNode }) => {
@@ -14,19 +15,15 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
   const categories: CategoryType[] = data.data.categories;
 
   return (
-    <div>
+    <CategoriesProvider categories={categories}>
       <div>
-        <Navbar categories={categories} className="bg-white" />
-
-        {/* Pass categories as a prop to children */}
-        {React.Children.map(children, (child) =>
-          React.cloneElement(child as React.ReactElement, {
-            categories, // Passing the categories to the child
-          })
-        )}
+        <div>
+          <Navbar categories={categories} className="bg-white" />
+          {children}
+        </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
+    </CategoriesProvider>
   );
 };
 

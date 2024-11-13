@@ -20,13 +20,19 @@ export const NavLinks = ({
   const linkClasses = clsx("w-max", linkClassName);
   return (
     <div className={classes}>
-      <NavLink href={`/`} className={linkClasses} onClick={onLinkClick}>
+      <NavLink
+        href={`/`}
+        exact={true}
+        className={linkClasses}
+        onClick={onLinkClick}
+      >
         Home
       </NavLink>
       {categories.map((item: CategoryType) => (
         <NavLink
           key={item._id}
-          href={`/${item.name.replaceAll(" ", "-")}`}
+          exact={false}
+          href={`/categories/${item.name.replaceAll(" ", "-")}`}
           className={linkClasses}
           onClick={onLinkClick}
         >

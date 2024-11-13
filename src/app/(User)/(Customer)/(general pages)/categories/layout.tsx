@@ -1,22 +1,21 @@
 "use client";
 
-import {
-  Breadcrumb,
-  BreadcrumbCta,
-  CopyCurrentPathButton,
-  ErrorBoundary,
-  Footer,
-  Navbar,
-  SearchBar,
-} from "@/components";
+import { Breadcrumb, ErrorBoundary, SearchBar } from "@/components";
 import { ProductsFilter } from "@/features/Categories/components";
-import { CategoryType } from "@/types";
+import { useCategories } from "@/features/Categories/providers";
+import { usePathname } from "next/navigation";
 import React from "react";
 
 const RootLayout: React.FC<{
-  categories: CategoryType;
   children: React.ReactNode;
-}> = async ({ children, categories }) => {
+}> = async ({ children }) => {
+  const pathname = usePathname();
+  const { categories } = useCategories();
+  const currentCategoryPath = pathname.split("/");
+  const currentCategory = categories?.find(
+    (c) => c.name === currentCategoryPath[2].replace("-", " ")
+  );
+  console.log(currentCategory, "current");
   return (
     <>
       <main className="pt-[85px] md:pt-[89px] xl:pt-[109px] !overflow-y-auto min-h-screen">
