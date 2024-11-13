@@ -4,6 +4,10 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
+        hostname: "azaiza-design-studio.s3.us-east-1.amazonaws.com",
+        port: "",
+      },{
+        protocol: "https",
         hostname: "images.unsplash.com",
         port: "",
       },

@@ -21,7 +21,6 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
           <Navbar categories={categories} className="bg-white" />
           {children}
         </div>
-        <Footer />
       </div>
     </CategoriesProvider>
   );

@@ -4,7 +4,7 @@ import { BagIcon, RightArrow } from "@/components/svg";
 import Link from "next/link";
 import { useRef, useState, useEffect } from "react";
 import Product from "../Product";
-import { productsList } from "@/data/products_list";
+// import { productsList } from "@/data/products_list";
 
 interface Product {
   id: number;
@@ -111,9 +111,9 @@ export const TopSelections = ({
           >
             <RightArrow fill="#0e2841" color="#0e2841" />
           </button>
-          {productsList.map((product: Product, index) => (
+          {/* {productsList.map((product: Product, index) => (
             <Product key={index} product={product} withRate={withRate} />
-          ))}
+          ))} */}
           <button
             onClick={scrollRight}
             className={`absolute  right-[-24px] md:right-[-30px] z-10 top-[41%] transform -translate-y-1/2 scale-50 p-1 md:p-2 md:scale-75 bg-white rounded-full shadow-md ${

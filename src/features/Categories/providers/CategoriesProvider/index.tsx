@@ -4,7 +4,7 @@ import { CategoryType } from "@/types";
 
 // Define the type for the context value
 interface CategoriesContextProps {
-  categories: CategoryType[] | null;
+  categories: CategoryType[];
 }
 
 // Create the context

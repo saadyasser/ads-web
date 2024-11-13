@@ -1,17 +1,12 @@
 import { Card } from "@/components";
 import { BagIcon, FavouriteIcon, RightArrow, StarIcon } from "@/components/svg";
+import { ProductType } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
 interface ProductProps {
-  product: {
-    id: number;
-    name: string;
-    imageUrl: string;
-    category: string;
-    price: number;
-  };
+  product: ProductType;
   withRate?: boolean;
 }
 
@@ -21,9 +16,9 @@ export const Product: React.FC<ProductProps> = ({
 }) => {
   return (
     <Link
-      key={product.id}
+      key={product._id}
       className="shrink-0 grow basis-4/5 md:basis-[45%]  xl:basis-[22%] md:rounded-2xl transition-colors duration-150 rounded-2xl"
-      href={product.name.toLowerCase().replaceAll(" ", "-")}
+      href={product.title.toLowerCase().replaceAll(" ", "-")}
     >
       <Card className="block rounded-2xl">
         <div className="relative group">
@@ -39,7 +34,7 @@ export const Product: React.FC<ProductProps> = ({
             </div>
             <Link
               className="flex items-center justify-center font-semibold text-white "
-              href={product.name.toLowerCase().replaceAll(" ", "-")}
+              href={product.title.toLowerCase().replaceAll(" ", "-")}
             >
               <span>Show Detail</span>
               <RightArrow fill="white" />
@@ -50,7 +45,7 @@ export const Product: React.FC<ProductProps> = ({
           <Image
             width={336}
             height={248}
-            src={"/images/products/product-1-xl.png"}
+            src={product.thumbnail}
             className="w-full h-auto rounded-xl md:rounded-xl"
             alt="Product Image"
           />
@@ -65,7 +60,7 @@ export const Product: React.FC<ProductProps> = ({
           )}
         </div>
         <h6 className="my-2 text-sm font-bold leading-5 md:text-base text-accent-dark">
-          {product.name}
+          {product.title}
         </h6>
         <div className="flex justify-between">
           <div className="flex items-center gap-1">
@@ -77,7 +72,7 @@ export const Product: React.FC<ProductProps> = ({
               height={24}
             />
             <p className="text-[12px] font-medium leading-[14px] text-accent-dark">
-              Ahmed Al-Azaiza
+              {product.publisher.displayName}
             </p>
           </div>
           <div className="flex items-center">
@@ -87,12 +82,14 @@ export const Product: React.FC<ProductProps> = ({
                 withRate && "pr-2"
               }`}
             >
-              200K
+              {product.likes}
             </span>
             {withRate && (
               <>
                 <StarIcon color="#0E2841" fill="#0E2841" />
-                <span className="text-xs text-accent-dark pl-[2px]">4.9/5</span>
+                <span className="text-xs text-accent-dark pl-[2px]">
+                  {Math.floor(product.rate)}/5
+                </span>
               </>
             )}
           </div>

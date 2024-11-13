@@ -1,5 +1,5 @@
 export * from "./categorytype"
-
+export * from "./ProductType"
 /*
     To export all general types from one single source of truth
     example :
@@ -40,15 +40,15 @@ export type ProductImageType = {
   imagePath: string;
   isThumbnail?: boolean;
 };
-export type ProductType = {
-  id: number;
-  name: string;
-  category: Categories;
-  description: string;
-  price?: number;
-  imagesUrl: ProductImageType[];
-  specifications?: string;
-};
+// export type ProductType = {
+//   id: number;
+//   name: string;
+//   category: Categories;
+//   description: string;
+//   price?: number;
+//   imagesUrl: ProductImageType[];
+//   specifications?: string;
+// };
 
 // export interface CategoryType {
 //   id: Categories;

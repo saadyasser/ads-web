@@ -1,27 +1,29 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { ReactNode, useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import Input from "../Input";
 import Button from "../Button";
 import { SearchFilterIcon, SearchIcon } from "../svg";
 import Card from "../Card";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import { cn } from "@/utils";
-import { productsList } from "@/data/products_list";
 import { ProductsFilter } from "@/features/Categories/components";
 import { isValid } from "zod";
 import { useCategories } from "@/features/Categories/providers";
 // import { XIcon } from "../svg"; // Assuming you have an X icon component for closing
 
 interface TargetComponentProps {
+  searchKey: string;
+  onSearchKeyChanged: (searchKey: string) => void;
   onVisibilityChange?: (visible: boolean) => void;
   withSearchResults?: boolean;
   withFilter?: boolean;
   withCategories?: boolean;
   className?: string;
   inputClassName?: string;
+  children?: ReactNode;
 }
 
 interface Product {
@@ -35,13 +37,24 @@ interface FormValues {
 }
 
 export const SearchBar: React.FC<TargetComponentProps> = ({
+  searchKey,
+  onSearchKeyChanged,
   onVisibilityChange = () => {},
   withSearchResults = true,
   withFilter = false,
   withCategories = true,
   className = "",
   inputClassName = "",
+  children,
 }) => {
+  const pathname = usePathname();
+  const { categories } = useCategories();
+  const currentCategoryPath = pathname.split("/");
+  const currentCategory =
+    pathname.startsWith("/categories") &&
+    categories?.find(
+      (c) => c.name === currentCategoryPath[2].replace("-", " ")
+    );
   const [filterVisibility, setFilterVisibility] = useState(false);
   const {
     register,
@@ -85,19 +98,19 @@ export const SearchBar: React.FC<TargetComponentProps> = ({
   };
 
   useEffect(() => {
-    const results = productsList.filter((product) => {
-      const matchesSearchTerm = searchTerm
-        ? product.name.toLowerCase().includes(searchTerm.toLowerCase())
-        : true;
+    // const results = productsList.filter((product) => {
+    //   const matchesSearchTerm = searchTerm
+    //     ? product.name.toLowerCase().includes(searchTerm.toLowerCase())
+    //     : true;
 
-      const matchesCategory = selectedCategory
-        ? product.category === selectedCategory
-        : true;
+    //   const matchesCategory = selectedCategory
+    //     ? product.category === selectedCategory
+    //     : true;
 
-      return matchesSearchTerm && matchesCategory;
-    });
+    //   return matchesSearchTerm && matchesCategory;
+    // });
 
-    setFilteredProducts(results);
+    // setFilteredProducts(results);
     setIsCardVisible(searchTerm?.length > 0); // Show card if there's a search term
   }, [searchTerm, selectedCategory]);
 
@@ -107,6 +120,7 @@ export const SearchBar: React.FC<TargetComponentProps> = ({
     required: "Please enter a search term.",
     onChange: (e) => {
       setValue("searchTerm", e.target.value);
+      onSearchKeyChanged(e.target.value);
       clearErrors("searchTerm");
     },
   });
@@ -152,6 +166,7 @@ export const SearchBar: React.FC<TargetComponentProps> = ({
         <div className="flex flex-col items-center">
           <div className="flex items-center w-full">
             <Input
+              value={searchKey}
               containerClassname="!pb-0"
               className={inputClass}
               id="search-term"
@@ -186,69 +201,14 @@ export const SearchBar: React.FC<TargetComponentProps> = ({
             </div>
           </div>
 
-          {filterVisibility && (
+          {filterVisibility && currentCategory && (
             <div className="absolute right-0 top-[calc(100%+8px)] z-50 xl:hidden">
-              <ProductsFilter />
+              <ProductsFilter category={currentCategory} />
             </div>
           )}
         </div>
 
-        {/* Display filtered products */}
-        {withSearchResults && isCardVisible && searchTerm && (
-          <Card
-            className={`w-full flex flex-col gap-2 ${
-              filteredProducts?.length === 0
-                ? "justify-center h-32"
-                : "justify-start max-h-[372px] p-3 !pb-0"
-            } absolute top-[calc(100%+12px)] left-0 border-[1px] border-accent-dark overflow-y-auto`}
-            ref={cardRef} // Attach ref to the card
-          >
-            <button
-              onClick={handleDismiss}
-              className="absolute top-2 right-2 text-accent-dark"
-              aria-label="Close"
-            >
-              {/* <XIcon className="w-4 h-4" /> */}
-            </button>
-            {filteredProducts?.length > 0 ? (
-              filteredProducts?.map((product, index) => (
-                <Link
-                  href={`/products/${product.name
-                    .toLocaleLowerCase()
-                    .replaceAll(" ", "-")}`}
-                  className="w-full flex gap-3 pb-[6px] border-b-[1px] border-accent-gray-light"
-                  key={index}
-                >
-                  <Image
-                    src={product.imageUrl}
-                    alt={product.name}
-                    width={67}
-                    height={51}
-                  />
-                  <div>
-                    <h5 className="text-[14px] font-bold leading-4 md:text-base md:leading-5 mb-1 text-accent-dark">
-                      {product.name}
-                    </h5>
-                    <div className="flex items-center gap-1">
-                      <Image
-                        className="w-6 h-6"
-                        src="/images/profile-img.png"
-                        alt={product.name}
-                        width={24}
-                        height={24}
-                      />
-                      <p className="text-[12px] font-medium leading-[14px] text-accent-dark">
-                        Ahmed Al-Azaiza
-                      </p>
-                    </div>
-                  </div>
-                </Link>
-              ))
-            ) : (
-              <p>No products found</p>
-            )}
-          </Card>
-        )}
+        {children}
       </div>
 
       {withCategories && (
