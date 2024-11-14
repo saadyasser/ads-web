@@ -45,7 +45,7 @@ export const Product: React.FC<ProductProps> = ({
           <Image
             width={336}
             height={248}
-            src={product.thumbnail}
+            src={"/images/products/product-1-xl.png"}
             className="w-full h-auto rounded-xl md:rounded-xl"
             alt="Product Image"
           />
@@ -98,5 +98,7 @@ export const Product: React.FC<ProductProps> = ({
     </Link>
   );
 };
+
+export * from "./LoadingProduct";
 
 export default Product;

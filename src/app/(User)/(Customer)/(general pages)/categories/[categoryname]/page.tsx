@@ -121,8 +121,12 @@ const CategoryPage = () => {
                   />
                 )}
               </aside>
+              {isLoading && <ProductList isLoading={isLoading} />}
               {data?.data.products && (
-                <ProductList products={data?.data.products} />
+                <ProductList
+                  isLoading={isLoading}
+                  products={data?.data.products}
+                />
               )}
             </div>
           </ErrorBoundary>
