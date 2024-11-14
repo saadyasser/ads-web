@@ -32,6 +32,7 @@
     "iconsax-react": "^0.0.8",
     "input-otp": "^1.2.4",
     "js-cookie": "^3.0.5",
+    "lodash": "^4.17.21",
     "lucide-react": "^0.452.0",
     "next": "^14.2.15",
     "next-auth": "^4.24.8",

@@ -2,11 +2,18 @@
 import { H2 } from "@/components";
 import { BagIcon, RightArrow } from "@/components/svg";
 import Link from "next/link";
-import { useRef, useState, useEffect } from "react";
+import React, {
+  useRef,
+  useState,
+  useEffect,
+  useCallback,
+  useMemo,
+} from "react";
 import Product from "../Product";
 import { CategoryType, ProductType } from "@/types";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
+import isEqual from "lodash/isEqual"; // Import lodash for deep comparison
 
 interface ProductsResponse {
   data: { totalCount: number; products: ProductType[] };
@@ -15,7 +22,7 @@ interface ProductsResponse {
   statusCode: number;
 }
 
-export const TopSelections = ({
+const TopSelectionsComponent = ({
   category,
   withRate = false,
   className = "",
@@ -28,32 +35,35 @@ export const TopSelections = ({
   const [isAtStart, setIsAtStart] = useState(true); // Disable left arrow initially
   const [isAtEnd, setIsAtEnd] = useState(false); // Enable right arrow initially
 
-  const checkScrollPosition = () => {
+  // Memoize the scroll position check function to avoid re-creating on every render
+  const checkScrollPosition = useCallback(() => {
     if (scrollContainerRef.current) {
       const { scrollLeft, scrollWidth, clientWidth } =
         scrollContainerRef.current;
       setIsAtStart(scrollLeft === 0);
       setIsAtEnd(scrollLeft + clientWidth >= scrollWidth);
     }
-  };
+  }, []);
 
-  const scrollLeft = () => {
+  // Memoize scrollLeft function
+  const scrollLeft = useCallback(() => {
     if (scrollContainerRef.current) {
       scrollContainerRef.current.scrollBy({
         left: -400,
         behavior: "smooth",
       });
     }
-  };
+  }, []);
 
-  const scrollRight = () => {
+  // Memoize scrollRight function
+  const scrollRight = useCallback(() => {
     if (scrollContainerRef.current) {
       scrollContainerRef.current.scrollBy({
         left: 400,
         behavior: "smooth",
       });
     }
-  };
+  }, []);
 
   useEffect(() => {
     const current = scrollContainerRef.current;
@@ -71,9 +81,10 @@ export const TopSelections = ({
         current.removeEventListener("scroll", checkScrollPosition);
       }
     };
-  }, []);
+  }, [checkScrollPosition]);
 
-  const fetchProducts = async (): Promise<ProductsResponse> => {
+  // Memoize fetchProducts function to avoid re-creation
+  const fetchProducts = useCallback(async (): Promise<ProductsResponse> => {
     const response = await axios.get<ProductsResponse>(
       `https://api.azaiza.com/api/product/`,
       {
@@ -84,7 +95,7 @@ export const TopSelections = ({
       }
     );
     return response.data; // The response data is of type ProductsResponse
-  };
+  }, [category]);
 
   // Use React Query to fetch the products
   const { data, error, isLoading } = useQuery<ProductsResponse>(
@@ -92,17 +103,19 @@ export const TopSelections = ({
     fetchProducts
   );
 
-  const date = new Date();
-  const monthName = date.toLocaleString("en-US", { month: "long" });
+  // Memoize month and year value
+  const dateInfo = useMemo(() => {
+    const date = new Date();
+    const monthName = date.toLocaleString("en-US", { month: "long" });
+    return { monthName, year: date.getFullYear() };
+  }, []);
 
   return (
     <section className={className}>
       <H2 className="mb-1 text-accent-dark ">
         Top 8 Selection -{" "}
         <span className="italic font-normal">
-          {category
-            ? category.name
-            : monthName + " " + new Date().getFullYear()}
+          {category ? category.name : `${dateInfo.monthName} ${dateInfo.year}`}
         </span>
       </H2>
       <div className="flex items-center justify-between mb-4 2xl:mb-6">
@@ -131,7 +144,7 @@ export const TopSelections = ({
         >
           <button
             onClick={scrollLeft}
-            className={`absolute left-[-24px] md:left-[-30px] top-[41%] z-50 transform -translate-y-1/2 scale-50 p-1 md:scale-75 rotate-180 md:p-2  bg-white rounded-full shadow-md ${
+            className={`hidden xl:block absolute left-[-24px] md:left-[-30px] top-[41%] z-50 transform -translate-y-1/2 scale-50 p-1 md:scale-75 rotate-180 md:p-2  bg-white rounded-full shadow-md ${
               isAtStart ? "opacity-70 cursor-not-allowed" : "opacity-100"
             }`}
           >
@@ -144,7 +157,7 @@ export const TopSelections = ({
           {/* Right Arrow */}
           <button
             onClick={scrollRight}
-            className={`absolute  right-[-24px] md:right-[-30px] z-10 top-[41%] transform -translate-y-1/2 scale-50 p-1 md:p-2 md:scale-75 bg-white rounded-full shadow-md ${
+            className={`hidden xl:block absolute  right-[-24px] md:right-[-30px] z-10 top-[41%] transform -translate-y-1/2 scale-50 p-1 md:p-2 md:scale-75 bg-white rounded-full shadow-md ${
               isAtEnd ? "opacity-70 cursor-not-allowed" : "opacity-100"
             }`}
           >
@@ -163,5 +176,12 @@ export const TopSelections = ({
     </section>
   );
 };
+
+// Custom comparison function for deep comparison of props
+const arePropsEqual = (prevProps: any, nextProps: any) => {
+  return isEqual(prevProps, nextProps); // Use lodash's isEqual to perform deep comparison
+};
+
+export const TopSelections = React.memo(TopSelectionsComponent, arePropsEqual);
 
 export default TopSelections;

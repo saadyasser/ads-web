@@ -28,7 +28,10 @@ export const ProductsFilter: React.FC<{ category: CategoryType }> = ({
             All
           </Button>
           {category.subcategories.map((subcategory) => (
-            <Button className="!py-[10px] !px-4 !rounded-[40px] !bg-[#F4F4F4] !text-black !text-xs lg:!text-sm ">
+            <Button
+              key={subcategory._id}
+              className="!py-[10px] !px-4 !rounded-[40px] !bg-[#F4F4F4] !text-black !text-xs lg:!text-sm "
+            >
               {subcategory.name}
             </Button>
           ))}
@@ -60,7 +63,10 @@ export const ProductsFilter: React.FC<{ category: CategoryType }> = ({
         </span>
         <div className="flex gap-2 flex-wrap">
           {category.includedFiles.map((file) => (
-            <Button className="!py-[10px] !px-4 !rounded-[40px] !bg-[#F4F4F4] !text-xs lg:!text-sm !text-black ">
+            <Button
+              key={file._id}
+              className="!py-[10px] !px-4 !rounded-[40px] !bg-[#F4F4F4] !text-xs lg:!text-sm !text-black "
+            >
               <Image
                 src={file.icon}
                 width={30}

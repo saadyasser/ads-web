@@ -1,13 +1,16 @@
 import { Card, ErrorBoundary, Footer, Navbar } from "@/components";
+import { CategoryType } from "@/types";
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+const RootLayout = async ({ children }: { children: React.ReactNode }) => {
+  const response = await fetch("https://api.azaiza.com/api/product/category/", {
+    cache: "force-cache", // Cache at build time
+  });
+
+  const data = await response.json();
+  const categories: CategoryType[] = data.data.categories;
   return (
     <div className="pt-[85px] md:pt-[89px]   xl:pt-[109px] bg-primary-light !overflow-y-auto min-h-screen flex items-center justify-center !overflow-auto">
-      <Navbar className="bg-white" />
+      <Navbar categories={categories} className="bg-white" />
       <main className="flex items-center justify-center py-4">
         <ErrorBoundary>
           <section className="w-full max-w-[486px] px-6 md:px-0">
@@ -19,4 +22,6 @@ export default function RootLayout({
       </main>
     </div>
   );
-}
+};
+
+export default RootLayout;

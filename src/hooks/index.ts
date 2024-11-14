@@ -4,5 +4,6 @@
     export { useHook } from "useHook";
 */
 
-export * from "./useScrollY"
+export * from "./useScrollY";
+export * from "./useDebounce";
 
