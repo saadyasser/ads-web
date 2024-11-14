@@ -31,7 +31,11 @@ const CategoryPage = () => {
   }
 
   const [searchTerm, setSearchTerm] = useState("");
-
+  const [selectedSubCategory, setSelectedSubCategory] = useState(["all"]);
+  const [selectedType, setSelectedType] = useState<"free" | "paid" | "all">(
+    "all"
+  );
+  const [selectedFileFormat, setSelectedFileFormat] = useState(["all"]);
   // Fetch products from the API with optional searchTerm
   const fetchProducts = async (): Promise<ProductsResponse> => {
     const response = await axios.get<ProductsResponse>(
@@ -40,7 +44,16 @@ const CategoryPage = () => {
         params: {
           category: [currentCategory?._id],
           limit: 12,
-          ...(searchTerm && { search: searchTerm }), // Conditionally adding search term if it exists
+          ...(searchTerm && { search: searchTerm }),
+          ...(selectedType !== "all" && { isFree: selectedType }),
+          ...(!selectedFileFormat.includes("all") && {
+            fileFormat: selectedFileFormat,
+          }),
+          ...(selectedSubCategory &&
+            !selectedSubCategory.includes("all") &&
+            selectedSubCategory.length !== 0 && {
+              subcategories: selectedSubCategory,
+            }),
         },
       }
     );
@@ -49,12 +62,18 @@ const CategoryPage = () => {
 
   // Use React Query to fetch the products
   const { data, error, isLoading } = useQuery<ProductsResponse>(
-    ["products", currentCategory?._id, searchTerm], // Include searchTerm in the query key to refetch on search change
-    fetchProducts,
-    {
-      enabled: !!currentCategory, // Only run the query if currentCategory is defined
-    }
+    [
+      "products",
+      currentCategory?._id,
+      searchTerm,
+      selectedSubCategory,
+      selectedType,
+      selectedFileFormat,
+    ], // Include searchTerm in the query key to refetch on search change
+    fetchProducts
   );
+
+  console.log(selectedType, "tyyyyyyyyyyyyyype");
 
   return (
     <>
@@ -77,7 +96,15 @@ const CategoryPage = () => {
             <div className="grid gap-4 grid-cols-1 xl:grid-cols-4 overflow-y-hidden">
               <aside className="hidden xl:block xl:col-span-1">
                 {currentCategory && (
-                  <ProductsFilter category={currentCategory} />
+                  <ProductsFilter
+                    selectedSubCategory={selectedSubCategory}
+                    onSelectedSubCategoryChange={setSelectedSubCategory}
+                    category={currentCategory}
+                    selectedType={selectedType}
+                    onSelectedTypeChange={setSelectedType}
+                    selectedFileFormat={selectedFileFormat}
+                    onSelectedFileFormatChange={setSelectedFileFormat}
+                  />
                 )}
               </aside>
               {data?.data.products && (
