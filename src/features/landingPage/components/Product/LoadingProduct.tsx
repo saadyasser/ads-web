@@ -12,7 +12,7 @@ export const LoadingProduct = ({ withRate }: { withRate: boolean }) => {
           <Skeleton className="absolute right-2 top-2 h-6 w-16 rounded-full" />
         </div>
         <h6 className="my-2 text-sm font-bold leading-5 md:text-base text-accent-dark">
-          <Skeleton className="h-5 w-3/4" /> {/* Title Skeleton */}
+          <Skeleton className="h-5 w-[70%]" /> {/* Title Skeleton */}
         </h6>
         <div className="flex justify-between">
           <div className="flex items-center gap-1">
