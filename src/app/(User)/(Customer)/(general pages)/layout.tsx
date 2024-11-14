@@ -17,10 +17,7 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
   return (
     <CategoriesProvider categories={categories}>
       <div>
-        <div>
-          <Navbar categories={categories} className="bg-white" />
-          {children}
-        </div>
+        <div>{children}</div>
       </div>
     </CategoriesProvider>
   );

@@ -78,6 +78,7 @@ export const SearchBar: React.FC<TargetComponentProps> = ({
     const observer = new IntersectionObserver(
       ([entry]) => {
         onVisibilityChange(entry.isIntersecting);
+        console.log(entry.isIntersecting, "isIntersecting");
       },
       { threshold: 0.1 }
     );

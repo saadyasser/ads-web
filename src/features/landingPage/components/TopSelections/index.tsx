@@ -4,22 +4,23 @@ import { BagIcon, RightArrow } from "@/components/svg";
 import Link from "next/link";
 import { useRef, useState, useEffect } from "react";
 import Product from "../Product";
-// import { productsList } from "@/data/products_list";
+import { CategoryType, ProductType } from "@/types";
+import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
 
-interface Product {
-  id: number;
-  name: string;
-  imageUrl: string;
-  category: string;
-  price: number;
+interface ProductsResponse {
+  data: { totalCount: number; products: ProductType[] };
+  message: string;
+  status: string;
+  statusCode: number;
 }
 
 export const TopSelections = ({
-  selectBy,
+  category,
   withRate = false,
   className = "",
 }: {
-  selectBy: string;
+  category?: CategoryType;
   withRate?: boolean;
   className?: string;
 }) => {
@@ -72,10 +73,37 @@ export const TopSelections = ({
     };
   }, []);
 
+  const fetchProducts = async (): Promise<ProductsResponse> => {
+    const response = await axios.get<ProductsResponse>(
+      `https://api.azaiza.com/api/product/`,
+      {
+        params: {
+          limit: 12,
+          ...(category && { category: [category._id] }), // Conditionally add category
+        },
+      }
+    );
+    return response.data; // The response data is of type ProductsResponse
+  };
+
+  // Use React Query to fetch the products
+  const { data, error, isLoading } = useQuery<ProductsResponse>(
+    ["products", category?._id], // Include category in the query key to refetch when it changes
+    fetchProducts
+  );
+
+  const date = new Date();
+  const monthName = date.toLocaleString("en-US", { month: "long" });
+
   return (
     <section className={className}>
       <H2 className="mb-1 text-accent-dark ">
-        Top 8 Selection - <span className="italic font-normal">{selectBy}</span>
+        Top 8 Selection -{" "}
+        <span className="italic font-normal">
+          {category
+            ? category.name
+            : monthName + " " + new Date().getFullYear()}
+        </span>
       </H2>
       <div className="flex items-center justify-between mb-4 2xl:mb-6">
         <p className="text-xs font-light text-black md:text-sm 2xl:text-base">
@@ -84,7 +112,7 @@ export const TopSelections = ({
         </p>
         <Link
           href="/test"
-          className="md:flex justify-between items-center text-center font-semibold hidden text-[#01C38D] pr-4 md:pr-8 2xl:pr-20"
+          className="md:flex justify-between items-center text-center font-semibold hidden text-[#01C38D] "
         >
           <span>Explore Design Systems</span>
           <RightArrow
@@ -96,11 +124,9 @@ export const TopSelections = ({
       </div>
 
       {/* Left Arrow */}
-
-      {/* Scrollable section */}
       <div className="relative">
         <div
-          className=" flex gap-2 overflow-x-auto md:gap-3 2xl:gap-4 scrollbar-hide"
+          className="flex gap-2 overflow-x-auto md:gap-3 2xl:gap-4 scrollbar-hide"
           ref={scrollContainerRef}
         >
           <button
@@ -111,9 +137,11 @@ export const TopSelections = ({
           >
             <RightArrow fill="#0e2841" color="#0e2841" />
           </button>
-          {/* {productsList.map((product: Product, index) => (
-            <Product key={index} product={product} withRate={withRate} />
-          ))} */}
+          {data?.data.products &&
+            data?.data.products.map((product, index) => (
+              <Product key={index} product={product} withRate={withRate} />
+            ))}
+          {/* Right Arrow */}
           <button
             onClick={scrollRight}
             className={`absolute  right-[-24px] md:right-[-30px] z-10 top-[41%] transform -translate-y-1/2 scale-50 p-1 md:p-2 md:scale-75 bg-white rounded-full shadow-md ${
@@ -122,9 +150,9 @@ export const TopSelections = ({
           >
             <RightArrow fill="#0e2841" color="#0e2841" />
           </button>
-          {/* Right Arrow */}
         </div>
       </div>
+
       <Link
         href="/test"
         className="flex  items-center  font-semibold visible md:invisible text-[#01C38D] mt-3"
