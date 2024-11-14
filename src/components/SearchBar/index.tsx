@@ -152,7 +152,7 @@ export const SearchBar: React.FC<TargetComponentProps> = ({
   }, [isCardVisible]);
 
   const containerClass = cn(
-    "relative mb-4 md:mb-6 mx-auto bg-white rounded-xl 2xl:p-4 pl-3 py-1 pr-1 border-[1px] border-primary-light-active hover:border-accent-gray focus:border-accent-dark",
+    " mb-4 md:mb-6 mx-auto bg-white rounded-xl 2xl:p-4 pl-3 py-1 pr-1 border-[1px] border-primary-light-active hover:border-accent-gray focus:border-accent-dark",
     className
   );
 
@@ -163,7 +163,7 @@ export const SearchBar: React.FC<TargetComponentProps> = ({
 
   return (
     <>
-      <div className={`relative ${containerClass}`} ref={targetRef}>
+      <div className={` ${containerClass}`} ref={targetRef}>
         <div className="flex flex-col items-center">
           <div className="flex items-center w-full">
             <Input
@@ -201,15 +201,9 @@ export const SearchBar: React.FC<TargetComponentProps> = ({
               )}
             </div>
           </div>
-
-          {filterVisibility && currentCategory && (
-            <div className="absolute right-0 top-[calc(100%+8px)] z-50 xl:hidden">
-              <ProductsFilter category={currentCategory} />
-            </div>
-          )}
         </div>
 
-        {children}
+        {filterVisibility && currentCategory && children}
       </div>
 
       {withCategories && (

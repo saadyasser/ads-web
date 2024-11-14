@@ -80,7 +80,7 @@ const CategoryPage = () => {
       <Navbar categories={categories} className="bg-white" />
 
       <main className="pt-[85px] md:pt-[89px] xl:pt-[109px] !overflow-y-auto min-h-screen">
-        <div className="flex flex-col gap-4 md:flex-row md:gap-0 md:justify-between  md:items-center p-4 md:px-8 2xl:px-20">
+        <div className="relative flex flex-col gap-4 md:flex-row md:gap-0 md:justify-between  md:items-center p-4 md:px-8 2xl:px-20">
           <Breadcrumb homeElement="Home" capitalizeLinks />
           <SearchBar
             searchKey={searchTerm}
@@ -89,7 +89,21 @@ const CategoryPage = () => {
             withFilter={true}
             withCategories={false}
             withSearchResults={false}
-          />
+          >
+            <div className="absolute right-0 top-[calc(100%+8px)] z-50 xl:hidden">
+              {currentCategory && (
+                <ProductsFilter
+                  selectedSubCategory={selectedSubCategory}
+                  onSelectedSubCategoryChange={setSelectedSubCategory}
+                  category={currentCategory}
+                  selectedType={selectedType}
+                  onSelectedTypeChange={setSelectedType}
+                  selectedFileFormat={selectedFileFormat}
+                  onSelectedFileFormatChange={setSelectedFileFormat}
+                />
+              )}
+            </div>
+          </SearchBar>
         </div>
         <div className="p-4 md:px-8 md:py-6 2xl:px-20 bg-background-light">
           <ErrorBoundary>

@@ -171,18 +171,18 @@ export const ProductsFilter: React.FC<ProdcuctsFilterProps> = ({
                     const updatedSelected = selectedFileFormat.filter(
                       (id) => id !== file._id
                     );
-                    onSelectedSubCategoryChange(updatedSelected);
+                    onSelectedFileFormatChange(updatedSelected);
                   } else {
                     // Add subcategory if not selected and remove "all"
-                    const updatedSelected = selectedSubCategory.includes("all")
+                    const updatedSelected = selectedFileFormat.includes("all")
                       ? [file._id]
-                      : [...selectedSubCategory, file._id];
+                      : [...selectedFileFormat, file._id];
 
-                    onSelectedSubCategoryChange(updatedSelected);
+                    onSelectedFileFormatChange(updatedSelected);
                   }
                 }}
                 className={`!py-[10px] !px-4 !rounded-[40px] ${
-                  selectedType === file._id
+                  selectedFileFormat.includes(file._id)
                     ? "!bg-accent-dark"
                     : "!bg-[#F4F4F4] !text-black"
                 } !text-xs lg:!text-sm`}
