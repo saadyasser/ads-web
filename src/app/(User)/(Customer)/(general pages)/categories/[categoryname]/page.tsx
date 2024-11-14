@@ -9,10 +9,10 @@ import {
 import { ProductList, ProductsFilter } from "@/features/Categories/components";
 import { useCategories } from "@/features/Categories/providers";
 import { ProductType } from "@/types";
-import { useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const CategoryPage = () => {
   const pathname = usePathname();
@@ -36,14 +36,21 @@ const CategoryPage = () => {
     "all"
   );
   const [selectedFileFormat, setSelectedFileFormat] = useState(["all"]);
-  // Fetch products from the API with optional searchTerm
-  const fetchProducts = async (): Promise<ProductsResponse> => {
+
+  // Infinite scrolling setup
+  const observerRef = useRef<HTMLDivElement | null>(null);
+
+  // Fetch products from the API with pagination
+  const fetchProducts = async ({
+    pageParam = 0,
+  }): Promise<ProductsResponse> => {
     const response = await axios.get<ProductsResponse>(
       `https://api.azaiza.com/api/product/`,
       {
         params: {
           category: [currentCategory?._id],
           limit: 12,
+          skip: pageParam,
           ...(searchTerm && { search: searchTerm }),
           ...(selectedType !== "all" && { isFree: selectedType }),
           ...(!selectedFileFormat.includes("all") && {
@@ -57,11 +64,18 @@ const CategoryPage = () => {
         },
       }
     );
-    return response.data; // The response data is of type ProductsResponse
+    return response.data;
   };
 
-  // Use React Query to fetch the products
-  const { data, error, isLoading } = useQuery<ProductsResponse>(
+  // Use React Query to fetch products with infinite scroll
+  const {
+    data,
+    error,
+    isLoading,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+  } = useInfiniteQuery<ProductsResponse>(
     [
       "products",
       currentCategory?._id,
@@ -69,11 +83,39 @@ const CategoryPage = () => {
       selectedSubCategory,
       selectedType,
       selectedFileFormat,
-    ], // Include searchTerm in the query key to refetch on search change
-    fetchProducts
+    ],
+    ({ pageParam = 1 }) => fetchProducts({ pageParam }),
+    {
+      getNextPageParam: (lastPage, pages) => {
+        if (pages.length * 12 < lastPage.data.totalCount) {
+          return pages.length + 1; // Next page number
+        }
+        return undefined; // No more pages
+      },
+    }
   );
 
-  console.log(selectedType, "tyyyyyyyyyyyyyype");
+  // Set up IntersectionObserver to load more products when near the bottom
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && hasNextPage) {
+          fetchNextPage();
+        }
+      },
+      {
+        root: null, // default is the viewport
+        rootMargin: "200px", // load more when 200px from the bottom
+        threshold: 0,
+      }
+    );
+
+    if (observerRef.current) observer.observe(observerRef.current);
+
+    return () => {
+      if (observerRef.current) observer.unobserve(observerRef.current);
+    };
+  }, [hasNextPage, fetchNextPage]);
 
   return (
     <>
@@ -122,14 +164,22 @@ const CategoryPage = () => {
                 )}
               </aside>
               {isLoading && <ProductList isLoading={isLoading} />}
-              {data?.data.products && (
+              {data?.pages.map((page, index) => (
                 <ProductList
+                  key={index}
                   isLoading={isLoading}
-                  products={data?.data.products}
+                  products={page.data.products}
                 />
-              )}
+              ))}
+              {/* Infinite Scroll Loader */}
+              <div ref={observerRef} className="h-8"></div>
             </div>
           </ErrorBoundary>
+          {isFetchingNextPage && (
+            <p className="text-primary font-semibold tracking-[-.2px]">
+              Loading more ...
+            </p>
+          )}
         </div>
       </main>
       <Footer />
