@@ -117,6 +117,8 @@ const CategoryPage = () => {
     };
   }, [hasNextPage, fetchNextPage]);
 
+  console.log(data?.pages, "product pages");
+
   return (
     <>
       <Navbar categories={categories} className="bg-white" />
@@ -163,22 +165,29 @@ const CategoryPage = () => {
                   />
                 )}
               </aside>
-              {isLoading && <ProductList isLoading={isLoading} />}
-              {data?.pages.map((page, index) => (
-                <ProductList
-                  key={index}
-                  isLoading={isLoading}
-                  products={page.data.products}
-                />
-              ))}
+              <div className="col-span-1 xl:col-span-3 ">
+                {isLoading && <ProductList isLoading={isLoading} />}
+                {!isLoading &&
+                  data?.pages.map((page, index) => (
+                    <ProductList
+                      key={index}
+                      isLoading={isLoading}
+                      products={page.data.products}
+                    />
+                  ))}
+              </div>
               {/* Infinite Scroll Loader */}
-              <div ref={observerRef} className="h-8"></div>
             </div>
+
+            <div ref={observerRef}></div>
           </ErrorBoundary>
           {isFetchingNextPage && (
-            <p className="text-primary font-semibold tracking-[-.2px]">
-              Loading more ...
-            </p>
+            <div className="grid gap-4 grid-cols-1 xl:grid-cols-4">
+              <div className="hidden xl:block xl:col-span-1"></div>
+              <p className="text-primary font-semibold tracking-[-.2px]  col-span-1 xl:col-span-3 text-center">
+                Loading more ...
+              </p>
+            </div>
           )}
         </div>
       </main>
