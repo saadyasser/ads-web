@@ -8,6 +8,7 @@ import {
 } from "@/components";
 import { ProductList, ProductsFilter } from "@/features/Categories/components";
 import { useCategories } from "@/features/Categories/providers";
+import { useDebounce } from "@/hooks";
 import { ProductType } from "@/types";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import axios from "axios";
@@ -31,6 +32,8 @@ const CategoryPage = () => {
   }
 
   const [searchTerm, setSearchTerm] = useState("");
+  const debouncedSearchTerm = useDebounce(searchTerm, 500); // Debounce by 500ms
+
   const [selectedSubCategory, setSelectedSubCategory] = useState(["all"]);
   const [selectedType, setSelectedType] = useState<"free" | "paid" | "all">(
     "all"
@@ -51,7 +54,7 @@ const CategoryPage = () => {
           category: [currentCategory?._id],
           limit: 12,
           skip: pageParam,
-          ...(searchTerm && { search: searchTerm }),
+          ...(debouncedSearchTerm && { search: debouncedSearchTerm }),
           ...(selectedType !== "all" && { isFree: selectedType }),
           ...(!selectedFileFormat.includes("all") && {
             fileFormat: selectedFileFormat,
@@ -79,7 +82,7 @@ const CategoryPage = () => {
     [
       "products",
       currentCategory?._id,
-      searchTerm,
+      debouncedSearchTerm,
       selectedSubCategory,
       selectedType,
       selectedFileFormat,
