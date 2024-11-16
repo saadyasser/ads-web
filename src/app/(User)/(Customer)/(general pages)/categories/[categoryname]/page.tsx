@@ -120,7 +120,7 @@ const CategoryPage = () => {
     };
   }, [hasNextPage, fetchNextPage]);
 
-  console.log(data?.pages, "product pages");
+  console.log(currentCategory, "product pages");
 
   return (
     <>

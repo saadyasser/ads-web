@@ -47,6 +47,9 @@ export const HeroSection = ({
       onSuccess: () => {
         setIsCardVisible(true);
       },
+      onError: () => {
+        setIsCardVisible(true);
+      },
     }
   );
 
@@ -70,6 +73,8 @@ export const HeroSection = ({
     };
   }, [isCardVisible, setSearchIconhidden]);
 
+  console.log(isCardVisible, searchTerm, "isCardVisible");
+
   return (
     <header className="px-4 2xl:px-0 md:px-10  pb-6 md:pb-10 pt-[109px] md:pt-[113px]  bg-accent-dark bg-[url(/images/hero-bg.png)]">
       <div className="max-w-[754px] mx-auto">
@@ -85,7 +90,7 @@ export const HeroSection = ({
           {isCardVisible &&
             searchTerm && ( // Conditionally render card based on visibility
               <Card
-                className={`w-full flex flex-col ${
+                className={` w-full flex flex-col ${
                   data?.data.products && data?.data.products.length === 0
                     ? "justify-center h-32"
                     : "justify-start max-h-[372px] p-0  !pb-0"

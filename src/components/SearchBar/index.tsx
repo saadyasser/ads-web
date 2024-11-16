@@ -199,11 +199,13 @@ export const SearchBar: React.FC<TargetComponentProps> = ({
                   className="xl:hidden"
                 />
               )}
+              {!withFilter && children}
             </div>
           </div>
         </div>
       </div>
-      {!withFilter && children}
+
+      {withFilter && filterVisibility && children}
 
       {withCategories && (
         <div className="flex flex-wrap justify-center gap-1 mx-auto mt-2 shrink lg:shrink-0 md:gap-2">
@@ -225,7 +227,6 @@ export const SearchBar: React.FC<TargetComponentProps> = ({
           ))}
         </div>
       )}
-      {withFilter && filterVisibility && children}
     </>
   );
 };
