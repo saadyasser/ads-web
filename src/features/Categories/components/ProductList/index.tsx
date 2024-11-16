@@ -20,8 +20,8 @@ export const ProductList = ({
   return (
     <div className={containerClassName}>
       {isLoading &&
-        [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((product) => (
-          <LoadingProduct withRate={true} />
+        [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((product, index) => (
+          <LoadingProduct key={index} withRate={true} />
         ))}
       {!isLoading &&
         products &&
