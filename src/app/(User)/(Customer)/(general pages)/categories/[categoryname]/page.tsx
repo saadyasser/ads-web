@@ -137,7 +137,7 @@ const CategoryPage = () => {
             withCategories={false}
             withSearchResults={false}
           >
-            <div className="absolute right-0 top-[calc(100%+8px)] z-50 xl:hidden">
+            <div className="absolute right-0 top-[calc(100%+8px)] z-50 xl:hidden px-4 md:px-8 2xl:px-20">
               {currentCategory && (
                 <ProductsFilter
                   selectedSubCategory={selectedSubCategory}

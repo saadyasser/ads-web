@@ -42,7 +42,12 @@ export const HeroSection = ({
 
   const { data, error, isLoading } = useQuery<ProductsResponse>(
     ["products", debouncedSearchTerm], // Include debounced searchTerm in the query key to refetch on search change
-    fetchProducts
+    fetchProducts,
+    {
+      onSuccess: () => {
+        setIsCardVisible(true);
+      },
+    }
   );
 
   const cardRef = useRef<HTMLDivElement | null>(null); // Ref for the card
@@ -70,14 +75,15 @@ export const HeroSection = ({
       <div className="max-w-[754px] mx-auto">
         <RotatingList />
         <SearchBar
+          className="relative"
           searchKey={searchTerm}
           onSearchKeyChanged={setSearchTerm}
           onVisibilityChange={(visible) => {
             setSearchIconhidden && setSearchIconhidden(!visible);
           }}
         >
-          {isCardVisible ||
-            (debouncedSearchTerm && ( // Conditionally render card based on visibility
+          {isCardVisible &&
+            searchTerm && ( // Conditionally render card based on visibility
               <Card
                 className={`w-full flex flex-col ${
                   data?.data.products && data?.data.products.length === 0
@@ -105,6 +111,7 @@ export const HeroSection = ({
                         className="w-[61px] h-[46px] md:w-67 md:w-51 rounded"
                       />
                       <div>
+                        {" "}
                         <h5 className="text-[14px] font-bold leading-4 md:text-base md:leading-5 mb-1 text-accent-dark">
                           {product.title}
                         </h5>
@@ -127,7 +134,7 @@ export const HeroSection = ({
                   <p className="py-8">No products found</p>
                 )}
               </Card>
-            ))}
+            )}
         </SearchBar>
       </div>
     </header>
