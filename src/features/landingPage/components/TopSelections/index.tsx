@@ -48,8 +48,9 @@ const TopSelectionsComponent = ({
   // Memoize scrollLeft function
   const scrollLeft = useCallback(() => {
     if (scrollContainerRef.current) {
+      const { offsetWidth } = scrollContainerRef.current;
       scrollContainerRef.current.scrollBy({
-        left: -400,
+        left: -offsetWidth,
         behavior: "smooth",
       });
     }
@@ -58,8 +59,10 @@ const TopSelectionsComponent = ({
   // Memoize scrollRight function
   const scrollRight = useCallback(() => {
     if (scrollContainerRef.current) {
+      const { offsetWidth } = scrollContainerRef.current;
+
       scrollContainerRef.current.scrollBy({
-        left: 400,
+        left: offsetWidth,
         behavior: "smooth",
       });
     }
