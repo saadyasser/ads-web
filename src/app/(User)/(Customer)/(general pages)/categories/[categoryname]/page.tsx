@@ -5,6 +5,7 @@ import {
   Footer,
   Navbar,
   SearchBar,
+  SlideOver,
 } from "@/components";
 import { ProductList, ProductsFilter } from "@/features/Categories/components";
 import { useCategories } from "@/features/Categories/providers";
@@ -128,14 +129,13 @@ const CategoryPage = () => {
     };
   }, [hasNextPage, fetchNextPage]);
 
-  console.log(currentCategory, "product pages");
-
+  const [open, setOpen] = useState(false);
   return (
     <>
       <Navbar categories={categories} className="bg-white" />
 
       <main className="pt-[85px] md:pt-[89px] xl:pt-[109px] !overflow-y-auto min-h-screen">
-        <div className="relative flex flex-col gap-4 md:flex-row md:gap-0 md:justify-between  md:items-center px-4 pb-4 md:px-8 2xl:px-20">
+        <div className="relative flex flex-col gap-4 md:flex-row md:gap-0 md:justify-between  md:items-center px-4 pb-4 md:px-8 2xl:px-20 pt-[2px]">
           <Breadcrumb homeElement="Home" capitalizeLinks />
           <SearchBar
             searchKey={searchTerm}
@@ -165,18 +165,22 @@ const CategoryPage = () => {
             <div className="grid gap-4 grid-cols-1 xl:grid-cols-4 overflow-y-hidden">
               <aside className="hidden xl:block xl:col-span-1">
                 {currentCategory && (
-                  <ProductsFilter
-                    selectedSubCategory={selectedSubCategory}
-                    onSelectedSubCategoryChange={setSelectedSubCategory}
-                    category={currentCategory}
-                    selectedType={selectedType}
-                    onSelectedTypeChange={setSelectedType}
-                    selectedFileFormat={selectedFileFormat}
-                    onSelectedFileFormatChange={setSelectedFileFormat}
-                  />
+                  <SlideOver open={open} setOpen={setOpen}>
+                    <div>
+                      <ProductsFilter
+                        selectedSubCategory={selectedSubCategory}
+                        onSelectedSubCategoryChange={setSelectedSubCategory}
+                        category={currentCategory}
+                        selectedType={selectedType}
+                        onSelectedTypeChange={setSelectedType}
+                        selectedFileFormat={selectedFileFormat}
+                        onSelectedFileFormatChange={setSelectedFileFormat}
+                      />
+                    </div>
+                  </SlideOver>
                 )}
               </aside>
-              <div className="col-span-1 xl:col-span-3 ">
+              <div className="col-span-1 xl:col-span-3 flex flex-col gap-2 md:gap-4">
                 {isLoading && <ProductList isLoading={isLoading} />}
                 {!isLoading &&
                   data?.pages.map((page, index) => (
