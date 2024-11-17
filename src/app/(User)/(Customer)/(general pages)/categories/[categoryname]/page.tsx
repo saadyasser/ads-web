@@ -195,7 +195,7 @@ const CategoryPage = () => {
           {isFetchingNextPage && (
             <div className="grid gap-4 grid-cols-1 xl:grid-cols-4">
               <div className="hidden xl:block xl:col-span-1"></div>
-              <p className="text-primary font-semibold tracking-[-.2px]  col-span-1 xl:col-span-3 text-center">
+              <p className="text-primary font-semibold tracking-[-.2px] py-4  col-span-1 xl:col-span-3 text-center">
                 Loading more ...
               </p>
             </div>

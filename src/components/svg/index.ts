@@ -19,7 +19,9 @@ import { LinkedInIcon } from "./LinkedInIcon";
 import { InstgramIcon } from "./InstgramIcon";
 import { SearchFilterIcon } from "./SearchFilterIcon";
 import { TwitterIcon } from "./TwitterIcon";
+import { AuthIcon } from "./AuthIcon";
 export {
+  AuthIcon,
   SearchFilterIcon,
   TwitterIcon,
   InstgramIcon,

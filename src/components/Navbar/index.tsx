@@ -13,7 +13,13 @@ import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import clsx from "clsx";
 import { usePathname, useRouter } from "next/navigation";
-import { BagIcon, BurgerMenu, CloseIcon, FavouriteIcon } from "../svg";
+import {
+  AuthIcon,
+  BagIcon,
+  BurgerMenu,
+  CloseIcon,
+  FavouriteIcon,
+} from "../svg";
 import { cn } from "@/utils";
 import { useSCrollY } from "@/hooks";
 import { SearchIcon } from "@/components/svg";
@@ -137,10 +143,11 @@ export const Navbar = ({
               intent="primaryLight"
               onClick={() => push("/login")}
               className={clsx(
-                "!hidden md:!flex !text-sm md:!text-base bg-secondary text-accent-dark xl:py-4"
+                "!hidden md:!flex !text-sm md:!text-base bg-secondary text-accent-dark xl:py-4",
+                buttonsClassName
               )}
             >
-              Sign In / Register
+              <AuthIcon />
             </Button>
           ) : (
             <Button
