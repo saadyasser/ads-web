@@ -127,12 +127,12 @@ const CategoryPage = () => {
       <Navbar categories={categories} className="bg-white" />
 
       <main className="pt-[85px] md:pt-[89px] xl:pt-[109px] !overflow-y-auto min-h-screen">
-        <div className="relative flex flex-col gap-4 md:flex-row md:gap-0 md:justify-between  md:items-center p-4 md:px-8 2xl:px-20">
+        <div className="relative flex flex-col gap-4 md:flex-row md:gap-0 md:justify-between  md:items-center px-4 pb-4 md:px-8 2xl:px-20">
           <Breadcrumb homeElement="Home" capitalizeLinks />
           <SearchBar
             searchKey={searchTerm}
             onSearchKeyChanged={setSearchTerm}
-            className="w-full md:max-w-[461px] md:mb-0 mx-0 bg-background-light"
+            className="w-full md:max-w-[461px] md:mb-0 mx-0 bg-background-light 2xl:p-2 2xl:pl-3"
             withFilter={true}
             withCategories={false}
             withSearchResults={false}
