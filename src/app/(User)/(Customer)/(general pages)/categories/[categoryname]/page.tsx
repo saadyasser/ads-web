@@ -35,10 +35,15 @@ const CategoryPage = () => {
   const debouncedSearchTerm = useDebounce(searchTerm, 500); // Debounce by 500ms
 
   const [selectedSubCategory, setSelectedSubCategory] = useState(["all"]);
+  const debouncedSelectedSubCategory = useDebounce(selectedSubCategory, 700); // Debounce by 500ms
+
   const [selectedType, setSelectedType] = useState<"free" | "paid" | "all">(
     "all"
   );
+  const debouncedSelectedType = useDebounce(selectedType, 500); // Debounce by 500ms
+
   const [selectedFileFormat, setSelectedFileFormat] = useState(["all"]);
+  const debouncedSelectedFileFormat = useDebounce(selectedFileFormat, 700); // Debounce by 500ms
 
   // Infinite scrolling setup
   const observerRef = useRef<HTMLDivElement | null>(null);
@@ -55,14 +60,16 @@ const CategoryPage = () => {
           limit: 12,
           skip: pageParam,
           ...(debouncedSearchTerm && { search: debouncedSearchTerm }),
-          ...(selectedType !== "all" && { isFree: selectedType }),
-          ...(!selectedFileFormat.includes("all") && {
-            fileFormat: selectedFileFormat,
+          ...(debouncedSelectedType !== "all" && {
+            isFree: debouncedSelectedType,
           }),
-          ...(selectedSubCategory &&
-            !selectedSubCategory.includes("all") &&
-            selectedSubCategory.length !== 0 && {
-              subcategories: selectedSubCategory,
+          ...(!debouncedSelectedFileFormat.includes("all") && {
+            fileFormat: debouncedSelectedFileFormat,
+          }),
+          ...(debouncedSelectedSubCategory &&
+            !debouncedSelectedSubCategory.includes("all") &&
+            debouncedSelectedSubCategory.length !== 0 && {
+              subcategories: debouncedSelectedSubCategory,
             }),
         },
       }
@@ -83,9 +90,9 @@ const CategoryPage = () => {
       "products",
       currentCategory?._id,
       debouncedSearchTerm,
-      selectedSubCategory,
-      selectedType,
-      selectedFileFormat,
+      debouncedSelectedSubCategory,
+      debouncedSelectedType,
+      debouncedSelectedFileFormat,
     ],
     ({ pageParam = 1 }) => fetchProducts({ pageParam }),
     {
@@ -95,6 +102,7 @@ const CategoryPage = () => {
         }
         return undefined; // No more pages
       },
+      retry: 0,
     }
   );
 

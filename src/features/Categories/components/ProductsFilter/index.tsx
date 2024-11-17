@@ -66,10 +66,14 @@ export const ProductsFilter: React.FC<ProdcuctsFilterProps> = ({
                 onClick={() => {
                   if (isSelected) {
                     // Remove subcategory if already selected
-                    const updatedSelected = selectedSubCategory.filter(
-                      (id) => id !== subcategory._id
-                    );
-                    onSelectedSubCategoryChange(updatedSelected);
+                    if (selectedSubCategory.length === 1) {
+                      onSelectedSubCategoryChange(["all"]);
+                    } else {
+                      const updatedSelected = selectedSubCategory.filter(
+                        (id) => id !== subcategory._id
+                      );
+                      onSelectedSubCategoryChange(updatedSelected);
+                    }
                   } else {
                     // Add subcategory if not selected and remove "all"
                     const updatedSelected = selectedSubCategory.includes("all")
@@ -167,11 +171,15 @@ export const ProductsFilter: React.FC<ProdcuctsFilterProps> = ({
                 key={file._id}
                 onClick={() => {
                   if (isSelected) {
-                    // Remove subcategory if already selected
-                    const updatedSelected = selectedFileFormat.filter(
-                      (id) => id !== file._id
-                    );
-                    onSelectedFileFormatChange(updatedSelected);
+                    if (selectedFileFormat.length === 1) {
+                      onSelectedFileFormatChange(["all"]);
+                    } else {
+                      // Remove subcategory if already selected
+                      const updatedSelected = selectedFileFormat.filter(
+                        (id) => id !== file._id
+                      );
+                      onSelectedFileFormatChange(updatedSelected);
+                    }
                   } else {
                     // Add subcategory if not selected and remove "all"
                     const updatedSelected = selectedFileFormat.includes("all")
