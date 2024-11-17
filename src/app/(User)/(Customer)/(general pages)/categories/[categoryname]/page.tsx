@@ -5,7 +5,6 @@ import {
   Footer,
   Navbar,
   SearchBar,
-  SlideOver,
 } from "@/components";
 import { ProductList, ProductsFilter } from "@/features/Categories/components";
 import { useCategories } from "@/features/Categories/providers";
@@ -165,19 +164,15 @@ const CategoryPage = () => {
             <div className="grid gap-4 grid-cols-1 xl:grid-cols-4 overflow-y-hidden">
               <aside className="hidden xl:block xl:col-span-1">
                 {currentCategory && (
-                  <SlideOver open={open} setOpen={setOpen}>
-                    <div>
-                      <ProductsFilter
-                        selectedSubCategory={selectedSubCategory}
-                        onSelectedSubCategoryChange={setSelectedSubCategory}
-                        category={currentCategory}
-                        selectedType={selectedType}
-                        onSelectedTypeChange={setSelectedType}
-                        selectedFileFormat={selectedFileFormat}
-                        onSelectedFileFormatChange={setSelectedFileFormat}
-                      />
-                    </div>
-                  </SlideOver>
+                  <ProductsFilter
+                    selectedSubCategory={selectedSubCategory}
+                    onSelectedSubCategoryChange={setSelectedSubCategory}
+                    category={currentCategory}
+                    selectedType={selectedType}
+                    onSelectedTypeChange={setSelectedType}
+                    selectedFileFormat={selectedFileFormat}
+                    onSelectedFileFormatChange={setSelectedFileFormat}
+                  />
                 )}
               </aside>
               <div className="col-span-1 xl:col-span-3 flex flex-col gap-2 md:gap-4">
