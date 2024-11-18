@@ -133,7 +133,6 @@ const CategoryPage = () => {
   return (
     <>
       <Navbar categories={categories} className="bg-white" />
-
       <main className="pt-[85px] md:pt-[89px] xl:pt-[109px] !overflow-y-auto min-h-screen">
         <div className="relative flex flex-col gap-4 md:flex-row md:gap-0 md:justify-between  md:items-center px-4 pb-4 md:px-8 2xl:px-20 pt-[2px]">
           <Breadcrumb homeElement="Home" capitalizeLinks />
