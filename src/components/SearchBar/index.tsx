@@ -15,6 +15,8 @@ import { useCategories } from "@/features/Categories/providers";
 // import { XIcon } from "../svg"; // Assuming you have an X icon component for closing
 
 interface TargetComponentProps {
+  setOpenFilter?: (value: boolean) => void;
+  openFilter?: boolean;
   searchKey: string;
   onSearchKeyChanged: (searchKey: string) => void;
   onVisibilityChange?: (visible: boolean) => void;
@@ -37,6 +39,8 @@ interface FormValues {
 }
 
 export const SearchBar: React.FC<TargetComponentProps> = ({
+  setOpenFilter,
+  openFilter,
   searchKey,
   onSearchKeyChanged,
   onVisibilityChange = () => {},
@@ -194,7 +198,7 @@ export const SearchBar: React.FC<TargetComponentProps> = ({
               {withFilter && (
                 <SearchFilterIcon
                   onClick={() => {
-                    setFilterVisibility((isVisible) => !isVisible);
+                    setOpenFilter && setOpenFilter(!openFilter);
                   }}
                   className="xl:hidden"
                 />
@@ -205,7 +209,7 @@ export const SearchBar: React.FC<TargetComponentProps> = ({
         </div>
       </div>
 
-      {withFilter && filterVisibility && children}
+      {withFilter && openFilter && children}
 
       {withCategories && (
         <div className="flex flex-wrap justify-center gap-1 mx-auto mt-2 shrink lg:shrink-0 md:gap-2">

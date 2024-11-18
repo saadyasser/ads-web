@@ -42,7 +42,7 @@ export const SlideOver = ({
     (isScrollY && pathname === "/") || pathname !== "/" ? "#0E2841" : "white";
   return (
     <Transition show={open} as={Fragment}>
-      <Dialog as="div" className="relative z-40" onClose={setOpen}>
+      <Dialog as="div" className="relative z-40 h-100vh" onClose={setOpen}>
         {/* overlay */}
         <TransitionChild
           as={Fragment}
@@ -62,7 +62,7 @@ export const SlideOver = ({
             <div
               className={clsx(
                 positionClasses[position],
-                "pointer-events-non" + navClassName
+                "pointer-events-non " + navClassName
               )}
             >
               <TransitionChild

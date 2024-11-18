@@ -5,6 +5,7 @@ import {
   Footer,
   Navbar,
   SearchBar,
+  SlideOver,
 } from "@/components";
 import { ProductList, ProductsFilter } from "@/features/Categories/components";
 import { useCategories } from "@/features/Categories/providers";
@@ -128,7 +129,7 @@ const CategoryPage = () => {
     };
   }, [hasNextPage, fetchNextPage]);
 
-  const [open, setOpen] = useState(false);
+  const [openFilter, setOpenFilter] = useState(false);
   return (
     <>
       <Navbar categories={categories} className="bg-white" />
@@ -137,6 +138,8 @@ const CategoryPage = () => {
         <div className="relative flex flex-col gap-4 md:flex-row md:gap-0 md:justify-between  md:items-center px-4 pb-4 md:px-8 2xl:px-20 pt-[2px]">
           <Breadcrumb homeElement="Home" capitalizeLinks />
           <SearchBar
+            openFilter={openFilter}
+            setOpenFilter={setOpenFilter}
             searchKey={searchTerm}
             onSearchKeyChanged={setSearchTerm}
             className="w-full md:max-w-[461px] md:mb-0 mx-0 bg-background-light 2xl:p-2 2xl:pl-3"
@@ -146,15 +149,17 @@ const CategoryPage = () => {
           >
             <div className="absolute right-0 top-[calc(100%+8px)] z-50 xl:hidden px-4 md:px-8 2xl:px-20">
               {currentCategory && (
-                <ProductsFilter
-                  selectedSubCategory={selectedSubCategory}
-                  onSelectedSubCategoryChange={setSelectedSubCategory}
-                  category={currentCategory}
-                  selectedType={selectedType}
-                  onSelectedTypeChange={setSelectedType}
-                  selectedFileFormat={selectedFileFormat}
-                  onSelectedFileFormatChange={setSelectedFileFormat}
-                />
+                <SlideOver open={openFilter} setOpen={setOpenFilter}>
+                  <ProductsFilter
+                    selectedSubCategory={selectedSubCategory}
+                    onSelectedSubCategoryChange={setSelectedSubCategory}
+                    category={currentCategory}
+                    selectedType={selectedType}
+                    onSelectedTypeChange={setSelectedType}
+                    selectedFileFormat={selectedFileFormat}
+                    onSelectedFileFormatChange={setSelectedFileFormat}
+                  />
+                </SlideOver>
               )}
             </div>
           </SearchBar>

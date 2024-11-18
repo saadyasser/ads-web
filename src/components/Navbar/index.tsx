@@ -147,7 +147,7 @@ export const Navbar = ({
                 buttonsClassName
               )}
             >
-              <AuthIcon />
+              <AuthIcon fill={iconColor} />
             </Button>
           ) : (
             <Button
