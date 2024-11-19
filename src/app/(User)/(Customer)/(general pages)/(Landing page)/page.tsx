@@ -3,6 +3,7 @@ import { Footer } from "@/components";
 import { useCategories } from "@/features/Categories/providers";
 import {
   Categories,
+  HowBecomePublisher,
   TestimonialsSection,
   TopSelections,
 } from "@/features/landingPage/components";
@@ -22,6 +23,7 @@ export default function LandingPage() {
         <TopSelections category={categories[3]} />
         <TopSelections category={categories[4]} />
       </div>
+      <HowBecomePublisher />
       <StatisticsSection />
       <TestimonialsSection />
       <Footer />

@@ -4,7 +4,6 @@ import { Category1, RightArrow } from "@/components/svg";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { array } from "zod";
 
 interface Category {
   id: number;
@@ -58,48 +57,51 @@ const categoriesList: Category[] = [
   },
 ];
 
-export const Categories = () => {
+export const HowBecomePublisher = () => {
   const [hoverdCategoryId, setHoveredCategoryId] = useState<undefined | number>(
     undefined
   );
   return (
     <section className="bg-white py-6 px-4 md:py-10 md:px-8 2xl:py-[60px] 2xl:px-20">
-      <H2 className="mb-3 text-accent-dark">Select a category</H2>
-      <p className="mb-4 text-xs text-black md:text-sm md:font-semibold 2xl:text-base 2xl:font-semibold 2xl:mb-6">
-        With lots of unique blocks, you can easily build a page without coding.
-      </p>
+      <div className="flex flex-col items-start gap-4 lg:flex-row lg:justify-between lg:items-center mb-4 2xl:mb-6">
+        <div>
+          <H2 className="mb-3 text-accent-dark">
+            How to become an ADS publisher?
+          </H2>
+          <p className=" text-xs text-black md:text-sm md:font-semibold 2xl:text-base 2xl:font-semibold">
+            With lots of unique blocks, you can easily build a page without
+            coding.
+          </p>
+        </div>
+        <Link
+          href="/test"
+          className="md:flex justify-between items-center text-center font-semibold text-white bg-primary  py-2 px-3 rounded-lg md:rounded-xl  md:py-[10px] md:px-16"
+        >
+          Explore Design Systems
+        </Link>
+      </div>
       <div className="grid grid-cols-1 gap-2  md:grid-cols-2 lg:grid-cols-3 md:gap-3 2xl:gap-4">
         {categoriesList.map((category: Category) => (
-          <Link
-            onMouseEnter={() => {
-              setHoveredCategoryId(category.id);
-            }}
-            onMouseLeave={() => {
-              setHoveredCategoryId(undefined);
-            }}
-            key={category.id}
-            href={category.link}
+          <ImageCard
+            direction="column"
+            title={category.name}
+            description="Fill out the form and submit your application with details about your work and expertise."
+            image={<Category1 className="w-6 h-6 md:w-[43px] md:h-[43px]" />}
           >
-            <ImageCard
-              title={category.name}
-              description="+1,1k Assets"
-              image={<Category1 className="w-6 h-6 md:w-[43px] md:h-[43px]" />}
+            <div
+              className={`w-10 h-10 rounded-full self-end bg-secondary-hover ${
+                category.id === hoverdCategoryId
+                  ? "invisible lg:visible"
+                  : "invisible"
+              }`}
             >
-              <div
-                className={`w-10 h-10 rounded-full self-end bg-secondary-hover ${
-                  category.id === hoverdCategoryId
-                    ? "invisible lg:visible"
-                    : "invisible"
-                }`}
-              >
-                <RightArrow />
-              </div>
-            </ImageCard>
-          </Link>
+              <RightArrow />
+            </div>
+          </ImageCard>
         ))}
       </div>
     </section>
   );
 };
 
-export default Categories;
+export default HowBecomePublisher;
