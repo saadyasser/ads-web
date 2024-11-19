@@ -1,5 +1,5 @@
 "use client";
-import { H2 } from "@/components";
+import { H2, ImageCard } from "@/components";
 import { Category1, RightArrow } from "@/components/svg";
 import Image from "next/image";
 import Link from "next/link";
@@ -77,11 +77,25 @@ export const Categories = () => {
             onMouseLeave={() => {
               setHoveredCategoryId(undefined);
             }}
-            className="flex items-center justify-between p-4 text-center transition-colors duration-150 ease-in rounded-lg bg-background-light hover:bg-secondary text-accent-dark md:rounded-2xl"
             key={category.id}
             href={category.link}
           >
-            <div className="flex items-center justify-start gap-3">
+            <ImageCard
+              title={category.name}
+              description="+1,1k Assets"
+              image={<Category1 className="w-6 h-6 md:w-[43px] md:h-[43px]" />}
+            >
+              <div
+                className={`w-10 h-10 rounded-full self-end bg-secondary-hover ${
+                  category.id === hoverdCategoryId
+                    ? "invisible lg:visible"
+                    : "invisible"
+                }`}
+              >
+                <RightArrow />
+              </div>
+            </ImageCard>
+            {/* <div className="flex items-center justify-start gap-3">
               <Category1 className="w-6 h-6 md:w-[43px] md:h-[43px]" />
               <div>
                 <h6 className="mb-2 text-sm font-bold leading-5 text-left md:text-base text-accent-dark">
@@ -91,16 +105,7 @@ export const Categories = () => {
                   +1,1k Assets
                 </p>
               </div>
-            </div>
-            <div
-              className={`w-10 h-10 rounded-full self-end bg-secondary-hover ${
-                category.id === hoverdCategoryId
-                  ? "invisible lg:visible"
-                  : "invisible"
-              }`}
-            >
-              <RightArrow />
-            </div>
+            </div> */}
           </Link>
         ))}
       </div>

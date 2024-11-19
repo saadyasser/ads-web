@@ -32,7 +32,9 @@ import { GoogleIcon } from "./svg/GoogleIcon";
 import { SearchBar } from "./SearchBar";
 import { RotatingList } from "./RotatingList";
 import { NavLinks } from "./NavLinks"
+import { ImageCard } from "./ImageCard";
 export {
+  ImageCard,
   NavLinks,
   RotatingList,
   SearchBar,
