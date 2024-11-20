@@ -75,9 +75,10 @@ export const HowBecomePublisher = () => {
         </div>
         <Link
           href="/test"
-          className="md:flex justify-between items-center text-center font-semibold text-white bg-primary  py-2 px-3 rounded-lg md:rounded-xl  md:py-[10px] md:px-16"
+          className="self-end flex justify-between gap-1 items-center text-center font-semibold text-white bg-primary  py-2 px-3 rounded-lg md:rounded-xl  md:py-[10px] md:px-16"
         >
-          Explore Design Systems
+          <span>Let's Go</span>
+          <RightArrow fill="white" color="white" />
         </Link>
       </div>
       <div className="grid grid-cols-1 gap-2  md:grid-cols-2 lg:grid-cols-3 md:gap-3 2xl:gap-4">

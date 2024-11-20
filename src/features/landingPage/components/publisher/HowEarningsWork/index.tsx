@@ -62,9 +62,10 @@ export const HowEarningsWork = () => {
         </div>
         <Link
           href="/test"
-          className="self-end md:flex justify-between items-center text-center font-semibold text-white bg-primary  py-2 px-3 rounded-lg md:rounded-xl  md:py-[10px] md:px-16 xl:hidden"
+          className="self-end flex gap-1 justify-between items-center text-center font-semibold text-white bg-primary  py-2 px-3 rounded-lg md:rounded-xl  md:py-[10px] md:px-16 xl:hidden"
         >
-          Explore Design Systems
+          <span>Let's Go</span>
+          <RightArrow fill="white" color="white" />
         </Link>
       </div>
       <div className="grid grid-cols-1 gap-2  md:grid-cols-2 lg:grid-cols-4 md:gap-3 2xl:gap-4">
@@ -81,9 +82,10 @@ export const HowEarningsWork = () => {
       <div className="hidden xl:flex justify-center mt-4">
         <Link
           href="/test"
-          className="font-semibold text-white bg-primary  py-2 px-3 rounded-lg xl:rounded-xl  xl:py-[10px] md:px-16"
+          className="flex gap-[10px] items-center font-semibold text-white bg-primary  py-2 px-3 rounded-lg xl:rounded-xl  xl:py-[10px] md:px-16"
         >
-          Explore Design Systems
+          <span>Explore Design Systems</span>
+          <RightArrow fill="white" color="white" />
         </Link>
       </div>
     </section>
