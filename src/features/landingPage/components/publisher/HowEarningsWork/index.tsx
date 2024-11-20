@@ -64,13 +64,14 @@ export const HowEarningsWork = () => {
           href="/test"
           className="self-end flex gap-1 justify-between items-center text-center font-semibold text-white bg-primary  py-2 px-3 rounded-lg md:rounded-xl  md:py-[10px] md:px-16 xl:hidden"
         >
-          <span>Let's Go</span>
+          <span>Lets Go</span>
           <RightArrow fill="white" color="white" />
         </Link>
       </div>
       <div className="grid grid-cols-1 gap-2  md:grid-cols-2 lg:grid-cols-4 md:gap-3 2xl:gap-4">
         {categoriesList.map((category: Category) => (
           <ImageCard
+            key={category.id}
             className="bg-white"
             direction="column"
             title={category.name}

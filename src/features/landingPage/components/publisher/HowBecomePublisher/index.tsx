@@ -77,13 +77,14 @@ export const HowBecomePublisher = () => {
           href="/test"
           className="self-end flex justify-between gap-1 items-center text-center font-semibold text-white bg-primary  py-2 px-3 rounded-lg md:rounded-xl  md:py-[10px] md:px-16"
         >
-          <span>Let's Go</span>
+          <span>Lets Go</span>
           <RightArrow fill="white" color="white" />
         </Link>
       </div>
       <div className="grid grid-cols-1 gap-2  md:grid-cols-2 lg:grid-cols-3 md:gap-3 2xl:gap-4">
         {categoriesList.map((category: Category) => (
           <ImageCard
+            key={category.id}
             direction="column"
             title={category.name}
             description="Fill out the form and submit your application with details about your work and expertise."
