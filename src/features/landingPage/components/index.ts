@@ -7,8 +7,10 @@ import { TopSelections } from "./TopSelections";
 import { TestimonialsSection } from "./TestimonialsSection"
 import { Product } from "./Product";
 import { GeneralLayout } from "./GeneralLayout";
-import { HowBecomePublisher } from "./publisher/HowBecomePublisher"
+import { HowBecomePublisher } from "./publisher/HowBecomePublisher";
+import { HowEarningsWork } from "./publisher/HowEarningsWork";
 export {
+  HowEarningsWork,
   HowBecomePublisher,
   GeneralLayout,
   Product,

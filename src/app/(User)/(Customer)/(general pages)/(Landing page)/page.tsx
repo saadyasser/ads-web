@@ -4,6 +4,7 @@ import { useCategories } from "@/features/Categories/providers";
 import {
   Categories,
   HowBecomePublisher,
+  HowEarningsWork,
   TestimonialsSection,
   TopSelections,
 } from "@/features/landingPage/components";
@@ -24,6 +25,7 @@ export default function LandingPage() {
         <TopSelections category={categories[4]} />
       </div>
       <HowBecomePublisher />
+      <HowEarningsWork />
       <StatisticsSection />
       <TestimonialsSection />
       <Footer />

@@ -5,7 +5,7 @@ import { cn } from "@/utils";
 interface ImageCardType {
   title: string;
   description: string;
-  image: React.ReactNode;
+  image?: React.ReactNode;
   className?: string;
   wrapperClassName?: string;
   children?: React.ReactNode;
